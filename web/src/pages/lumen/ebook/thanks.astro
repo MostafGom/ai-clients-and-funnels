@@ -15,7 +15,7 @@ const note = loadVslScript('clients/lumen/funnels/ebook/THANKS-SCRIPT.md');
       <div>
         <p class="text-base font-bold text-success">Sent</p>
         <h1 class="mt-2 text-h1 font-semibold">The Reset is in your inbox.<br />Give it a minute, then check promotions.</h1>
-        <p class="mt-5 text-lead text-fg-muted">Here’s the direct download too. And while it downloads, a one-minute note from Maya about the one thing to do differently tonight.</p>
+        <p class="mt-5 text-lead text-fg-muted">Here’s the direct download too. And while it downloads, a 30-second note from Maya about the one thing to do differently tonight.</p>
         <Button href={client.leadMagnet!.downloadUrl} size="lg" variant="secondary" class="mt-7" data-download>Download the Reset (PDF)</Button>
 
         <div class="mt-12 rounded-xl bg-surface p-7 shadow-pop sm:p-9">
@@ -30,7 +30,7 @@ const note = loadVslScript('clients/lumen/funnels/ebook/THANKS-SCRIPT.md');
         </div>
       </div>
       <div>
-        <ScriptedVSL script={note} title="Play Maya’s one-minute note">
+        <ScriptedVSL script={note} title="Play Maya’s 30-second note">
           <Fragment slot="art:moon"><Moon size={180} phase={0.7} /></Fragment>
         </ScriptedVSL>
       </div>

@@ -5,14 +5,15 @@ export interface VslSlide { text: string; seconds: number }
 export interface VslChapter { title: string; at: number; art?: string; reveal: boolean; slides: VslSlide[]; words: number }
 export interface VslScript { chapters: VslChapter[]; totalSeconds: number; words: number; revealAt: number | null }
 
-const WPS = 150 / 60; // spoken words per second
+/** Reading pace, not speaking pace: 2.2 s base + 0.12 s per word, clamped to 3–5 s per slide. */
+const slideSeconds = (words: number) => Math.min(5, Math.max(3, Math.round((2.2 + words * 0.12) * 10) / 10));
 
 /**
  * Parses clients/<slug>/funnels/<type>/VSL-SCRIPT.md:
  *   ## [m:ss] Chapter title
  *   > art: moon        > reveal
  *   One paragraph per slide.
- * Slide duration = words / 2.5 wps, min 2.4 s. Chapters keep their written timestamps for display.
+ * Slide duration = slideSeconds(words) (3–5 s). Chapters keep their written timestamps as recording targets.
  */
 export function loadVslScript(relPath: string): VslScript {
   const file = resolve(process.cwd(), '..', relPath);
@@ -31,7 +32,7 @@ export function loadVslScript(relPath: string): VslScript {
       continue;
     }
     const words = line.split(/\s+/).length;
-    cur.slides.push({ text: line, seconds: Math.max(2.4, Math.round((words / WPS) * 10) / 10) });
+    cur.slides.push({ text: line, seconds: slideSeconds(words) });
     cur.words += words;
   }
   const totalSeconds = chapters.reduce((t, c) => t + c.slides.reduce((x, s) => x + s.seconds, 0), 0);

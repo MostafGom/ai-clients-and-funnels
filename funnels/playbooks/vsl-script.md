@@ -23,4 +23,4 @@ Rules
 - The offer is never mentioned before the reveal chapter. The page hides the offer until then.
 - Each slide ≤ 25 words. Spoken English. Contractions. Second person.
 - One visual per chapter, not per slide. The visual teaches; it doesn't decorate.
-- When the client records the real video: the script's timestamps become `revealAfter`.
+- The scripted stand-in plays at reading pace: 2.2 s + 0.12 s per word per slide, clamped 3–5 s (about half the spoken length). The recorded video runs at speaking pace; its timestamps become `revealAfter`.

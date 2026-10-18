@@ -1,6 +1,6 @@
 # VSL script — lumen / vsl-checkout · "Why your baby wakes at 2 a.m."
-Target 13 minutes at 150 wpm. One paragraph = one slide = one spoken beat. `> art:` picks the chapter illustration. `> reveal` unlocks the offer.
-Record this as the real video. Timestamps are targets; the player computes real timing from word count.
+One paragraph = one slide = one spoken beat. `> art:` picks the chapter illustration. `> reveal` unlocks the offer.
+The scripted player runs at reading pace (3–5 s per slide, about 6–7 minutes total). Recorded at speaking pace this is a 12–13 minute video; the chapter timestamps are the recording targets.
 
 ## [0:00] If your baby wakes at 2 a.m., this is why
 > art: stars
