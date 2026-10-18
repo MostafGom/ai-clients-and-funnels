@@ -11,6 +11,7 @@ import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import NightLog from '../../../components/clients/lumen/art/NightLog.astro';
 import MonitorFrame from '../../../components/clients/lumen/art/MonitorFrame.astro';
+import ButIcon from '../../../components/clients/lumen/art/scenes/ButIcon.astro';
 const script = loadVslScript('clients/lumen/funnels/vsl-call/VSL-SCRIPT.md');
 const minutes = Math.ceil(script.totalSeconds / 60);
 const CTA = 'Apply for a free Clarity Call';
@@ -20,7 +21,10 @@ const apply = '/lumen/vsl-call/apply';
 
   <NightBand edge="none" pad="sm" stars={110} seed={17} class="overflow-hidden">
     <Container size="content" class="pb-6">
-      <p class="text-base font-bold text-accent-2">For babies with a “but” · twins · reflux · daycare · siblings · travel</p>
+      <p class="text-base font-bold text-accent-2">For babies with a “but”</p>
+      <ul class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold text-inverse-fg/85">
+        {([['twins', 'Twins'], ['reflux', 'Reflux'], ['daycare', 'Daycare'], ['sibling', 'Sibling in the room'], ['travel', 'Travel']] as const).map(([k, l]) => <li class="inline-flex items-center gap-2 text-accent"><ButIcon kind={k} size={28} /><span class="text-inverse-fg/85">{l}</span></li>)}
+      </ul>
       <h1 class="mt-4 max-w-[26ch] text-display font-semibold">Every baby is different.<br class="hidden sm:block" /> Here’s the plan for yours.</h1>
       <p class="mt-5 max-w-[60ch] text-lead text-inverse-fg/85">Four kinds of “different,” the adjustment for each, and how to get a plan written for your baby. Free.</p>
       <div class="mt-10">

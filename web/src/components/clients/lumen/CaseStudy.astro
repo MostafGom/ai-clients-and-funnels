@@ -2,12 +2,13 @@
 /** One family: situation → what changed → the log → the quote. Lives on the night band. */
 import NightLog from './art/NightLog.astro';
 import MonitorFrame from './art/MonitorFrame.astro';
+import Avatar from './art/scenes/Avatar.astro';
 interface Props { name: string; who: string; hook: string; before: string; change: string; after: string[]; beforeHours: number[]; quote: string; monitor: { hours: string; night: string }; flag?: string }
 const { name, who, hook, before, change, after, beforeHours, quote, monitor, flag } = Astro.props;
 ---
 <article class="grid gap-8 rounded-xl bg-inverse-2 p-6 shadow-pop sm:p-8 lg:grid-cols-[1.1fr_0.9fr]">
   <div>
-    <p class="font-display text-2xl font-semibold">{name} <span class="text-accent-2">· {who}</span></p>
+    <div class="flex items-center gap-4"><Avatar who={name} size={56} twins={/twins/i.test(who)} /><p class="font-display text-2xl font-semibold">{name} <span class="text-accent-2">· {who}</span></p></div>
     <p class="mt-1 text-lg">“{hook}”</p>
     <dl class="mt-6 space-y-4 text-inverse-fg/90">
       <div><dt class="text-sm font-bold text-accent-2">Before</dt><dd>{before}</dd></div>

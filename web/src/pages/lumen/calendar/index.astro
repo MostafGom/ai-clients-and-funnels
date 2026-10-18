@@ -9,6 +9,8 @@ import FaqList from '../../../components/clients/lumen/FaqList.astro';
 import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
+import Avatar from '../../../components/clients/lumen/art/scenes/Avatar.astro';
 const CTA = 'Grab a time';
 const book = '/lumen/calendar/book';
 const steps = [
@@ -69,10 +71,10 @@ const plan = [['Baby', '9 months, reflux'], ['Last nap ends', '3:30 pm'], ['Ligh
           { q: 'She spotted the problem in four minutes. Wake windows. Night two: slept till six.', who: 'Hannah L., 8-month-old' },
           { q: 'I expected a pitch. I got a plan. We did it ourselves and it worked.', who: 'Tom & Grace, 19-month-old' },
           { q: 'Twins, reflux, daycare. She’d seen it all before. That alone helped me breathe.', who: 'Ines R., twins, 11 months' },
-        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 text-sm text-fg-muted">{t.who}<ClaimFlag /></figcaption></figure>)}
+        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} twins={/twins/i.test(t.who)} />{t.who}<ClaimFlag /></figcaption></figure>)}
       </div>
       <div class="mt-14 grid items-center gap-8 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Maya" size={150} />
+        <PortraitSlot name="Maya" size={150}><Maya /></PortraitSlot>
         <p class="max-w-[60ch] text-lg">Maya Lindqvist, certified pediatric sleep consultant<ClaimFlag />, 2,300+ families<ClaimFlag /> since 2019. Mum of a former seven-times-a-night waker. She takes the calls herself.</p>
       </div>
     </Container>

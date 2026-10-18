@@ -1,0 +1,40 @@
+---
+/* Social share images, 1200×630, one per funnel. Rendered to public/lumen/og/<funnel>.png by `pnpm images`. */
+import '../../../styles/base.css';
+import StarField from '../../../components/clients/lumen/art/StarField.astro';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
+import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
+export function getStaticPaths() {
+  return [
+    { params: { funnel: 'checkout' }, props: { kicker: 'The Lumen Sleep Method', title: '11 hours a night in seven nights, without crying it out.', foot: 'Sleep-Through Guarantee · ages 4 months to 3 years' } },
+    { params: { funnel: 'vsl-checkout' }, props: { kicker: 'Free training', title: 'Why your baby wakes at 2 a.m., and the kind way to fix it.', foot: 'Timing, not tears · 7 minutes' } },
+    { params: { funnel: 'ebook' }, props: { kicker: 'Free guide', title: 'What time should your baby go to bed tonight?', foot: 'The 7-Night Bedtime Reset · chart, script, plan' } },
+    { params: { funnel: 'calendar' }, props: { kicker: 'Free Sleep Clarity Call', title: 'Twenty minutes. One plan for your baby. Then sleep.', foot: '20 minutes with Maya · no cry-it-out' } },
+    { params: { funnel: 'vsl-call' }, props: { kicker: 'For babies with a “but”', title: 'Every baby is different. Here’s the plan for yours.', foot: 'Twins · reflux · daycare · siblings · travel' } },
+    { params: { funnel: 'default' }, props: { kicker: 'Lumen Sleep', title: 'Baby sleeps. You sleep. Everybody wins.', foot: 'Gentle Timing Method · 2,300+ families' } },
+  ];
+}
+const { kicker, title, foot } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-client="lumen">
+  <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>og</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700&display=swap" />
+    <style>html,body{margin:0;background:#2e2350}</style></head>
+  <body>
+    <div class="relative overflow-hidden bg-inverse text-inverse-fg" style="width:1200px;height:630px">
+      <StarField count={80} seed={13} />
+      <div class="absolute right-16 top-14"><Moon size={150} phase={0.78} /></div>
+      <div class="absolute bottom-0 right-24"><Maya size={330} /></div>
+      <div class="absolute left-20 top-20 max-w-[700px]">
+        <p class="text-2xl font-bold text-accent-2">{kicker}</p>
+        <h1 class="mt-5 font-display text-[64px] font-semibold leading-[1.02] text-balance">{title}</h1>
+      </div>
+      <div class="absolute bottom-16 left-20 flex items-center gap-5">
+        <span class="rounded-pill bg-accent px-5 py-2 text-xl font-bold text-accent-fg">Lumen Sleep</span>
+        <span class="text-xl text-inverse-fg/80">{foot}</span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -14,6 +14,9 @@ import NightLog from '../../../components/clients/lumen/art/NightLog.astro';
 import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
 import NightRibbon from '../../../components/clients/lumen/art/NightRibbon.astro';
 import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
+import Hallway from '../../../components/clients/lumen/art/scenes/Hallway.astro';
+import Sofa from '../../../components/clients/lumen/art/scenes/Sofa.astro';
 
 const CTA = 'Start tonight · $497';
 const checkout = '/lumen/checkout/checkout';
@@ -77,13 +80,18 @@ const faq = [
 
   <!-- 2. The scene -->
   <section class="bg-bg py-16 sm:py-24">
-    <Container size="prose">
+    <Container size="wide">
+      <div class="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+      <Hallway class="w-full rounded-xl shadow-pop" />
+      <div class="max-w-[58ch]">
       <p class="font-display text-h2 font-semibold">It’s 2:14 a.m.</p>
       <div class="mt-6 space-y-5 text-lg text-fg">
         <p>You’re standing in the hallway doing the shuffle-bounce. Your left arm went numb ten minutes ago. You’ve sung the song four times. The baby is asleep, probably, but the last three times you put her down she was awake before your hand left her back.</p>
         <p>Your partner is asleep. You’ve already decided to be annoyed about that tomorrow.</p>
         <p>You’ve read forty tabs. Half of them say let her cry. The other half say you’ll ruin her if you do. Your mother says rice cereal. The pediatrician said “some babies are just like that,” which is not a plan.</p>
         <p class="font-bold">So here’s the question nobody has answered for you yet: why does a baby who is clearly exhausted fight sleep this hard?</p>
+      </div>
+      </div>
       </div>
     </Container>
   </section>
@@ -127,7 +135,7 @@ const faq = [
   <section class="bg-surface-2 py-16 sm:py-24">
     <Container>
       <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant" size={240} />
+        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant (illustration until her photo is supplied)" size={240}><Maya /></PortraitSlot>
         <div class="max-w-[62ch]">
           <h2 class="text-h2 font-semibold">Hi, I’m Maya. I built this at 3 a.m. with my own baby on my chest.</h2>
           <div class="mt-6 space-y-4 text-lg">
@@ -247,8 +255,8 @@ const faq = [
   <!-- 13. Close -->
   <NightBand edgeTop="cloud" edge="none" seed={33} pad="lg">
     <Container size="prose" class="text-center">
-      <div class="mx-auto w-fit"><Moon size={96} phase={1} /></div>
-      <h2 class="mt-6 text-display font-semibold">Tonight is night one.</h2>
+      <Sofa class="mx-auto w-full max-w-[560px] rounded-xl shadow-pop" />
+      <h2 class="mt-10 text-display font-semibold">Tonight is night one.</h2>
       <p class="mx-auto mt-6 max-w-[55ch] text-lead text-inverse-fg/85">Seven nights from now you could be on the sofa at 8 p.m. with the monitor quiet and nothing to do. That’s not a fantasy, it’s Tuesday for 2,300 families<ClaimFlag />. Pick the age track, set tonight’s bedtime, run the script. We’ll take it from there, one night at a time.</p>
       <div class="mt-9 flex flex-col items-center gap-3">
         <Button href={checkout} size="xl" data-cta="close">{CTA}</Button>

@@ -9,6 +9,8 @@ import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
+import Avatar from '../../../components/clients/lumen/art/scenes/Avatar.astro';
 const spreads = [
   { n: 'Page 3', title: 'The wake-window chart, by age', body: '4 months to 3 years, printable, for the fridge. The one number that decides tonight.' },
   { n: 'Page 5', title: 'The 10-minute bedtime script', body: 'Same ten minutes every night. Her brain learns it by night three.' },
@@ -49,13 +51,17 @@ const spreads = [
         ))}
       </div>
       <p class="mt-6 text-fg-muted">Plus: the five mistakes that cause early wakings, your 7-night log, and what to do on night eight.</p>
+      <div class="mt-10 grid items-center gap-8 md:grid-cols-[auto_1fr]">
+        <img src="/lumen/assets/bedtime-reset-cover.png" alt="Cover of The 7-Night Bedtime Reset" width="260" height="368" class="w-[220px] rotate-[-3deg] rounded-md shadow-pop md:w-[260px]" loading="lazy" />
+        <p class="max-w-[48ch] text-lg text-fg-muted">Fourteen pages, A4, built to print. Page 3 goes on the fridge. The rest you read once, then run.</p>
+      </div>
     </Container>
   </section>
 
   <section class="bg-surface-2 py-16 sm:py-20">
     <Container>
       <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant" size={200} />
+        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant (illustration until her photo is supplied)" size={200}><Maya /></PortraitSlot>
         <div class="max-w-[62ch]">
           <h2 class="text-h2 font-semibold">Written by someone who did the hallway shuffle for eleven months.</h2>
           <p class="mt-5 text-lg">I’m Maya Lindqvist, a certified pediatric sleep consultant<ClaimFlag />. Before that I was a mum with an 11-month-old who woke seven times a night and a spreadsheet that didn’t help. What fixed it was timing. Since 2019 I’ve helped 2,300+ families<ClaimFlag /> fix theirs, and the Reset is the first thing I give every one of them.</p>
@@ -71,7 +77,7 @@ const spreads = [
           { q: 'Printed the chart, moved bedtime 50 minutes earlier, she slept six hours. Night one.', who: 'Hannah L., 8-month-old' },
           { q: 'The script is genius. Same ten minutes, and by night three he knew what was coming.', who: 'Tom & Grace, 19-month-old' },
           { q: 'I read it at 3 a.m. and cried, because it finally made sense.', who: 'Sofia B., 7-month-old' },
-        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 text-sm text-fg-muted">{t.who}<ClaimFlag /></figcaption></figure>)}
+        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} twins={/twins/i.test(t.who)} />{t.who}<ClaimFlag /></figcaption></figure>)}
       </div>
       <FaqList class="mt-14" items={[
         { q: 'Is there any crying it out?', a: 'No. The Reset is timing and a script. The 2 a.m. page tells you what to do when she wakes, and “leave her to cry” is never the answer.' },

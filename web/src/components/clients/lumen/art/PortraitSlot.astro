@@ -1,5 +1,6 @@
 ---
 /** Framed slot for the client's real photo. Visibly a placeholder until `src` is supplied. */
+/** Default slot: an illustration (e.g. <Maya />) shown until a real photo `src` is supplied. */
 interface Props { name: string; caption?: string; src?: string; size?: number; class?: string }
 const { name, caption, src, size = 220, class: cls = '' } = Astro.props;
 ---
@@ -8,7 +9,9 @@ const { name, caption, src, size = 220, class: cls = '' } = Astro.props;
     <svg aria-hidden="true" class="absolute -inset-4" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round" /></svg>
     {src
       ? <img src={src} alt={name} width={size} height={size} class="size-full rounded-pill object-cover" />
-      : <div class="grid size-full place-items-center rounded-pill border-2 border-dashed border-border-strong bg-surface-2 p-6 text-sm font-bold text-fg-muted">Photo of {name} goes here</div>}
+      : Astro.slots.has('default')
+        ? <div class="size-full overflow-hidden rounded-pill [&>svg]:size-full"><slot /></div>
+        : <div class="grid size-full place-items-center rounded-pill border-2 border-dashed border-border-strong bg-surface-2 p-6 text-sm font-bold text-fg-muted">Photo of {name} goes here</div>}
   </div>
   {caption && <figcaption class="mt-5 text-sm text-fg-muted">{caption}</figcaption>}
 </figure>

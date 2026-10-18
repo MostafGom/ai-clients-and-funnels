@@ -25,6 +25,8 @@ export interface Client {
   funnels: FunnelType[];
   /** Social proof used across funnels. */
   socials?: { label: string; href: string }[];
+  /** True when public/<slug>/og/<funnel>.png + default.png exist (rendered by `pnpm images`). */
+  ogImages?: boolean;
 }
 
 export const clients: Client[] = [
@@ -45,6 +47,7 @@ export const clients: Client[] = [
     calendar: { provider: 'cal', url: 'https://cal.com/lumen-sleep/clarity-call' },
     leadMagnet: { title: 'The 7-Night Bedtime Reset', downloadUrl: '/lumen/assets/bedtime-reset.pdf' },
     funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
+    ogImages: true,
   },
 ];
 

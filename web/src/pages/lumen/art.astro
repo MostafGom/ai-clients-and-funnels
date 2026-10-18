@@ -1,0 +1,30 @@
+---
+/** Internal gallery of the Lumen illustration system (noindex). */
+import Layout from '../../layouts/FunnelLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Maya from '../../components/clients/lumen/art/scenes/Maya.astro';
+import Hallway from '../../components/clients/lumen/art/scenes/Hallway.astro';
+import Sofa from '../../components/clients/lumen/art/scenes/Sofa.astro';
+import Avatar from '../../components/clients/lumen/art/scenes/Avatar.astro';
+import ButIcon from '../../components/clients/lumen/art/scenes/ButIcon.astro';
+import MonitorFrame from '../../components/clients/lumen/art/MonitorFrame.astro';
+import Moon from '../../components/clients/lumen/art/Moon.astro';
+const families = ['Jess M.', 'Ines R.', 'Kwame & Lila', 'Hannah L.', 'Tom & Grace', 'Sofia B.', 'Priya K.', 'Dana F.'];
+---
+<Layout client="lumen" title="Illustrations" noindex>
+  <Container class="py-12">
+    <h1 class="text-h1 font-semibold">Lumen illustration system</h1>
+    <h2 class="mt-10 text-h3 font-semibold">Portrait + scenes</h2>
+    <div class="mt-4 grid items-start gap-6 md:grid-cols-[auto_1fr_1fr]">
+      <Maya size={240} />
+      <Hallway class="w-full" />
+      <Sofa class="w-full" />
+    </div>
+    <h2 class="mt-10 text-h3 font-semibold">Avatars</h2>
+    <div class="mt-4 flex flex-wrap gap-4">{families.map((f) => <figure class="text-center"><Avatar who={f} size={88} twins={f.startsWith('Ines')} /><figcaption class="mt-1 text-xs">{f}</figcaption></figure>)}</div>
+    <h2 class="mt-10 text-h3 font-semibold">Icons</h2>
+    <div class="mt-4 flex gap-6 text-primary">{(['twins', 'reflux', 'daycare', 'sibling', 'travel'] as const).map((k) => <ButIcon kind={k} size={56} />)}</div>
+    <h2 class="mt-10 text-h3 font-semibold">Existing</h2>
+    <div class="mt-4 flex items-end gap-6"><Moon size={96} /><MonitorFrame hours="11h 20m" night="Night 7" /></div>
+  </Container>
+</Layout>

@@ -30,7 +30,8 @@ const client = getClient(slug);
 const fullTitle = buildTitle(client, title);
 const desc = description ?? client.description;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
-const ogImage = image ? new URL(image, Astro.site ?? Astro.url).toString() : undefined;
+const fallbackOg = client.ogImages ? `/${client.slug}/og/${funnel && client.funnels.includes(funnel as any) ? funnel : 'default'}.png` : undefined;
+const ogImage = (image ?? fallbackOg) ? new URL((image ?? fallbackOg)!, Astro.site ?? Astro.url).toString() : undefined;
 ---
 
 <!doctype html>

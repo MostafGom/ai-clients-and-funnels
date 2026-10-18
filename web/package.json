@@ -18,7 +18,8 @@
     "test:install": "playwright install chromium",
     "astro": "astro",
     "wrangler": "wrangler",
-    "pdf": "node scripts/render-pdf.mjs /lumen/reset/ public/lumen/assets/bedtime-reset.pdf"
+    "pdf": "node scripts/render-pdf.mjs /lumen/reset/ public/lumen/assets/bedtime-reset.pdf",
+    "images": "node scripts/render-images.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.4.0",
