@@ -1,0 +1,120 @@
+---
+/* The 3-Session Week — the lead magnet as a designed, printable page. Source: clients/forge/funnels/ebook/GUIDE.md. Render: pnpm pdf */
+import '../../../styles/base.css';
+import Plates from '../../../components/clients/forge/art/Plates.astro';
+import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+const template = [['Mon · day 1', 'A', 'Squat · Bench · Row'], ['Wed · day 2', 'B', 'Deadlift · Press · Pull-up'], ['Fri · day 3', 'A', 'Squat · Bench · Row']];
+const weeks = [
+  ['1', 'Squat 3×5 · Bench 3×5 · Row 3×8', 'Deadlift 3×5 · Press 3×5 · Pull-up 3×8', 'Everything feels light. Good. Pattern first.'],
+  ['2', '+2.5 kg on every clean lift', '+2.5 kg on every clean lift', 'Squat and deadlift move fastest. Some soreness; it fades.'],
+  ['3', '+2.5 kg (deadlift +5 kg) where clean', 'Same', 'The week other programs collapse. Yours is 45 minutes, three times. Keep it.'],
+  ['4', '+2.5 kg where clean', 'Same', 'Most men are 15 to 30 kg heavier on the squat than week one. Log it.'],
+];
+const swaps = [
+  ['Lower back, squat', 'Goblet squat or box squat to a high box', 'Deadlift lighter, Romanian deadlift'],
+  ['Lower back, deadlift', 'Trap-bar or Romanian deadlift, or rack pull', 'Squat as normal'],
+  ['Front of shoulder, bench', 'Dumbbell bench, neutral grip, or floor press', 'Row, pull-up'],
+  ['Shoulder, press', 'Landmine or dumbbell press, neutral grip', 'Bench with narrow grip'],
+  ['Knee, squat', 'Box squat, slow descent, or leg press', 'Deadlift, hinge pattern'],
+  ['Elbow, pull-up', 'Neutral-grip pull-down or ring row', 'Everything else'],
+];
+const lifts = [
+  ['Squat', 'Bar on the upper back, feet shoulder-width, toes slightly out. Sit between your knees, not back onto a chair.', '“Knees out, chest up, push the floor away.”'],
+  ['Bench', 'Shoulder blades together and down, feet flat. Bar to the lower chest, elbows at 45 degrees.', '“Bend the bar.”'],
+  ['Row', 'Hinge at the hips, flat back, bar to the lower ribs. No heaving.', '“Elbows to the back pockets.”'],
+  ['Deadlift', 'Bar over mid-foot, shins to the bar, hips higher than knees. Bar stays on the legs.', '“Stand up tall, don’t lean back.”'],
+  ['Press', 'Bar on the front of the shoulders, elbows slightly forward. Head through at the top.', '“Finish with the bar over the mid-foot.”'],
+  ['Pull-up', 'Full hang, elbows to the ribs. Can’t do one yet: band or lat pull-down, 3×8, log the number.', '“Chest to the bar.”'],
+];
+---
+<!doctype html>
+<html lang="en" data-client="forge">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="noindex, nofollow" />
+    <title>The 3-Session Week</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;600;700&display=swap" />
+    <style>
+      @page { size: A4; margin: 0; }
+      .page { width: 210mm; min-height: 297mm; padding: 18mm 18mm 20mm; box-sizing: border-box; page-break-after: always; position: relative; }
+      .page:last-child { page-break-after: auto; }
+      @media screen { body { background: #d9d3c6; } .page { margin: 16px auto; background: var(--color-bg); box-shadow: 0 10px 40px rgb(0 0 0 / 0.2); } .page.onyx { background: var(--color-inverse); } }
+      @media print { .page { background: var(--color-bg); } .page.onyx { background: var(--color-inverse); } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+      .folio { position: absolute; bottom: 10mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font-size: 10px; color: var(--color-fg-subtle); }
+      table { border-collapse: collapse; width: 100%; font-size: 12.5px; } th, td { text-align: left; padding: 8px 9px; border-bottom: 1px solid var(--color-border); vertical-align: top; } th { font-weight: 700; color: var(--color-fg); border-bottom: 1px solid var(--color-accent); }
+      .lead { font-size: 15px; line-height: 1.55; } p:not([class*="mt-"]) { margin: 0 0 10px; } .kicker { font-weight: 600; color: var(--color-primary); } h2 { font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1.05; margin: 8px 0 0; }
+    </style>
+  </head>
+  <body class="text-[13.5px] leading-[1.55] text-fg">
+    <section class="page onyx relative text-inverse-fg">
+      <div class="flex h-full min-h-[257mm] flex-col justify-between">
+        <div class="flex items-center justify-between"><Monogram size={56} class="text-inverse-fg" /><p class="text-sm text-accent-2">Forge Fitness Online · free guide</p></div>
+        <div>
+          <Plates class="h-auto w-[70%]" />
+          <h1 class="mt-10 font-display text-[64px] font-semibold leading-[0.98]">The 3-Session<br />Week</h1>
+          <p class="mt-6 max-w-[42ch] text-[17px] text-inverse-fg/85">The least training that makes a man of 35 to 50 measurably stronger. Six lifts, three sessions, the first four weeks written out.</p>
+        </div>
+        <p class="text-sm text-inverse-fg/60">By Daniel Reyes, strength coach, former physiotherapist · forgefitness.example.com</p>
+      </div>
+    </section>
+
+    <section class="page"><p class="kicker">Page 1 · Read this first</p><h2>Volume isn’t the lever. Progression is.</h2>
+      <div class="lead mt-5"><p>Most programs are built around how much: six days, two hours, a split for every muscle. That works for a man with nothing else on and a body that recovers overnight. For you it fails in week three, and the failure feels like a character flaw. It isn’t. It’s arithmetic.</p><p>Strength comes from three things, in order: a small set of lifts done well; a rule that adds weight only when the last set was clean; enough recovery that the next session is better than the last. Three sessions a week give you all three.</p><p>This guide gives you the template (page 4), the six lifts with cues (page 5), the first four weeks programmed with starting weights (page 6), the rule (page 7), the warm-up (page 8), the “train around” table (page 9), the hotel-gym version (page 10), and what to do in week five (page 11).</p></div>
+      <div class="mt-6 rounded-md border border-accent bg-surface p-5"><p class="font-display text-xl italic text-accent">One rule for the month</p><p class="mb-0">When in doubt, lighter. The bar will catch up.</p></div>
+      <p class="mt-6 text-fg-muted">Who this is for: men 35 to 50 who are healthy enough to lift. If a doctor has told you not to, follow the doctor. If you have a current injury, see page 9 before session one.</p>
+      <div class="folio"><span>The 3-Session Week</span><span>1</span></div></section>
+
+    <section class="page"><p class="kicker">Page 2 · How to use this guide</p>
+      <ol class="lead mt-5 list-decimal space-y-3 pl-6"><li>Print pages 4 and 6. Put them in the bag.</li><li>Pick your equipment track: full gym, home rack and barbell, or dumbbells. Page 10 is the hotel version.</li><li>Session one: the warm-up (page 8), then squat, bench, row at the page-6 starting weights. Forty-five minutes.</li><li>Log every session: weight, reps, and one word (clean / grind / missed). Page 12.</li><li>Apply the rule on page 7 every session after the first. That’s the program.</li></ol>
+      <p class="kicker mt-12">Page 3 · The three levers</p>
+      <div class="lead mt-4 space-y-4"><p><strong>Progression.</strong> Add 2.5 kg to a lift when the last set was clean. Repeat the weight when it wasn’t. Over four weeks that’s up to 30 kg on a squat without a single hard decision.</p><p><strong>Recovery.</strong> Forty-eight hours between heavy sessions. At 45 you recover slower than at 25, and the program respects that instead of pretending.</p><p><strong>Consistency.</strong> Three sessions that fit a real week will beat six that don’t. The men who get strong are the ones whose plan survives a Tuesday.</p></div>
+      <div class="folio"><span>The 3-Session Week</span><span>2–3</span></div></section>
+
+    <section class="page"><p class="kicker">Page 4 · The template (print this)</p><h2>Day one, day two, day one again.</h2>
+      <table class="mt-5"><thead><tr><th>Day</th><th>Session</th><th>Lifts</th></tr></thead><tbody>{template.map((r) => <tr><td>{r[0]}</td><td class="font-display text-xl text-primary">{r[1]}</td><td class="font-semibold">{r[2]}</td></tr>)}</tbody></table>
+      <p class="mt-3 text-fg-muted">Next week: B · A · B. Alternate.</p>
+      <div class="mt-6 rounded-md bg-inverse p-5 text-inverse-fg"><p class="font-display text-xl">Each session</p><p class="mb-0">8-minute warm-up · lift 1: 3 sets of 5 · lift 2: 3 sets of 5 · lift 3: 3 sets of 8 · done. Rest 2 to 3 minutes between heavy sets. Forty-five minutes.</p></div>
+      <p class="lead mt-6">Two days: do A and B with four days between, slightly longer sessions. Four days: the fourth day is a 25-minute walk or the mobility routine, never a fourth lift day.</p>
+      <div class="folio"><span>The 3-Session Week</span><span>4</span></div></section>
+
+    <section class="page"><p class="kicker">Page 5 · The six lifts, with cues for men who sit all day</p>
+      <table class="mt-4"><thead><tr><th>Lift</th><th>Set-up</th><th>Cue</th></tr></thead><tbody>{lifts.map((l) => <tr><td class="font-display text-xl">{l[0]}</td><td>{l[1]}</td><td class="italic text-primary">{l[2]}</td></tr>)}</tbody></table>
+      <p class="mt-5 text-fg-muted">Desk-shoulder note: if the bench or press pinches the front of the shoulder, narrow the grip by a hand’s width and see page 9.</p>
+      <div class="folio"><span>The 3-Session Week</span><span>5</span></div></section>
+
+    <section class="page"><p class="kicker">Page 6 · Weeks one to four, programmed (print this)</p>
+      <div class="mt-3 rounded-md bg-surface-2 p-4"><p class="mb-1 font-semibold">Starting weights</p><p class="mb-0">Squat 40 kg · bench 30 kg · row 30 kg · deadlift 50 kg · press 20 kg · pull-up: bodyweight, band, or pull-down at a weight you can do for 8. Too heavy for a clean 3×5: go lighter. Feels insulting: do it anyway in week one. The rule catches you up.</p></div>
+      <table class="mt-5"><thead><tr><th>Week</th><th>Session A (Mon/Fri)</th><th>Session B (Wed)</th><th>What to expect</th></tr></thead><tbody>{weeks.map((w) => <tr><td class="font-display text-2xl text-primary">{w[0]}</td><td>{w[1]}</td><td>{w[2]}</td><td class="text-fg-muted">{w[3]}</td></tr>)}</tbody></table>
+      <p class="mt-5 text-fg-muted">Dumbbell track: same sets and reps with goblet squat, dumbbell bench, one-arm row, Romanian deadlift, dumbbell press, band or pull-down. Progress by moving to the next dumbbell when 3×5 is clean.</p>
+      <div class="folio"><span>The 3-Session Week</span><span>6</span></div></section>
+
+    <section class="page"><p class="kicker">Page 7 · The rule</p><h2>After every set, write one word.</h2>
+      <div class="lead mt-5"><p><strong>Clean</strong>: all reps, good form, could have done one more. <strong>Grind</strong>: all reps, ugly last one. <strong>Missed</strong>: short of the reps.</p>
+        <ul class="list-disc space-y-2 pl-6"><li>Last set clean → add 2.5 kg next session (5 kg on deadlift).</li><li>Last set grind → same weight next session.</li><li>Last set missed → same weight; missed twice, drop 10% and build back.</li></ul>
+        <p class="mt-4">That’s every decision in the program. No “how do I feel today.” The log decides.</p></div>
+      <p class="kicker mt-12">Page 8 · The eight-minute warm-up</p>
+      <ol class="lead mt-4 list-decimal space-y-2 pl-6"><li>Two minutes: walk, bike or row, easy.</li><li>Hips: 10 slow bodyweight squats to your best depth, hold the bottom 2 seconds.</li><li>Shoulders: 10 band pull-aparts, 10 wall slides.</li><li>Back: 10 hip hinges with a dowel or broom on the back.</li><li>The first lift with the empty bar, 2 sets of 5. One set at half your working weight. Then work.</li></ol>
+      <p class="mt-3 text-fg-muted">Skip it once and you’ll know why it’s there.</p>
+      <div class="folio"><span>The 3-Session Week</span><span>7–8</span></div></section>
+
+    <section class="page"><p class="kicker">Page 9 · The “train around” table</p>
+      <table class="mt-4"><thead><tr><th>It hurts when</th><th>Swap</th><th>Keep doing</th></tr></thead><tbody>{swaps.map((r) => <tr><td class="font-semibold">{r[0]}</td><td>{r[1]}</td><td class="text-fg-muted">{r[2]}</td></tr>)}</tbody></table>
+      <div class="mt-5 rounded-md border border-accent bg-surface p-4"><p class="mb-0"><strong>Rule:</strong> pain that’s sharp, in a joint, or worse the next day is a swap, not a push-through. Soreness in muscle is normal. If something has hurt for more than two weeks, see a physio.</p></div>
+      <p class="kicker mt-10">Page 10 · The hotel-gym version</p>
+      <div class="lead mt-3"><p>Hotel gyms have dumbbells to 25 kg, a cable machine, maybe a Smith machine. Same template, same sets and reps.</p><p><strong>Session A:</strong> goblet squat (or Smith squat) · dumbbell bench · one-arm row. <strong>Session B:</strong> dumbbell Romanian deadlift · dumbbell press · lat pull-down.</p><p>Progress by moving up a dumbbell when 3×5 is clean. Log it the same way. A hotel week counts.</p></div>
+      <div class="folio"><span>The 3-Session Week</span><span>9–10</span></div></section>
+
+    <section class="page"><p class="kicker">Page 11 · Week five, and what comes next</p>
+      <div class="lead mt-4"><p>If you ran four weeks, compare page 12 to session one. Most men see the squat up 15 to 30 kg and the deadlift more. Keep running the rule for another four weeks exactly as written.</p><p>Where this guide stops: the filmed lifts, the week-seven deload (the one that stops week eight from breaking you), the hotel-gym track in full, the Plate Rule for eating, weekly check-ins with Daniel, and the “train around” cues on video.</p></div>
+      <div class="mt-6 grid grid-cols-2 gap-5">
+        <div class="rounded-md bg-inverse p-5 text-inverse-fg"><p class="font-display text-xl">Forge 12</p><p>Twelve weeks, three equipment tracks, the Week-Four Guarantee. $197.</p><p class="mb-0 font-semibold text-accent">forgefitness.example.com/forge/checkout</p></div>
+        <div class="rounded-md bg-surface-2 p-5"><p class="font-display text-xl">Free 20-minute Strength Audit</p><p>Old injury, a travel-heavy month, or never been under a bar. Leave with a plan written for you.</p><p class="mb-0 font-semibold text-primary">forgefitness.example.com/forge/calendar</p></div>
+      </div>
+      <div class="folio"><span>The 3-Session Week</span><span>11</span></div></section>
+
+    <section class="page"><p class="kicker">Page 12 · Your log</p>
+      <table class="mt-4"><thead><tr><th>Session</th><th>Lift 1 (kg · reps · word)</th><th>Lift 2</th><th>Lift 3</th><th>Notes</th></tr></thead><tbody>{Array.from({ length: 12 }, (_, i) => <tr class="h-[16mm]"><td class="font-display text-lg text-primary">{i + 1} {i % 2 === 0 ? 'A' : 'B'}</td><td></td><td></td><td></td><td></td></tr>)}</tbody></table>
+      <p class="mt-6 text-xs text-fg-muted">General strength-training information for healthy adults. Not medical advice. If you have a condition, an injury, or a doctor’s instruction about exercise, follow the doctor. Stop any lift that causes sharp joint pain. © Forge Fitness Online Ltd. Print it for yourself; send others to forgefitness.example.com/forge/ebook, it’s free there too.</p>
+      <div class="folio"><span>The 3-Session Week</span><span>12</span></div></section>
+  </body>
+</html>

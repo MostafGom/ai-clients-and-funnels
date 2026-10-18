@@ -26,7 +26,7 @@ export const POST: APIRoute = async (ctx) => {
 
   const sequence = LEAD_SEQUENCES[client.slug]?.[body.funnel];
   if (sequence) {
-    tasks.push(sendSequence(email, sequence(origin, { email, name: name || undefined, age: body.age || undefined }).map((s) => ({ ...s, replyTo: client.supportEmail }))));
+    tasks.push(sendSequence(email, sequence(origin, { email, name: name || undefined, age: body.age || undefined, kit: body.kit || undefined }).map((s) => ({ ...s, replyTo: client.supportEmail }))));
   } else if (body.funnel === 'ebook' && magnet) {
     tasks.push(
       sendEmail({

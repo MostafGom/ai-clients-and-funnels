@@ -48,7 +48,7 @@ const mark = [{ name: 'Squat', before: 60, after: 110 }, { name: 'Deadlift', bef
       <p class="mt-6 max-w-[60ch] text-lead text-inverse-fg/85">Six lifts, one rule, three sessions a week. A former physiotherapist on what actually moves the bar after forty, and why the programs you quit were built for someone else.</p>
       <div class="mt-10">
         <ScriptedVSL script={script} title="Play the training" class="!rounded-lg ring-1 ring-accent/30">
-          <Fragment slot="art:plates"><div class="text-inverse-fg"><Plates class="w-full" height={120} /></div></Fragment>
+          <Fragment slot="art:plates"><div class="w-full text-inverse-fg"><Plates class="h-auto w-full" /></div></Fragment>
           <Fragment slot="art:monogram"><Monogram size={160} class="text-inverse-fg" /></Fragment>
           <Fragment slot="art:ledger"><div class="w-full max-w-[280px] text-inverse-fg"><LiftLedger lifts={mark} compact /></div></Fragment>
         </ScriptedVSL>

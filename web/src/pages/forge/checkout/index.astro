@@ -101,7 +101,7 @@ const mark = [{ name: 'Squat', before: 60, after: 110 }, { name: 'Deadlift', bef
           </div>
         </div>
         <div class="rounded-lg bg-inverse p-8 text-inverse-fg sm:p-10">
-          <Plates class="w-full" height={110} />
+          <Plates class="h-auto w-full max-w-[420px]" />
           <dl class="mt-6 divide-y divide-inverse-fg/10">
             {[['Progression', 'Add 2.5 kg when the last set is clean. Repeat when it isn’t.'], ['Recovery', '48 hours between heavy days. The next session is better than the last.'], ['Consistency', 'Three sessions that fit a real week, so the twelve weeks actually happen.']].map(([k, v], i) => (
               <div class="grid grid-cols-[auto_1fr] gap-5 py-4"><dt class="font-display text-3xl text-accent">{i + 1}</dt><dd><p class="font-display text-2xl">{k}</p><p class="mt-1 text-inverse-fg/80">{v}</p></dd></div>

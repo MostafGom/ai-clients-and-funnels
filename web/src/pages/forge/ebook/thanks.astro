@@ -1,0 +1,42 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Button from '../../../components/ui/Button.astro';
+import ScriptedVSL from '../../../components/funnel/ScriptedVSL.astro';
+import { loadVslScript } from '../../../lib/vsl-script';
+import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+import { getClient } from '../../../lib/clients';
+const client = getClient('forge');
+const note = loadVslScript('clients/forge/funnels/ebook/THANKS-SCRIPT.md');
+---
+<Layout client="forge" funnel="ebook" step="thanks" title="The 3-Session Week is in your inbox" noindex>
+  <Container size="wide" class="py-12 sm:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="text-base font-semibold text-success">Sent</p>
+        <h1 class="mt-2 text-h1 font-semibold">The 3-Session Week is in your inbox.<br /><span class="italic">Give it a minute.</span></h1>
+        <p class="mt-5 text-lead text-fg-muted">Here’s the direct download. And while it downloads, thirty seconds from Daniel on the one thing to get right in session one.</p>
+        <Button href={client.leadMagnet!.downloadUrl} size="lg" variant="secondary" class="mt-7" data-download>Download the guide (PDF)</Button>
+        <div class="mt-12 rounded-lg bg-inverse p-7 text-inverse-fg shadow-pop ring-1 ring-accent/40 sm:p-9">
+          <div class="flex items-start gap-4">
+            <Monogram size={48} class="shrink-0 text-inverse-fg" />
+            <div>
+              <p class="font-display text-2xl">An old injury, a travel-heavy month, or never been under a bar?</p>
+              <p class="mt-2 text-inverse-fg/80">Tell Daniel your week on a free 20-minute Strength Audit and leave with a plan written for you.</p>
+              <Button href="/forge/calendar/book" size="lg" class="mt-5" data-cta="call">Book a free Strength Audit</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ScriptedVSL script={note} title="Play Daniel’s 30-second note" class="!rounded-lg ring-1 ring-accent/30">
+          <Fragment slot="art:monogram"><Monogram size={150} class="text-inverse-fg" /></Fragment>
+        </ScriptedVSL>
+      </div>
+    </div>
+  </Container>
+  <script>
+    document.querySelector('[data-download]')?.addEventListener('click', () => window.funnel?.track('guide_downloaded'));
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
+</Layout>

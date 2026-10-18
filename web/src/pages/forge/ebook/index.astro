@@ -1,0 +1,103 @@
+---
+/* Forge · ebook opt-in. Copy: clients/forge/funnels/ebook/COPY.md */
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import OptInForm from '../../../components/funnel/OptInForm.astro';
+import OnyxBand from '../../../components/clients/forge/OnyxBand.astro';
+import FaqList from '../../../components/clients/forge/FaqList.astro';
+import Rule from '../../../components/clients/forge/art/Rule.astro';
+import SessionPlanner from '../../../components/clients/forge/art/SessionPlanner.astro';
+import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
+import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+import { PHOTOS } from '../../../components/clients/forge/photos';
+const spreads = [
+  { n: 'Page 4', title: 'The three-session template', body: 'Day one, day two, day one again. Two days of recovery between heavy days.' },
+  { n: 'Page 5', title: 'The six lifts, with cues', body: 'Squat, bench, row, deadlift, press, pull-up. What good looks like at 45, not 25.' },
+  { n: 'Page 6', title: 'Weeks one to four, programmed', body: 'Sets, reps, where to start, and the rule for adding weight.' },
+  { n: 'Page 9', title: 'The “train around” table', body: 'Back, shoulder, knee. The lift that hurts, swapped for one that doesn’t.' },
+];
+---
+<Layout client="forge" funnel="ebook" step="optin" title="How many sessions a week do you actually need? Free: The 3-Session Week" description="Pick the days, the equipment and the goal; get your week. Then download The 3-Session Week: six lifts, the first four weeks programmed, the warm-up, and the train-around table. Free, for men 35 to 50.">
+
+  <OnyxBand pad="lg" rule="bottom" class="overflow-hidden">
+    <Container size="wide">
+      <div class="grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,600px)]">
+        <div>
+          <p class="text-base font-semibold text-accent-2">Free guide for men 35 to 50 with three slots a week.</p>
+          <h1 class="mt-6 text-display font-semibold">How many sessions a week<br class="hidden lg:block" /> do you <span class="italic text-accent">actually</span> need?</h1>
+          <p class="mt-7 max-w-[58ch] text-lead text-inverse-fg/85">Pick the days you have, the equipment you’ve got, and what you want. That’s your week. Then get the free <strong class="text-inverse-fg">3-Session Week</strong>: the six lifts, the first four weeks programmed, the warm-up, and the “train around” table for backs, shoulders and knees.</p>
+          <div class="mt-10 hidden lg:block"><Rule label="three, not six" /></div>
+        </div>
+        <SessionPlanner heading="Your week">
+          <p class="text-sm text-fg-muted">Three full-body sessions beat six you won’t do. The guide is the week written out, with the weights to start at.</p>
+          <OptInForm client="forge" funnel="ebook" redirect="/forge/ebook/thanks" magnet="three-session-week" buttonLabel="Send me the 3-Session Week" consent="One guide, five short emails from Daniel, unsubscribe in one click." class="mt-5 max-w-none" />
+        </SessionPlanner>
+      </div>
+    </Container>
+  </OnyxBand>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <h2 class="max-w-[22ch] text-h1 font-semibold">Twelve pages. Four weeks. <span class="italic">Then the bar is heavier.</span></h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {spreads.map((s) => (
+          <div class="flex gap-5 rounded-lg bg-surface p-6 shadow-card">
+            <div class="flex h-24 w-[68px] shrink-0 flex-col justify-between rounded-sm bg-inverse p-2 text-[9px] font-semibold text-accent-2"><span>{s.n}</span><span class="h-px w-8 bg-accent"></span></div>
+            <div><p class="font-display text-2xl">{s.title}</p><p class="mt-1 text-fg-muted">{s.body}</p></div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-fg-muted">Plus: the eight-minute warm-up, the hotel-gym version, your log, and what to do in week five.</p>
+      <div class="mt-10 grid items-center gap-8 md:grid-cols-[auto_1fr]">
+        <img src="/forge/assets/three-session-week-cover.png" alt="Cover of The 3-Session Week" width="260" height="368" class="w-[220px] rotate-[-2deg] rounded-sm shadow-pop md:w-[260px]" loading="lazy" />
+        <p class="max-w-[48ch] text-lg text-fg-muted">Twelve pages, A4, built to print. Pages 4 and 6 go in the bag. The rest you read once, then run.</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-surface-2 py-16 sm:py-20">
+    <Container>
+      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+        <PortraitSlot name="Daniel" caption="Daniel Reyes, strength coach, former physiotherapist" size={200} src={PHOTOS.daniel} />
+        <div class="max-w-[62ch]">
+          <h2 class="text-h2 font-semibold">Written by a physio who got tired of treating the same back.</h2>
+          <p class="mt-5 text-lg">I’m Daniel Reyes, a strength coach and former physiotherapist. Fifteen years, 1,900 men, most of them 35 to 50 with a job and a family and about three hours a week. The 3-Session Week is the first thing I give every one of them.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-bg py-16 sm:py-20">
+    <Container>
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          { q: 'Printed it, did week one in the garage. Squat went up twice in four sessions.', who: 'Luca M., 39' },
+          { q: 'The train-around table is the first thing that took my shoulder seriously.', who: 'Sam D., 44' },
+          { q: 'Three sessions. Forty-five minutes. I’ve kept every one for a month.', who: 'Tom H., 48' },
+        ].map((t) => <figure class="rounded-lg border-l-2 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} />{t.who}</figcaption></figure>)}
+      </div>
+      <FaqList class="mt-14" items={[
+        { q: 'Is this for beginners or men who used to lift?', a: 'Both. The cues assume you’re learning or relearning at 35 plus; starting weights are deliberately light and the rule catches you up.' },
+        { q: 'I have an old back.', a: 'The train-around table swaps the lift that bothers you for one that trains the same pattern. If a doctor has told you not to lift, follow the doctor.' },
+        { q: 'What happens after I enter my email?', a: 'The guide lands in about a minute. Then five short emails from Daniel over a week, one idea each. Unsubscribe in one click.' },
+      ]} />
+    </Container>
+  </section>
+
+  <OnyxBand rule="top" pad="lg">
+    <Container size="prose" class="text-center">
+      <h2 class="text-display font-semibold">Session one is <span class="italic text-accent">forty-five minutes.</span></h2>
+      <p class="mt-5 text-lead text-inverse-fg/85">Free PDF. Twelve pages. The week, the lifts, the weights to start at.</p>
+      <div class="mt-8 flex justify-center [&_span]:text-inverse-fg [&_p]:text-inverse-fg/70">
+        <OptInForm client="forge" funnel="ebook" redirect="/forge/ebook/thanks" magnet="three-session-week" buttonLabel="Send me the 3-Session Week" consent="One guide, five short emails, unsubscribe in one click." inline />
+      </div>
+    </Container>
+  </OnyxBand>
+
+  <script>
+    // Carry the planner's answers into the lead so the delivery email can speak to the kit.
+    const sel = { days: document.querySelector<HTMLSelectElement>('[data-planner] select[name=days]'), kit: document.querySelector<HTMLSelectElement>('[data-planner] select[name=kit]'), goal: document.querySelector<HTMLSelectElement>('[data-planner] select[name=goal]') };
+    const sync = () => document.querySelectorAll<HTMLFormElement>('form[data-optin]').forEach((f) => Object.entries(sel).forEach(([k, s]) => { let i = f.querySelector<HTMLInputElement>(`input[name=${k}]`); if (!i) { i = document.createElement('input'); i.type = 'hidden'; i.name = k; f.append(i); } i.value = s?.value ?? ''; }));
+    Object.values(sel).forEach((s) => s?.addEventListener('change', sync)); sync();
+  </script>
+</Layout>
