@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ai-clients-and-funnels",
+  "name": "demofunnels",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@astrojs/cloudflare/entrypoints/server",
@@ -12,7 +12,8 @@
   "observability": { "enabled": true },
   // Secrets (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, RESEND_API_KEY, RESEND_FROM)
   // are set with `pnpm wrangler secret put <NAME>` in production and in `.dev.vars` locally.
+  "routes": [{ "pattern": "demofunnels.gogranddev.com", "custom_domain": true }],
   "vars": {
-    "PUBLIC_SITE_URL": "https://funnels.example.com"
+    "PUBLIC_SITE_URL": "https://demofunnels.gogranddev.com"
   }
 }
