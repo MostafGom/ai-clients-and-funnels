@@ -1,0 +1,11 @@
+---
+/** The Forge dark band. Hairline top/bottom in brass instead of curved edges. */
+interface Props { id?: string; pad?: 'sm' | 'md' | 'lg'; rule?: 'top' | 'bottom' | 'both' | 'none'; class?: string; [key: string]: unknown }
+const { id, pad = 'md', rule = 'none', class: cls = '', ...rest } = Astro.props;
+const pads = { sm: 'py-12 sm:py-16', md: 'py-20 sm:py-28', lg: 'py-24 sm:py-36' };
+---
+<section id={id} class:list={['relative bg-inverse text-inverse-fg', cls]} {...rest}>
+  {(rule === 'top' || rule === 'both') && <div class="absolute inset-x-0 top-0 h-px bg-accent/70" aria-hidden="true"></div>}
+  <div class:list={['relative', pads[pad]]}><slot /></div>
+  {(rule === 'bottom' || rule === 'both') && <div class="absolute inset-x-0 bottom-0 h-px bg-accent/70" aria-hidden="true"></div>}
+</section>

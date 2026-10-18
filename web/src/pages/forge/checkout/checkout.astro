@@ -1,0 +1,50 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import CheckoutForm from '../../../components/funnel/CheckoutForm.astro';
+import OrderBump from '../../../components/funnel/OrderBump.astro';
+import FaqList from '../../../components/clients/forge/FaqList.astro';
+import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
+---
+<Layout client="forge" funnel="checkout" step="checkout" title="Checkout" noindex>
+  <Container size="wide" class="py-10 sm:py-16">
+    <div class="grid gap-10 lg:grid-cols-[1fr_minmax(360px,460px)] lg:gap-16">
+      <div>
+        <p class="text-base font-semibold text-primary">Session one is tonight</p>
+        <h1 class="mt-2 text-h1 font-semibold">Your order</h1>
+        <div class="mt-8 flex items-start gap-5 rounded-lg bg-surface p-6 shadow-card sm:p-7">
+          <Monogram size={56} class="shrink-0 text-fg" />
+          <div class="flex-1">
+            <div class="flex items-start justify-between gap-4">
+              <div><p class="font-display text-2xl">Forge 12</p><p class="mt-1 text-fg-muted">12-week program, three equipment tracks, filmed lifts, check-ins, bonuses</p></div>
+              <p class="text-right"><span class="block text-sm text-fg-subtle line-through">$297</span><span class="font-display text-4xl font-semibold">$197</span></p>
+            </div>
+          </div>
+        </div>
+        <h2 class="mt-10 text-h3 font-semibold">What happens in the next 10 minutes</h2>
+        <ol class="mt-4 space-y-3 text-lg">
+          {['Pay on Stripe’s secure page. Cards, Apple Pay, Google Pay.', 'Your login lands in your inbox within a minute.', 'Pick your equipment track and watch the six lifts (14 minutes).', 'Session one: 45 minutes, tonight or tomorrow at 6 a.m.'].map((t, i) => <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse font-display text-lg text-accent">{i + 1}</span><span>{t}</span></li>)}
+        </ol>
+        <figure class="mt-10 rounded-lg bg-surface-2 p-6">
+          <blockquote class="text-lg">“I bought it on a Sunday night and did session one on Monday at 6 a.m. Cleanest squat I’d done in ten years.”</blockquote>
+          <figcaption class="mt-3 flex items-center gap-3 text-sm text-fg-muted"><Avatar who="Ben K." size={36} />Ben K., 44</figcaption>
+        </figure>
+        <FaqList class="mt-10" items={[
+          { q: 'When do I get access?', a: 'Within a minute of paying. The welcome email has your login.' },
+          { q: 'Which equipment track should I pick?', a: 'The one you’ll actually use three times a week. You can switch tracks any time.' },
+          { q: 'Can I add coaching later?', a: 'Yes, from inside the program, and you only pay the difference.' },
+        ]} />
+      </div>
+      <aside class="lg:sticky lg:top-8 lg:self-start">
+        <div class="rounded-lg bg-surface p-7 shadow-pop ring-1 ring-accent sm:p-9">
+          <p class="rounded-md bg-inverse px-4 py-3 text-sm text-inverse-fg"><span class="font-display text-lg italic text-accent">Week-Four Guarantee.</span> If all six lifts haven’t gone up by week four, full refund.</p>
+          <CheckoutForm client="forge" funnel="checkout" priceKey="main" successPath="/forge/checkout/upsell" cancelPath="/forge/checkout/checkout" label="Continue to secure payment">
+            <OrderBump title="The Mobility Minimum" price="$37" description="Ten minutes a day for backs, hips and shoulders, built to run before a session or at your desk. The men who do it are the men whose joints stop talking. Normally $77. Only offered on this page." priceKey="bump" />
+          </CheckoutForm>
+        </div>
+      </aside>
+    </div>
+  </Container>
+  <script>document.querySelector<HTMLInputElement>('input[name=bump]')?.addEventListener('change', (e) => window.funnel?.track('bump_toggled', { on: (e.target as HTMLInputElement).checked }));</script>
+</Layout>

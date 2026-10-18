@@ -1,0 +1,10 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+---
+<Layout client="forge" funnel="checkout" step="upsell" title="One thing before you go" noindex bare>
+  <OneClickOffer client="forge" funnel="checkout" kind="upsell" priceKey="upsell" eyebrow="Your order is confirmed. One thing before you go." headline="The program makes you stronger. Nutrition coaching makes you leaner at the same time." price="$297" compareAt="$600" bullets={['Weekly check-in with Daniel for eight weeks. Measurements, not photos.', 'Your plate adjusted to your week: travel, dinners, the kids’ leftovers.', 'The protein target that fits your frame.', 'One change per week. Never a diet.', 'Direct messages, 48-hour reply.']} acceptLabel="Yes, add 8 weeks of nutrition coaching" declineLabel="No thanks, I’ll run the program on its own" acceptNext="/forge/checkout/thanks" declineNext="/forge/checkout/downsell">
+    <Fragment slot="why"><p>You just bought twelve weeks of training. Most men get strong on Forge 12 and stay the same size. The ones who also get lean had someone look at their week and adjust one thing at a time. This is the only place we offer eight weeks of that at this price.</p></Fragment>
+    <Fragment slot="objection"><p><strong>If you’ve tried a diet and quit,</strong> that’s the point. This isn’t one. It’s one adjustment a week for eight weeks. $297 today instead of $600 for eight weeks booked separately.</p></Fragment>
+  </OneClickOffer>
+</Layout>

@@ -1,0 +1,53 @@
+/* Client: forge — Forge Fitness Online. Source of truth: clients/forge/DESIGN-PLAN.md + brand.md.
+   Onyx dominant · Bone paper · Brass rules · Copper action · Slate · Moss
+   Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/forge.css */
+:root[data-client='forge'] {
+  --color-bg: #f3efe6;            /* Bone */
+  --color-surface: #fbf9f4;       /* Linen */
+  --color-surface-2: #e9e3d6;
+  --color-inverse: #141416;       /* Onyx */
+  --color-inverse-2: #1f1f24;     /* Graphite */
+  --color-inverse-fg: #f3efe6;
+
+  --color-fg: #16161a;
+  --color-fg-muted: #5b5a63;
+  --color-fg-subtle: #8a8792;
+
+  --color-border: #ddd6c7;
+  --color-border-strong: #8d8779;
+
+  --color-primary: #8a4a12;       /* Copper */
+  --color-primary-hover: #6f3a0e;
+  --color-primary-fg: #fbf9f4;
+  --color-primary-soft: #f3e4d4;
+  --color-accent: #c9a227;        /* Brass */
+  --color-accent-fg: #141416;
+  --color-accent-2: #8a94a6;      /* Slate */
+  --color-accent-2-fg: #141416;
+
+  --color-success: #3f6b4b;       /* Moss (text-safe) */
+  --color-danger: #9b2f2a;
+  --color-focus: #8a4a12;
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --text-display: clamp(3rem, 2rem + 4.4vw, 6.25rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.01em;
+  --text-h1: clamp(2.5rem, 1.8rem + 2.8vw, 4.5rem);
+  --text-h1--line-height: 1.02;
+  --text-h2: clamp(2rem, 1.5rem + 1.8vw, 3rem);
+  --text-h2--line-height: 1.08;
+  --text-h3: 1.625rem;
+  --text-h3--line-height: 1.2;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.3rem);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-pill: 0.375rem;        /* buttons are near-square here */
+  --shadow-card: 0 1px 1px rgb(20 20 22 / 0.06), 0 10px 30px -16px rgb(20 20 22 / 0.25);
+  --shadow-pop: 0 2px 4px rgb(20 20 22 / 0.08), 0 30px 60px -24px rgb(20 20 22 / 0.45);
+  --shadow-cta: 0 10px 24px -12px var(--color-primary);
+}

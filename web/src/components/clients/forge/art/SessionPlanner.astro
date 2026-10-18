@@ -1,0 +1,42 @@
+---
+/**
+ * Interactive: days you can train + equipment + goal → your 3-session week (minutes, lifts, when).
+ * The opt-in hook. Teaches the mechanism: three full-body sessions beat six you won't do.
+ */
+interface Props { heading?: string; class?: string; compact?: boolean }
+const { heading = 'How many sessions a week do you actually need?', class: cls = '', compact = false } = Astro.props;
+const field = 'w-full rounded-md border border-border-strong bg-surface px-4 py-3 text-base text-fg focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft';
+---
+<div class:list={['planner rounded-lg bg-surface p-6 text-fg shadow-pop sm:p-8', cls]} data-planner>
+  <h3 class:list={['font-display font-semibold', compact ? 'text-h3' : 'text-h2']}>{heading}</h3>
+  <div class="mt-5 grid gap-4 sm:grid-cols-3">
+    <label class="block"><span class="mb-1.5 block text-sm font-semibold">Days you can train</span>
+      <select name="days" class={field}><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 or more</option></select></label>
+    <label class="block"><span class="mb-1.5 block text-sm font-semibold">Equipment</span>
+      <select name="kit" class={field}><option value="gym">Full gym</option><option value="rack" selected>Home rack + barbell</option><option value="db">Dumbbells only</option><option value="hotel">Hotel gym</option></select></label>
+    <label class="block"><span class="mb-1.5 block text-sm font-semibold">Goal</span>
+      <select name="goal" class={field}><option value="strong" selected>Stronger</option><option value="lean">Leaner</option><option value="pain">Train around a niggle</option></select></label>
+  </div>
+  <div class="mt-6 rounded-md bg-inverse p-5 text-inverse-fg" aria-live="polite">
+    <p class="text-sm text-accent-2">Your week</p>
+    <p class="font-display text-4xl font-semibold" data-out-head>3 sessions · 45 minutes each</p>
+    <p class="mt-2 text-sm text-inverse-fg/85" data-out-body>Squat, bench, row on day one. Deadlift, press, pull-up on day two. Repeat day one. Two days of recovery between heavy days. That is the whole week.</p>
+  </div>
+  <div class="mt-5"><slot /></div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-planner]').forEach((el) => {
+    const days = el.querySelector<HTMLSelectElement>('select[name=days]')!, kit = el.querySelector<HTMLSelectElement>('select[name=kit]')!, goal = el.querySelector<HTMLSelectElement>('select[name=goal]')!;
+    const head = el.querySelector('[data-out-head]')!, body = el.querySelector('[data-out-body]')!;
+    const lifts: Record<string, string> = { gym: 'Squat, bench, row · Deadlift, press, pull-down', rack: 'Squat, bench, row · Deadlift, press, pull-up', db: 'Goblet squat, dumbbell bench, row · Romanian deadlift, press, pull-up or band row', hotel: 'Goblet squat, dumbbell bench, row · Dumbbell deadlift, press, lat pull-down' };
+    const run = () => {
+      const d = Number(days.value); const n = Math.min(3, Math.max(2, d)); const mins = n === 2 ? 55 : 45;
+      head.textContent = `${n} sessions · ${mins} minutes each`;
+      const extra = d >= 4 ? ' The fourth day, if you have it, is a 25-minute walk or the Mobility Minimum, not a fourth lift day.' : d === 2 ? ' Two days means slightly longer sessions and the same six lifts.' : '';
+      const g = goal.value === 'lean' ? ' Leaner comes from the same sessions plus the plate rule in the guide, not from more sessions.' : goal.value === 'pain' ? ' The “train around” table in the guide swaps the lift that bothers you, not the session.' : '';
+      body.textContent = `${lifts[kit.value]}. Two days of recovery between heavy days.${extra}${g} That is the whole week.`;
+      window.funnel?.track('planner_used', { days: d, kit: kit.value, goal: goal.value });
+    };
+    [days, kit, goal].forEach((s) => s.addEventListener('change', run));
+  });
+</script>

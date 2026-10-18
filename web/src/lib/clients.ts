@@ -49,6 +49,25 @@ export const clients: Client[] = [
     funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
     ogImages: true,
   },
+  {
+    slug: 'forge',
+    name: 'Forge Fitness Online',
+    legalName: 'Forge Fitness Online Ltd.',
+    tagline: 'Strength, unhurried. Three sessions a week for men who run things.',
+    description:
+      'Forge Fitness Online is the 12-week strength program for men 35–50: three 45-minute sessions a week, six lifts, progression that respects your calendar and your joints.',
+    supportEmail: 'daniel@forgefitness.example.com',
+    fonts: {
+      display: 'Cormorant Garamond',
+      body: 'Manrope',
+      stylesheet:
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;600;700&display=swap',
+    },
+    calendar: { provider: 'cal', url: 'https://cal.com/forge-fitness/strength-audit' },
+    leadMagnet: { title: 'The 3-Session Week', downloadUrl: '/forge/assets/three-session-week.pdf' },
+    funnels: ['checkout'],
+    ogImages: false,
+  },
 ];
 
 export function getClient(slug: string): Client {

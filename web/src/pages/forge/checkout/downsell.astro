@@ -1,0 +1,9 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+---
+<Layout client="forge" funnel="checkout" step="downsell" title="The lighter version" noindex bare>
+  <OneClickOffer client="forge" funnel="checkout" kind="downsell" priceKey="downsell" eyebrow="Understood. The lighter version." headline="The Forge Plate: the one-page framework and thirty meals." price="$67" compareAt="$127" bullets={['The plate rule, one page.', 'Protein targets by bodyweight.', 'Thirty meals: fifteen cooked in fifteen minutes, fifteen ordered without thinking.', 'The travel week.']} acceptLabel="Yes, add The Forge Plate" declineLabel="No thanks, take me to session one" acceptNext="/forge/checkout/thanks" declineNext="/forge/checkout/thanks">
+    <Fragment slot="why"><p>No coaching, no counting. The plate rule, the protein target by bodyweight, and thirty meals a man can cook in fifteen minutes or order without thinking. $67 today instead of $127 inside the program.</p></Fragment>
+  </OneClickOffer>
+</Layout>
