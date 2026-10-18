@@ -1,0 +1,36 @@
+---
+/** The offer stack: item, why it's there, value. Total vs price at the bottom. */
+interface Item { name: string; why: string; value: string; bonus?: boolean }
+interface Props { items: Item[]; total: string; price: string; compareAt?: string; note?: string; class?: string }
+const { items, total, price, compareAt, note, class: cls = '' } = Astro.props;
+---
+<div class:list={['overflow-hidden rounded-xl border border-border bg-surface shadow-card', cls]}>
+  <table class="w-full text-left">
+    <thead class="sr-only"><tr><th>What you get</th><th>Why it's there</th><th>Value</th></tr></thead>
+    <tbody class="divide-y divide-border">
+      {items.map((it) => (
+        <tr class:list={[it.bonus && 'bg-accent/15']}>
+          <td class="px-5 py-4 sm:px-7">
+            <p class="font-bold text-fg">{it.bonus && <span class="mr-2 rounded-pill bg-accent px-2.5 py-0.5 text-xs font-bold text-accent-fg">Bonus</span>}{it.name}</p>
+            <p class="mt-1 text-sm text-fg-muted sm:hidden">{it.why}</p>
+          </td>
+          <td class="hidden px-5 py-4 text-fg-muted sm:table-cell">{it.why}</td>
+          <td class="whitespace-nowrap px-5 py-4 text-right font-bold text-fg sm:px-7">{it.value}</td>
+        </tr>
+      ))}
+    </tbody>
+    <tfoot>
+      <tr class="bg-inverse text-inverse-fg">
+        <td colspan="2" class="px-5 py-5 sm:px-7">
+          <p class="text-sm opacity-80">Total value</p>
+          <p class="font-display text-2xl font-semibold">{total}</p>
+        </td>
+        <td class="px-5 py-5 text-right sm:px-7">
+          <p class="text-sm opacity-80">Your price today</p>
+          <p class="font-display text-3xl font-semibold leading-none">{compareAt && <span class="mr-2 text-lg opacity-60 line-through">{compareAt}</span>}{price}</p>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  {note && <p class="px-5 py-3 text-xs text-fg-subtle sm:px-7">{note}</p>}
+</div>

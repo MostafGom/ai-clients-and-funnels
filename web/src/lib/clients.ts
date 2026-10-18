@@ -29,24 +29,6 @@ export interface Client {
 
 export const clients: Client[] = [
   {
-    slug: 'demo',
-    name: 'Northwind Coaching',
-    legalName: 'Northwind Coaching LLC',
-    tagline: 'Calm, consistent revenue for solo consultants.',
-    description:
-      'Northwind helps independent consultants build a referral-proof pipeline in 90 days without ads or cold outreach.',
-    supportEmail: 'hello@northwind.example.com',
-    fonts: {
-      display: 'Fraunces',
-      body: 'Inter',
-      stylesheet:
-        'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap',
-    },
-    calendar: { provider: 'cal', url: 'https://cal.com/northwind/strategy-call' },
-    leadMagnet: { title: 'The 90-Day Pipeline Playbook', downloadUrl: '/demo/assets/playbook.pdf' },
-    funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
-  },
-  {
     slug: 'lumen',
     name: 'Lumen Sleep',
     legalName: 'Lumen Sleep Co.',

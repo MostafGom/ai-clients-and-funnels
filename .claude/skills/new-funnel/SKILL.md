@@ -1,17 +1,24 @@
 ---
 name: new-funnel
-description: Generate a funnel for a client from a blueprint — ebook, calendar, vsl-call, vsl-checkout, or checkout. Writes the copy brief to clients/<slug>/funnels/<type>.md and the Astro pages under web/src/pages/<slug>/<type>/ using the shared components and the client's tokens. Use when a client needs a new funnel or a funnel rebuilt from scratch.
+description: Build a funnel for a client at full depth — strategy plan, complete copy, then pages designed from the client's DESIGN-PLAN with client-specific components, emails, and a critique pass. Types: ebook, calendar, vsl-call, vsl-checkout, checkout. Use when a client needs a new funnel or one rebuilt from scratch.
 argument-hint: "<slug> <ebook|calendar|vsl-call|vsl-checkout|checkout>"
 ---
 
-# /new-funnel
+# /new-funnel — strategy → copy → design → build → critique
 
-Arguments: `$ARGUMENTS` → `<slug> <type>`.
+Arguments: `$ARGUMENTS` → `<slug> <type>`. Reference implementation: `clients/lumen/funnels/checkout/` + `web/src/pages/lumen/checkout/`.
 
-1. Preconditions: client registered in `web/src/lib/clients.ts`, theme exists, `clients/<slug>/persona.md` and `offer.md` are filled. If not, say what's missing and stop.
-2. Read `funnels/blueprints/<type>/BLUEPRINT.md`, the persona, brand, and offer files. Read the demo implementation `web/src/pages/demo/<type>/` as the structural reference (components, props, page order).
-3. Write the copy brief `clients/<slug>/funnels/<type>.md`: 3 headline options (pick one), subheadline, bullets, proof to use (only claims the client has given; mark placeholders clearly as `[PLACEHOLDER]`), CTA labels, offer/price keys, page map. Use the `marketing:draft-content` skill for copy and `brand-voice:brand-voice-enforcement` if a voice profile exists.
-4. Generate the pages in `web/src/pages/<slug>/<type>/` mirroring the demo file set, with `client="<slug>"`, the funnel's paths, the client's copy. Only shared components from `web/src/components/`; no new raw styles. For upsell/downsell use `bare`. For VSLs set `revealAfter` to the offer moment the user gives (ask if unknown).
-5. Add `'<type>'` to the client's `funnels` array in `web/src/lib/clients.ts`. Add the funnel's Stripe price keys to `web/.dev.vars.example` if the type sells.
-6. `pnpm --dir web check && pnpm --dir web build`, then `pnpm --dir web test -g "<slug> <type>"` for screenshots. Fix any failure.
-7. Finish with `/funnel-review <slug> <type>` suggestions and the list of `[PLACEHOLDER]` items the client must supply.
+## 0. Preconditions (stop and say what's missing otherwise)
+`clients/<slug>/persona.md`, `brand.md`, `offer.md`, `DESIGN-PLAN.md` filled; theme in `web/src/styles/clients/<slug>.css` passing `node design/contrast.mjs`; client-specific art in `web/src/components/clients/<slug>/`.
+
+## 1. PLAN.md → `clients/<slug>/funnels/<type>/PLAN.md`
+Read `funnels/playbooks/awareness-stages.md`, `offer-stack.md`, and the architecture playbook for the type (`sales-page-architecture.md` or `vsl-script.md`). Write: traffic & awareness stage, Big Idea, named mechanism, offer stack table with values and anchors, objection map → section, proof plan (exists / client must supply / how shown), page map with the copy job of every section, events, emails, open client inputs.
+
+## 2. COPY.md → `clients/<slug>/funnels/<type>/COPY.md`
+Every headline (5 angles, one chosen, hand-wrapped), every section in full prose, CTA wording kept identical through the flow, FAQ from the persona's real objections, upsell/downsell reasons-why, emails (subject ×2, preview, body, timing, exit). Lengths: sales page 2,500–3,500 words; VSL script 1,800–2,200; opt-in 500–800; upsell 400–600; email 150–300. Use `marketing:draft-content` and `brand-voice:brand-voice-enforcement`. Tag every unverified number `[CLIENT]`. For VSL types also write `VSL-SCRIPT.md` in the playbook format.
+
+## 3. Build
+Pages in `web/src/pages/<slug>/<type>/`. Compose from `web/src/components/clients/<slug>/` first, shared primitives second. Follow the DESIGN-PLAN's wireframe for the page template, its one orchestrated motion moment, and its "what we removed" list. Render `[CLIENT]` claims with `<ClaimFlag />`. VSL pages use `ScriptedVSL` fed by `loadVslScript()` until the client's video exists. Add emails to `web/src/emails/<slug>/` and wire them (lead API or Stripe webhook). Register the type in `clients.ts` and price keys in `.dev.vars.example`.
+
+## 4. Critique (fix, don't list)
+`pnpm --dir web check && pnpm --dir web test`; `node web/tests/review.mjs <slug> <type>`; `node web/tests/crops.mjs /<slug>/<type> 1440 <offsets>` and read the crops; run `funnels/playbooks/review-rubric.md` A–G. Apply fixes, re-capture, then commit.

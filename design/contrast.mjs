@@ -36,8 +36,8 @@ const ratio = (a, b) => { const [x, y] = [lum(parse(a)), lum(parse(b))]; return 
 const pairs = [
   ['fg', 'bg', 4.5], ['fg', 'surface', 4.5], ['fg', 'surface-2', 4.5],
   ['fg-muted', 'bg', 4.5], ['fg-muted', 'surface', 4.5], ['fg-subtle', 'surface', 3],
-  ['inverse-fg', 'inverse', 4.5], ['primary-fg', 'primary', 4.5], ['primary-fg', 'primary-hover', 4.5],
-  ['primary', 'bg', 4.5], ['primary', 'primary-soft', 4.5], ['accent-fg', 'accent', 4.5],
+  ['inverse-fg', 'inverse', 4.5], ['inverse-fg', 'inverse-2', 4.5], ['primary-fg', 'primary', 4.5], ['primary-fg', 'primary-hover', 4.5],
+  ['primary', 'bg', 4.5], ['primary', 'primary-soft', 4.5], ['accent-fg', 'accent', 4.5], ['accent-2-fg', 'accent-2', 4.5],
   ['success', 'surface', 3], ['danger', 'surface', 4.5], ['border-strong', 'surface', 3], ['focus', 'bg', 3],
 ];
 let fail = 0;

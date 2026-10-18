@@ -1,53 +1,264 @@
 ---
+/* Lumen · long-form sales page. Copy: clients/lumen/funnels/checkout/COPY.md. Design: clients/lumen/DESIGN-PLAN.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
-import Hero from '../../../components/funnel/Hero.astro';
-import Button from '../../../components/ui/Button.astro';
-import Section from '../../../components/ui/Section.astro';
 import Container from '../../../components/ui/Container.astro';
-import Eyebrow from '../../../components/ui/Eyebrow.astro';
-import Benefits from '../../../components/funnel/Benefits.astro';
-import Steps from '../../../components/funnel/Steps.astro';
-import PriceCard from '../../../components/funnel/PriceCard.astro';
-import Guarantee from '../../../components/funnel/Guarantee.astro';
-import Testimonials from '../../../components/funnel/Testimonials.astro';
-import FAQ from '../../../components/funnel/FAQ.astro';
+import Button from '../../../components/ui/Button.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+import NightBand from '../../../components/clients/lumen/NightBand.astro';
+import StackTable from '../../../components/clients/lumen/StackTable.astro';
+import CaseStudy from '../../../components/clients/lumen/CaseStudy.astro';
+import FaqList from '../../../components/clients/lumen/FaqList.astro';
+import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
+import NightLog from '../../../components/clients/lumen/art/NightLog.astro';
+import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
+import NightRibbon from '../../../components/clients/lumen/art/NightRibbon.astro';
+import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+
+const CTA = 'Start tonight · $497';
+const checkout = '/lumen/checkout/checkout';
+const stack = [
+  { name: 'The 7-night video program, three age tracks (4–12 mo, 1–2 yr, 2–3 yr)', why: 'The outcome: the plan, night by night, for your baby’s age', value: '$397' },
+  { name: 'Wake-window charts by age + the 10-minute bedtime script (printable)', why: 'Takes the guesswork out of tonight', value: '$47' },
+  { name: 'The Kind Response Plan: the 2 a.m. decision tree', why: 'What to do at the waking, without crying it out', value: '$97' },
+  { name: 'Nap plan + early-morning fix', why: 'So the days stop paying for the nights', value: '$67' },
+  { name: 'Private parent community + weekly live Q&A with Maya (12 weeks)', why: 'A human to ask on night three', value: '$240' },
+  { name: 'The Partner Page', why: 'One printable page so you both run the same plan', value: '$27', bonus: true },
+  { name: 'Daycare & two-kids-one-room guides', why: 'For babies whose days aren’t yours to control', value: '$47', bonus: true },
+  { name: 'Travel & regression protocols', why: 'For the trip next month and the 12-month regression', value: '$67', bonus: true },
+];
+const nights = [
+  { title: 'Dial the window', body: 'Set tonight’s bedtime from the chart and run the 10-minute script for the first time. Most families get a longer first stretch tonight.' },
+  { title: 'Same again', body: 'Consistency night. Same timing, same script. Her brain starts to recognise the sequence.' },
+  { title: 'The Kind Response Plan', body: 'Night wakings get a plan: when to go in, what to do, how long. You stay with her. Nobody cries it out.' },
+  { title: 'Hold the line', body: 'The night most parents want to quit, so a 7 p.m. check-in email tells you exactly what to expect.' },
+  { title: 'Naps join the plan', body: 'Daytime timing locks in so nights stop paying for bad naps.' },
+  { title: 'The long stretch', body: 'For most babies, this is the night. Eight to eleven hours.' },
+  { title: 'Lock it in', body: 'Early mornings, what to do when life interrupts, and how to keep this through the next regression.' },
+];
+const faq = [
+  { q: 'Is there any crying it out?', a: 'No. The method is timing, a bedtime script, and the Kind Response Plan for wakings, where you stay with your baby. Some babies protest change for a few minutes on nights one to three. You’re in the room for all of it.' },
+  { q: 'My baby has reflux, or is teething.', a: 'Every age track includes a reflux adjustment (feeding timing, incline guidance per your pediatrician) and a teething-night protocol. Reflux twins were one of our hardest cases and it held.' },
+  { q: 'Twins, or two kids in one room?', a: 'There’s a staggered-bedtime plan for twins and a two-kids-one-room guide in the bonuses.' },
+  { q: 'She’s in daycare and naps are chaos there.', a: 'The Daycare Bridge guide sets bedtime from whatever daycare gives you. Nights still fix even when days are messy.' },
+  { q: 'How is this different from the free Bedtime Reset?', a: 'The free PDF is the chart and the script. The method is the night-by-night video plan, the Kind Response Plan, naps, early mornings, the community and Maya’s live Q&A.' },
+  { q: 'How much time does it take?', a: 'About fifteen minutes of video per night, plus bedtime itself, which gets shorter every night.' },
+  { q: 'My partner won’t stick to it.', a: 'The Partner Page is one printable page with tonight’s bedtime, the script, and the response plan. Stick it on the fridge. Most partners are relieved to finally have instructions.' },
+  { q: 'We travel next month.', a: 'Do the seven nights first, then use the Travel protocol. Families have held this through hotels, grandparents’ houses and time zones.' },
+  { q: '$497 is a lot right now.', a: 'It’s less than one week of a 1:1 consultant and about $70 a night for seven nights. And if nights six and seven aren’t your best yet, it’s free. You get instant access either way.' },
+  { q: 'Is this safe, and is Maya qualified?', a: 'Maya is a certified pediatric sleep consultant. Nothing in the method changes feeding, medical care or safe-sleep guidance; follow your pediatrician on all of those. The method only changes timing and routine.' },
+];
 ---
-<Layout client="lumen" funnel="checkout" step="sales" title="The Lumen Sleep Method" description="The 7-night program that gets babies and toddlers (4 months to 3 years) sleeping 11 hours. No cry-it-out. Sleep-through guarantee.">
-  <Hero eyebrow="The Lumen Sleep Method · ages 4 months to 3 years" headline="Your baby can sleep 11 hours a night. Seven nights from now. Without crying it out." subheadline="A night-by-night program built on timing, not tears. Wake windows, a 10-minute bedtime script, and a kind plan for 2 a.m. Night one is tonight.">
-    <Button href="#pricing" size="xl">Start the 7 nights · $497</Button>
-    <Fragment slot="proof">2,300+ families · 4.9/5 from 870 reviews · sleep-through guarantee</Fragment>
-  </Hero>
-  <Section tone="muted"><Benefits eyebrow="Sound familiar?" headline="You’re not failing. You were handed a tiny human and zero instructions." items={[
-    { title: 'Bedtime is a 90-minute negotiation', body: 'Rocking, bouncing, the fourth lullaby. By the time they’re down, your evening is gone.' },
-    { title: 'The 2 a.m. party', body: 'Up every 1–2 hours. Accidental co-sleeping. Two parents quietly keeping score.' },
-    { title: 'Forty tabs of contradicting advice', body: 'Grandma, the pediatrician, and the internet all disagree. So you do a bit of everything, and nothing works.' },
-  ]} /></Section>
-  <Section><Steps eyebrow="The method" headline="Seven nights. Three kind phases. One sleeping baby." items={[
-    { title: 'Nights 1–2: Fix the timing', body: 'The wake-window chart for your baby’s age and the 10-minute bedtime script. Most families see the first longer stretch on night 2.' },
-    { title: 'Nights 3–5: Hold the line, kindly', body: 'The 2 a.m. response plan. Consistent, calm, no cry-it-out. This is where the night wakings fall away.' },
-    { title: 'Nights 6–7: Lock it in', body: 'Naps, early mornings, and what to do when life (teeth, travel, daycare) tries to undo it.' },
-  ]} /></Section>
-  <Section tone="muted"><Testimonials headline="Seven nights later" items={[
-    { quote: 'Night 5 she slept 10 hours. I cried. Happy crying, for once.', name: 'Jess M.', role: 'mum of a 9-month-old', result: 'Night 5: 10 hours' },
-    { quote: 'Bedtime went from 80 minutes to 12. I have evenings. I forgot those existed.', name: 'Daniel & Priya', role: 'parents of twins, 14 months', result: '80 min → 12 min' },
-    { quote: 'No crying it out, like she promised. Just timing. Why did nobody tell me?', name: 'Amara O.', role: 'mum of a 2-year-old', result: '2 wake-ups → 0' },
-  ]} /></Section>
-  <Section id="pricing">
-    <Container>
-      <div class="mx-auto max-w-2xl text-center"><Eyebrow class="mb-4">Pricing</Eyebrow><h2 class="text-h2 font-semibold">One payment. Every age track. Lifetime access.</h2></div>
-      <div class="mx-auto mt-12 grid max-w-4xl gap-6 lg:grid-cols-2">
-        <PriceCard name="Self-paced" price="$497" compareAt="$797" badge="Start tonight" highlight features={['7-night video program, all three age tracks', 'Wake-window charts + bedtime script', 'The 2 a.m. response plan', 'Nap, early-morning, daycare & travel guides', 'Community + weekly live Q&A with Maya']}><Button href="/lumen/checkout/checkout" full size="xl">Get instant access</Button></PriceCard>
-        <PriceCard name="With Maya, 14 days" price="$894" features={['Everything in Self-paced', '14 days of text support (yes, at 2 a.m.)', '2 private video calls', 'Plan adjusted for twins, reflux, daycare, travel']}><Button href="/lumen/checkout/checkout?plan=coaching" full variant="secondary" size="xl">Start with coaching</Button></PriceCard>
+<Layout client="lumen" funnel="checkout" step="sales" title="The Lumen Sleep Method: 11 hours a night in seven nights" description="How to get your baby sleeping 11 hours a night in seven nights, without crying it out. The Gentle Timing Method for 4-month to 3-year-olds. Sleep-Through Guarantee.">
+
+  <!-- 1. Hero -->
+  <NightBand edge="cloud" pad="lg" stars={90} class="overflow-hidden">
+    <Container size="wide">
+      <p class="text-base font-bold text-accent-2">For parents of 4-month to 3-year-olds who are done googling at 2 a.m.</p>
+      <h1 class="mt-5 max-w-[30ch] text-display font-semibold">How to get your baby sleeping<br class="hidden lg:block" /> 11 hours a night in seven nights,<br class="hidden lg:block" /> without crying it out.</h1>
+      <div class="mt-10 grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,560px)]">
+        <div>
+          <p class="max-w-[60ch] text-lead text-inverse-fg/85">The Gentle Timing Method fixes the one thing almost every sleep plan skips: <em>when</em> bedtime happens. Get the timing right and the crying, the rocking, and the 2 a.m. party mostly take care of themselves.</p>
+          <div class="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <Button href={checkout} size="xl" data-cta="hero">{CTA}</Button>
+            <p class="max-w-[38ch] text-sm text-inverse-fg/75">Instant access. Night one is tonight. If nights 6 and 7 aren’t your best since the baby arrived, full refund.</p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -right-4 -top-16 z-10 sm:-right-8 sm:-top-20"><Moon size={150} phase={0.78} rise /></div>
+          <div class="rounded-xl bg-inverse-2 p-6 shadow-pop sm:p-8">
+            <NightLog name="Jess’s 9-month-old. Night 1 to night 7." before={[1.5, 1.5, 2, 1.5, 2, 1.5, 2]} after={[4, 5, 7, 7.5, 10, 11, 11.3]} caption="Longest sleep stretch each night, in hours." />
+            <p class="mt-3 text-xs text-accent/90">Illustrative log until the real family’s data is supplied <ClaimFlag note="client to supply real log" /></p>
+          </div>
+        </div>
       </div>
     </Container>
-  </Section>
-  <Section tone="muted"><Guarantee days={30} headline="The sleep-through guarantee" body="Do the 7 nights as written. If nights 6 and 7 aren’t the best sleep your family has had since the baby arrived, email us within 30 days for a full refund. No forms, no guilt." /></Section>
-  <Section><FAQ items={[
-    { q: 'Is there any cry-it-out?', a: 'No. The method is built on timing and a consistent, kind response plan. You stay with your baby.' },
-    { q: 'My baby is “different” (reflux, twins, daycare, teething). Will it work?', a: 'Each track includes adjustments for all of these, and the weekly Q&A is where Maya handles your specific case live.' },
-    { q: 'When do I get access?', a: 'Immediately. Login details arrive within a minute, so night one can be tonight.' },
-    { q: 'Can I pay in instalments?', a: 'Right now it’s one payment with lifetime access and the 30-day guarantee. If instalments are a must, email us and we’ll sort something out.' },
-  ]} /></Section>
-  <StickyCTA href="/lumen/checkout/checkout" label="Start the 7 nights · $497" note="Sleep-through guarantee · no cry-it-out" />
+  </NightBand>
+
+  <!-- 2. The scene -->
+  <section class="bg-bg py-16 sm:py-24">
+    <Container size="prose">
+      <p class="font-display text-h2 font-semibold">It’s 2:14 a.m.</p>
+      <div class="mt-6 space-y-5 text-lg text-fg">
+        <p>You’re standing in the hallway doing the shuffle-bounce. Your left arm went numb ten minutes ago. You’ve sung the song four times. The baby is asleep, probably, but the last three times you put her down she was awake before your hand left her back.</p>
+        <p>Your partner is asleep. You’ve already decided to be annoyed about that tomorrow.</p>
+        <p>You’ve read forty tabs. Half of them say let her cry. The other half say you’ll ruin her if you do. Your mother says rice cereal. The pediatrician said “some babies are just like that,” which is not a plan.</p>
+        <p class="font-bold">So here’s the question nobody has answered for you yet: why does a baby who is clearly exhausted fight sleep this hard?</p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 3. The real problem + dial -->
+  <section class="bg-surface-2 py-16 sm:py-24">
+    <Container size="wide">
+      <div class="grid items-start gap-12 lg:grid-cols-[1fr_1fr]">
+        <div class="max-w-[60ch]">
+          <h2 class="text-h1 font-semibold">It isn’t hunger.<br />It isn’t teeth.<br />It’s forty minutes.</h2>
+          <div class="mt-7 space-y-5 text-lg">
+            <p>Your baby isn’t under-tired. She’s <em>over</em>-tired. And overtired babies don’t crash. They fight.</p>
+            <p>Here’s the mechanism. Every baby has a wake window: the amount of awake time her body can handle before stress hormones kick in to keep her going. Miss the window by even forty minutes and cortisol floods in. Now she’s wired. Bedtime takes an hour. And because cortisol hangs around, she pops awake at 2 a.m. ready to party.</p>
+            <p>That’s it. That’s the 2 a.m. party. Not a habit, not a phase, not something you caused. Timing.</p>
+            <p class="font-bold">Try it. Pick your baby’s age and when her last nap ended. That’s tonight’s bedtime, and it’s probably earlier than you think.</p>
+          </div>
+        </div>
+        <div class="lg:sticky lg:top-8">
+          <WakeWindowDial heading="What time should your baby go to bed tonight?">
+            <p class="text-sm text-fg-muted">Most parents are 30 to 60 minutes late. That’s the whole problem, and it’s fixable tonight.</p>
+          </WakeWindowDial>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. Why what you tried didn't work -->
+  <section class="bg-bg py-16 sm:py-24">
+    <Container size="prose">
+      <h2 class="text-h2 font-semibold">You didn’t fail. The advice did.</h2>
+      <ul class="mt-8 space-y-6 text-lg">
+        <li><strong>Letting her “cry it out.”</strong> Crying on top of cortisol is like turning the music up at a party. Some babies eventually crash from exhaustion, which is why it “works” for some and wrecks everyone else.</li>
+        <li><strong>Rocking, feeding, bouncing to sleep.</strong> Lovely, and it works, right up until she wakes between sleep cycles and needs the rocking again. At 2 a.m. That’s not a bad habit, it’s a missing skill, and it’s teachable without tears.</li>
+        <li><strong>A later bedtime so she’s “more tired.”</strong> This is the one that gets almost everyone. Later bedtime, more cortisol, worse night. The fix is the opposite of what feels logical.</li>
+        <li><strong>Trying a bit of everything.</strong> Three days of one thing, two days of another. Babies learn from consistency. The method gives you one plan for seven nights, and that’s the point.</li>
+      </ul>
+    </Container>
+  </section>
+
+  <!-- 5. Meet Maya -->
+  <section class="bg-surface-2 py-16 sm:py-24">
+    <Container>
+      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant" size={240} />
+        <div class="max-w-[62ch]">
+          <h2 class="text-h2 font-semibold">Hi, I’m Maya. I built this at 3 a.m. with my own baby on my chest.</h2>
+          <div class="mt-6 space-y-4 text-lg">
+            <p>I’m a certified pediatric sleep consultant<ClaimFlag note="certifying body to confirm" />, and before that I was a mum with an 11-month-old who woke seven times a night. I read everything. I tried the cry-it-out thing for one night and cried harder than he did.</p>
+            <p>What finally worked wasn’t a method. It was a stopwatch. When I started tracking his wake windows and moved bedtime 50 minutes earlier, he slept six hours on night two. By night six, eleven.</p>
+            <p>Since 2019 I’ve helped 2,300+ families<ClaimFlag /> do the same thing, and I’ve turned it into a seven-night plan you can run from your phone. No crying it out. No judgment. Just timing, a script, and a kind plan for when she does wake.</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 6. The method -->
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <div class="max-w-[62ch]">
+        <h2 class="text-h1 font-semibold">The Gentle Timing Method.<br />Seven nights. Three parts.</h2>
+        <p class="mt-5 text-lead text-fg-muted">Fifteen minutes of video per night, then bedtime. You never do anything you haven’t watched first.</p>
+      </div>
+      <NightRibbon nights={nights} class="mt-12" />
+    </Container>
+  </section>
+
+  <!-- 7. Proof -->
+  <NightBand edgeTop="wave" edge="cloud" seed={21} stars={80}>
+    <Container size="wide">
+      <h2 class="max-w-[24ch] text-h1 font-semibold">Three families, seven nights, three very different babies.</h2>
+      <div class="mt-12 space-y-8">
+        <CaseStudy name="Jess M." who="9-month-old" hook="We’d tried everything." before="Bedtime took 80 minutes. Waking every 90 minutes." change="Bedtime moved 55 minutes earlier on night one. Kind Response Plan from night three." beforeHours={[1.5, 1.5, 2, 1.5, 2, 1.5, 2]} after={['4', '5', '7', '7.5', '10', '11', '11.3']} quote="Night 5 she slept ten hours. I cried. Happy crying, for once." monitor={{ hours: '11h 20m', night: 'Night 7' }} flag="Illustrative family until the client supplies a real log" />
+        <CaseStudy name="Ines R." who="twins, 11 months, both with reflux" hook="Two babies, one room." before="Feeding both back to sleep two to four times a night." change="Reflux adjustments from the age track. Bedtimes staggered by 15 minutes." beforeHours={[2, 2.5, 2, 2, 2.5, 2, 2]} after={['3', '5', '6', '7', '9', '10.5', '11']} quote="Twins. Reflux. She built a plan around both. Night 6, both slept through." monitor={{ hours: '10h 40m', night: 'Night 6' }} flag="Illustrative family until the client supplies a real log" />
+        <CaseStudy name="Kwame & Lila" who="2-year-old, daycare, work trip in week two" hook="Bedtime was a 45-minute negotiation." before="5 a.m. wake-ups. Naps at daycare all over the place." change="Daycare Bridge guide for bedtime timing. Travel protocol for the trip." beforeHours={[6, 5.5, 6, 6, 5.5, 6, 6]} after={['7', '8', '8', '9.5', '10', '11', '11']} quote="We travel for work constantly. Maya gave us a travel version. It held." monitor={{ hours: '11h 05m', night: 'Night 7' }} flag="Illustrative family until the client supplies a real log" />
+      </div>
+    </Container>
+  </NightBand>
+
+  <!-- 8. The stack -->
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <div class="max-w-[62ch]"><h2 class="text-h1 font-semibold">Everything you need for seven nights, and for the next regression.</h2></div>
+      <StackTable class="mt-10" items={stack} total="$989" price="$497" compareAt="$797" note="Values are the price of each item sold separately. Client to confirm before launch." />
+      <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+        <Button href={checkout} size="xl" data-cta="stack">{CTA}</Button>
+        <p class="text-sm text-fg-muted">Instant access · every age track · Sleep-Through Guarantee</p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 9. For / not for -->
+  <section class="bg-surface-2 py-16 sm:py-20">
+    <Container>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-xl bg-surface p-7 shadow-card sm:p-9">
+          <h2 class="text-h3 font-semibold text-success">This is for you if</h2>
+          <ul class="mt-4 space-y-2 text-lg">
+            <li>your baby is 4 months to 3 years old,</li>
+            <li>you want her to sleep through without crying it out,</li>
+            <li>you can give it fifteen minutes a night for a week,</li>
+            <li>you’re willing to move bedtime earlier than feels normal.</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border-2 border-dashed border-border-strong p-7 sm:p-9">
+          <h2 class="text-h3 font-semibold text-fg-muted">This isn’t for you if</h2>
+          <ul class="mt-4 space-y-2 text-lg text-fg-muted">
+            <li>your baby is under 4 months (email us, newborn sleep is a different conversation),</li>
+            <li>your pediatrician has flagged a medical sleep issue,</li>
+            <li>you’re looking for a method where you don’t change anything.</li>
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 10. Price -->
+  <section id="pricing" class="bg-bg py-16 sm:py-24">
+    <Container>
+      <div class="max-w-[62ch]">
+        <h2 class="text-h1 font-semibold">One payment. Every age track. Lifetime access.</h2>
+        <p class="mt-5 text-lg text-fg-muted">A private sleep consultant charges $600 to $1,500<ClaimFlag /> for a plan and two weeks of support. Doing nothing costs about thirty more nights like last night. The method is $497, once, for every age track your baby will ever need.</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl bg-surface p-8 shadow-pop ring-2 ring-primary sm:p-10">
+          <p class="font-display text-2xl font-semibold">Self-paced</p>
+          <p class="mt-3 flex items-baseline gap-3"><span class="text-xl text-fg-subtle line-through">$797</span><span class="font-display text-6xl font-semibold">$497</span></p>
+          <p class="mt-3 text-fg-muted">Everything in the stack above. Three age tracks, the community, the live Q&A, the bonuses. Lifetime access.</p>
+          <Button href={checkout} size="xl" full class="mt-7" data-cta="price-a">{CTA}</Button>
+        </div>
+        <div class="rounded-xl border border-border bg-surface p-8 sm:p-10">
+          <p class="font-display text-2xl font-semibold">With Maya, 14 days</p>
+          <p class="mt-3 font-display text-6xl font-semibold">$894</p>
+          <p class="mt-3 text-fg-muted">Everything, plus 14 days of text support (yes, at 2 a.m.), two private video calls, and your plan adjusted for twins, reflux, daycare or travel.</p>
+          <Button href={`${checkout}?plan=coaching`} size="xl" full variant="secondary" class="mt-7" data-cta="price-b">Start with Maya · $894</Button>
+        </div>
+      </div>
+      <p class="mt-6 text-sm text-fg-muted">Secure checkout with Stripe. Apple Pay and Google Pay. Login details within a minute.</p>
+    </Container>
+  </section>
+
+  <!-- 11. Guarantee -->
+  <section class="bg-surface-2 py-16 sm:py-20">
+    <Container size="prose">
+      <div class="relative rounded-xl border-[3px] border-accent bg-surface p-8 sm:p-12">
+        <div class="absolute -top-8 left-8"><Moon size={64} phase={1} /></div>
+        <h2 class="text-h2 font-semibold">The Sleep-Through Guarantee</h2>
+        <p class="mt-5 text-lg">Run nights one to seven exactly as written. If nights six and seven aren’t the best two nights your family has had since your baby arrived, email <a class="font-bold underline underline-offset-4" href="mailto:hello@lumensleep.example.com">hello@lumensleep.example.com</a> within 30 days and we refund every cent. No forms, no call, no “but did you really try.” We’d rather refund you than have you keep a plan that didn’t work for your baby.</p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 12. FAQ -->
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <h2 class="text-h2 font-semibold">The questions parents ask before they buy</h2>
+      <FaqList items={faq} class="mt-8" />
+    </Container>
+  </section>
+
+  <!-- 13. Close -->
+  <NightBand edgeTop="cloud" edge="none" seed={33} pad="lg">
+    <Container size="prose" class="text-center">
+      <div class="mx-auto w-fit"><Moon size={96} phase={1} /></div>
+      <h2 class="mt-6 text-display font-semibold">Tonight is night one.</h2>
+      <p class="mx-auto mt-6 max-w-[55ch] text-lead text-inverse-fg/85">Seven nights from now you could be on the sofa at 8 p.m. with the monitor quiet and nothing to do. That’s not a fantasy, it’s Tuesday for 2,300 families<ClaimFlag />. Pick the age track, set tonight’s bedtime, run the script. We’ll take it from there, one night at a time.</p>
+      <div class="mt-9 flex flex-col items-center gap-3">
+        <Button href={checkout} size="xl" data-cta="close">{CTA}</Button>
+        <p class="text-sm text-inverse-fg/75">Sleep-Through Guarantee · instant access · no crying it out</p>
+      </div>
+    </Container>
+  </NightBand>
+
+  <StickyCTA href={checkout} label={CTA} note="Sleep-Through Guarantee" showAfter={900} />
+  <script>
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
 </Layout>

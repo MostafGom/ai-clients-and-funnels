@@ -1,0 +1,17 @@
+---
+/** A plum night band with stars; optional cloud/wave edge into the next surface. */
+import StarField from './art/StarField.astro';
+import CloudEdge from './art/CloudEdge.astro';
+import WaveEdge from './art/WaveEdge.astro';
+interface Props { id?: string; edge?: 'cloud' | 'wave' | 'none'; edgeTop?: 'cloud' | 'wave' | 'none'; next?: 'bg' | 'surface-2'; stars?: number; seed?: number; pad?: 'sm' | 'md' | 'lg'; class?: string; [key: string]: unknown }
+const { id, edge = 'cloud', edgeTop = 'none', next = 'bg', stars = 70, seed = 7, pad = 'md', class: cls = '', ...rest } = Astro.props;
+const pads = { sm: 'py-12 sm:py-16', md: 'py-20 sm:py-28', lg: 'py-24 sm:py-36' };
+---
+<section id={id} class:list={['relative bg-inverse text-inverse-fg', cls]} {...rest}>
+  {edgeTop === 'cloud' && <CloudEdge fill="inverse" flip class="absolute inset-x-0 -top-px z-10" />}
+  {edgeTop === 'wave' && <WaveEdge fill="inverse" flip class="absolute inset-x-0 -top-px z-10" />}
+  <StarField count={stars} seed={seed} class="z-0" />
+  <div class:list={['relative z-10', pads[pad]]}><slot /></div>
+  {edge === 'cloud' && <CloudEdge fill={next} class="relative -mb-px" />}
+  {edge === 'wave' && <WaveEdge fill={next} class="relative -mb-px" />}
+</section>

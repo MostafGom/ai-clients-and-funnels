@@ -10,6 +10,7 @@ Arguments: `$ARGUMENTS` → `<slug>` and a mode (default `review` if the theme e
 Read `design/TOKENS.md` first. Never introduce raw colors; only contract tokens.
 
 ## init
+0. Write `clients/<slug>/DESIGN-PLAN.md` first, in the `frontend-design` format: the subject's world, named hex palette (4–6) with roles, type roles and scale, ASCII wireframes per page template, the one motion moment, the illustration system to build in `web/src/components/clients/<slug>/art/`, and a "what we removed" list. Reference: `clients/lumen/DESIGN-PLAN.md`.
 1. Read `clients/<slug>/brand.md` and `clients/<slug>/persona.md`. If brand.md is still the template, interview the user (max 6 questions): personality adjectives, 2–3 reference brands/sites they admire, display vs body font preference (serif/sans/mono, warm/cool), primary hue + one accent, density (airy/compact), anything banned. Write the answers into brand.md.
 2. Choose fonts (Google Fonts) and write `fonts` + `stylesheet` URL into the client entry in `web/src/lib/clients.ts`.
 3. Write `web/src/styles/clients/<slug>.css` from `clients/_template/theme.css`, overriding tokens to express the brief (oklch values; keep lightness steps similar to the demo theme). Add `@import './clients/<slug>.css';` to `web/src/styles/base.css` if missing.

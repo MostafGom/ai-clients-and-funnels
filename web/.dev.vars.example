@@ -6,12 +6,8 @@ RESEND_FROM="Demo <hello@demo.example.com>"
 PUBLIC_POSTHOG_KEY=
 PUBLIC_SITE_URL=http://localhost:4321
 # Per-client Stripe prices: STRIPE_PRICE_<CLIENT>_<KEY>  (client slug uppercased, dashes -> underscores)
-STRIPE_PRICE_DEMO_MAIN=price_xxx
-STRIPE_PRICE_DEMO_BUMP=price_xxx
-STRIPE_PRICE_DEMO_UPSELL=price_xxx
-STRIPE_PRICE_DEMO_DOWNSELL=price_xxx
-# Lumen Sleep
 STRIPE_PRICE_LUMEN_MAIN=price_xxx
 STRIPE_PRICE_LUMEN_BUMP=price_xxx
 STRIPE_PRICE_LUMEN_UPSELL=price_xxx
 STRIPE_PRICE_LUMEN_DOWNSELL=price_xxx
+STRIPE_PRICE_LUMEN_COACHING=price_xxx

@@ -1,12 +1,22 @@
 ---
-interface Props { tone?: 'surface' | 'muted' | 'inverse' | 'outline'; pad?: 'sm' | 'md' | 'lg'; class?: string; highlight?: boolean }
-const { tone = 'surface', pad = 'md', class: cls = '', highlight = false } = Astro.props;
+interface Props {
+  tone?: 'surface' | 'muted' | 'inverse' | 'outline' | 'accent';
+  pad?: 'sm' | 'md' | 'lg';
+  radius?: 'md' | 'lg' | 'xl';
+  shadow?: boolean;
+  class?: string;
+  highlight?: boolean;
+  [key: string]: unknown;
+}
+const { tone = 'surface', pad = 'md', radius = 'lg', shadow = tone === 'surface', class: cls = '', highlight = false, ...rest } = Astro.props;
 const tones = {
-  surface: 'bg-surface text-fg shadow-card border border-border',
+  surface: 'bg-surface text-fg border border-border',
   muted: 'bg-surface-2 text-fg',
   inverse: 'bg-inverse text-inverse-fg',
-  outline: 'border border-border-strong text-fg',
+  outline: 'border-2 border-border-strong text-fg',
+  accent: 'bg-accent text-accent-fg',
 };
 const pads = { sm: 'p-5', md: 'p-7 sm:p-8', lg: 'p-8 sm:p-12' };
+const radii = { md: 'rounded-md', lg: 'rounded-lg', xl: 'rounded-xl' };
 ---
-<div class:list={['rounded-lg', tones[tone], pads[pad], highlight && 'ring-2 ring-primary shadow-pop', cls]}><slot /></div>
+<div class:list={[radii[radius], tones[tone], pads[pad], shadow && 'shadow-card', highlight && 'ring-2 ring-primary shadow-pop', cls]} {...rest}><slot /></div>

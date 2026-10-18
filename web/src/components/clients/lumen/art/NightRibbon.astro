@@ -1,0 +1,24 @@
+---
+/** Night 1…7 as moon phases with a caption each. The only place numbering belongs. */
+interface Props { nights: { title: string; body: string }[]; class?: string }
+const { nights, class: cls = '' } = Astro.props;
+---
+<ol class:list={['grid gap-6 sm:grid-cols-2 lg:grid-cols-4', cls]}>
+  {nights.map((n, i) => {
+    const phase = (i + 1) / nights.length;
+    const shadowX = 50 - (1 - phase) * 62;
+    return (
+      <li class="flex gap-4">
+        <svg aria-hidden="true" width="56" height="56" viewBox="0 0 100 100" class="shrink-0">
+          <defs><mask id={`rib-${i}`}><rect width="100" height="100" fill="white" /><circle cx={shadowX} cy="46" r="44" fill="black" /></mask></defs>
+          <circle cx="50" cy="50" r="44" fill="var(--color-accent-2)" opacity="0.35" />
+          <circle cx="50" cy="50" r="44" fill="var(--color-accent)" mask={phase >= 0.98 ? undefined : `url(#rib-${i})`} />
+        </svg>
+        <div>
+          <p class="font-display text-xl font-semibold">Night {i + 1}<span class="text-fg-muted"> · {n.title}</span></p>
+          <p class="mt-1 text-fg-muted">{n.body}</p>
+        </div>
+      </li>
+    );
+  })}
+</ol>

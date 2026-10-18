@@ -1,0 +1,6 @@
+---
+/** Visible marker for a number or claim the client must verify before launch. Removed by deleting the tag. */
+interface Props { note?: string }
+const { note = 'client to verify' } = Astro.props;
+---
+<sup class="ml-1 rounded-sm border border-dashed border-primary/60 px-1 text-[10px] font-bold text-primary align-super" title={note}>verify</sup>

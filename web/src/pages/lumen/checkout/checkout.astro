@@ -1,31 +1,72 @@
 ---
 import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
-import Card from '../../../components/ui/Card.astro';
-import Eyebrow from '../../../components/ui/Eyebrow.astro';
 import CheckoutForm from '../../../components/funnel/CheckoutForm.astro';
 import OrderBump from '../../../components/funnel/OrderBump.astro';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
+import FaqList from '../../../components/clients/lumen/FaqList.astro';
+import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
+const plan = Astro.url.searchParams.get('plan'); // static build: always null; kept for client-side switch below
 ---
 <Layout client="lumen" funnel="checkout" step="checkout" title="Checkout" noindex>
-  <Container class="py-12 sm:py-16">
-    <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+  <Container size="wide" class="py-10 sm:py-16">
+    <div class="grid gap-10 lg:grid-cols-[1fr_minmax(360px,460px)] lg:gap-16">
       <div>
-        <Eyebrow>Night one is tonight</Eyebrow>
-        <h1 class="mt-3 text-h1 font-semibold">Your order</h1>
-        <Card class="mt-8">
-          <div class="flex items-start justify-between gap-4">
-            <div><p class="font-semibold">The Lumen Sleep Method</p><p class="text-sm text-fg-muted">7-night program · all age tracks · community + live Q&A</p></div>
-            <p class="font-display text-2xl font-semibold">$497</p>
+        <p class="text-base font-bold text-primary">Night one is tonight</p>
+        <h1 class="mt-2 text-h1 font-semibold">Your order</h1>
+
+        <div class="mt-8 flex items-start gap-5 rounded-xl bg-surface p-6 shadow-card sm:p-7">
+          <Moon size={56} phase={0.8} class="shrink-0" />
+          <div class="flex-1">
+            <div class="flex items-start justify-between gap-4">
+              <div><p class="font-display text-xl font-semibold" data-plan-name>The Lumen Sleep Method</p><p class="mt-1 text-fg-muted" data-plan-desc>7-night program, all three age tracks, community, live Q&A, bonuses</p></div>
+              <p class="text-right"><span class="block text-sm text-fg-subtle line-through" data-plan-compare>$797</span><span class="font-display text-3xl font-semibold" data-plan-price>$497</span></p>
+            </div>
           </div>
-          <p class="mt-5 border-t border-border pt-5 text-sm text-fg-muted">Sleep-through guarantee: 30 days, full refund, no forms.</p>
-        </Card>
-        <p class="mt-6 text-sm text-fg-muted">Payment happens on Stripe’s secure page. Cards, Apple Pay, Google Pay. Login details arrive within a minute.</p>
+        </div>
+
+        <h2 class="mt-10 text-h3 font-semibold">What happens in the next 10 minutes</h2>
+        <ol class="mt-4 space-y-3 text-lg">
+          <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse text-sm font-bold text-inverse-fg">1</span><span>Pay on Stripe’s secure page. Cards, Apple Pay, Google Pay.</span></li>
+          <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse text-sm font-bold text-inverse-fg">2</span><span>Your login lands in your inbox within a minute.</span></li>
+          <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse text-sm font-bold text-inverse-fg">3</span><span>Pick your age track, print the chart, watch Night 1 (15 minutes).</span></li>
+          <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse text-sm font-bold text-inverse-fg">4</span><span>Bedtime tonight, on time.</span></li>
+        </ol>
+
+        <figure class="mt-10 rounded-xl bg-surface-2 p-6">
+          <blockquote class="text-lg">“I bought it at 11 p.m. and we did night one the same night. She slept five hours straight for the first time in her life.”</blockquote>
+          <figcaption class="mt-3 text-sm text-fg-muted">Priya K., mum of a 7-month-old<ClaimFlag /></figcaption>
+        </figure>
+
+        <FaqList class="mt-10" items={[
+          { q: 'When do I get access?', a: 'Within a minute of paying. The welcome email has your login.' },
+          { q: 'Does the price include all age tracks?', a: 'Yes. All three tracks, lifetime access, so it still works when your baby turns two.' },
+          { q: 'Can I add coaching later?', a: 'Yes, from inside the program, and you only pay the difference.' },
+        ]} />
       </div>
-      <Card pad="lg" highlight>
-        <CheckoutForm client="lumen" funnel="checkout" priceKey="main" successPath="/lumen/checkout/upsell" cancelPath="/lumen/checkout/checkout" label="Continue to secure payment">
-          <OrderBump title="Nap Rescue" price="$37" description="The 40-minute mini-course that fixes 30-minute naps and the 5 a.m. club. Normally $97. Only here." priceKey="bump" />
-        </CheckoutForm>
-      </Card>
+
+      <aside class="lg:sticky lg:top-8 lg:self-start">
+        <div class="rounded-xl bg-surface p-7 shadow-pop ring-2 ring-primary sm:p-9">
+          <div class="flex items-center gap-3 rounded-md bg-accent/25 px-4 py-3 text-sm font-bold text-accent-fg">
+            <Moon size={28} phase={1} />Sleep-Through Guarantee: 30 days, full refund, no forms.
+          </div>
+          <CheckoutForm client="lumen" funnel="checkout" priceKey="main" successPath="/lumen/checkout/upsell" cancelPath="/lumen/checkout/checkout" label="Continue to secure payment">
+            <OrderBump title="Nap Rescue" price="$37" description="Thirty-minute naps and the 5 a.m. club are the daytime version of the same timing problem. Nap Rescue is a 40-minute mini-course that fixes both with the same wake-window logic. Normally $97. Only offered on this page." priceKey="bump" />
+          </CheckoutForm>
+        </div>
+      </aside>
     </div>
   </Container>
+  <script>
+    // ?plan=coaching switches the summary + price key to the coaching bundle.
+    if (new URLSearchParams(location.search).get('plan') === 'coaching') {
+      const set = (sel: string, v: string) => { const el = document.querySelector(sel); if (el) el.textContent = v; };
+      set('[data-plan-name]', 'The Lumen Sleep Method, with Maya for 14 days');
+      set('[data-plan-desc]', 'Everything in the program, plus 14 days of text support, two private calls, and your plan adjusted for your baby');
+      set('[data-plan-price]', '$894'); set('[data-plan-compare]', '');
+      const price = document.querySelector<HTMLInputElement>('form[data-checkout] input[name=price]'); if (price) price.value = 'coaching';
+      const bump = document.querySelector<HTMLInputElement>('input[name=bump]'); bump?.closest('label')?.remove();
+    }
+    document.querySelector<HTMLInputElement>('input[name=bump]')?.addEventListener('change', (e) => window.funnel?.track('bump_toggled', { on: (e.target as HTMLInputElement).checked }));
+  </script>
 </Layout>

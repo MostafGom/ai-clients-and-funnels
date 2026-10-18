@@ -6,7 +6,7 @@ export function getResend(): Resend | null {
   return new Resend(RESEND_API_KEY);
 }
 
-export interface SendArgs { to: string; subject: string; html: string; replyTo?: string }
+export interface SendArgs { to: string; subject: string; html: string; replyTo?: string; /** ISO date or natural language ('in 2 days'); Resend schedules up to 30 days out. */ scheduledAt?: string; text?: string }
 
 export async function sendEmail(args: SendArgs): Promise<{ ok: boolean; id?: string; error?: string }> {
   const resend = getResend();
@@ -20,6 +20,16 @@ export async function addContact(audienceId: string, email: string, firstName?: 
   const resend = getResend();
   if (!resend) return;
   await resend.contacts.create({ audienceId, email, firstName, unsubscribed: false }).catch(() => {});
+}
+
+/** Send a sequence: each step has a delay in hours from now. Returns ids (or errors) per step. */
+export async function sendSequence(to: string, steps: { subject: string; html: string; text?: string; delayHours: number; replyTo?: string }[]) {
+  const out = [];
+  for (const st of steps) {
+    const when = new Date(Date.now() + st.delayHours * 3_600_000).toISOString();
+    out.push(await sendEmail({ to, subject: st.subject, html: st.html, text: st.text, replyTo: st.replyTo, scheduledAt: st.delayHours > 0 ? when : undefined }));
+  }
+  return out;
 }
 
 /** Minimal, inbox-safe HTML wrapper for transactional emails. */

@@ -1,7 +1,0 @@
----
-import Layout from '../../../layouts/FunnelLayout.astro';
-import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
----
-<Layout client="demo" funnel="vsl-checkout" step="upsell" title="One-time offer" noindex bare>
-  <OneClickOffer client="demo" funnel="vsl-checkout" kind="upsell" priceKey="upsell" headline="Add 90 days of 1:1 coaching and we’ll build the pipeline with you." subheadline="Six private calls, Slack access, and a done-with-you tracker. Only offered here, right now." price="$997" compareAt="$2,400" bullets={['6 × 45-min private calls over 90 days', 'Direct Slack access, 48h response', 'We review every script before you send it', 'Pipeline audit at day 30, 60 and 90']} acceptNext="/demo/vsl-checkout/thanks" declineNext="/demo/vsl-checkout/downsell" />
-</Layout>

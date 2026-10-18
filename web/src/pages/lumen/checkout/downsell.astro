@@ -2,6 +2,10 @@
 import Layout from '../../../layouts/FunnelLayout.astro';
 import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
 ---
-<Layout client="lumen" funnel="checkout" step="downsell" title="One last thing" noindex bare>
-  <OneClickOffer client="lumen" funnel="checkout" kind="downsell" priceKey="downsell" eyebrow="Totally fine. One smaller thing" headline="Regressions, teeth, travel, daycare. Grab the survival kit." subheadline="Because sleep gets fixed, and then life happens. This is the plan for when it does." price="$97" compareAt="$197" bullets={['The 4-, 8-, 12- and 18-month regression playbooks', 'Travel & time-zone protocol (holds in hotels)', 'Teething and sick-night response plan', 'Daycare nap bridge']} acceptLabel="Yes, add the survival kit for $97" acceptNext="/lumen/checkout/thanks" declineNext="/lumen/checkout/thanks" />
+<Layout client="lumen" funnel="checkout" step="downsell" title="The lighter option" noindex bare>
+  <OneClickOffer client="lumen" funnel="checkout" kind="downsell" priceKey="downsell" eyebrow="Totally fine. Here’s the lighter option." headline="Sleep gets fixed. Then life happens. Grab the Survival Kit." price="$97" compareAt="$197" bullets={['The 4-, 8-, 12- and 18-month regression playbooks.', 'Travel and time-zone protocol that holds in hotels and at grandma’s.', 'Sick-night and teething response plan.', 'Daycare nap bridge.']} acceptLabel="Yes, add the Survival Kit" declineLabel="No thanks, take me to Night 1" acceptNext="/lumen/checkout/thanks" declineNext="/lumen/checkout/thanks">
+    <Fragment slot="why">
+      <p>Teeth, a cold, a flight, the 12-month regression. The Regressions & Travel Survival Kit is the plan for the night the plan breaks, written for babies who’ve already done the seven nights. $97 today instead of $197 inside the program.</p>
+    </Fragment>
+  </OneClickOffer>
 </Layout>

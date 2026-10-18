@@ -1,0 +1,55 @@
+---
+/**
+ * Interactive: pick the baby's age and when the last nap ended → wake window + bedtime tonight.
+ * Teaches the mechanism (overtired, not under-tired) and gives an immediate win.
+ * Props: `cta` slot renders under the result (e.g. the opt-in form or a button).
+ */
+interface Props { heading?: string; class?: string; compact?: boolean }
+const { heading = 'What time should your baby go to bed tonight?', class: cls = '', compact = false } = Astro.props;
+const ages = [
+  { v: '4-5', label: '4–5 months', win: [1.75, 2.25], naps: '3–4 naps' },
+  { v: '6-8', label: '6–8 months', win: [2.25, 3], naps: '2–3 naps' },
+  { v: '9-12', label: '9–12 months', win: [3, 3.75], naps: '2 naps' },
+  { v: '13-18', label: '13–18 months', win: [3.5, 4.5], naps: '1–2 naps' },
+  { v: '19-36', label: '19 months – 3 years', win: [4.5, 6], naps: '1 nap' },
+];
+---
+<div class:list={['dial rounded-xl bg-surface p-6 text-fg shadow-pop sm:p-8', cls]} data-dial data-ages={JSON.stringify(ages)}>
+  <h3 class:list={['font-display font-semibold', compact ? 'text-h3' : 'text-h2']}>{heading}</h3>
+  <div class="mt-5 grid gap-4 sm:grid-cols-2">
+    <label class="block"><span class="mb-1.5 block text-sm font-bold">Baby's age</span>
+      <select name="age" class="w-full rounded-md border border-border-strong bg-surface px-4 py-3 text-base focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft">
+        {ages.map((a) => <option value={a.v}>{a.label}</option>)}
+      </select></label>
+    <label class="block"><span class="mb-1.5 block text-sm font-bold">Last nap ended at</span>
+      <input name="nap" type="time" value="15:30" class="w-full rounded-md border border-border-strong bg-surface px-4 py-3 text-base focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft" /></label>
+  </div>
+  <div class="mt-6 rounded-lg bg-inverse p-5 text-inverse-fg" aria-live="polite">
+    <p class="text-sm opacity-80">Tonight, aim for lights-out at</p>
+    <p class="font-display text-5xl font-semibold" data-bedtime>7:00 pm</p>
+    <p class="mt-2 text-sm opacity-90" data-explain>That's a wake window of 3–3¾ hours after the last nap. Later than this and the overtired hormone kicks in. That's the 2 a.m. party.</p>
+  </div>
+  <div class="mt-5"><slot /></div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-dial]').forEach((el) => {
+    const ages = JSON.parse(el.dataset.ages!) as { v: string; win: [number, number]; naps: string }[];
+    const sel = el.querySelector<HTMLSelectElement>('select[name=age]')!;
+    const nap = el.querySelector<HTMLInputElement>('input[name=nap]')!;
+    const out = el.querySelector('[data-bedtime]')!, ex = el.querySelector('[data-explain]')!;
+    const fmt = (m: number) => { m = ((m % 1440) + 1440) % 1440; const h = Math.floor(m / 60), mm = m % 60; return `${((h + 11) % 12) + 1}:${String(mm).padStart(2, '0')} ${h < 12 ? 'am' : 'pm'}`; };
+    const frac = (x: number) => (x % 1 === 0 ? `${x}` : x % 1 === 0.5 ? `${Math.floor(x)}½` : x % 1 === 0.25 ? `${Math.floor(x)}¼` : `${Math.floor(x)}¾`);
+    const run = () => {
+      const a = ages.find((x) => x.v === sel.value)!;
+      const [h, m] = nap.value.split(':').map(Number);
+      const start = h * 60 + m;
+      const lo = start + a.win[0] * 60, hi = start + a.win[1] * 60;
+      const target = Math.round((lo + hi) / 2 / 5) * 5;
+      out.textContent = fmt(target);
+      ex.textContent = `That's a wake window of ${frac(a.win[0])}–${frac(a.win[1])} hours after the last nap (${a.naps} a day at this age). Later than ${fmt(hi)} and the overtired hormone kicks in. That's the 2 a.m. party.`;
+    };
+    sel.addEventListener('change', () => { run(); window.funnel?.track('dial_used', { age: sel.value }); });
+    nap.addEventListener('change', run);
+    sel.value = '9-12'; run();
+  });
+</script>

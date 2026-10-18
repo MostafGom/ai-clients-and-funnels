@@ -2,8 +2,8 @@
 import Container from '../ui/Container.astro';
 import Eyebrow from '../ui/Eyebrow.astro';
 interface Item { title: string; body: string }
-interface Props { eyebrow?: string; headline?: string; items: Item[]; columns?: 2 | 3 }
-const { eyebrow, headline, items, columns = 3 } = Astro.props;
+interface Props { eyebrow?: string; headline?: string; items: Item[]; columns?: 2 | 3; /** Only number the items when they are a real sequence. */ sequence?: boolean }
+const { eyebrow, headline, items, columns = 3, sequence = false } = Astro.props;
 ---
 <Container>
   {(eyebrow || headline) && (
@@ -15,7 +15,7 @@ const { eyebrow, headline, items, columns = 3 } = Astro.props;
   <div class:list={['grid gap-6', columns === 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2']}>
     {items.map((it, i) => (
       <div class="rounded-lg border border-border bg-surface p-7 shadow-card">
-        <span class="font-display text-3xl text-primary">{String(i + 1).padStart(2, '0')}</span>
+        {sequence && <span class="font-display text-3xl text-primary">{i + 1}</span>}
         <h3 class="mt-4 text-h3 font-semibold">{it.title}</h3>
         <p class="mt-2 text-fg-muted">{it.body}</p>
       </div>

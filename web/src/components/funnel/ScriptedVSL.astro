@@ -1,0 +1,92 @@
+---
+/**
+ * The scripted stand-in for a recorded VSL. Plays the script as large-type slides with
+ * per-chapter art (passed as named slots: slot="art:<key>"), progress, chapters, play/pause,
+ * and a transcript. Reveals [data-reveal] elements when the reveal chapter starts.
+ * Replace with <VideoPlayer> once the client records the video; keep the script as its brief.
+ */
+import type { VslScript } from '../../lib/vsl-script';
+import { fmtTime } from '../../lib/vsl-script';
+import Button from '../ui/Button.astro';
+interface Props { script: VslScript; title?: string; class?: string }
+const { script, title = 'Watch the training', class: cls = '' } = Astro.props;
+const artKeys = [...new Set(script.chapters.map((c) => c.art).filter(Boolean))] as string[];
+const data = { chapters: script.chapters.map((c) => ({ title: c.title, art: c.art ?? null, reveal: c.reveal, slides: c.slides })), revealAt: script.revealAt };
+---
+<div class:list={['vsl relative overflow-hidden rounded-xl bg-inverse text-inverse-fg shadow-pop', cls]} data-svsl data-script={JSON.stringify(data)}>
+  <div class="relative grid min-h-[420px] grid-rows-[1fr_auto] sm:min-h-[520px]">
+    <div class="relative grid items-center gap-6 px-6 pt-8 pb-4 sm:grid-cols-[1fr_minmax(180px,260px)] sm:px-10 sm:pt-10">
+      <p class="font-display text-[clamp(1.6rem,1.1rem+2.2vw,3rem)] font-semibold leading-[1.1] text-balance" data-slide aria-live="polite">{script.chapters[0]?.slides[0]?.text}</p>
+      <div class="relative mx-auto aspect-square w-40 sm:w-full" data-art>
+        {artKeys.map((k) => <div class="absolute inset-0 grid place-items-center transition-opacity duration-500" data-art-key={k} style="opacity:0"><Fragment set:html={Astro.slots.render(`art:${k}`)} /></div>)}
+      </div>
+      <!-- Start overlay -->
+      <button type="button" class="absolute inset-0 grid place-items-center bg-inverse/85 backdrop-blur-[2px]" data-start aria-label={title}>
+        <span class="flex flex-col items-center gap-4">
+          <span class="grid size-24 place-items-center rounded-pill bg-primary text-primary-fg shadow-cta transition-transform duration-300 ease-spring hover:scale-110"><svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="font-display text-2xl font-semibold">{title}</span>
+          <span class="text-sm opacity-80">{fmtTime(script.totalSeconds)} · reads itself, no sound needed</span>
+        </span>
+      </button>
+    </div>
+    <div class="px-6 pb-5 sm:px-10">
+      <div class="h-1.5 w-full overflow-hidden rounded-pill bg-inverse-fg/15"><div class="h-full w-0 rounded-pill bg-accent" data-progress></div></div>
+      <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        <button type="button" class="inline-flex items-center gap-2 rounded-pill border border-inverse-fg/30 px-3.5 py-1.5 font-bold hover:bg-inverse-fg/10" data-toggle>Pause</button>
+        <span class="opacity-80" data-chapter>{script.chapters[0]?.title}</span>
+        <span class="ml-auto tabular-nums opacity-70"><span data-elapsed>0:00</span> / {fmtTime(script.totalSeconds)}</span>
+      </div>
+      <ol class="mt-3 flex flex-wrap gap-1.5 text-xs" data-chapters>
+        {script.chapters.map((c, i) => <li><button type="button" class="rounded-pill px-2.5 py-1 opacity-70 hover:bg-inverse-fg/10 hover:opacity-100 data-[active]:bg-accent data-[active]:text-accent-fg data-[active]:opacity-100" data-go={i}>{i + 1}. {c.title}</button></li>)}
+      </ol>
+    </div>
+  </div>
+</div>
+<details class="mt-4 text-sm text-fg-muted">
+  <summary class="cursor-pointer font-bold">Prefer to read? Full transcript</summary>
+  <div class="mt-4 space-y-6">
+    {script.chapters.map((c) => (
+      <section><h3 class="font-display text-lg font-semibold text-fg">{fmtTime(c.at)} · {c.title}</h3>{c.slides.map((s) => <p class="mt-2">{s.text}</p>)}</section>
+    ))}
+  </div>
+</details>
+
+<script>
+  type Slide = { text: string; seconds: number };
+  type Chapter = { title: string; art: string | null; reveal: boolean; slides: Slide[] };
+  document.querySelectorAll<HTMLElement>('[data-svsl]').forEach((root) => {
+    const { chapters } = JSON.parse(root.dataset.script!) as { chapters: Chapter[] };
+    const flat = chapters.flatMap((c, ci) => c.slides.map((s, si) => ({ ...s, ci, first: si === 0 })));
+    const total = flat.reduce((t, s) => t + s.seconds, 0);
+    const slideEl = root.querySelector('[data-slide]')!, prog = root.querySelector<HTMLElement>('[data-progress]')!;
+    const chapEl = root.querySelector('[data-chapter]')!, elapsedEl = root.querySelector('[data-elapsed]')!;
+    const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!, start = root.querySelector<HTMLButtonElement>('[data-start]')!;
+    const key = `vsl-revealed:${location.pathname}`;
+    let i = 0, playing = false, timer: number | undefined, elapsedBefore = 0, startedAt = 0;
+    const reveal = () => { document.querySelectorAll('[data-reveal]').forEach((n) => n.setAttribute('data-revealed', '')); try { localStorage.setItem(key, '1'); } catch {} window.funnel?.track('vsl_cta_revealed'); };
+    const showArt = (k: string | null) => root.querySelectorAll<HTMLElement>('[data-art-key]').forEach((a) => (a.style.opacity = a.dataset.artKey === k ? '1' : '0'));
+    const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const render = () => {
+      const s = flat[i]; const c = chapters[s.ci];
+      slideEl.textContent = s.text; chapEl.textContent = c.title; showArt(c.art);
+      root.querySelectorAll<HTMLElement>('[data-go]').forEach((b) => b.toggleAttribute('data-active', Number(b.dataset.go) === s.ci));
+      elapsedBefore = flat.slice(0, i).reduce((t, x) => t + x.seconds, 0);
+      if (s.first) { window.funnel?.track('vsl_chapter', { chapter: c.title }); if (c.reveal) reveal(); }
+    };
+    const tick = () => {
+      if (!playing) return;
+      const el = elapsedBefore + (performance.now() - startedAt) / 1000;
+      prog.style.width = `${Math.min(100, (el / total) * 100)}%`; elapsedEl.textContent = fmt(el);
+      if ((performance.now() - startedAt) / 1000 >= flat[i].seconds) { if (i < flat.length - 1) { i++; render(); startedAt = performance.now(); } else { playing = false; toggle.textContent = 'Replay'; window.funnel?.track('vsl_complete'); return; } }
+      timer = requestAnimationFrame(tick);
+    };
+    const play = () => { if (i === flat.length - 1 && !playing && toggle.textContent === 'Replay') { i = 0; render(); } playing = true; toggle.textContent = 'Pause'; startedAt = performance.now(); timer = requestAnimationFrame(tick); };
+    const pause = () => { playing = false; toggle.textContent = 'Play'; if (timer) cancelAnimationFrame(timer); };
+    start.addEventListener('click', () => { start.remove(); window.funnel?.track('vsl_play'); render(); play(); });
+    toggle.addEventListener('click', () => (playing ? pause() : play()));
+    root.querySelectorAll<HTMLButtonElement>('[data-go]').forEach((b) => b.addEventListener('click', () => { start.isConnected && start.remove(); i = flat.findIndex((s) => s.ci === Number(b.dataset.go)); render(); if (!playing) play(); else startedAt = performance.now(); }));
+    let seen = false; try { seen = localStorage.getItem(key) === '1'; } catch {}
+    if (seen || new URLSearchParams(location.search).has('reveal')) reveal();
+    render(); showArt(chapters[0].art);
+  });
+</script>

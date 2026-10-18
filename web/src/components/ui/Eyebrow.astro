@@ -1,5 +1,6 @@
 ---
+/** A short kicker above a headline. Sentence case, used only when it adds information (who it's for, what this is). */
 interface Props { class?: string }
 const { class: cls = '' } = Astro.props;
 ---
-<p class:list={['text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-primary', cls]}><slot /></p>
+<p class:list={['text-base font-bold text-primary', cls]}><slot /></p>

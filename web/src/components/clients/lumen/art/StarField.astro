@@ -1,0 +1,13 @@
+---
+/** Decorative night sky. Deterministic scatter (seeded) so it never shifts between builds. */
+interface Props { count?: number; seed?: number; class?: string }
+const { count = 70, seed = 7, class: cls = '' } = Astro.props;
+let s = seed;
+const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+const stars = Array.from({ length: count }, () => ({ x: rnd() * 100, y: rnd() * 100, r: 0.5 + rnd() * 1.4, o: 0.25 + rnd() * 0.5, big: rnd() > 0.93 }));
+---
+<svg aria-hidden="true" class:list={['pointer-events-none absolute inset-0 h-full w-full', cls]} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+  {stars.map((st) => st.big
+    ? <path d={`M${st.x} ${st.y - st.r} q0 ${st.r} ${st.r} ${st.r} q-${st.r} 0 -${st.r} ${st.r} q0 -${st.r} -${st.r} -${st.r} q${st.r} 0 ${st.r} -${st.r}z`} fill="var(--color-accent)" opacity={0.6 + st.o * 0.4} />
+    : <circle cx={st.x} cy={st.y} r={st.r * 0.13} fill="var(--color-inverse-fg)" opacity={st.o} />)}
+</svg>

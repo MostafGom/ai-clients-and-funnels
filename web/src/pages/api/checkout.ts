@@ -24,6 +24,8 @@ export const POST: APIRoute = async (ctx) => {
       // Save the card so upsell/downsell pages can charge it with one click.
       payment_intent_data: { setup_future_usage: 'off_session', metadata: { client: client.slug, funnel: body.funnel || '' } },
       allow_promotion_codes: true,
+      // Expire after 1h so `checkout.session.expired` can trigger the abandoned-checkout sequence.
+      expires_at: Math.floor(Date.now() / 1000) + 60 * 60,
       success_url: absoluteUrl(ctx.url.origin, success) + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: absoluteUrl(ctx.url.origin, cancel),
       metadata: { client: client.slug, funnel: body.funnel || '', bump: body.bump || '' },

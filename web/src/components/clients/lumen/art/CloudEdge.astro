@@ -1,0 +1,8 @@
+---
+/** Soft cloud divider between a night band and paper. `fill` = the token of the band BELOW the edge. */
+interface Props { fill?: 'bg' | 'inverse' | 'surface-2'; flip?: boolean; class?: string }
+const { fill = 'bg', flip = false, class: cls = '' } = Astro.props;
+---
+<svg aria-hidden="true" class:list={['block w-full', flip && 'rotate-180', cls]} viewBox="0 0 1440 90" preserveAspectRatio="none" style={`color: var(--color-${fill})`}>
+  <path fill="currentColor" d="M0 60c90-30 150-30 240-6s160 36 260 12 170-48 290-30 180 50 300 30 170-48 350-6V90H0z" />
+</svg>

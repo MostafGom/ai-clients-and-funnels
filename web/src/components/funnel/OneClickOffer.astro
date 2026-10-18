@@ -27,11 +27,13 @@ const { client, funnel, kind, priceKey, eyebrow, headline, subheadline, price, c
 const decline = declineLabel ?? (kind === 'upsell' ? 'No thanks, I’ll pass on this one-time offer' : 'No thanks, take me to my order');
 ---
 <Container size="prose" class="py-14 sm:py-20">
+  {Astro.slots.has('top') && <div class="mb-10"><slot name="top" /></div>}
   <div class="text-center">
     <Badge tone={kind === 'upsell' ? 'accent' : 'primary'}>{eyebrow ?? (kind === 'upsell' ? 'Wait! Your order is not complete' : 'One last option')}</Badge>
     <h1 class="mt-5 text-h1 font-semibold">{headline}</h1>
     {subheadline && <p class="mt-4 text-lead text-fg-muted">{subheadline}</p>}
   </div>
+  {Astro.slots.has('why') && <div class="mx-auto mt-8 max-w-[60ch] text-lg text-fg"><slot name="why" /></div>}
   <Card pad="lg" class="mt-10" highlight>
     <div class="flex items-baseline justify-center gap-3">
       {compareAt && <span class="text-xl text-fg-subtle line-through">{compareAt}</span>}
@@ -45,6 +47,7 @@ const decline = declineLabel ?? (kind === 'upsell' ? 'No thanks, I’ll pass on 
         </li>
       ))}
     </ul>
+    {Astro.slots.has('objection') && <div class="mt-8 rounded-md bg-surface-2 p-5 text-fg"><slot name="objection" /></div>}
     <form method="post" action="/api/upsell" class="mt-8" data-oneclick>
       <input type="hidden" name="client" value={client} />
       <input type="hidden" name="funnel" value={funnel} />

@@ -1,0 +1,40 @@
+---
+/**
+ * Seven nights, before and after. Each bar = longest sleep stretch that night (hours).
+ * Fills once when scrolled into view: the sales page's one orchestrated moment.
+ */
+interface Props { before: number[]; after: number[]; caption?: string; name?: string; compact?: boolean; class?: string }
+const { before, after, caption, name, compact = false, class: cls = '' } = Astro.props;
+const max = 12;
+const nights = after.map((a, i) => ({ n: i + 1, b: before[i] ?? before[before.length - 1], a }));
+---
+<figure class:list={['nightlog', compact ? 'text-xs' : 'text-sm', cls]} data-nightlog>
+  {name && <figcaption class="mb-3 font-bold">{name}</figcaption>}
+  <div class="flex items-end gap-2 sm:gap-3" style={`height:${compact ? 120 : 180}px`} role="img" aria-label={`Longest sleep stretch per night. Before: ${before.join(', ')} hours. After the seven nights: ${after.join(', ')} hours.`}>
+    {nights.map((x) => (
+      <div class="flex h-full flex-1 flex-col justify-end gap-1">
+        <div class="relative flex h-full items-end gap-[3px]">
+          <div class="bar before w-1/2 rounded-t-md bg-accent-2" style={`--h:${(x.b / max) * 100}%`}></div>
+          <div class="bar after w-1/2 rounded-t-md bg-success" style={`--h:${(x.a / max) * 100}%`}></div>
+        </div>
+        <span class="text-center font-bold opacity-80">N{x.n}</span>
+      </div>
+    ))}
+  </div>
+  <div class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 opacity-90">
+    <span class="inline-flex items-center gap-2"><i class="inline-block size-3 rounded-sm bg-accent-2"></i>before</span>
+    <span class="inline-flex items-center gap-2"><i class="inline-block size-3 rounded-sm bg-success"></i>during the 7 nights</span>
+    {caption && <span class="basis-full">{caption}</span>}
+  </div>
+</figure>
+<style>
+  .bar { height: 4%; transition: height 1.4s var(--ease-out-expo); }
+  .bar.after { transition-delay: 0.25s; }
+  [data-nightlog][data-filled] .bar { height: var(--h); }
+  @media (prefers-reduced-motion: reduce) { .bar { transition: none; } [data-nightlog] .bar { height: var(--h); } }
+</style>
+<script>
+  const logs = document.querySelectorAll<HTMLElement>('[data-nightlog]');
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.setAttribute('data-filled', ''); io.unobserve(e.target); } }), { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+  logs.forEach((l) => io.observe(l));
+</script>

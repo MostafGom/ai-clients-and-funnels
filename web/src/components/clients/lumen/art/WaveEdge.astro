@@ -1,0 +1,7 @@
+---
+interface Props { fill?: 'bg' | 'inverse' | 'surface-2'; flip?: boolean; class?: string }
+const { fill = 'inverse', flip = false, class: cls = '' } = Astro.props;
+---
+<svg aria-hidden="true" class:list={['block w-full', flip && 'rotate-180', cls]} viewBox="0 0 1440 70" preserveAspectRatio="none" style={`color: var(--color-${fill})`}>
+  <path fill="currentColor" d="M0 40c160-40 320-40 480-10s320 50 480 20 320-50 480-10V70H0z" />
+</svg>

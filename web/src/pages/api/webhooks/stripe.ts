@@ -2,7 +2,13 @@ import type { APIRoute } from 'astro';
 import { STRIPE_WEBHOOK_SECRET } from 'astro:env/server';
 import { getStripe } from '../../../lib/stripe';
 import { getClient } from '../../../lib/clients';
-import { sendEmail, emailShell } from '../../../lib/resend';
+import { sendEmail, sendSequence, emailShell } from '../../../lib/resend';
+import * as lumenCheckout from '../../../emails/lumen/checkout';
+
+/** Per-client email sequences keyed by slug. Add new clients here. */
+const SEQUENCES: Record<string, { onboarding: (origin: string) => any[]; abandoned: (origin: string) => any[] }> = {
+  lumen: { onboarding: lumenCheckout.onboarding, abandoned: lumenCheckout.abandonedCheckout },
+};
 
 export const prerender = false;
 
@@ -10,7 +16,7 @@ export const prerender = false;
  * Stripe → us. Register the endpoint URL in the Stripe dashboard for
  * `checkout.session.completed` and `payment_intent.succeeded`.
  */
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, url }) => {
   if (!STRIPE_WEBHOOK_SECRET) return new Response('webhook secret not configured', { status: 500 });
   const sig = request.headers.get('stripe-signature');
   if (!sig) return new Response('missing signature', { status: 400 });
@@ -28,7 +34,9 @@ export const POST: APIRoute = async ({ request }) => {
     const email = s.customer_details?.email;
     if (slug && email) {
       const client = getClient(slug);
-      await sendEmail({
+      const seq = SEQUENCES[slug];
+      if (seq) { await sendSequence(email, seq.onboarding(url.origin).map((e) => ({ ...e, replyTo: client.supportEmail }))); }
+      else await sendEmail({
         to: email,
         subject: `Your order with ${client.name} is confirmed`,
         replyTo: client.supportEmail,
@@ -39,6 +47,16 @@ export const POST: APIRoute = async ({ request }) => {
           footer: `Questions? Reply to this email or write to ${client.supportEmail}.`,
         }),
       });
+    }
+  }
+  if (event.type === 'checkout.session.expired') {
+    const s = event.data.object;
+    const slug = s.metadata?.client;
+    const email = s.customer_details?.email;
+    const seq = slug && SEQUENCES[slug];
+    if (seq && email) {
+      const client = getClient(slug);
+      await sendSequence(email, seq.abandoned(url.origin).map((e) => ({ ...e, replyTo: client.supportEmail })));
     }
   }
   return new Response(JSON.stringify({ received: true }), { headers: { 'content-type': 'application/json' } });
