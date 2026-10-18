@@ -16,5 +16,15 @@ All photos from Pexels under the Pexels License (free for commercial use; attrib
 | owen.jpg | "Owen P." | https://www.pexels.com/photo/36298150/ |
 | sam.jpg | "Sam D." | https://www.pexels.com/photo/12871449/ |
 | tom.jpg | "Tom H." | https://www.pexels.com/photo/8241351/ |
+| deadlift.jpg | Hero: setting up a deadlift, dark gym | https://www.pexels.com/photo/19132573/ (Hugazo Boss) |
+| deadlift-lockout.jpg | Alt hero: deadlift lockout | https://www.pexels.com/photo/9171160/ (Abdulrhman Alkady) |
+| press.jpg | Mature lifter, barbell front rack | https://www.pexels.com/photo/4720814/ (Ketut Subiyanto) |
+| chalk-coach.jpg | Mature lifter chalking up | https://www.pexels.com/photo/4720518/ (Ketut Subiyanto) |
+| chalk-hands.jpg | Chalking hands at the rack | https://www.pexels.com/photo/9644820/ (Ron Lach) |
+| bar-grip.jpg | Hands on the bar | https://www.pexels.com/photo/5327527/ (Tima Miroshnichenko) |
+| plates.jpg | Loaded bar on the floor | https://www.pexels.com/photo/2261481/ (Victor Freitas) |
+| plate-kg.jpg | 15 kg plates close-up | https://www.pexels.com/photo/4164468/ (Ivan S) |
+| garage-rack.jpg | Home rack, dark | https://www.pexels.com/photo/38965744/ (Brett Jordan) |
+| deadlift-grip.jpg | Deadlift set-up, hands and feet | https://www.pexels.com/photo/949129/ (Victor Freitas) |
 
 Replace with the real client's photos before launch; keep the file names and nothing else changes.

@@ -7,6 +7,7 @@ import StickyCTA from '../../../components/funnel/StickyCTA.astro';
 import { loadVslScript } from '../../../lib/vsl-script';
 import IronBand from '../../../components/clients/forge/IronBand.astro';
 import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import PhotoBand from '../../../components/clients/forge/PhotoBand.astro';
 import VslStage from '../../../components/clients/forge/VslStage.astro';
 import NumberWall from '../../../components/clients/forge/NumberWall.astro';
 import ResultsTicker from '../../../components/clients/forge/ResultsTicker.astro';
@@ -30,7 +31,7 @@ const faq = [
 ---
 <Layout client="forge" funnel="vsl-checkout" step="vsl" title={`The least training that makes a 45-year-old stronger (${minutes}-minute training)`} description={`Free ${minutes}-minute training from a strength coach and former physiotherapist: why volume isn't the lever after forty, the three that are, and the 12-week program built around them.`}>
 
-  <VslStage script={script} kicker={`Free ${minutes}-minute training · men 35–50`} sub="Six lifts, one rule, three sessions a week. A former physiotherapist on what actually moves the bar after forty, and why the programs you quit were built for someone else." meta="Taught by a strength coach and former physiotherapist." cta={CTA} href={checkout} lifts={[{ name: 'Squat', before: 60, after: 110 }, { name: 'Deadlift', before: 70, after: 130 }, { name: 'Bench', before: 50, after: 80 }, { name: 'Press', before: 30, after: 50 }]}>
+  <VslStage script={script} kicker={`Free ${minutes}-minute training · men 35–50`} sub="Six lifts, one rule, three sessions a week. A former physiotherapist on what actually moves the bar after forty, and why the programs you quit were built for someone else." meta="Taught by a strength coach and former physiotherapist." cta={CTA} href={checkout} photo={PHOTOS.deadliftLockout} lifts={[{ name: 'Squat', before: 60, after: 110 }, { name: 'Deadlift', before: 70, after: 130 }, { name: 'Bench', before: 50, after: 80 }, { name: 'Press', before: 30, after: 50 }]}>
     <Fragment slot="headline">The least training that makes a 45-year-old <span class="text-primary">stronger.</span></Fragment>
   </VslStage>
 
@@ -43,6 +44,8 @@ const faq = [
         <NumberWall class="mt-12" items={MECHANISM} />
       </Container>
     </IronBand>
+
+    <PhotoBand src={PHOTOS.press} alt="A lifter in his fifties holding a barbell in the front rack" focus="50% 30%">Built for men who aren’t 25.</PhotoBand>
 
     <IronBand tone="graphite" pad="lg" edge>
       <Container size="wide">
@@ -60,7 +63,7 @@ const faq = [
       </Container>
     </IronBand>
 
-    <PhotoHero src={PHOTOS.rack} alt="A man squatting a loaded barbell in a dark gym" focus="50% 38%" side="right" minH="min-h-[80svh]">
+    <PhotoHero src={PHOTOS.deadlift} alt="A man in his forties setting up a deadlift in a dark gym" focus="62% 45%" side="right" minH="min-h-[80svh]">
       <h2 class="font-display text-display font-extrabold uppercase">Your first<br />session<br /><span class="text-primary">is tonight.</span></h2>
       <p class="mt-6 max-w-[46ch] text-lead text-fg/85">Forty-five minutes. Six lifts you already know the names of. A rule that tells you what to do next.</p>
       <div class="mt-8 flex flex-col items-start gap-3">

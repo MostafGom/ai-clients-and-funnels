@@ -5,6 +5,7 @@ import Container from '../../../components/ui/Container.astro';
 import OptInForm from '../../../components/funnel/OptInForm.astro';
 import IronBand from '../../../components/clients/forge/IronBand.astro';
 import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import PhotoBand from '../../../components/clients/forge/PhotoBand.astro';
 import NumberWall from '../../../components/clients/forge/NumberWall.astro';
 import ResultsTicker from '../../../components/clients/forge/ResultsTicker.astro';
 import FaqList from '../../../components/clients/forge/FaqList.astro';
@@ -68,6 +69,8 @@ const consent = 'Free PDF in your inbox in a minute. Five short emails from Dani
       <PlateLoader to={140} weeks={12} caption="Tom H., 48: deadlift from the empty bar in week 1 to 140 kg in week 12." />
     </Container>
   </IronBand>
+
+  <PhotoBand src={PHOTOS.deadliftGrip} alt="Hands and feet set at a loaded barbell" focus="50% 50%">Start lighter than you think.</PhotoBand>
 
   <IronBand tone="chalk" pad="lg">
     <Container size="wide" class="grid items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)]">

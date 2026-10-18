@@ -7,6 +7,7 @@ import StickyCTA from '../../../components/funnel/StickyCTA.astro';
 import { loadVslScript } from '../../../lib/vsl-script';
 import IronBand from '../../../components/clients/forge/IronBand.astro';
 import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import PhotoBand from '../../../components/clients/forge/PhotoBand.astro';
 import VslStage from '../../../components/clients/forge/VslStage.astro';
 import ClientLedgers from '../../../components/clients/forge/ClientLedgers.astro';
 import { PHOTOS } from '../../../components/clients/forge/photos';
@@ -30,7 +31,7 @@ const clients = CLIENTS.map((c) => ({ ...c, q: quotes[c.who], rows: caseRows[c.w
 ---
 <Layout client="forge" funnel="vsl-call" step="vsl" title="Your case isn’t the exception. It’s an adjustment." description="An old back, hotel gyms, a first time under a bar at 50, or quitting at week three: four cases, the swap for each, and how to get a strength plan written for yours. Free.">
 
-  <VslStage script={script} kicker="For the man with a “but”" sub="Four cases, the trap in each, the swap for each, and how to get a plan written for yours. Free." meta="Then a five-question application." cta={CTA} href={apply} photo={PHOTOS.rack} lifts={[{ name: 'Deadlift', before: 70, after: 130 }, { name: 'Squat', before: 60, after: 110 }, { name: 'Pull-ups', before: 0, after: 6, unit: 'reps' }]}>
+  <VslStage script={script} kicker="For the man with a “but”" sub="Four cases, the trap in each, the swap for each, and how to get a plan written for yours. Free." meta="Then a five-question application." cta={CTA} href={apply} photo={PHOTOS.garageRack} lifts={[{ name: 'Deadlift', before: 70, after: 130 }, { name: 'Squat', before: 60, after: 110 }, { name: 'Pull-ups', before: 0, after: 6, unit: 'reps' }]}>
     <Fragment slot="headline">Your case isn’t the exception. <span class="text-primary">It’s an adjustment.</span></Fragment>
   </VslStage>
 
@@ -63,6 +64,8 @@ const clients = CLIENTS.map((c) => ({ ...c, q: quotes[c.who], rows: caseRows[c.w
         </div>
       </Container>
     </IronBand>
+
+    <PhotoBand src={PHOTOS.chalkCoach} alt="A lifter in his fifties chalking his hands" focus="55% 35%">Fifty is not too late. It’s a different start.</PhotoBand>
 
     <IronBand tone="graphite" pad="lg" edge>
       <Container size="wide">

@@ -6,7 +6,10 @@ argument-hint: "<slug> \"<shot brief>\""
 
 # /photos — shot brief → Pexels → client photo set
 
-Needs `PEXELS_API_KEY` in `web/.dev.vars` (free: https://www.pexels.com/api/). If it's missing, stop and ask for it.
+Two ways in:
+- **With `PEXELS_API_KEY`** in `web/.dev.vars`: `search` + `get` below.
+- **Without a key** (Pexels paused new keys in Oct 2026): WebFetch `https://www.pexels.com/search/<query>/` and ask for every photo's numeric id + alt text (plain curl gets 403), download `https://images.pexels.com/photos/<id>/pexels-photo-<id>.jpeg?auto=compress&cs=tinysrgb&w=420` thumbnails into the scratchpad, tile them into a labelled contact sheet (PIL), look, then WebFetch each pick's `https://www.pexels.com/photo/<id>/` for the photographer and run
+  `node scripts/photos.mjs fetch <slug> <name> <id> "<used as>" "<photographer>"`.
 
 1. **Shot list first.** From `clients/<slug>/DESIGN-PLAN.md` (photography section) and the page maps, write the list:
    `name · role (hero / problem / mechanism / proof / coach / close) · orientation · subject + action + light + crop`.

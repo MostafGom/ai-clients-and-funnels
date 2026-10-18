@@ -4,6 +4,9 @@
 //     → <dir>/candidates.json + <dir>/contact.html (thumbnail grid with ids; screenshot it to choose)
 //   node scripts/photos.mjs get <slug> <name> <pexelsId> "<used as>" [--w 2000]
 //     → public/<slug>/photos/<name>.jpg + upserts the row in public/<slug>/photos/CREDITS.md
+//   node scripts/photos.mjs fetch <slug> <name> <pexelsId> "<used as>" "<photographer>" [--w 2000]
+//     → same, without an API key: downloads from the public Pexels image CDN. Find ids by searching
+//       pexels.com (web search / page fetch) and credit the photographer shown on the photo page.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 
 const API = 'https://api.pexels.com/v1';
@@ -19,6 +22,20 @@ function key() {
   } catch {}
   console.error('PEXELS_API_KEY missing: add it to web/.dev.vars (free key at https://www.pexels.com/api/)');
   process.exit(1);
+}
+async function save(slug, name, id, usedAs, by, src) {
+  const img = await fetch(src, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+  if (!img.ok || !img.headers.get('content-type')?.startsWith('image/')) throw new Error(`download ${id}: ${img.status}`);
+  const dir = `public/${slug}/photos`; mkdirSync(dir, { recursive: true });
+  writeFileSync(`${dir}/${name}.jpg`, Buffer.from(await img.arrayBuffer()));
+  const credits = `${dir}/CREDITS.md`;
+  const row = `| ${name}.jpg | ${usedAs} | https://www.pexels.com/photo/${id}/ (${by}) |`;
+  let md = existsSync(credits) ? readFileSync(credits, 'utf8') : `# Photo credits\n\n| File | Used as | Pexels photo |\n|---|---|---|\n`;
+  const re = new RegExp(`^\\| ${name}\\.jpg \\|.*$`, 'm');
+  if (re.test(md)) md = md.replace(re, row);
+  else { const lines = md.split('\n'); const last = lines.findLastIndex((l) => l.startsWith('|')); lines.splice(last + 1, 0, row); md = lines.join('\n'); }
+  writeFileSync(credits, md);
+  console.log(`${dir}/${name}.jpg  ←  https://www.pexels.com/photo/${id}/ (${by})`);
 }
 async function api(path) {
   const r = await fetch(API + path, { headers: { Authorization: key() } });
@@ -42,17 +59,10 @@ ${rows.map((r) => `<figure><img src="${r.thumb}"><figcaption><b>${r.id}</b> ${r.
 } else if (cmd === 'get') {
   const [slug, name, id, usedAs = name] = args;
   const p = await api(`/photos/${id}`);
-  const dir = `public/${slug}/photos`; mkdirSync(dir, { recursive: true });
-  const img = await fetch(`${p.src.original}?auto=compress&cs=tinysrgb&w=${flags.w ?? 2000}`);
-  writeFileSync(`${dir}/${name}.jpg`, Buffer.from(await img.arrayBuffer()));
-  const credits = `${dir}/CREDITS.md`;
-  const row = `| ${name}.jpg | ${usedAs} | https://www.pexels.com/photo/${id}/ (${p.photographer}) |`;
-  let md = existsSync(credits) ? readFileSync(credits, 'utf8') : `# Photo credits\n\n| File | Used as | Pexels photo |\n|---|---|---|\n`;
-  const re = new RegExp(`^\\| ${name}\\.jpg \\|.*$`, 'm');
-  if (re.test(md)) md = md.replace(re, row);
-  else { const lines = md.split('\n'); const last = lines.findLastIndex((l) => l.startsWith('|')); lines.splice(last + 1, 0, row); md = lines.join('\n'); }
-  writeFileSync(credits, md);
-  console.log(`${dir}/${name}.jpg  ←  ${p.url}`);
+  await save(slug, name, id, usedAs, p.photographer, `${p.src.original}?auto=compress&cs=tinysrgb&w=${flags.w ?? 2000}`);
+} else if (cmd === 'fetch') {
+  const [slug, name, id, usedAs = name, by = 'Pexels'] = args;
+  await save(slug, name, id, usedAs, by, `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${flags.w ?? 2000}`);
 } else {
   console.log(readFileSync(new URL(import.meta.url)).toString().split('\n').slice(1, 7).join('\n'));
 }

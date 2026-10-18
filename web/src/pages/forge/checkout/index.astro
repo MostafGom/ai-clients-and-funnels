@@ -6,17 +6,17 @@ import Button from '../../../components/ui/Button.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
 import IronBand from '../../../components/clients/forge/IronBand.astro';
 import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import PhotoBand from '../../../components/clients/forge/PhotoBand.astro';
 import NumberWall from '../../../components/clients/forge/NumberWall.astro';
 import ResultsTicker from '../../../components/clients/forge/ResultsTicker.astro';
 import CoachStory from '../../../components/clients/forge/CoachStory.astro';
 import ClientLedgers from '../../../components/clients/forge/ClientLedgers.astro';
 import OfferBlock from '../../../components/clients/forge/OfferBlock.astro';
 import FaqList from '../../../components/clients/forge/FaqList.astro';
-import LiftLedger from '../../../components/clients/forge/art/LiftLedger.astro';
 import PlateLoader from '../../../components/clients/forge/art/PlateLoader.astro';
 import WeekRibbon from '../../../components/clients/forge/art/WeekRibbon.astro';
 import { PHOTOS } from '../../../components/clients/forge/photos';
-import { CTA, GUARANTEE_SHORT, MARK, MECHANISM, PHASES, RESULTS_12 } from '../../../components/clients/forge/data';
+import { CTA, GUARANTEE_SHORT, MECHANISM, PHASES, RESULTS_12 } from '../../../components/clients/forge/data';
 
 const checkout = '/forge/checkout/checkout';
 const label = 'text-xs font-semibold uppercase tracking-[0.18em]';
@@ -40,23 +40,19 @@ const faq = [
 <Layout client="forge" funnel="checkout" step="sales" title="Forge 12: stronger at 45 than you were at 30, three sessions a week" description="The 12-week strength program for men 35 to 50. Six lifts, three 45-minute sessions a week, a progression rule that removes every decision. Week-Four Guarantee.">
 
   <!-- 1. Hero: photo + proof in the first viewport -->
-  <PhotoHero src={PHOTOS.rack} alt="A man squatting a loaded barbell in a dark gym" focus="50% 38%" minH="min-h-0 lg:min-h-[92svh]">
+  <PhotoHero src={PHOTOS.deadlift} alt="A man in his forties setting up a deadlift in a dark gym" focus="62% 45%" minH="min-h-0 lg:min-h-[92svh]">
     <p class:list={[label, 'text-primary']}>Forge 12 · for men 35–50</p>
-    <h1 class="mt-5 font-display text-[clamp(3.25rem,1.4rem+6.4vw,7.25rem)] leading-[0.86] font-extrabold uppercase"><span class="block">Stronger at 45</span> <span class="block">than you were</span> <span class="block text-primary">at 30.</span></h1>
+    <h1 class="mt-5 font-display text-[clamp(3.25rem,1.4rem+5vw,6rem)] leading-[0.86] font-extrabold uppercase"><span class="block">Stronger at 45</span> <span class="block">than you were</span> <span class="block text-primary">at 30.</span></h1>
     <p class="mt-7 max-w-[52ch] text-lead text-fg/85">Three 45-minute sessions a week. Six lifts. One rule that adds weight when the last set was clean. Twelve weeks, built for men who aren’t 25 and don’t pretend to be.</p>
     <div class="mt-8 flex flex-col items-start gap-3">
       <Button href={checkout} size="xl" data-cta="hero">{CTA}</Button>
       <p class="text-sm text-fg-muted">If all six lifts haven’t gone up by week four, full refund.</p>
     </div>
-    <div slot="aside" class="rounded-lg border-t-4 border-primary bg-surface/95 p-6 shadow-pop backdrop-blur sm:p-8">
-      <p class="font-display text-3xl font-extrabold uppercase leading-none">Mark T., 47, CFO</p>
-      <p class="mt-1 text-sm text-fg-muted">Week 1 → week 12 · working weights</p>
-      <LiftLedger class="mt-6" lifts={MARK} />
-    </div>
     <ul slot="strip" class="flex flex-wrap gap-x-8 gap-y-2 text-sm text-fg-muted">
       <li><strong class="font-display text-xl font-bold text-fg">1,900+</strong> men coached since 2011</li>
       <li><strong class="font-display text-xl font-bold text-fg">4.8/5</strong> from 640 reviews</li>
       <li>Coached by a <strong class="text-fg">former physiotherapist</strong></li>
+      <li>Mark, 47: deadlift <strong class="font-display text-xl font-bold text-fg">70 → 130 kg</strong></li>
     </ul>
   </PhotoHero>
 
@@ -106,6 +102,8 @@ const faq = [
     </Container>
   </IronBand>
 
+  <PhotoBand src={PHOTOS.press} alt="A lifter in his fifties holding a barbell in the front rack" focus="50% 30%">Built for men who aren’t 25.</PhotoBand>
+
   <!-- 5. The rule (signature moment) -->
   <IronBand tone="graphite" pad="lg" edge>
     <Container size="wide" class="grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
@@ -134,6 +132,8 @@ const faq = [
       <ClientLedgers class="mt-12" />
     </Container>
   </IronBand>
+
+  <PhotoBand src={PHOTOS.chalkHands} alt="Chalking hands at the rack before a set" focus="50% 40%" />
 
   <!-- 8. Daniel -->
   <CoachStory heading="I was a physio before I was a coach. That’s why the program starts with your back.">

@@ -30,7 +30,8 @@ Labels are Inter Tight 600 uppercase with wide tracking, used sparingly (one per
 ## Photography (shot list → `/photos forge`)
 Real men in their late 30s to 50s, dark gyms or garage racks, hard side light, chalk, no shirtless shots, eyes on the bar rather than the camera.
 deadlift (hero) · squat (hero alt) · overhead-press · barbell-row · chalk-hands · garage-rack · hotel-gym · plates-loading (close-up) ·
-coach-cue (Daniel spotting/cueing) · logbook · the 6:40 p.m. desk scene. Current stand-ins: `rack.jpg` (squat), `bar.jpg` (bench), `daniel.jpg`, `desk.jpg`.
+coach-cue (Daniel spotting/cueing) · logbook · the 6:40 p.m. desk scene. In place (Pexels, see CREDITS.md): deadlift (checkout hero) · deadlift-lockout (vsl-checkout stage) · chalk-coach (calendar hero) · garage-rack (vsl-call stage, calendar close) · press · chalk-hands · deadlift-grip (photo bands) · rack (ebook hero) · bar (closes) · bar-grip · plates · plate-kg (spare). Still wanted: overhead press at lockout, barbell row, hotel gym, coach cueing.
+`PhotoBand` (full-bleed photo + one display line) keeps long pages from running more than ~2 screens without imagery.
 
 ## Art system (`web/src/components/clients/forge/`)
 - `PhotoHero`: full-bleed photo, iron scrim on the copy side, stacked uppercase headline, CTA, proof strip pinned to the bottom.

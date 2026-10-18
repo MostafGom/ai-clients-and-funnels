@@ -1,0 +1,13 @@
+---
+/** Full-bleed photo band between sections, with an optional line of display type over a bottom scrim (default slot). */
+interface Props { src: string; alt?: string; focus?: string; class?: string; height?: string }
+const { src, alt = '', focus = '50% 50%', class: cls = '', height = 'h-[52svh] min-h-[320px] lg:h-[68svh]' } = Astro.props;
+---
+<figure class:list={['relative isolate overflow-hidden bg-bg', height, cls]}>
+  <img src={src} alt={alt} width="2000" height="1333" loading="lazy" decoding="async" class="absolute inset-0 -z-10 size-full object-cover brightness-[0.78] saturate-[0.85]" style={`object-position:${focus}`} />
+  {Astro.slots.has('default') && (
+    <figcaption class="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,transparent,color-mix(in_oklab,var(--color-bg)_70%,transparent)_45%,var(--color-bg))] pt-36">
+      <div class="mx-auto max-w-wide px-5 pb-8 sm:px-8 sm:pb-12"><p class="max-w-[18ch] font-display text-h1 font-extrabold uppercase text-fg"><slot /></p></div>
+    </figcaption>
+  )}
+</figure>

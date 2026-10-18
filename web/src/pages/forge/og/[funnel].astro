@@ -4,12 +4,12 @@ import '../../../styles/base.css';
 import { PHOTOS } from '../../../components/clients/forge/photos';
 export function getStaticPaths() {
   return [
-    { params: { funnel: 'checkout' }, props: { kicker: 'Forge 12 · men 35–50', title: 'Stronger at 45 than you were at <em>30.</em>', foot: 'Week-Four Guarantee', photo: PHOTOS.rack, focus: '50% 35%' } },
-    { params: { funnel: 'vsl-checkout' }, props: { kicker: 'Free training', title: 'The least training that makes a 45-year-old <em>stronger.</em>', foot: 'Six lifts · one rule · three sessions', photo: PHOTOS.bar, focus: '50% 50%' } },
+    { params: { funnel: 'checkout' }, props: { kicker: 'Forge 12 · men 35–50', title: 'Stronger at 45 than you were at <em>30.</em>', foot: 'Week-Four Guarantee', photo: PHOTOS.deadlift, focus: '62% 45%' } },
+    { params: { funnel: 'vsl-checkout' }, props: { kicker: 'Free training', title: 'The least training that makes a 45-year-old <em>stronger.</em>', foot: 'Six lifts · one rule · three sessions', photo: PHOTOS.deadliftLockout, focus: '50% 40%' } },
     { params: { funnel: 'ebook' }, props: { kicker: 'Free guide', title: 'Three sessions. Six lifts. <em>Four weeks, written out.</em>', foot: 'The 3-Session Week', photo: PHOTOS.rack, focus: '50% 35%' } },
-    { params: { funnel: 'calendar' }, props: { kicker: 'Free Strength Audit', title: 'Twenty minutes. <em>One plan, written for you.</em>', foot: '20 minutes with Daniel', photo: PHOTOS.daniel, focus: '50% 25%' } },
+    { params: { funnel: 'calendar' }, props: { kicker: 'Free Strength Audit', title: 'Twenty minutes. <em>One plan, written for you.</em>', foot: '20 minutes with Daniel', photo: PHOTOS.chalkCoach, focus: '58% 35%' } },
     { params: { funnel: 'vsl-call' }, props: { kicker: 'For the man with a “but”', title: 'Your case isn’t the exception. <em>It’s an adjustment.</em>', foot: 'Old back · hotel gyms · first time at 50', photo: PHOTOS.bar, focus: '50% 50%' } },
-    { params: { funnel: 'default' }, props: { kicker: 'Forge Fitness Online', title: 'Stronger at 45 than you were at <em>30.</em>', foot: 'Three sessions a week · six lifts · 12 weeks', photo: PHOTOS.rack, focus: '50% 35%' } },
+    { params: { funnel: 'default' }, props: { kicker: 'Forge Fitness Online', title: 'Stronger at 45 than you were at <em>30.</em>', foot: 'Three sessions a week · six lifts · 12 weeks', photo: PHOTOS.deadlift, focus: '62% 45%' } },
   ];
 }
 const { kicker, title, foot, photo, focus } = Astro.props;
