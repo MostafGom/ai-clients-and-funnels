@@ -3,6 +3,7 @@ import { getClient } from '../../../lib/clients';
 import { sendEmail } from '../../../lib/resend';
 import { runtimeEnv } from '../_utils';
 import * as lumenCal from '../../../emails/lumen/calendar';
+import * as forgeCal from '../../../emails/forge/calendar';
 
 export const prerender = false;
 
@@ -11,7 +12,7 @@ export const prerender = false;
  * for BOOKING_CREATED and BOOKING_CANCELLED, with secret CAL_WEBHOOK_SECRET_<CLIENT>.
  * Cal.com signs the raw body with HMAC-SHA256 in `x-cal-signature-256`.
  */
-const EMAILS: Record<string, typeof lumenCal> = { lumen: lumenCal };
+const EMAILS: Record<string, typeof lumenCal> = { lumen: lumenCal, forge: forgeCal };
 
 async function verify(secret: string, body: string, sig: string | null): Promise<boolean> {
   if (!sig) return false;
@@ -46,7 +47,7 @@ export const POST: APIRoute = async (ctx) => {
     }
   }
   if (evt.triggerEvent === 'BOOKING_CANCELLED') {
-    await sendEmail({ to: attendee.email, replyTo: client.supportEmail, ...emails.cancelledEmail(new URL('/lumen/calendar/book', origin).toString()) });
+    await sendEmail({ to: attendee.email, replyTo: client.supportEmail, ...emails.cancelledEmail(new URL(`/${slug}/calendar/book`, origin).toString()) });
   }
   return new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json' } });
 };

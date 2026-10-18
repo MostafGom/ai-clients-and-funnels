@@ -1,0 +1,26 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import CalendarEmbed from '../../../components/funnel/CalendarEmbed.astro';
+---
+<Layout client="forge" funnel="calendar" step="book" title="Pick a time" noindex>
+  <Container size="wide" class="py-12 sm:py-16">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div>
+        <p class="text-base font-semibold text-primary">Last step</p>
+        <h1 class="mt-2 text-h1 font-semibold">Pick a time</h1>
+        <p class="mt-4 max-w-[60ch] text-lead text-fg-muted">20 minutes, phone or video. You’ll get a calendar invite, a short prep note, and a reminder an hour before.</p>
+        <CalendarEmbed client="forge" confirmedPath="/forge/calendar/confirmed" class="mt-8" />
+      </div>
+      <aside class="h-fit rounded-lg bg-surface-2 p-6 lg:sticky lg:top-8">
+        <p class="font-display text-2xl">Have ready</p>
+        <ul class="mt-3 space-y-3 text-fg-muted">
+          <li>Your last two weeks of training, one line each. Or “none, that’s why I’m here.”</li>
+          <li>Any injury and what you were told about it.</li>
+          <li>Your equipment, and the hours you actually have.</li>
+        </ul>
+      </aside>
+    </div>
+  </Container>
+  <script>document.addEventListener('DOMContentLoaded', () => window.funnel?.track('booking_started'));</script>
+</Layout>
