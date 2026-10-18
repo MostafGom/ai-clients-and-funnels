@@ -1,45 +1,104 @@
 ---
+/* Lumen · ebook opt-in. Copy: clients/lumen/funnels/ebook/COPY.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
-import Hero from '../../../components/funnel/Hero.astro';
+import Container from '../../../components/ui/Container.astro';
 import OptInForm from '../../../components/funnel/OptInForm.astro';
-import Section from '../../../components/ui/Section.astro';
-import Benefits from '../../../components/funnel/Benefits.astro';
-import Testimonials from '../../../components/funnel/Testimonials.astro';
-import CTASection from '../../../components/funnel/CTASection.astro';
-import Card from '../../../components/ui/Card.astro';
-import { getClient } from '../../../lib/clients';
-const client = getClient('lumen');
-const magnet = client.leadMagnet!;
+import NightBand from '../../../components/clients/lumen/NightBand.astro';
+import FaqList from '../../../components/clients/lumen/FaqList.astro';
+import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
+import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
+import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+const spreads = [
+  { n: 'Page 3', title: 'The wake-window chart, by age', body: '4 months to 3 years, printable, for the fridge. The one number that decides tonight.' },
+  { n: 'Page 5', title: 'The 10-minute bedtime script', body: 'Same ten minutes every night. Her brain learns it by night three.' },
+  { n: 'Pages 6–9', title: 'Seven nights, night by night', body: 'What to do, what to expect, and the night most parents want to quit (it’s four).' },
+  { n: 'Page 10', title: 'The 2 a.m. decision tree', body: 'Go in or wait? Feed or don’t? One page, no guessing in the dark.' },
+];
 ---
-<Layout client="lumen" funnel="ebook" step="optin" title={`Free: ${magnet.title}`} description="The free 7-night plan that gets babies and toddlers (4 months to 3 years) falling asleep in 10 minutes and sleeping 11 hours. No cry-it-out.">
-  <Hero eyebrow="Free 7-night plan · ages 4 months to 3 years" headline="Your baby, asleep in 10 minutes. Seven nights from now." subheadline="The 7-Night Bedtime Reset is the exact plan 2,300+ families used to go from 90-minute bedtimes and 2 a.m. parties to 11 quiet hours. No cry-it-out. No guilt. Night one is tonight.">
-    <OptInForm client="lumen" funnel="ebook" redirect="/lumen/ebook/thanks" magnet="bedtime-reset" buttonLabel="Send me the free reset" consent="Zero spam. Unsubscribe whenever. We’re too tired for spam too." />
-    <Fragment slot="proof">Sent to your inbox in 60 seconds. Read it in 12 minutes. Use it tonight.</Fragment>
-    <Fragment slot="media">
-      <Card tone="inverse" pad="lg" class="rotate-[2deg] shadow-pop">
-        <p class="text-xs uppercase tracking-[0.2em] text-accent">Inside the reset</p>
-        <p class="mt-3 font-display text-3xl font-semibold leading-tight">{magnet.title}</p>
-        <ul class="mt-6 space-y-2 opacity-90">
-          <li>★ The 7-night plan, night by night</li><li>★ Wake-window chart by age (print it, fridge it)</li><li>★ The 10-minute bedtime script</li><li>★ The 3 mistakes that cause 2 a.m. wake-ups</li>
-        </ul>
-      </Card>
-    </Fragment>
-  </Hero>
-  <Section tone="muted">
-    <Benefits eyebrow="Why it works" headline="It was never about crying. It’s about timing." items={[
-      { title: 'Wake windows, finally explained', body: 'Overtired babies fight sleep. The chart tells you the exact window for your baby’s age, tonight.' },
-      { title: 'A bedtime that runs itself', body: 'One 10-minute script, same every night. Your tiny human learns it by night three.' },
-      { title: 'Night wakings, handled kindly', body: 'What to do at 2 a.m. without picking a side in the cry-it-out war.' },
-    ]} />
-  </Section>
-  <Section>
-    <Testimonials headline="Parents who did the 7 nights" items={[
-      { quote: 'Night 5 she slept 10 hours. I cried. Happy crying, for once.', name: 'Jess M.', role: 'mum of a 9-month-old', result: 'Night 5: 10 hours' },
-      { quote: 'Bedtime went from 80 minutes to 12. I have evenings. I forgot those existed.', name: 'Daniel & Priya', role: 'parents of twins, 14 months', result: '80 min → 12 min' },
-      { quote: 'No crying it out, like she promised. Just… timing. Why did nobody tell me?', name: 'Amara O.', role: 'mum of a 2-year-old', result: '2 wake-ups → 0' },
-    ]} />
-  </Section>
-  <CTASection headline="Tonight could be night one." body="Free PDF. 12-minute read. 7 nights. Then sleep.">
-    <OptInForm client="lumen" funnel="ebook" redirect="/lumen/ebook/thanks" magnet="bedtime-reset" buttonLabel="Send me the reset" inline consent="Zero spam. Unsubscribe whenever." class="[&_span]:text-inverse-fg [&_p]:text-inverse-fg/60" />
-  </CTASection>
+<Layout client="lumen" funnel="ebook" step="optin" title="What time should your baby go to bed tonight? Free 7-Night Bedtime Reset" description="Pick your baby's age and last nap, get tonight's bedtime, then download the free 7-Night Bedtime Reset: the wake-window chart, the 10-minute script, and the night-by-night plan. No cry-it-out.">
+
+  <NightBand edge="cloud" pad="lg" stars={100} seed={3}>
+    <Container size="wide">
+      <div class="grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,560px)]">
+        <div>
+          <p class="text-base font-bold text-accent-2">Free guide for parents of 4-month to 3-year-olds. No cry-it-out.</p>
+          <h1 class="mt-5 text-display font-semibold">What time should your baby<br class="hidden lg:block" /> go to bed tonight?</h1>
+          <p class="mt-7 max-w-[58ch] text-lead text-inverse-fg/85">Pick her age and when her last nap ended. That’s tonight’s bedtime. Then get the free <strong class="text-inverse-fg">7-Night Bedtime Reset</strong>: the chart, the 10-minute script, and the night-by-night plan 2,300+ families<ClaimFlag /> used to end the 2 a.m. party.</p>
+          <div class="mt-8 hidden lg:block"><Moon size={140} phase={0.8} /></div>
+        </div>
+        <div class="text-fg">
+          <WakeWindowDial heading="Tonight’s bedtime">
+            <p class="text-sm text-fg-muted">Most parents are 30 to 60 minutes late. That’s the whole problem, and the Reset fixes it in seven nights.</p>
+            <OptInForm client="lumen" funnel="ebook" redirect="/lumen/ebook/thanks" magnet="bedtime-reset" buttonLabel="Send me the 7-night plan" consent="One guide, five short emails from Maya, unsubscribe in one tap." class="mt-5 max-w-none" />
+          </WakeWindowDial>
+        </div>
+      </div>
+    </Container>
+  </NightBand>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <div class="max-w-[62ch]"><h2 class="text-h1 font-semibold">Twelve minutes to read.<br />Seven nights to run.</h2></div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {spreads.map((s) => (
+          <div class="flex gap-5 rounded-xl bg-surface p-6 shadow-card">
+            <div class="flex h-24 w-[68px] shrink-0 flex-col justify-between rounded-md bg-inverse p-2 text-[9px] font-bold text-inverse-fg/80"><span>{s.n}</span><span class="h-1.5 w-8 rounded-pill bg-accent"></span></div>
+            <div><p class="font-display text-xl font-semibold">{s.title}</p><p class="mt-1 text-fg-muted">{s.body}</p></div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-fg-muted">Plus: the five mistakes that cause early wakings, your 7-night log, and what to do on night eight.</p>
+    </Container>
+  </section>
+
+  <section class="bg-surface-2 py-16 sm:py-20">
+    <Container>
+      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant" size={200} />
+        <div class="max-w-[62ch]">
+          <h2 class="text-h2 font-semibold">Written by someone who did the hallway shuffle for eleven months.</h2>
+          <p class="mt-5 text-lg">I’m Maya Lindqvist, a certified pediatric sleep consultant<ClaimFlag />. Before that I was a mum with an 11-month-old who woke seven times a night and a spreadsheet that didn’t help. What fixed it was timing. Since 2019 I’ve helped 2,300+ families<ClaimFlag /> fix theirs, and the Reset is the first thing I give every one of them.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-bg py-16 sm:py-20">
+    <Container>
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          { q: 'Printed the chart, moved bedtime 50 minutes earlier, she slept six hours. Night one.', who: 'Hannah L., 8-month-old' },
+          { q: 'The script is genius. Same ten minutes, and by night three he knew what was coming.', who: 'Tom & Grace, 19-month-old' },
+          { q: 'I read it at 3 a.m. and cried, because it finally made sense.', who: 'Sofia B., 7-month-old' },
+        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 text-sm text-fg-muted">{t.who}<ClaimFlag /></figcaption></figure>)}
+      </div>
+      <FaqList class="mt-14" items={[
+        { q: 'Is there any crying it out?', a: 'No. The Reset is timing and a script. The 2 a.m. page tells you what to do when she wakes, and “leave her to cry” is never the answer.' },
+        { q: 'My baby is 5 months, or 2½ years. Does it apply?', a: 'The chart runs from 4 months to 3 years with a row for each stage. Under 4 months, email us.' },
+        { q: 'What happens after I enter my email?', a: 'The Reset lands in your inbox in about a minute. Then five short emails from Maya over the next week: one idea each, no fluff. Unsubscribe in one tap.' },
+      ]} />
+    </Container>
+  </section>
+
+  <NightBand edgeTop="cloud" edge="none" seed={33} pad="lg">
+    <Container size="prose" class="text-center">
+      <h2 class="text-display font-semibold">Tonight could be night one.</h2>
+      <p class="mt-5 text-lead text-inverse-fg/85">Free PDF. Twelve-minute read. The chart, the script, the plan.</p>
+      <div class="mt-8 flex justify-center [&_span]:text-inverse-fg [&_p]:text-inverse-fg/70">
+        <OptInForm client="lumen" funnel="ebook" redirect="/lumen/ebook/thanks" magnet="bedtime-reset" buttonLabel="Send me the 7-night plan" consent="One guide, five short emails, unsubscribe in one tap." inline />
+      </div>
+    </Container>
+  </NightBand>
+
+  <script>
+    // Carry the baby's age from the dial into the lead so the delivery email can personalise.
+    const sel = document.querySelector<HTMLSelectElement>('[data-dial] select[name=age]');
+    const sync = () => document.querySelectorAll<HTMLFormElement>('form[data-optin]').forEach((f) => {
+      let i = f.querySelector<HTMLInputElement>('input[name=age]');
+      if (!i) { i = document.createElement('input'); i.type = 'hidden'; i.name = 'age'; f.append(i); }
+      i.value = sel?.value ?? '';
+    });
+    sel?.addEventListener('change', sync); sync();
+  </script>
 </Layout>

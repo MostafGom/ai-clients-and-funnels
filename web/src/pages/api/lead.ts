@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getClient } from '../../lib/clients';
-import { sendEmail, addContact, emailShell } from '../../lib/resend';
+import { sendEmail, sendSequence, addContact, emailShell } from '../../lib/resend';
+import { LEAD_SEQUENCES } from '../../emails';
 import { readBody, respond, safePath, isEmail } from './_utils';
 
 export const prerender = false;
@@ -22,7 +23,10 @@ export const POST: APIRoute = async (ctx) => {
   const origin = ctx.url.origin;
   const tasks: Promise<unknown>[] = [];
 
-  if (body.funnel === 'ebook' && magnet) {
+  const sequence = LEAD_SEQUENCES[client.slug]?.[body.funnel];
+  if (sequence) {
+    tasks.push(sendSequence(email, sequence(origin, { email, name: name || undefined, age: body.age || undefined }).map((s) => ({ ...s, replyTo: client.supportEmail }))));
+  } else if (body.funnel === 'ebook' && magnet) {
     tasks.push(
       sendEmail({
         to: email,

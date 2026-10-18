@@ -84,6 +84,7 @@ pnpm build               # cloudflare adapter build → dist/
 pnpm preview             # build + wrangler dev (real Workers runtime)
 pnpm test                # Playwright: every registered funnel page @ mobile + desktop, screenshots in tests/__screenshots__
 pnpm deploy              # build + wrangler deploy  (pnpm cf:login first)
+pnpm pdf                 # render /lumen/reset/ to public/lumen/assets/bedtime-reset.pdf (re-run after editing the guide)
 node ../design/contrast.mjs src/styles/clients/<slug>.css
 ```
 Local secrets: copy `web/.dev.vars.example` → `web/.dev.vars`. Production: `pnpm wrangler secret put <NAME>`.

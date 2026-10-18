@@ -1,19 +1,43 @@
 ---
 import Layout from '../../../layouts/FunnelLayout.astro';
-import ThankYou from '../../../components/funnel/ThankYou.astro';
+import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
-import Card from '../../../components/ui/Card.astro';
+import ScriptedVSL from '../../../components/funnel/ScriptedVSL.astro';
+import { loadVslScript } from '../../../lib/vsl-script';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import { getClient } from '../../../lib/clients';
 const client = getClient('lumen');
+const note = loadVslScript('clients/lumen/funnels/ebook/THANKS-SCRIPT.md');
 ---
-<Layout client="lumen" funnel="ebook" step="thanks" title="Check your inbox" noindex>
-  <ThankYou eyebrow="On its way" headline="The reset is in your inbox. Go check (then come back)." body="Give it 60 seconds. Check promotions if it’s hiding. Tonight is night one. And if you want a human to look at your specific situation…">
-    <Card pad="lg" class="mx-auto max-w-lg text-left">
-      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary">Free 20-minute call</p>
-      <h2 class="mt-2 text-h3 font-semibold">Twins? Reflux? Daycare naps? Let’s talk it through.</h2>
-      <p class="mt-2 text-fg-muted">Book a free Sleep Clarity Call with Maya. You’ll leave knowing exactly which night to start and what to change for your baby.</p>
-      <Button href="/lumen/calendar/book" class="mt-6" full>Book my free clarity call</Button>
-      <p class="mt-4 text-center text-sm"><a class="text-fg-muted underline-offset-4 hover:underline" href={client.leadMagnet!.downloadUrl}>Or download the PDF right here</a></p>
-    </Card>
-  </ThankYou>
+<Layout client="lumen" funnel="ebook" step="thanks" title="The Reset is in your inbox" noindex>
+  <Container size="wide" class="py-12 sm:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="text-base font-bold text-success">Sent</p>
+        <h1 class="mt-2 text-h1 font-semibold">The Reset is in your inbox.<br />Give it a minute, then check promotions.</h1>
+        <p class="mt-5 text-lead text-fg-muted">Here’s the direct download too. And while it downloads, a one-minute note from Maya about the one thing to do differently tonight.</p>
+        <Button href={client.leadMagnet!.downloadUrl} size="lg" variant="secondary" class="mt-7" data-download>Download the Reset (PDF)</Button>
+
+        <div class="mt-12 rounded-xl bg-surface p-7 shadow-pop sm:p-9">
+          <div class="flex items-start gap-4">
+            <Moon size={48} phase={0.7} class="shrink-0" />
+            <div>
+              <p class="font-display text-2xl font-semibold">Twins? Reflux? Daycare naps?</p>
+              <p class="mt-2 text-fg-muted">Tell Maya your nights on a free 20-minute Sleep Clarity Call and leave with a plan for your baby.</p>
+              <Button href="/lumen/calendar/book" size="lg" class="mt-5" data-cta="call">Book my free Clarity Call</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ScriptedVSL script={note} title="Play Maya’s one-minute note">
+          <Fragment slot="art:moon"><Moon size={180} phase={0.7} /></Fragment>
+        </ScriptedVSL>
+      </div>
+    </div>
+  </Container>
+  <script>
+    document.querySelector('[data-download]')?.addEventListener('click', () => window.funnel?.track('guide_downloaded'));
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
 </Layout>
