@@ -1,34 +1,104 @@
 ---
+/* Lumen · calendar landing. Copy: clients/lumen/funnels/calendar/COPY.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
-import Hero from '../../../components/funnel/Hero.astro';
+import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
-import Section from '../../../components/ui/Section.astro';
-import Steps from '../../../components/funnel/Steps.astro';
-import Testimonials from '../../../components/funnel/Testimonials.astro';
-import FAQ from '../../../components/funnel/FAQ.astro';
-import CTASection from '../../../components/funnel/CTASection.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+import NightBand from '../../../components/clients/lumen/NightBand.astro';
+import FaqList from '../../../components/clients/lumen/FaqList.astro';
+import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
+import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+const CTA = 'Grab a time';
+const book = '/lumen/calendar/book';
+const steps = [
+  { t: 'Sleep audit', m: '5 min', b: 'Bedtime, naps, wake-ups, what you’ve tried. No judgment. We’ve heard it all and lived most of it.' },
+  { t: 'Your plan', m: '10 min', b: 'Maya matches your baby’s age, temperament and “but” to the right wake windows, script and response plan.' },
+  { t: 'Tonight', m: '5 min', b: 'The one change to make tonight, written down. And one honest sentence about whether the full method or 1:1 coaching fits, or neither.' },
+];
+const plan = [['Baby', '9 months, reflux'], ['Last nap ends', '3:30 pm'], ['Lights out', '6:45 pm'], ['Script', 'page 5, feed first'], ['If she wakes', 'page 10, step 3'], ['Start the full method', 'Thursday']];
 ---
-<Layout client="lumen" funnel="calendar" step="landing" title="Free 20-minute Sleep Clarity Call" description="Book a free 20-minute call with a certified pediatric sleep consultant. Leave with a start night and the one change your baby needs.">
-  <Hero eyebrow="Free Sleep Clarity Call · 20 min · ages 4 months to 3 years" headline="Twenty minutes. One plan for your baby. Then sleep." subheadline="Tell Maya what your nights look like. She’ll tell you what’s actually going on, which night to start, and the one thing to change tonight. Free. No cry-it-out, ever.">
-    <Button href="/lumen/calendar/book" size="xl">Grab a time</Button>
-    <Fragment slot="proof">8 calls a week, that’s it. Usually booked 3 days out.</Fragment>
-  </Hero>
-  <Section tone="muted"><Steps headline="What happens in 20 minutes" items={[
-    { title: 'Sleep audit (5 min)', body: 'Bedtime, naps, wake-ups, what you’ve tried. No judgment. We’ve heard it all and lived most of it.' },
-    { title: 'Your plan (10 min)', body: 'Maya matches your baby’s age and temperament to the right wake windows and bedtime script.' },
-    { title: 'Tonight (5 min)', body: 'The one change to make tonight, and whether the 7-night reset or 1:1 coaching fits you.' },
-  ]} /></Section>
-  <Section><Testimonials headline="After the call" items={[
-    { quote: 'She spotted the problem in four minutes. Wake windows. Night two: slept till 6.', name: 'Hannah L.', role: 'mum of an 8-month-old' },
-    { quote: 'I expected a pitch. I got a plan. We did it ourselves and it worked.', name: 'Tom & Grace', role: 'parents of a 19-month-old' },
-    { quote: 'Twins, reflux, daycare. She’d seen it all before. That alone helped me breathe.', name: 'Ines R.', role: 'mum of twins, 11 months' },
-  ]} /></Section>
-  <Section tone="muted"><FAQ items={[
-    { q: 'Is this a sales call?', a: 'It’s a plan call. If 1:1 coaching fits, Maya will say so in one sentence. Otherwise you leave with your plan and that’s it.' },
-    { q: 'What ages does this cover?', a: '4 months to 3 years. Newborns need a different conversation, email us.' },
-    { q: 'Do I need to read the free reset first?', a: 'Helpful, not required. If you have it, bring your wake-window chart.' },
-  ]} /></Section>
-  <CTASection headline="Tonight’s bedtime is coming either way." body="Make it the last bad one. 20 minutes, free, this week."><Button href="/lumen/calendar/book" size="xl" variant="inverse">Grab a time</Button></CTASection>
-  <StickyCTA href="/lumen/calendar/book" label="Grab a time" note="Free 20-minute Sleep Clarity Call" />
+<Layout client="lumen" funnel="calendar" step="landing" title="Free 20-minute Sleep Clarity Call" description="Tell Maya, a certified pediatric sleep consultant, what your nights look like and leave with a plan written for your baby. Free, 20 minutes, no cry-it-out.">
+
+  <NightBand edge="cloud" pad="lg" stars={90} seed={9} class="overflow-hidden">
+    <Container size="wide">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p class="text-base font-bold text-accent-2">Free Sleep Clarity Call · 20 minutes · ages 4 months to 3 years</p>
+          <h1 class="mt-5 text-display font-semibold">Twenty minutes.<br />One plan for your baby.<br />Then sleep.</h1>
+          <p class="mt-7 max-w-[60ch] text-lead text-inverse-fg/85">The Reset works for most babies. If yours comes with a “but” (twins, reflux, daycare naps, a sibling in the room, a trip next month), tell Maya what your nights look like and leave with a plan written for your baby. Free. No cry-it-out, ever.</p>
+          <div class="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <Button href={book} size="xl" data-cta="hero">{CTA}</Button>
+            <p class="max-w-[34ch] text-sm text-inverse-fg/75">Maya takes eight calls a week<ClaimFlag />. They’re usually booked three days out.</p>
+          </div>
+        </div>
+        <figure class="relative mx-auto w-full max-w-[420px]">
+          <div class="absolute -right-6 -top-10 z-10"><Moon size={110} phase={0.8} rise /></div>
+          <div class="rotate-[-2deg] rounded-xl bg-surface p-7 text-fg shadow-pop">
+            <p class="font-display text-2xl font-semibold">Your plan · tonight</p>
+            <dl class="mt-5 divide-y divide-border">
+              {plan.map(([k, v]) => <div class="flex justify-between gap-4 py-2.5"><dt class="text-fg-muted">{k}</dt><dd class="font-bold text-right">{v}</dd></div>)}
+            </dl>
+            <p class="mt-4 text-xs text-fg-subtle">Written by Maya during the call</p>
+          </div>
+          <figcaption class="mt-5 text-center text-sm text-inverse-fg/75">The card you leave the call with. Yours will have your baby’s numbers.</figcaption>
+        </figure>
+      </div>
+    </Container>
+  </NightBand>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <h2 class="text-h1 font-semibold">What happens in twenty minutes</h2>
+      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+        {steps.map((s, i) => (
+          <li class="rounded-xl bg-surface p-7 shadow-card">
+            <p class="flex items-baseline justify-between"><span class="font-display text-2xl font-semibold">{i + 1}. {s.t}</span><span class="rounded-pill bg-primary-soft px-3 py-1 text-sm font-bold text-primary">{s.m}</span></p>
+            <p class="mt-3 text-fg-muted">{s.b}</p>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  </section>
+
+  <section class="bg-surface-2 py-16 sm:py-20">
+    <Container>
+      <h2 class="text-h2 font-semibold">Said after the call</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { q: 'She spotted the problem in four minutes. Wake windows. Night two: slept till six.', who: 'Hannah L., 8-month-old' },
+          { q: 'I expected a pitch. I got a plan. We did it ourselves and it worked.', who: 'Tom & Grace, 19-month-old' },
+          { q: 'Twins, reflux, daycare. She’d seen it all before. That alone helped me breathe.', who: 'Ines R., twins, 11 months' },
+        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 text-sm text-fg-muted">{t.who}<ClaimFlag /></figcaption></figure>)}
+      </div>
+      <div class="mt-14 grid items-center gap-8 md:grid-cols-[auto_1fr]">
+        <PortraitSlot name="Maya" size={150} />
+        <p class="max-w-[60ch] text-lg">Maya Lindqvist, certified pediatric sleep consultant<ClaimFlag />, 2,300+ families<ClaimFlag /> since 2019. Mum of a former seven-times-a-night waker. She takes the calls herself.</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container>
+      <h2 class="text-h2 font-semibold">Before you book</h2>
+      <FaqList class="mt-6" items={[
+        { q: 'Is this a sales call?', a: 'It’s a plan call. If 1:1 coaching fits your situation, Maya will say so in one sentence and tell you what it costs. If the free Reset or the $497 method is enough, she’ll say that instead. Most calls end with “do this tonight.”' },
+        { q: 'What ages?', a: '4 months to 3 years. Newborns need a different conversation; email us.' },
+        { q: 'Do I need the free Reset first?', a: 'Helpful, not required. If you have it, bring your wake-window chart and whatever you’ve logged.' },
+        { q: 'What if nap time moves?', a: 'Phone or video, and you can reschedule from the invite in one tap.' },
+      ]} />
+    </Container>
+  </section>
+
+  <NightBand edgeTop="cloud" edge="none" seed={33} pad="lg">
+    <Container size="prose" class="text-center">
+      <h2 class="text-display font-semibold">Tonight’s bedtime is coming either way.</h2>
+      <p class="mt-5 text-lead text-inverse-fg/85">Make it the last bad one. Twenty minutes, free, this week.</p>
+      <div class="mt-8"><Button href={book} size="xl" data-cta="close">{CTA}</Button></div>
+    </Container>
+  </NightBand>
+  <StickyCTA href={book} label={CTA} note="Free 20-minute Sleep Clarity Call" showAfter={700} />
+  <script>
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
 </Layout>

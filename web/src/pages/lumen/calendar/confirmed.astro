@@ -1,15 +1,25 @@
 ---
 import Layout from '../../../layouts/FunnelLayout.astro';
-import ThankYou from '../../../components/funnel/ThankYou.astro';
-import Card from '../../../components/ui/Card.astro';
+import Container from '../../../components/ui/Container.astro';
+import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
+import Moon from '../../../components/clients/lumen/art/Moon.astro';
 ---
 <Layout client="lumen" funnel="calendar" step="confirmed" title="You’re booked" noindex>
-  <ThankYou eyebrow="Booked" headline="Done. Maya will see you then." body="Invite’s in your inbox. Two tiny things before the call and we’ll get twice as far.">
-    <Card pad="lg" class="mx-auto max-w-lg text-left">
-      <ol class="list-decimal space-y-3 pl-5 text-fg">
-        <li>Jot down the next 3 nights: bedtime start, asleep time, every wake-up. Phone notes are fine.</li>
-        <li>Write the one thing you’d most like to be different by next week.</li>
-      </ol>
-    </Card>
-  </ThankYou>
+  <Container size="wide" class="py-12 sm:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="text-base font-bold text-success">Booked</p>
+        <h1 class="mt-2 text-h1 font-semibold">Done.<br />Maya will see you then.</h1>
+        <p class="mt-5 text-lead text-fg-muted">The invite is in your inbox, with a reschedule link if nap time moves. Two tiny things before the call and we’ll get twice as far.</p>
+        <ol class="mt-8 space-y-4 text-lg">
+          <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse text-sm font-bold text-inverse-fg">1</span>Log the next three nights: bedtime, asleep time, every wake-up. Phone notes are fine.</li>
+          <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse text-sm font-bold text-inverse-fg">2</span>Write the one thing you’d most like to be different by next week.</li>
+        </ol>
+      </div>
+      <div class="relative">
+        <div class="absolute -right-2 -top-6"><Moon size={72} phase={0.85} /></div>
+        <WakeWindowDial heading="Tonight’s bedtime, while you’re here" compact />
+      </div>
+    </div>
+  </Container>
 </Layout>

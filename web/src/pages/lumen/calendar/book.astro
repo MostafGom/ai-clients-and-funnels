@@ -2,15 +2,24 @@
 import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import CalendarEmbed from '../../../components/funnel/CalendarEmbed.astro';
-import Eyebrow from '../../../components/ui/Eyebrow.astro';
 ---
 <Layout client="lumen" funnel="calendar" step="book" title="Pick a time" noindex>
-  <Container class="py-12 sm:py-16">
-    <div class="mx-auto max-w-2xl text-center">
-      <Eyebrow>Step 2 of 2</Eyebrow>
-      <h1 class="mt-3 text-h1 font-semibold">Pick a time that works around naps</h1>
-      <p class="mt-4 text-lead text-fg-muted">20 minutes, video or phone. You’ll get a calendar invite and a 2-minute prep note.</p>
+  <Container size="wide" class="py-12 sm:py-16">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div>
+        <p class="text-base font-bold text-primary">Step 2 of 2</p>
+        <h1 class="mt-2 text-h1 font-semibold">Pick a time that works around naps</h1>
+        <p class="mt-4 max-w-[60ch] text-lead text-fg-muted">20 minutes, phone or video. You’ll get a calendar invite, a 2-minute prep note, and a reminder an hour before.</p>
+        <CalendarEmbed client="lumen" confirmedPath="/lumen/calendar/confirmed" class="mt-8" />
+      </div>
+      <aside class="h-fit rounded-xl bg-surface-2 p-6 lg:sticky lg:top-8">
+        <p class="font-display text-xl font-semibold">Have ready</p>
+        <ul class="mt-3 space-y-3 text-fg-muted">
+          <li>The last three nights in one line each: bedtime, asleep, each waking.</li>
+          <li>The one thing you’d most like to be different next week.</li>
+        </ul>
+      </aside>
     </div>
-    <CalendarEmbed client="lumen" confirmedPath="/lumen/calendar/confirmed" class="mt-10" />
   </Container>
+  <script>document.addEventListener('DOMContentLoaded', () => window.funnel?.track('booking_started'));</script>
 </Layout>
