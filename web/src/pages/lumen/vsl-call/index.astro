@@ -1,0 +1,32 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import VideoPlayer from '../../../components/funnel/VideoPlayer.astro';
+import Benefits from '../../../components/funnel/Benefits.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+---
+<Layout client="lumen" funnel="vsl-call" step="vsl" title="Why your baby wakes at 2 a.m. (9-minute video)" description="Watch the 9-minute breakdown of the Gentle Timing Method, then apply for a free Sleep Clarity Call.">
+  <Container class="pt-12 sm:pt-16 text-center">
+    <Eyebrow>For parents of 4-month to 3-year-olds who are done googling</Eyebrow>
+    <h1 class="mx-auto mt-4 max-w-4xl text-h1 font-semibold">The 9-minute video that explains why your baby wakes at 2 a.m. (and the kind way to fix it in 7 nights).</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-lead text-fg-muted">No cry-it-out. No 40 contradictory blog posts. Just timing. Watch, then apply if it fits.</p>
+    <VideoPlayer provider="youtube" src="dQw4w9WgXcQ" revealAfter={6} class="mx-auto mt-10 max-w-4xl" />
+    <div class="reveal mt-8 flex flex-col items-center" data-reveal>
+      <Button href="/lumen/vsl-call/apply" size="xl">Apply for a free Clarity Call</Button>
+      <p class="mt-3 text-sm text-fg-muted">5 quick questions · Maya replies within 24h · 8 calls a week</p>
+    </div>
+  </Container>
+  <Section tone="muted" class="mt-16"><Benefits headline="What the video covers" items={[
+    { title: 'The 2 a.m. wake-up, decoded', body: 'It’s almost always a bedtime that’s 40 minutes too late. Here’s how to spot it in your baby.' },
+    { title: 'The Gentle Timing Method', body: 'Wake windows + a 10-minute bedtime script + a kind response plan. Seven nights, no crying it out.' },
+    { title: 'When you need a human', body: 'Twins, reflux, daycare, travel, two kids in one room: the cases where 1:1 beats a PDF.' },
+  ]} /></Section>
+  <Section><Testimonials headline="Families who applied" items={[
+    { quote: 'Twins. Reflux. She built a plan around both. Night 6, both slept 11 hours.', name: 'Ines R.', role: 'mum of twins, 11 months', result: 'Night 6: 11 hours' },
+    { quote: 'We travel for work constantly. Maya gave us a travel version. It held.', name: 'Kwame & Lila', role: 'parents of a 2-year-old', result: 'Sleeps through, even in hotels' },
+    { quote: 'I was touched out and furious at everyone. Two weeks later I’m a person again.', name: 'Sofia B.', role: 'mum of a 7-month-old', result: 'Evenings back' },
+  ]} /></Section>
+</Layout>

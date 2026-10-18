@@ -1,0 +1,39 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Card from '../../../components/ui/Card.astro';
+import Input from '../../../components/ui/Input.astro';
+import Button from '../../../components/ui/Button.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+const field = 'w-full rounded-md border border-border-strong bg-surface px-4 py-3 text-base focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft';
+---
+<Layout client="lumen" funnel="vsl-call" step="apply" title="Apply for a Clarity Call" noindex>
+  <Container size="prose" class="py-14 sm:py-20">
+    <div class="text-center"><Eyebrow>Step 1 of 2</Eyebrow><h1 class="mt-3 text-h1 font-semibold">Tell Maya about your nights</h1><p class="mt-3 text-lead text-fg-muted">Five questions, two minutes. She reads every one before the call.</p></div>
+    <Card pad="lg" class="mt-10">
+      <form method="post" action="/api/lead" class="space-y-5" data-optin>
+        <input type="hidden" name="client" value="lumen" /><input type="hidden" name="funnel" value="vsl-call" /><input type="hidden" name="redirect" value="/lumen/vsl-call/book" />
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+        <Input label="Your first name" name="name" autocomplete="given-name" required />
+        <Input label="Email" name="email" type="email" autocomplete="email" required />
+        <label class="block"><span class="mb-1.5 block text-sm font-medium">How old is your little one?</span>
+          <select name="age" required class={field}><option value="">Select…</option><option>4–6 months</option><option>7–12 months</option><option>1–2 years</option><option>2–3 years</option><option>Twins / more than one</option></select></label>
+        <label class="block"><span class="mb-1.5 block text-sm font-medium">Biggest struggle right now</span>
+          <select name="struggle" required class={field}><option value="">Select…</option><option>Bedtime takes forever</option><option>Waking every 1–2 hours</option><option>Early mornings (5 a.m. club)</option><option>Naps are chaos</option><option>All of the above, send help</option></select></label>
+        <label class="block"><span class="mb-1.5 block text-sm font-medium">What have you tried so far?</span>
+          <textarea name="tried" rows="3" class={field} placeholder="Be honest, we’ve tried the weird stuff too."></textarea></label>
+        <Button type="submit" size="lg" full>Continue to pick a time</Button>
+        <p class="hidden text-sm text-danger" data-error>Something went wrong. Please try again.</p>
+      </form>
+    </Card>
+  </Container>
+  <script>
+    document.querySelectorAll<HTMLFormElement>('form[data-optin]').forEach((form) => form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) { window.funnel?.track('application_submitted'); location.assign(data.redirect || '/lumen/vsl-call/book'); }
+      else form.querySelector('[data-error]')?.classList.remove('hidden');
+    }));
+  </script>
+</Layout>

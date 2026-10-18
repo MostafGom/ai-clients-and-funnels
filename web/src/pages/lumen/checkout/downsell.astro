@@ -1,0 +1,7 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+---
+<Layout client="lumen" funnel="checkout" step="downsell" title="One last thing" noindex bare>
+  <OneClickOffer client="lumen" funnel="checkout" kind="downsell" priceKey="downsell" eyebrow="Totally fine. One smaller thing" headline="Regressions, teeth, travel, daycare. Grab the survival kit." subheadline="Because sleep gets fixed, and then life happens. This is the plan for when it does." price="$97" compareAt="$197" bullets={['The 4-, 8-, 12- and 18-month regression playbooks', 'Travel & time-zone protocol (holds in hotels)', 'Teething and sick-night response plan', 'Daycare nap bridge']} acceptLabel="Yes, add the survival kit for $97" acceptNext="/lumen/checkout/thanks" declineNext="/lumen/checkout/thanks" />
+</Layout>

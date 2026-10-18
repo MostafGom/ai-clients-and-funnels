@@ -1,0 +1,34 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Hero from '../../../components/funnel/Hero.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import Steps from '../../../components/funnel/Steps.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+import FAQ from '../../../components/funnel/FAQ.astro';
+import CTASection from '../../../components/funnel/CTASection.astro';
+import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+---
+<Layout client="lumen" funnel="calendar" step="landing" title="Free 20-minute Sleep Clarity Call" description="Book a free 20-minute call with a certified pediatric sleep consultant. Leave with a start night and the one change your baby needs.">
+  <Hero eyebrow="Free Sleep Clarity Call · 20 min · ages 4 months to 3 years" headline="Twenty minutes. One plan for your baby. Then sleep." subheadline="Tell Maya what your nights look like. She’ll tell you what’s actually going on, which night to start, and the one thing to change tonight. Free. No cry-it-out, ever.">
+    <Button href="/lumen/calendar/book" size="xl">Grab a time</Button>
+    <Fragment slot="proof">8 calls a week, that’s it. Usually booked 3 days out.</Fragment>
+  </Hero>
+  <Section tone="muted"><Steps headline="What happens in 20 minutes" items={[
+    { title: 'Sleep audit (5 min)', body: 'Bedtime, naps, wake-ups, what you’ve tried. No judgment. We’ve heard it all and lived most of it.' },
+    { title: 'Your plan (10 min)', body: 'Maya matches your baby’s age and temperament to the right wake windows and bedtime script.' },
+    { title: 'Tonight (5 min)', body: 'The one change to make tonight, and whether the 7-night reset or 1:1 coaching fits you.' },
+  ]} /></Section>
+  <Section><Testimonials headline="After the call" items={[
+    { quote: 'She spotted the problem in four minutes. Wake windows. Night two: slept till 6.', name: 'Hannah L.', role: 'mum of an 8-month-old' },
+    { quote: 'I expected a pitch. I got a plan. We did it ourselves and it worked.', name: 'Tom & Grace', role: 'parents of a 19-month-old' },
+    { quote: 'Twins, reflux, daycare. She’d seen it all before. That alone helped me breathe.', name: 'Ines R.', role: 'mum of twins, 11 months' },
+  ]} /></Section>
+  <Section tone="muted"><FAQ items={[
+    { q: 'Is this a sales call?', a: 'It’s a plan call. If 1:1 coaching fits, Maya will say so in one sentence. Otherwise you leave with your plan and that’s it.' },
+    { q: 'What ages does this cover?', a: '4 months to 3 years. Newborns need a different conversation, email us.' },
+    { q: 'Do I need to read the free reset first?', a: 'Helpful, not required. If you have it, bring your wake-window chart.' },
+  ]} /></Section>
+  <CTASection headline="Tonight’s bedtime is coming either way." body="Make it the last bad one. 20 minutes, free, this week."><Button href="/lumen/calendar/book" size="xl" variant="inverse">Grab a time</Button></CTASection>
+  <StickyCTA href="/lumen/calendar/book" label="Grab a time" note="Free 20-minute Sleep Clarity Call" />
+</Layout>

@@ -1,0 +1,45 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Hero from '../../../components/funnel/Hero.astro';
+import OptInForm from '../../../components/funnel/OptInForm.astro';
+import Section from '../../../components/ui/Section.astro';
+import Benefits from '../../../components/funnel/Benefits.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+import CTASection from '../../../components/funnel/CTASection.astro';
+import Card from '../../../components/ui/Card.astro';
+import { getClient } from '../../../lib/clients';
+const client = getClient('lumen');
+const magnet = client.leadMagnet!;
+---
+<Layout client="lumen" funnel="ebook" step="optin" title={`Free: ${magnet.title}`} description="The free 7-night plan that gets babies and toddlers (4 months to 3 years) falling asleep in 10 minutes and sleeping 11 hours. No cry-it-out.">
+  <Hero eyebrow="Free 7-night plan · ages 4 months to 3 years" headline="Your baby, asleep in 10 minutes. Seven nights from now." subheadline="The 7-Night Bedtime Reset is the exact plan 2,300+ families used to go from 90-minute bedtimes and 2 a.m. parties to 11 quiet hours. No cry-it-out. No guilt. Night one is tonight.">
+    <OptInForm client="lumen" funnel="ebook" redirect="/lumen/ebook/thanks" magnet="bedtime-reset" buttonLabel="Send me the free reset" consent="Zero spam. Unsubscribe whenever. We’re too tired for spam too." />
+    <Fragment slot="proof">Sent to your inbox in 60 seconds. Read it in 12 minutes. Use it tonight.</Fragment>
+    <Fragment slot="media">
+      <Card tone="inverse" pad="lg" class="rotate-[2deg] shadow-pop">
+        <p class="text-xs uppercase tracking-[0.2em] text-accent">Inside the reset</p>
+        <p class="mt-3 font-display text-3xl font-semibold leading-tight">{magnet.title}</p>
+        <ul class="mt-6 space-y-2 opacity-90">
+          <li>★ The 7-night plan, night by night</li><li>★ Wake-window chart by age (print it, fridge it)</li><li>★ The 10-minute bedtime script</li><li>★ The 3 mistakes that cause 2 a.m. wake-ups</li>
+        </ul>
+      </Card>
+    </Fragment>
+  </Hero>
+  <Section tone="muted">
+    <Benefits eyebrow="Why it works" headline="It was never about crying. It’s about timing." items={[
+      { title: 'Wake windows, finally explained', body: 'Overtired babies fight sleep. The chart tells you the exact window for your baby’s age, tonight.' },
+      { title: 'A bedtime that runs itself', body: 'One 10-minute script, same every night. Your tiny human learns it by night three.' },
+      { title: 'Night wakings, handled kindly', body: 'What to do at 2 a.m. without picking a side in the cry-it-out war.' },
+    ]} />
+  </Section>
+  <Section>
+    <Testimonials headline="Parents who did the 7 nights" items={[
+      { quote: 'Night 5 she slept 10 hours. I cried. Happy crying, for once.', name: 'Jess M.', role: 'mum of a 9-month-old', result: 'Night 5: 10 hours' },
+      { quote: 'Bedtime went from 80 minutes to 12. I have evenings. I forgot those existed.', name: 'Daniel & Priya', role: 'parents of twins, 14 months', result: '80 min → 12 min' },
+      { quote: 'No crying it out, like she promised. Just… timing. Why did nobody tell me?', name: 'Amara O.', role: 'mum of a 2-year-old', result: '2 wake-ups → 0' },
+    ]} />
+  </Section>
+  <CTASection headline="Tonight could be night one." body="Free PDF. 12-minute read. 7 nights. Then sleep.">
+    <OptInForm client="lumen" funnel="ebook" redirect="/lumen/ebook/thanks" magnet="bedtime-reset" buttonLabel="Send me the reset" inline consent="Zero spam. Unsubscribe whenever." class="[&_span]:text-inverse-fg [&_p]:text-inverse-fg/60" />
+  </CTASection>
+</Layout>

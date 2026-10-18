@@ -1,0 +1,80 @@
+---
+/** Living design-system gallery for this client. Maintained by /design <client> components. */
+import Layout from '../../layouts/FunnelLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Section from '../../components/ui/Section.astro';
+import Button from '../../components/ui/Button.astro';
+import Input from '../../components/ui/Input.astro';
+import Card from '../../components/ui/Card.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import PriceCard from '../../components/funnel/PriceCard.astro';
+import Countdown from '../../components/funnel/Countdown.astro';
+const client = 'lumen';
+const colors = ['bg', 'surface', 'surface-2', 'inverse', 'fg', 'fg-muted', 'fg-subtle', 'border', 'border-strong', 'primary', 'primary-hover', 'primary-soft', 'accent', 'success', 'warning', 'danger'];
+---
+<Layout client={client} title="Design system" noindex>
+  <Section pad="sm">
+    <Container>
+      <Eyebrow>Design system</Eyebrow>
+      <h1 class="mt-3 text-h1 font-semibold">Tokens & components</h1>
+      <p class="mt-3 max-w-prose text-fg-muted">Everything a funnel page for this client is built from. Source: <code class="font-mono text-sm">web/src/styles/clients/{client}.css</code> and <code class="font-mono text-sm">clients/{client}/brand.md</code>.</p>
+    </Container>
+  </Section>
+
+  <Section pad="sm" tone="muted">
+    <Container>
+      <h2 class="text-h2 font-semibold">Color</h2>
+      <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
+        {colors.map((c) => (
+          <div>
+            <div class="h-16 rounded-md border border-border" style={`background: var(--color-${c})`}></div>
+            <p class="mt-2 font-mono text-xs text-fg-muted">--color-{c}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section pad="sm">
+    <Container>
+      <h2 class="text-h2 font-semibold">Type</h2>
+      <div class="mt-6 space-y-5">
+        <p class="text-display font-semibold">Display — sells the big idea</p>
+        <p class="text-h1 font-semibold">H1 — the page promise</p>
+        <p class="text-h2 font-semibold">H2 — section headline</p>
+        <p class="text-h3 font-semibold">H3 — card or step title</p>
+        <p class="text-lead text-fg-muted">Lead — the subheadline that earns the scroll.</p>
+        <p class="max-w-prose">Body — Set in the body family. Comfortable line length, generous leading, high contrast against the page.</p>
+        <p class="text-sm text-fg-muted">Small / muted — captions, consent text, footnotes.</p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section pad="sm" tone="muted">
+    <Container>
+      <h2 class="text-h2 font-semibold">Buttons & badges</h2>
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+        <Button>Primary</Button><Button variant="accent">Accent</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Ghost</Button>
+        <Button size="md">Medium</Button><Button size="xl">Extra large</Button>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3"><Badge>Primary</Badge><Badge tone="accent">Accent</Badge><Badge tone="muted">Muted</Badge><Badge tone="success">Success</Badge></div>
+      <div class="mt-6"><Countdown minutes={15} /></div>
+    </Container>
+  </Section>
+
+  <Section pad="sm">
+    <Container>
+      <h2 class="text-h2 font-semibold">Forms & cards</h2>
+      <div class="mt-6 grid gap-6 lg:grid-cols-3">
+        <Card><form class="space-y-4"><Input label="First name" name="name" /><Input label="Email" name="email" type="email" required placeholder="you@company.com" hint="We never share your email." /><Button type="button" full>Submit</Button></form></Card>
+        <Card tone="muted"><h3 class="text-h3 font-semibold">Muted card</h3><p class="mt-2 text-fg-muted">Used for secondary information blocks.</p></Card>
+        <Card tone="inverse"><h3 class="text-h3 font-semibold">Inverse card</h3><p class="mt-2 opacity-80">High-contrast moment for a key claim.</p></Card>
+      </div>
+      <div class="mt-6 grid gap-6 lg:grid-cols-2">
+        <PriceCard name="Starter" price="$97" features={['Everything in the guide', 'Templates', 'Email support']}><Button full>Get Starter</Button></PriceCard>
+        <PriceCard name="Pro" price="$297" compareAt="$497" badge="Most popular" highlight features={['Everything in Starter', 'Live workshop', '90-day accountability']}><Button full variant="accent">Get Pro</Button></PriceCard>
+      </div>
+    </Container>
+  </Section>
+</Layout>

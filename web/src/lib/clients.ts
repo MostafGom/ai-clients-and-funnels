@@ -46,6 +46,24 @@ export const clients: Client[] = [
     leadMagnet: { title: 'The 90-Day Pipeline Playbook', downloadUrl: '/demo/assets/playbook.pdf' },
     funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
   },
+  {
+    slug: 'lumen',
+    name: 'Lumen Sleep',
+    legalName: 'Lumen Sleep Co.',
+    tagline: 'Baby sleeps. You sleep. Everybody wins.',
+    description:
+      'Lumen Sleep helps exhausted parents of 0–3 year olds get their tiny human sleeping through the night in 7 nights, no cry-it-out, no guilt.',
+    supportEmail: 'hello@lumensleep.example.com',
+    fonts: {
+      display: 'Fredoka',
+      body: 'Nunito',
+      stylesheet:
+        'https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap',
+    },
+    calendar: { provider: 'cal', url: 'https://cal.com/lumen-sleep/clarity-call' },
+    leadMagnet: { title: 'The 7-Night Bedtime Reset', downloadUrl: '/lumen/assets/bedtime-reset.pdf' },
+    funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
+  },
 ];
 
 export function getClient(slug: string): Client {

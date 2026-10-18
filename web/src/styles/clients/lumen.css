@@ -1,0 +1,38 @@
+/* Client: lumen — Lumen Sleep. Source of truth: clients/lumen/brand.md.
+   Soft & organic, playful & bold: cream paper, "night" plum for inverse moments, coral CTA, moon-butter accent.
+   Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/lumen.css */
+:root[data-client='lumen'] {
+  --color-bg: oklch(98.2% 0.012 80);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-2: oklch(95% 0.028 80);
+  --color-inverse: oklch(27% 0.08 295);
+  --color-inverse-fg: oklch(97.5% 0.012 80);
+
+  --color-fg: oklch(28% 0.06 295);
+  --color-fg-muted: oklch(47% 0.045 295);
+  --color-fg-subtle: oklch(61% 0.035 295);
+
+  --color-border: oklch(90% 0.025 80);
+  --color-border-strong: oklch(61% 0.04 80);
+
+  --color-primary: oklch(56% 0.18 32);
+  --color-primary-hover: oklch(50% 0.18 32);
+  --color-primary-fg: oklch(99.5% 0 0);
+  --color-primary-soft: oklch(97.5% 0.025 32);
+  --color-accent: oklch(89% 0.15 95);
+  --color-accent-fg: oklch(30% 0.08 295);
+
+  --color-success: oklch(56% 0.13 160);
+  --color-danger: oklch(52% 0.2 25);
+  --color-focus: oklch(60% 0.18 32);
+
+  --font-display: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif;
+  --font-body: 'Nunito', ui-rounded, system-ui, sans-serif;
+
+  --radius-sm: 0.625rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+  --radius-xl: 2.75rem;
+  --shadow-card: 0 1px 2px oklch(30% 0.08 295 / 0.05), 0 12px 32px -14px oklch(30% 0.08 295 / 0.18);
+  --shadow-pop: 0 2px 6px oklch(30% 0.08 295 / 0.08), 0 28px 56px -20px oklch(30% 0.08 295 / 0.3);
+}

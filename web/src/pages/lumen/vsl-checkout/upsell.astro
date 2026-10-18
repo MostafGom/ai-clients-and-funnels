@@ -1,0 +1,7 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+---
+<Layout client="lumen" funnel="vsl-checkout" step="upsell" title="One-time offer" noindex bare>
+  <OneClickOffer client="lumen" funnel="vsl-checkout" kind="upsell" priceKey="upsell" eyebrow="Wait, one thing before your login arrives" headline="Want Maya in your pocket for the 7 nights?" subheadline="14 days of 1:1 coaching: text her at 2 a.m., two video calls, and a plan tweaked for your baby. Only offered here." price="$397" compareAt="$900" bullets={['14 days of text support with Maya (yes, at 2 a.m.)', '2 private video calls: night 1 setup, night 4 check-in', 'Your plan adjusted for reflux, twins, daycare or travel', 'Priority seat in the live Q&A']} acceptLabel="Yes, add 14 days with Maya" acceptNext="/lumen/vsl-checkout/thanks" declineNext="/lumen/vsl-checkout/downsell" />
+</Layout>

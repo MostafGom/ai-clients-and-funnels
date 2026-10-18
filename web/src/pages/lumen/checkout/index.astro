@@ -1,0 +1,53 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Hero from '../../../components/funnel/Hero.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import Container from '../../../components/ui/Container.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import Benefits from '../../../components/funnel/Benefits.astro';
+import Steps from '../../../components/funnel/Steps.astro';
+import PriceCard from '../../../components/funnel/PriceCard.astro';
+import Guarantee from '../../../components/funnel/Guarantee.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+import FAQ from '../../../components/funnel/FAQ.astro';
+import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+---
+<Layout client="lumen" funnel="checkout" step="sales" title="The Lumen Sleep Method" description="The 7-night program that gets babies and toddlers (4 months to 3 years) sleeping 11 hours. No cry-it-out. Sleep-through guarantee.">
+  <Hero eyebrow="The Lumen Sleep Method · ages 4 months to 3 years" headline="Your baby can sleep 11 hours a night. Seven nights from now. Without crying it out." subheadline="A night-by-night program built on timing, not tears. Wake windows, a 10-minute bedtime script, and a kind plan for 2 a.m. Night one is tonight.">
+    <Button href="#pricing" size="xl">Start the 7 nights · $497</Button>
+    <Fragment slot="proof">2,300+ families · 4.9/5 from 870 reviews · sleep-through guarantee</Fragment>
+  </Hero>
+  <Section tone="muted"><Benefits eyebrow="Sound familiar?" headline="You’re not failing. You were handed a tiny human and zero instructions." items={[
+    { title: 'Bedtime is a 90-minute negotiation', body: 'Rocking, bouncing, the fourth lullaby. By the time they’re down, your evening is gone.' },
+    { title: 'The 2 a.m. party', body: 'Up every 1–2 hours. Accidental co-sleeping. Two parents quietly keeping score.' },
+    { title: 'Forty tabs of contradicting advice', body: 'Grandma, the pediatrician, and the internet all disagree. So you do a bit of everything, and nothing works.' },
+  ]} /></Section>
+  <Section><Steps eyebrow="The method" headline="Seven nights. Three kind phases. One sleeping baby." items={[
+    { title: 'Nights 1–2: Fix the timing', body: 'The wake-window chart for your baby’s age and the 10-minute bedtime script. Most families see the first longer stretch on night 2.' },
+    { title: 'Nights 3–5: Hold the line, kindly', body: 'The 2 a.m. response plan. Consistent, calm, no cry-it-out. This is where the night wakings fall away.' },
+    { title: 'Nights 6–7: Lock it in', body: 'Naps, early mornings, and what to do when life (teeth, travel, daycare) tries to undo it.' },
+  ]} /></Section>
+  <Section tone="muted"><Testimonials headline="Seven nights later" items={[
+    { quote: 'Night 5 she slept 10 hours. I cried. Happy crying, for once.', name: 'Jess M.', role: 'mum of a 9-month-old', result: 'Night 5: 10 hours' },
+    { quote: 'Bedtime went from 80 minutes to 12. I have evenings. I forgot those existed.', name: 'Daniel & Priya', role: 'parents of twins, 14 months', result: '80 min → 12 min' },
+    { quote: 'No crying it out, like she promised. Just timing. Why did nobody tell me?', name: 'Amara O.', role: 'mum of a 2-year-old', result: '2 wake-ups → 0' },
+  ]} /></Section>
+  <Section id="pricing">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center"><Eyebrow class="mb-4">Pricing</Eyebrow><h2 class="text-h2 font-semibold">One payment. Every age track. Lifetime access.</h2></div>
+      <div class="mx-auto mt-12 grid max-w-4xl gap-6 lg:grid-cols-2">
+        <PriceCard name="Self-paced" price="$497" compareAt="$797" badge="Start tonight" highlight features={['7-night video program, all three age tracks', 'Wake-window charts + bedtime script', 'The 2 a.m. response plan', 'Nap, early-morning, daycare & travel guides', 'Community + weekly live Q&A with Maya']}><Button href="/lumen/checkout/checkout" full size="xl">Get instant access</Button></PriceCard>
+        <PriceCard name="With Maya, 14 days" price="$894" features={['Everything in Self-paced', '14 days of text support (yes, at 2 a.m.)', '2 private video calls', 'Plan adjusted for twins, reflux, daycare, travel']}><Button href="/lumen/checkout/checkout?plan=coaching" full variant="secondary" size="xl">Start with coaching</Button></PriceCard>
+      </div>
+    </Container>
+  </Section>
+  <Section tone="muted"><Guarantee days={30} headline="The sleep-through guarantee" body="Do the 7 nights as written. If nights 6 and 7 aren’t the best sleep your family has had since the baby arrived, email us within 30 days for a full refund. No forms, no guilt." /></Section>
+  <Section><FAQ items={[
+    { q: 'Is there any cry-it-out?', a: 'No. The method is built on timing and a consistent, kind response plan. You stay with your baby.' },
+    { q: 'My baby is “different” (reflux, twins, daycare, teething). Will it work?', a: 'Each track includes adjustments for all of these, and the weekly Q&A is where Maya handles your specific case live.' },
+    { q: 'When do I get access?', a: 'Immediately. Login details arrive within a minute, so night one can be tonight.' },
+    { q: 'Payment plan?', a: 'Yes. Choose 3 × $179 at checkout.' },
+  ]} /></Section>
+  <StickyCTA href="/lumen/checkout/checkout" label="Start the 7 nights · $497" note="Sleep-through guarantee · no cry-it-out" />
+</Layout>

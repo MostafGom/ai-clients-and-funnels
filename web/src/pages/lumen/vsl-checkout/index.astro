@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import VideoPlayer from '../../../components/funnel/VideoPlayer.astro';
+import PriceCard from '../../../components/funnel/PriceCard.astro';
+import Guarantee from '../../../components/funnel/Guarantee.astro';
+import FAQ from '../../../components/funnel/FAQ.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+---
+<Layout client="lumen" funnel="vsl-checkout" step="vsl" title="The Lumen Sleep Method: 11 hours in 7 nights" description="Free training: how the Lumen Sleep Method gets babies and toddlers sleeping 11 hours in 7 nights, no cry-it-out. Then start tonight.">
+  <Container class="pt-12 sm:pt-16 text-center">
+    <Eyebrow>Free training · 14 min · ages 4 months to 3 years</Eyebrow>
+    <h1 class="mx-auto mt-4 max-w-4xl text-h1 font-semibold">Seven nights from now, your baby sleeps 11 hours. Watch how (then start tonight).</h1>
+    <VideoPlayer provider="vimeo" src="76979871" revealAfter={8} class="mx-auto mt-10 max-w-4xl" />
+    <div class="reveal mt-8 flex flex-col items-center" data-reveal>
+      <Button href="#offer" size="xl">Start the 7 nights · $497</Button>
+      <p class="mt-3 text-sm text-fg-muted">Instant access · Sleep-through guarantee · No cry-it-out</p>
+    </div>
+  </Container>
+  <Section id="offer" tone="muted" class="reveal" data-reveal>
+    <Container size="prose">
+      <div class="text-center"><Eyebrow class="mb-4">The program</Eyebrow><h2 class="text-h2 font-semibold">Everything from the training, built night by night for your baby’s age</h2></div>
+      <PriceCard class="mt-10" name="The Lumen Sleep Method" price="$497" compareAt="$797" badge="Start tonight" highlight features={['7-night video program, separate tracks for 4–12 months, 1–2 years, 2–3 years', 'Wake-window charts + the 10-minute bedtime script', 'The 2 a.m. response plan (kind, consistent, no cry-it-out)', 'Nap plan, early-morning fix, daycare & two-kids-one-room guides', 'Private parent community + weekly live Q&A with Maya', 'Sleep-through guarantee: 30 days, full refund']}>
+        <Button href="/lumen/vsl-checkout/checkout" size="xl" full>Get instant access · $497</Button>
+      </PriceCard>
+    </Container>
+  </Section>
+  <Section><Guarantee days={30} headline="The sleep-through guarantee" body="Do the 7 nights as written. If nights 6 and 7 aren’t the best sleep your family has had since the baby arrived, email us within 30 days for a full refund. No forms, no guilt." /></Section>
+  <Section tone="muted"><Testimonials headline="Seven nights later" items={[
+    { quote: 'Night 5 she slept 10 hours. I cried. Happy crying, for once.', name: 'Jess M.', role: 'mum of a 9-month-old', result: 'Night 5: 10 hours' },
+    { quote: 'Bedtime went from 80 minutes to 12. I have evenings. I forgot those existed.', name: 'Daniel & Priya', role: 'parents of twins, 14 months', result: '80 min → 12 min' },
+    { quote: 'No crying it out, like she promised. Just timing. Why did nobody tell me?', name: 'Amara O.', role: 'mum of a 2-year-old', result: '2 wake-ups → 0' },
+  ]} /></Section>
+  <Section><FAQ items={[
+    { q: 'Is there any cry-it-out?', a: 'No. The method is built on timing and a consistent, kind response plan. You stay with your baby.' },
+    { q: 'What if my baby has reflux, is teething, or is in daycare?', a: 'Each track has adjustments for all three, and the weekly Q&A is where Maya handles the edge cases live.' },
+    { q: 'How much time does it take?', a: 'About 15 minutes of video per night, plus bedtime. Night one starts the evening you join.' },
+    { q: 'Payment plan?', a: 'Yes. Choose 3 × $179 at checkout.' },
+  ]} /></Section>
+</Layout>

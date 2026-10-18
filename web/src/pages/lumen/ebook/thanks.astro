@@ -1,0 +1,19 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import ThankYou from '../../../components/funnel/ThankYou.astro';
+import Button from '../../../components/ui/Button.astro';
+import Card from '../../../components/ui/Card.astro';
+import { getClient } from '../../../lib/clients';
+const client = getClient('lumen');
+---
+<Layout client="lumen" funnel="ebook" step="thanks" title="Check your inbox" noindex>
+  <ThankYou eyebrow="On its way" headline="The reset is in your inbox. Go check (then come back)." body="Give it 60 seconds. Check promotions if it’s hiding. Tonight is night one. And if you want a human to look at your specific situation…">
+    <Card pad="lg" class="mx-auto max-w-lg text-left">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary">Free 20-minute call</p>
+      <h2 class="mt-2 text-h3 font-semibold">Twins? Reflux? Daycare naps? Let’s talk it through.</h2>
+      <p class="mt-2 text-fg-muted">Book a free Sleep Clarity Call with Maya. You’ll leave knowing exactly which night to start and what to change for your baby.</p>
+      <Button href="/lumen/calendar/book" class="mt-6" full>Book my free clarity call</Button>
+      <p class="mt-4 text-center text-sm"><a class="text-fg-muted underline-offset-4 hover:underline" href={client.leadMagnet!.downloadUrl}>Or download the PDF right here</a></p>
+    </Card>
+  </ThankYou>
+</Layout>

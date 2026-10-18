@@ -82,6 +82,7 @@
 
 /* Import every client theme; each one is scoped by [data-client] so they never collide. */
 @import './clients/demo.css';
+@import './clients/lumen.css';
 
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
