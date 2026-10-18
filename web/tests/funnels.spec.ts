@@ -4,6 +4,12 @@ import { funnelPages } from '../src/lib/funnels';
 
 // Every registered client funnel page: loads, has one H1, no horizontal overflow, screenshot saved.
 for (const client of clients) {
+  test(`${client.slug} index`, async ({ page: p }, info) => {
+    const res = await p.goto(`/${client.slug}`, { waitUntil: 'domcontentloaded' });
+    expect(res?.ok()).toBeTruthy();
+    await expect(p.locator('main h1')).toHaveCount(1);
+    await p.screenshot({ path: `tests/__screenshots__/${client.slug}/index.${info.project.name}.png`, fullPage: true });
+  });
   test(`${client.slug} design-system`, async ({ page: p }, info) => {
     const res = await p.goto(`/${client.slug}/design-system`, { waitUntil: 'domcontentloaded' });
     expect(res?.ok()).toBeTruthy();

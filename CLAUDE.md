@@ -21,6 +21,7 @@ web/                       Astro 7 · Tailwind v4 · @astrojs/cloudflare · Stri
   src/components/funnel/   Hero VideoPlayer OptInForm CalendarEmbed CheckoutForm OrderBump OneClickOffer
                            PriceCard Benefits Steps Testimonials FAQ Guarantee Countdown StickyCTA CTASection ThankYou Footer Analytics
   src/pages/<slug>/<funnel>/…      funnel pages (prerendered)
+  src/pages/<slug>/index.astro           client hub: lists every funnel and its pages (noindex)
   src/pages/<slug>/design-system.astro   living gallery of that client's tokens/components
   src/pages/api/           lead.ts · checkout.ts · upsell.ts · webhooks/stripe.ts  (SSR on Workers)
   public/<slug>/           favicon.svg, assets/ (lead magnets, posters, images)

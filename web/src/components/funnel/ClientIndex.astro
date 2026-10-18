@@ -1,0 +1,49 @@
+---
+/** /<slug> — a client's hub listing every funnel and its pages. Internal: noindex, not linked from funnels. */
+import { getClient } from '../../lib/clients';
+import { FUNNELS, funnelPath } from '../../lib/funnels';
+import Container from '../ui/Container.astro';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+interface Props { client: string }
+const client = getClient(Astro.props.client);
+const stepLabel = (p: string) => (p === '' ? 'start' : p);
+---
+<Container class="py-12 sm:py-16">
+  <Eyebrow>{client.name}</Eyebrow>
+  <h1 class="mt-3 text-h1 font-semibold">{client.funnels.length} funnel{client.funnels.length === 1 ? '' : 's'}</h1>
+  <p class="mt-3 max-w-prose text-lead text-fg-muted">{client.tagline}</p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <Button href={`/${client.slug}/design-system`} variant="secondary" size="md">Design system</Button>
+    <Button href="/" variant="ghost" size="md">All clients</Button>
+  </div>
+
+  <div class="mt-12 grid gap-6 lg:grid-cols-2">
+    {client.funnels.map((type) => {
+      const meta = FUNNELS[type];
+      return (
+        <Card>
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h2 class="text-h3 font-semibold">{meta.label}</h2>
+              <p class="mt-1 text-sm text-fg-muted">{meta.goal}</p>
+            </div>
+            <Badge tone="muted">{meta.pages.length} pages</Badge>
+          </div>
+          <ol class="mt-5 flex flex-wrap items-center gap-2 text-sm">
+            {meta.pages.map((p, i) => (
+              <li class="flex items-center gap-2">
+                {i > 0 && <span aria-hidden="true" class="text-fg-subtle">→</span>}
+                <a href={funnelPath(client.slug, type, p)} class="rounded-pill border border-border bg-surface-2 px-3 py-1 font-medium text-fg hover:border-primary hover:text-primary">{stepLabel(p)}</a>
+              </li>
+            ))}
+          </ol>
+          <div class="mt-6"><Button href={funnelPath(client.slug, type)} size="md">Open funnel</Button></div>
+        </Card>
+      );
+    })}
+  </div>
+  <p class="mt-10 text-sm text-fg-subtle">Internal page: not indexed and never linked from a funnel.</p>
+</Container>

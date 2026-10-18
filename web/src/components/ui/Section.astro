@@ -1,7 +1,7 @@
 ---
 /** Vertical rhythm + tone for a page band. Tone switches the token set, never raw colors. */
-interface Props { id?: string; tone?: 'default' | 'muted' | 'inverse' | 'primary'; pad?: 'sm' | 'md' | 'lg'; class?: string }
-const { id, tone = 'default', pad = 'md', class: cls = '' } = Astro.props;
+interface Props { id?: string; tone?: 'default' | 'muted' | 'inverse' | 'primary'; pad?: 'sm' | 'md' | 'lg'; class?: string; [key: string]: unknown }
+const { id, tone = 'default', pad = 'md', class: cls = '', ...rest } = Astro.props;
 const tones = {
   default: 'bg-bg text-fg',
   muted: 'bg-surface-2 text-fg',
@@ -10,4 +10,4 @@ const tones = {
 };
 const pads = { sm: 'py-10 sm:py-14', md: 'py-16 sm:py-24', lg: 'py-24 sm:py-32' };
 ---
-<section id={id} class:list={[tones[tone], pads[pad], cls]}><slot /></section>
+<section id={id} class:list={[tones[tone], pads[pad], cls]} {...rest}><slot /></section>

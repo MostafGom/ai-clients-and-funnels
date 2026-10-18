@@ -10,9 +10,11 @@ interface Props {
   poster?: string;
   title?: string;
   revealAfter?: number;
+  /** Small chip over the poster, e.g. "14 min · sound on". */
+  caption?: string;
   class?: string;
 }
-const { provider, src, poster, title = 'Watch the video', revealAfter = 0, class: cls = '' } = Astro.props;
+const { provider, src, poster, title = 'Watch the video', revealAfter = 0, caption, class: cls = '' } = Astro.props;
 const embed = {
   youtube: `https://www.youtube-nocookie.com/embed/${src}?autoplay=1&rel=0&modestbranding=1&playsinline=1`,
   vimeo: `https://player.vimeo.com/video/${src}?autoplay=1&title=0&byline=0&portrait=0`,
@@ -27,14 +29,18 @@ const embed = {
       <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
     </span>
   </button>
+  {caption && <span class="pointer-events-none absolute bottom-4 left-4 rounded-pill bg-inverse-fg/90 px-3 py-1 text-xs font-semibold text-inverse">{caption}</span>}
 </div>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-vsl]').forEach((el) => {
     const btn = el.querySelector<HTMLButtonElement>('[data-vsl-play]');
     const after = Number(el.dataset.revealAfter || 0);
-    const reveal = () => document.querySelectorAll('[data-reveal]').forEach((n) => n.setAttribute('data-revealed', ''));
-    if (after === 0) reveal();
+    const key = `vsl-revealed:${location.pathname}`;
+    const reveal = () => { document.querySelectorAll('[data-reveal]').forEach((n) => n.setAttribute('data-revealed', '')); try { localStorage.setItem(key, '1'); } catch {} };
+    // Reveal immediately when: no delay, the visitor already unlocked it, or ?reveal=1 (ads/retargeting links).
+    let seen = false; try { seen = localStorage.getItem(key) === '1'; } catch {}
+    if (after === 0 || seen || new URLSearchParams(location.search).has('reveal')) reveal();
     btn?.addEventListener('click', () => {
       const embed = el.dataset.embed!;
       let media: HTMLElement;

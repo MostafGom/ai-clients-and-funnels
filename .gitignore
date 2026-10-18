@@ -9,3 +9,4 @@ dist/
 web/tests/__screenshots__/
 web/test-results/
 web/playwright-report/
+web/tests/__review__/

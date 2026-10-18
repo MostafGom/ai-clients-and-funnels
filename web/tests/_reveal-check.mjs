@@ -1,0 +1,10 @@
+import { chromium } from '@playwright/test';
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+const state = async () => p.evaluate(() => ({ offer: getComputedStyle(document.querySelector('#offer')).opacity, cta: getComputedStyle(document.querySelector('[data-reveal] a')).opacity }));
+await p.goto('http://localhost:8787/lumen/vsl-checkout/', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(800);
+console.log('fresh visit     :', JSON.stringify(await state()));
+await p.goto('http://localhost:8787/lumen/vsl-checkout/?reveal=1', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(1000);
+console.log('?reveal=1       :', JSON.stringify(await state()));
+await p.goto('http://localhost:8787/lumen/vsl-checkout/', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(1000);
+console.log('return (persist):', JSON.stringify(await state()));
+await b.close();

@@ -2,9 +2,11 @@
 import Layout from '../../../layouts/FunnelLayout.astro';
 import ThankYou from '../../../components/funnel/ThankYou.astro';
 import Card from '../../../components/ui/Card.astro';
+import Button from '../../../components/ui/Button.astro';
+const programUrl = 'https://app.lumensleep.example.com'; // [PLACEHOLDER] member area login
 ---
 <Layout client="lumen" funnel="vsl-checkout" step="thanks" title="Welcome" noindex>
   <ThankYou eyebrow="You’re in" headline="Welcome to the Lumen Sleep Method. Night one is tonight." body="Your receipt and login are on their way. Here’s what to do in the next 20 minutes.">
-    <Card pad="lg" class="mx-auto max-w-lg text-left"><p class="font-semibold">Before bedtime tonight</p><ol class="mt-3 list-decimal space-y-2 pl-5 text-fg-muted"><li>Open the welcome email and set your password.</li><li>Pick your baby’s age track and print the wake-window chart.</li><li>Watch Night 1 (15 min). Do exactly that tonight. Nothing else.</li></ol></Card>
+    <Card pad="lg" class="mx-auto max-w-lg text-left"><p class="font-semibold">Before bedtime tonight</p><ol class="mt-3 list-decimal space-y-2 pl-5 text-fg-muted"><li>Open the welcome email and set your password.</li><li>Pick your baby’s age track and print the wake-window chart.</li><li>Watch Night 1 (15 min). Do exactly that tonight. Nothing else.</li></ol><Button href={programUrl} class="mt-6" full>Open Night 1</Button></Card>
   </ThankYou>
 </Layout>

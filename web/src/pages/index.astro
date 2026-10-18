@@ -19,7 +19,7 @@ import { FUNNELS, funnelPath } from '../lib/funnels';
         <section class="rounded-lg border border-border bg-surface p-7 shadow-card">
           <h2 class="text-h2 font-semibold">{c.name} <span class="text-fg-subtle text-base font-normal">/{c.slug}</span></h2>
           <p class="mt-1 text-fg-muted">{c.tagline}</p>
-          <p class="mt-4"><a class="text-primary underline underline-offset-4" href={`/${c.slug}/design-system`}>Design system</a></p>
+          <p class="mt-4 flex gap-4"><a class="text-primary underline underline-offset-4" href={`/${c.slug}`}>Client hub</a><a class="text-primary underline underline-offset-4" href={`/${c.slug}/design-system`}>Design system</a></p>
           <ul class="mt-4 space-y-2">
             {c.funnels.map((f) => (
               <li class="flex flex-wrap items-baseline gap-x-3">
