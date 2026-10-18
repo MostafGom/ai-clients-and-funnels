@@ -1,4 +1,7 @@
 /// <reference types="astro/client" />
+declare module 'cloudflare:workers' {
+  export const env: Record<string, unknown>;
+}
 type Runtime = import('@astrojs/cloudflare').Runtime<Record<string, string | undefined>>;
 declare namespace App {
   interface Locals extends Runtime {}

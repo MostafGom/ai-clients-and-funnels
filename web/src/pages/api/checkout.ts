@@ -10,7 +10,7 @@ export const POST: APIRoute = async (ctx) => {
   const cancel = safePath(body.cancel, '/');
   try {
     const client = getClient(body.client);
-    const env = runtimeEnv(ctx);
+    const env = await runtimeEnv(ctx);
     const stripe = getStripe();
     const success = safePath(body.success, `/${client.slug}`);
 

@@ -2,14 +2,20 @@ import type { APIContext } from 'astro';
 
 /** Parse JSON or form bodies into a flat string record. */
 export async function readBody(request: Request): Promise<Record<string, string>> {
+  const all = await readBodyAll(request);
+  return Object.fromEntries(Object.entries(all).map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v]));
+}
+
+/** Like readBody but keeps repeated fields (checkbox groups) as arrays. */
+export async function readBodyAll(request: Request): Promise<Record<string, string | string[]>> {
   const ct = request.headers.get('content-type') || '';
   if (ct.includes('application/json')) {
     const j = (await request.json()) as Record<string, unknown>;
-    return Object.fromEntries(Object.entries(j).map(([k, v]) => [k, String(v ?? '')]));
+    return Object.fromEntries(Object.entries(j).map(([k, v]) => [k, Array.isArray(v) ? v.map(String) : String(v ?? '')]));
   }
   const fd = await request.formData();
-  const out: Record<string, string> = {};
-  fd.forEach((v, k) => (out[k] = typeof v === 'string' ? v : ''));
+  const out: Record<string, string | string[]> = {};
+  fd.forEach((v, k) => { const s = typeof v === 'string' ? v : ''; if (k in out) out[k] = ([] as string[]).concat(out[k], s); else out[k] = s; });
   return out;
 }
 
@@ -34,7 +40,16 @@ export function isEmail(s: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
 }
 
-/** Runtime env (Cloudflare bindings + secrets) with a safe fallback for `astro dev`. */
-export function runtimeEnv(ctx: APIContext): Record<string, unknown> {
-  return (ctx.locals as any)?.runtime?.env ?? (import.meta.env as Record<string, unknown>);
+/**
+ * Runtime env (Cloudflare bindings + secrets, e.g. STRIPE_PRICE_<CLIENT>_<KEY>).
+ * Astro ≥6 removed `locals.runtime.env`; the Workers runtime exposes it via `cloudflare:workers`.
+ * Falls back to import.meta.env when that module isn't available (plain node tooling).
+ */
+export async function runtimeEnv(_ctx?: APIContext): Promise<Record<string, unknown>> {
+  try {
+    const m = await import('cloudflare:workers');
+    return (m.env ?? {}) as Record<string, unknown>;
+  } catch {
+    return import.meta.env as unknown as Record<string, unknown>;
+  }
 }

@@ -1,13 +1,14 @@
 import type { APIRoute } from 'astro';
 import { getClient } from '../../lib/clients';
 import { sendEmail, sendSequence, addContact, emailShell } from '../../lib/resend';
-import { LEAD_SEQUENCES } from '../../emails';
-import { readBody, respond, safePath, isEmail } from './_utils';
+import { LEAD_SEQUENCES, INTERNAL_NOTIFY } from '../../emails';
+import { readBody, readBodyAll, respond, safePath, isEmail } from './_utils';
 
 export const prerender = false;
 
 export const POST: APIRoute = async (ctx) => {
-  const body = await readBody(ctx.request);
+  const all = await readBodyAll(ctx.request);
+  const body = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v])) as Record<string, string>;
   const email = (body.email || '').trim().toLowerCase();
   const name = (body.name || '').trim();
   const redirect = safePath(body.redirect, '/');
@@ -43,6 +44,8 @@ export const POST: APIRoute = async (ctx) => {
     );
   }
   if (client.resendAudienceId) tasks.push(addContact(client.resendAudienceId, email, name || undefined));
+  const notify = INTERNAL_NOTIFY[client.slug]?.[body.funnel];
+  if (notify) { const n = notify(all); tasks.push(sendEmail({ to: client.supportEmail, replyTo: email, subject: n.subject, html: n.html })); }
 
   const results = await Promise.allSettled(tasks);
   const failed = results.find((r) => r.status === 'rejected' || (r.status === 'fulfilled' && (r.value as any)?.ok === false));

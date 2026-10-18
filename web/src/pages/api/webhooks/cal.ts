@@ -26,7 +26,7 @@ export const POST: APIRoute = async (ctx) => {
   let client; try { client = getClient(slug); } catch { return new Response('unknown client', { status: 400 }); }
   const emails = EMAILS[slug];
   if (!emails) return new Response('no emails for client', { status: 200 });
-  const env = runtimeEnv(ctx);
+  const env = await runtimeEnv(ctx);
   const secret = env[`CAL_WEBHOOK_SECRET_${slug.toUpperCase().replace(/[^A-Z0-9]/g, '_')}`];
   const raw = await ctx.request.text();
   if (typeof secret === 'string' && secret && !(await verify(secret, raw, ctx.request.headers.get('x-cal-signature-256')))) return new Response('bad signature', { status: 401 });

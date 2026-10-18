@@ -1,0 +1,20 @@
+// node tests/apply-check.mjs — walks the three-step application and checks validation, conditionals, and submission payload.
+import { chromium } from '@playwright/test';
+const base = process.argv[2] || 'http://localhost:4321';
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 390, height: 844 } });
+let posted = null;
+await p.route('**/api/lead', async (route) => { posted = route.request().postData(); await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true, redirect: '/lumen/vsl-call/book' }) }); });
+await p.goto(base + '/lumen/vsl-call/apply', { waitUntil: 'domcontentloaded' });
+await p.click('[data-next]'); console.log('blocked without age:', await p.locator('[data-step="1"]').isVisible());
+await p.selectOption('select[name=age]', '9-12');
+await p.click('label:has-text("Twins")'); console.log('twins follow-up shown:', await p.locator('[data-if=twins]').isVisible());
+await p.click('label:has-text("None of these")'); console.log('none clears twins:', !(await p.locator('input[name=but][value=twins]').isChecked()));
+await p.click('label:has-text("Daycare")');
+await p.click('[data-next]'); console.log('step 2 visible:', await p.locator('[data-step="2"]').isVisible(), '| label:', await p.locator('[data-step-label]').textContent());
+await p.selectOption('select[name=wakings]', '3–4'); await p.fill('textarea[name=tried]', 'later bedtime, rocking');
+await p.click('[data-next]'); await p.fill('input[name=name]', 'Test'); await p.fill('input[name=email]', 'test@example.com');
+await p.click('[data-submit]'); await p.waitForURL('**/lumen/vsl-call/book', { timeout: 5000 }).catch(() => {});
+console.log('redirected to book:', p.url().endsWith('/lumen/vsl-call/book'));
+const has = (name, value) => new RegExp(`name="${name}"\\r?\\n\\r?\\n${value}`).test(posted || '');
+console.log('payload has:', [['client', 'lumen'], ['funnel', 'vsl-call'], ['age', '9-12'], ['but', 'daycare'], ['wakings', '3'], ['email', 'test@example.com']].map(([k, v]) => `${k}:${has(k, v)}`).join(' '));
+await b.close();

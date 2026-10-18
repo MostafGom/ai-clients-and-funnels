@@ -23,7 +23,7 @@ export const POST: APIRoute = async (ctx) => {
     const paymentMethod = typeof pi.payment_method === 'string' ? pi.payment_method : pi.payment_method?.id;
     if (!customer || !paymentMethod) throw new Error('no saved payment method');
 
-    const priceId = resolvePrice(runtimeEnv(ctx), client.slug, body.price);
+    const priceId = resolvePrice(await runtimeEnv(ctx), client.slug, body.price);
     const price = await stripe.prices.retrieve(priceId);
     if (!price.unit_amount) throw new Error('price has no unit_amount');
 
