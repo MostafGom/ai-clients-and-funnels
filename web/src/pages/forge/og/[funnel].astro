@@ -1,0 +1,41 @@
+---
+/* Social share images, 1200×630, one per funnel. Rendered to public/lumen/og/<funnel>.png by `pnpm images`. */
+import '../../../styles/base.css';
+import Plates from '../../../components/clients/forge/art/Plates.astro';
+import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+import { PHOTOS } from '../../../components/clients/forge/photos';
+export function getStaticPaths() {
+  return [
+    { params: { funnel: 'checkout' }, props: { kicker: 'Forge 12', title: 'Stronger at 45 than you were at 30. Three sessions a week.', foot: 'Week-Four Guarantee · men 35 to 50' } },
+    { params: { funnel: 'vsl-checkout' }, props: { kicker: 'Free training', title: 'The least training that makes a 45-year-old stronger.', foot: 'Six lifts · one rule · three sessions' } },
+    { params: { funnel: 'ebook' }, props: { kicker: 'Free guide', title: 'How many sessions a week do you actually need?', foot: 'The 3-Session Week · the first four weeks, written out' } },
+    { params: { funnel: 'calendar' }, props: { kicker: 'Free Strength Audit', title: 'Twenty minutes. One plan written for you.', foot: '20 minutes with Daniel · no pitch beyond one sentence' } },
+    { params: { funnel: 'vsl-call' }, props: { kicker: 'For the man with a “but”', title: 'Your case isn’t the exception. It’s an adjustment.', foot: 'Old back · hotel gyms · first time at 50' } },
+    { params: { funnel: 'default' }, props: { kicker: 'Forge Fitness Online', title: 'Strength, unhurried.', foot: 'Three sessions a week for men who run things' } },
+  ];
+}
+const { kicker, title, foot } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-client="lumen">
+  <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>og</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@600;700&display=swap" />
+    <style>html,body{margin:0;background:#141416}</style></head>
+  <body>
+    <div class="relative overflow-hidden bg-inverse text-inverse-fg" style="width:1200px;height:630px">
+      <div class="absolute inset-x-0 top-0 h-px bg-accent/70"></div>
+      <div class="absolute right-16 top-12 text-inverse-fg"><Monogram size={72} /></div>
+      <div class="absolute bottom-10 left-20 w-[420px] opacity-70"><Plates class="h-auto w-full" /></div>
+      <img src={PHOTOS.daniel} alt="" class="absolute bottom-12 right-20 size-[320px] rounded-full object-cover object-top ring-1 ring-accent" />
+      <div class="absolute left-20 top-20 max-w-[700px]">
+        <p class="text-2xl font-bold text-accent-2">{kicker}</p>
+        <h1 class="mt-5 font-display text-[64px] font-semibold leading-[1.02] text-balance">{title}</h1>
+      </div>
+      <div class="absolute bottom-[120px] left-20 flex items-center gap-5">
+        <span class="rounded-pill bg-accent px-5 py-2 text-xl font-bold text-accent-fg">Forge Fitness Online</span>
+        <span class="text-xl text-inverse-fg/80">{foot}</span>
+      </div>
+    </div>
+  </body>
+</html>

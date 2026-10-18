@@ -65,8 +65,8 @@ export const clients: Client[] = [
     },
     calendar: { provider: 'cal', url: 'https://cal.com/forge-fitness/strength-audit' },
     leadMagnet: { title: 'The 3-Session Week', downloadUrl: '/forge/assets/three-session-week.pdf' },
-    funnels: ['ebook', 'calendar', 'vsl-checkout', 'checkout'],
-    ogImages: false,
+    funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
+    ogImages: true,
   },
 ];
 

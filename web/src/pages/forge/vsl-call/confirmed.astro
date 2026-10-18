@@ -1,0 +1,13 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+---
+<Layout client="forge" funnel="vsl-call" step="confirmed" title="You’re booked" noindex>
+  <Container size="prose" class="py-16 sm:py-24 text-center">
+    <div class="mx-auto w-fit text-fg"><Monogram size={72} /></div>
+    <p class="mt-6 text-base font-semibold text-success">Booked</p>
+    <h1 class="mt-2 text-h1 font-semibold">Done. <span class="italic">Daniel has your application.</span></h1>
+    <p class="mt-5 text-lead text-fg-muted">The invite’s in your inbox. Write your last two weeks of training in one line each and bring them. That’s the whole prep.</p>
+  </Container>
+</Layout>

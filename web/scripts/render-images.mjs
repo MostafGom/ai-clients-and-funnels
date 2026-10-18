@@ -5,7 +5,8 @@ import { spawn, execSync } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { chromium } from '@playwright/test';
 
-const OG = { lumen: ['checkout', 'vsl-checkout', 'ebook', 'calendar', 'vsl-call', 'default'] };
+const FUNNELS = ['checkout', 'vsl-checkout', 'ebook', 'calendar', 'vsl-call', 'default'];
+const OG = { lumen: FUNNELS, forge: FUNNELS };
 const COVERS = [
   { page: '/lumen/reset/', out: 'public/lumen/assets/bedtime-reset-cover.png' },
   { page: '/forge/guide/', out: 'public/forge/assets/three-session-week-cover.png' },
