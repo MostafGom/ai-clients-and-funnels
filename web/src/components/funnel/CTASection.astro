@@ -1,0 +1,13 @@
+---
+/** Closing band: headline + CTA slot, on the inverse or primary surface. */
+import Container from '../ui/Container.astro';
+interface Props { headline: string; body?: string; tone?: 'inverse' | 'primary' }
+const { headline, body, tone = 'inverse' } = Astro.props;
+---
+<section class:list={['py-20 sm:py-28', tone === 'inverse' ? 'bg-inverse text-inverse-fg' : 'bg-primary text-primary-fg']}>
+  <Container size="prose" class="text-center">
+    <h2 class="text-h2 font-semibold">{headline}</h2>
+    {body && <p class="mt-4 text-lead opacity-80">{body}</p>}
+    <div class="mt-9 flex flex-col items-center"><slot /></div>
+  </Container>
+</section>

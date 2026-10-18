@@ -1,0 +1,19 @@
+{
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "modern-web-guidance@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "stripe@claude-plugins-official": true,
+    "resend@claude-plugins-official": true,
+    "cloudflare@claude-plugins-official": true,
+    "posthog@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "marketing@anthropic-plugin-directory": true,
+    "design@anthropic-plugin-directory": true,
+    "brand-voice@anthropic-plugin-directory": true,
+    "searchfit-seo@anthropic-plugin-directory": true
+  }
+}

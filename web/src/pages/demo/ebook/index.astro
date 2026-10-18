@@ -1,0 +1,45 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Hero from '../../../components/funnel/Hero.astro';
+import OptInForm from '../../../components/funnel/OptInForm.astro';
+import Section from '../../../components/ui/Section.astro';
+import Benefits from '../../../components/funnel/Benefits.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+import CTASection from '../../../components/funnel/CTASection.astro';
+import Card from '../../../components/ui/Card.astro';
+import { getClient } from '../../../lib/clients';
+const client = getClient('demo');
+const magnet = client.leadMagnet!;
+---
+<Layout client="demo" funnel="ebook" step="optin" title={`Free guide: ${magnet.title}`} description="The exact 90-day system solo consultants use to replace feast-or-famine with a steady pipeline. Free PDF.">
+  <Hero eyebrow="Free 34-page guide" headline="Fill your pipeline for the next 90 days without ads, cold DMs, or begging for referrals." subheadline="The 90-Day Pipeline Playbook gives you the weekly rhythm, scripts, and tracker that 400+ solo consultants use to book 3 to 5 qualified calls a week.">
+    <OptInForm client="demo" funnel="ebook" redirect="/demo/ebook/thanks" magnet="playbook" buttonLabel="Send me the free playbook" />
+    <Fragment slot="proof">Join 4,200+ consultants. Takes 20 seconds.</Fragment>
+    <Fragment slot="media">
+      <Card tone="inverse" pad="lg" class="rotate-[-2deg] shadow-pop">
+        <p class="text-xs uppercase tracking-[0.2em] opacity-70">Inside</p>
+        <p class="mt-3 font-display text-3xl font-semibold leading-tight">{magnet.title}</p>
+        <ul class="mt-6 space-y-2 text-sm opacity-90">
+          <li>→ The 3-touch weekly outreach rhythm</li><li>→ 7 word-for-word follow-up scripts</li><li>→ The pipeline tracker (Notion + Sheets)</li><li>→ How to price the first call</li>
+        </ul>
+      </Card>
+    </Fragment>
+  </Hero>
+  <Section tone="muted">
+    <Benefits eyebrow="What you’ll learn" headline="Three shifts that make the pipeline predictable" items={[
+      { title: 'Stop selling, start sequencing', body: 'Why a fixed weekly rhythm beats bursts of hustle, and the exact rhythm to copy.' },
+      { title: 'Follow-ups that feel like favors', body: 'Scripts that re-open stalled conversations without sounding needy.' },
+      { title: 'Measure the only three numbers', body: 'Conversations, calls, closes. The tracker that tells you what to fix on Monday.' },
+    ]} />
+  </Section>
+  <Section>
+    <Testimonials headline="Consultants who ran the playbook" items={[
+      { quote: 'Booked 11 calls in the first three weeks. The follow-up scripts alone were worth it.', name: 'Priya N.', role: 'Ops consultant', result: '11 calls / 3 weeks' },
+      { quote: 'I finally know what to do every Monday morning. The tracker killed my anxiety.', name: 'Marcus T.', role: 'Fractional CFO', result: 'Consistent $18k months' },
+      { quote: 'Simple, unglamorous, and it works. Replaced two retainers I lost in Q1.', name: 'Elena R.', role: 'Brand strategist', result: '2 retainers replaced' },
+    ]} />
+  </Section>
+  <CTASection headline="Get the playbook. Run it this week." body="Free PDF, delivered to your inbox in under a minute.">
+    <OptInForm client="demo" funnel="ebook" redirect="/demo/ebook/thanks" magnet="playbook" buttonLabel="Send me the playbook" inline class="[&_span]:text-inverse-fg [&_p]:text-inverse-fg/60" />
+  </CTASection>
+</Layout>

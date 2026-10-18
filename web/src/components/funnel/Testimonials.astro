@@ -1,0 +1,24 @@
+---
+import Container from '../ui/Container.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+interface Item { quote: string; name: string; role?: string; result?: string }
+interface Props { eyebrow?: string; headline?: string; items: Item[] }
+const { eyebrow = 'Results', headline, items } = Astro.props;
+---
+<Container>
+  {headline && (
+    <div class="mx-auto mb-12 max-w-2xl text-center">
+      <Eyebrow class="mb-4">{eyebrow}</Eyebrow>
+      <h2 class="text-h2 font-semibold">{headline}</h2>
+    </div>
+  )}
+  <div class="grid gap-6 md:grid-cols-3">
+    {items.map((t) => (
+      <figure class="flex flex-col rounded-lg bg-surface p-7 shadow-card border border-border">
+        {t.result && <span class="mb-4 inline-flex w-fit rounded-pill bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">{t.result}</span>}
+        <blockquote class="flex-1 text-fg">“{t.quote}”</blockquote>
+        <figcaption class="mt-6 text-sm"><span class="font-semibold text-fg">{t.name}</span>{t.role && <span class="text-fg-muted"> · {t.role}</span>}</figcaption>
+      </figure>
+    ))}
+  </div>
+</Container>

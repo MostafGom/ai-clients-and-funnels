@@ -1,0 +1,37 @@
+---
+/** Cal.com (default) or Calendly inline embed. Fires `booking_confirmed` → optional redirect. */
+import { getClient } from '../../lib/clients';
+interface Props { client: string; url?: string; height?: number; confirmedPath?: string; class?: string }
+const { client: slug, url, height = 720, confirmedPath, class: cls = '' } = Astro.props;
+const client = getClient(slug);
+const provider = client.calendar.provider;
+const link = url ?? client.calendar.url;
+---
+<div class:list={['w-full overflow-hidden rounded-lg border border-border bg-surface shadow-card', cls]} style={`min-height:${height}px`} data-calendar data-provider={provider} data-url={link} data-confirmed={confirmedPath}>
+  {provider === 'cal' ? (
+    <div id="cal-inline" style={`height:${height}px`}></div>
+  ) : (
+    <div class="calendly-inline-widget" data-url={link} style={`min-width:320px;height:${height}px`}></div>
+  )}
+  <noscript><p class="p-6 text-center">JavaScript is required to book. <a class="underline" href={link}>Open the calendar in a new tab</a>.</p></noscript>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-calendar]');
+  if (root) {
+    const { provider, url, confirmed } = root.dataset;
+    const done = () => { window.funnel?.track('booking_confirmed'); if (confirmed) setTimeout(() => location.assign(confirmed), 800); };
+    if (provider === 'cal') {
+      (function (C: any, A: string, L: string) { let p = function (a: any, ar: any) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { const api: any = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
+      const Cal = (window as any).Cal;
+      const path = new URL(url!).pathname.replace(/^\//, '');
+      Cal('init', { origin: 'https://cal.com' });
+      Cal('inline', { elementOrSelector: '#cal-inline', calLink: path, layout: 'month_view' });
+      Cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+      Cal('on', { action: 'bookingSuccessful', callback: done });
+    } else {
+      const s = document.createElement('script'); s.src = 'https://assets.calendly.com/assets/external/widget.js'; s.async = true; document.head.appendChild(s);
+      window.addEventListener('message', (e) => { if (e.data?.event === 'calendly.event_scheduled') done(); });
+    }
+  }
+</script>

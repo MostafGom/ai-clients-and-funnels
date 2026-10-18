@@ -1,0 +1,61 @@
+import type { FunnelType } from './funnels';
+
+export interface ClientFonts {
+  display: string;
+  body: string;
+  /** Google Fonts stylesheet URL (or any font CSS URL). Omit for system fonts. */
+  stylesheet?: string;
+}
+
+export interface Client {
+  slug: string;
+  name: string;
+  legalName: string;
+  tagline: string;
+  /** Default meta description when a page does not set one. */
+  description: string;
+  supportEmail: string;
+  fonts: ClientFonts;
+  calendar: { provider: 'cal' | 'calendly'; url: string };
+  /** Lead magnet delivered by the ebook funnel. */
+  leadMagnet?: { title: string; downloadUrl: string };
+  /** Resend audience to add leads to (optional). */
+  resendAudienceId?: string;
+  /** Funnels this client has built. Drives / index and tests. */
+  funnels: FunnelType[];
+  /** Social proof used across funnels. */
+  socials?: { label: string; href: string }[];
+}
+
+export const clients: Client[] = [
+  {
+    slug: 'demo',
+    name: 'Northwind Coaching',
+    legalName: 'Northwind Coaching LLC',
+    tagline: 'Calm, consistent revenue for solo consultants.',
+    description:
+      'Northwind helps independent consultants build a referral-proof pipeline in 90 days without ads or cold outreach.',
+    supportEmail: 'hello@northwind.example.com',
+    fonts: {
+      display: 'Fraunces',
+      body: 'Inter',
+      stylesheet:
+        'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap',
+    },
+    calendar: { provider: 'cal', url: 'https://cal.com/northwind/strategy-call' },
+    leadMagnet: { title: 'The 90-Day Pipeline Playbook', downloadUrl: '/demo/assets/playbook.pdf' },
+    funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
+  },
+];
+
+export function getClient(slug: string): Client {
+  const c = clients.find((x) => x.slug === slug);
+  if (!c) throw new Error(`Unknown client "${slug}". Register it in src/lib/clients.ts`);
+  return c;
+}
+
+/** Env var name holding a Stripe price id: STRIPE_PRICE_<CLIENT>_<KEY> */
+export function priceEnvName(clientSlug: string, key: string): string {
+  const norm = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '_');
+  return `STRIPE_PRICE_${norm(clientSlug)}_${norm(key)}`;
+}

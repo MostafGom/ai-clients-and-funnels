@@ -1,0 +1,34 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Hero from '../../../components/funnel/Hero.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import Steps from '../../../components/funnel/Steps.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+import FAQ from '../../../components/funnel/FAQ.astro';
+import CTASection from '../../../components/funnel/CTASection.astro';
+import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+---
+<Layout client="demo" funnel="calendar" step="landing" title="Free 45-minute pipeline strategy call" description="Leave with a 90-day plan and a filled-in pipeline tracker. Free, no pitch unless you ask.">
+  <Hero eyebrow="Free strategy call · 45 min" headline="Walk out with your next 90 days of client acquisition mapped." subheadline="One call. We audit how you currently find clients, pick the one channel worth doubling down on, and build your weekly rhythm together.">
+    <Button href="/demo/calendar/book" size="xl">Pick a time</Button>
+    <Fragment slot="proof">Limited to 6 calls a week · Usually booked 4 days out</Fragment>
+  </Hero>
+  <Section tone="muted"><Steps headline="What happens on the call" items={[
+    { title: 'Audit (10 min)', body: 'Where your last 10 clients actually came from, and what it cost you in time.' },
+    { title: 'Choose the channel (15 min)', body: 'We pick one acquisition channel to own for 90 days, based on your strengths, not trends.' },
+    { title: 'Build the rhythm (20 min)', body: 'You leave with a weekly plan, the scripts, and the tracker already filled in.' },
+  ]} /></Section>
+  <Section><Testimonials headline="Said after the call" items={[
+    { quote: 'Most useful 45 minutes of my year. No pitch, just a plan I actually followed.', name: 'Dana K.', role: 'HR consultant' },
+    { quote: 'We found the leak in ten minutes. I had been chasing the wrong channel for a year.', name: 'Omar S.', role: 'Growth advisor' },
+    { quote: 'Left with the tracker done. Booked two discovery calls that same week.', name: 'Lucía P.', role: 'UX consultant' },
+  ]} /></Section>
+  <Section tone="muted"><FAQ items={[
+    { q: 'Is this a sales call?', a: 'It is a working session. If you ask about working together we will tell you how, otherwise the plan is yours to run.' },
+    { q: 'Who is it for?', a: 'Independent consultants and fractional leaders billing $5k+/month who want more predictable months.' },
+    { q: 'What should I prepare?', a: 'A list of your last 10 clients and roughly how each one found you. Five minutes of prep.' },
+  ]} /></Section>
+  <CTASection headline="Six spots a week. Grab one." body="Pick a time that suits you. You’ll get a short prep email right after."><Button href="/demo/calendar/book" size="xl" variant="inverse">Pick a time</Button></CTASection>
+  <StickyCTA href="/demo/calendar/book" label="Pick a time" note="Free 45-minute strategy call" />
+</Layout>

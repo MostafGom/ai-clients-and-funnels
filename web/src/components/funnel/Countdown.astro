@@ -1,0 +1,19 @@
+---
+/** Evergreen countdown: deadline is set per visitor (localStorage) the first time they see it. */
+interface Props { minutes?: number; label?: string; storageKey?: string; class?: string }
+const { minutes = 15, label = 'This offer expires in', storageKey = 'funnel-deadline', class: cls = '' } = Astro.props;
+---
+<div class:list={['inline-flex items-center gap-3 rounded-pill bg-inverse px-5 py-2.5 text-inverse-fg', cls]} data-countdown data-minutes={minutes} data-key={storageKey} role="timer" aria-live="off">
+  <span class="text-sm">{label}</span>
+  <span class="font-mono text-lg font-semibold tabular-nums" data-time>--:--</span>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-countdown]').forEach((el) => {
+    const key = `${el.dataset.key}:${location.pathname}`;
+    let end = Number(localStorage.getItem(key));
+    if (!end || end < Date.now()) { end = Date.now() + Number(el.dataset.minutes) * 60_000; localStorage.setItem(key, String(end)); }
+    const out = el.querySelector('[data-time]')!;
+    const tick = () => { const s = Math.max(0, Math.floor((end - Date.now()) / 1000)); out.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; if (s > 0) requestAnimationFrame(() => setTimeout(tick, 250)); };
+    tick();
+  });
+</script>

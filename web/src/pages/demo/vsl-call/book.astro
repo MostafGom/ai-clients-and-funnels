@@ -1,0 +1,12 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import CalendarEmbed from '../../../components/funnel/CalendarEmbed.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+---
+<Layout client="demo" funnel="vsl-call" step="book" title="Pick a time" noindex>
+  <Container class="py-12 sm:py-16">
+    <div class="mx-auto max-w-2xl text-center"><Eyebrow>Step 2 of 2</Eyebrow><h1 class="mt-3 text-h1 font-semibold">Pick a time</h1><p class="mt-4 text-lead text-fg-muted">We read your application before the call, so we start with answers, not questions.</p></div>
+    <CalendarEmbed client="demo" confirmedPath="/demo/vsl-call/confirmed" class="mt-10" />
+  </Container>
+</Layout>

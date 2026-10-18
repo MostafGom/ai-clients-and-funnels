@@ -1,0 +1,21 @@
+---
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+interface Props { name: string; price: string; period?: string; compareAt?: string; badge?: string; features: string[]; highlight?: boolean; class?: string }
+const { name, price, period, compareAt, badge, features, highlight = false, class: cls = '' } = Astro.props;
+---
+<Card pad="lg" highlight={highlight} class={cls}>
+  {badge && <Badge tone="accent" class="mb-4">{badge}</Badge>}
+  <h3 class="text-h3 font-semibold">{name}</h3>
+  <p class="mt-4 flex items-baseline gap-2">
+    {compareAt && <span class="text-lg text-fg-subtle line-through">{compareAt}</span>}
+    <span class="font-display text-5xl font-semibold">{price}</span>
+    {period && <span class="text-fg-muted">/{period}</span>}
+  </p>
+  <ul class="mt-7 space-y-3 text-fg">
+    {features.map((f) => (
+      <li class="flex gap-3"><svg class="mt-1 size-5 shrink-0 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>{f}</span></li>
+    ))}
+  </ul>
+  <div class="mt-8"><slot /></div>
+</Card>

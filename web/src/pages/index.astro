@@ -1,0 +1,35 @@
+---
+/** Internal directory of every client and funnel. Not indexed, not linked from funnels. */
+import '../styles/base.css';
+import { clients } from '../lib/clients';
+import { FUNNELS, funnelPath } from '../lib/funnels';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Funnel studio — index</title>
+  </head>
+  <body class="p-8 sm:p-14">
+    <h1 class="text-h1 font-semibold">Funnel studio</h1>
+    <p class="mt-2 text-fg-muted">{clients.length} client{clients.length === 1 ? '' : 's'}. Internal page.</p>
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
+      {clients.map((c) => (
+        <section class="rounded-lg border border-border bg-surface p-7 shadow-card">
+          <h2 class="text-h2 font-semibold">{c.name} <span class="text-fg-subtle text-base font-normal">/{c.slug}</span></h2>
+          <p class="mt-1 text-fg-muted">{c.tagline}</p>
+          <p class="mt-4"><a class="text-primary underline underline-offset-4" href={`/${c.slug}/design-system`}>Design system</a></p>
+          <ul class="mt-4 space-y-2">
+            {c.funnels.map((f) => (
+              <li class="flex flex-wrap items-baseline gap-x-3">
+                <a class="font-semibold hover:underline" href={funnelPath(c.slug, f)}>{FUNNELS[f].label}</a>
+                <span class="text-sm text-fg-subtle">{FUNNELS[f].pages.map((p) => p || 'start').join(' → ')}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </body>
+</html>

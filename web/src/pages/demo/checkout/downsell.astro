@@ -1,0 +1,7 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+---
+<Layout client="demo" funnel="checkout" step="downsell" title="One last option" noindex bare>
+  <OneClickOffer client="demo" funnel="checkout" kind="downsell" priceKey="downsell" headline="Not ready for 1:1? Join the group accountability cohort instead." subheadline="Weekly group call for 12 weeks. Same system, shared momentum." price="$197" compareAt="$497" bullets={['12 weekly group calls', 'Hot-seat script reviews', 'Private community', 'Recordings forever']} acceptLabel="Yes, add the cohort for $197" acceptNext="/demo/checkout/thanks" declineNext="/demo/checkout/thanks" />
+</Layout>

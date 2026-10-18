@@ -1,0 +1,33 @@
+---
+/**
+ * Above-the-fold block. Slots: default (CTA/form), "media" (image/video), "proof" (small trust line).
+ */
+import Container from '../ui/Container.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  subheadline?: string;
+  align?: 'center' | 'left';
+  size?: 'display' | 'h1';
+  tone?: 'default' | 'inverse';
+  class?: string;
+}
+const { eyebrow, headline, subheadline, align = 'center', size = 'display', tone = 'default', class: cls = '' } = Astro.props;
+const hasMedia = Astro.slots.has('media');
+---
+<header class:list={['relative overflow-hidden pt-16 pb-14 sm:pt-24 sm:pb-20', tone === 'inverse' ? 'bg-inverse text-inverse-fg' : 'bg-bg text-fg', cls]}>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_30rem_at_50%_-10%,var(--color-primary-soft),transparent)]"></div>
+  <Container size={hasMedia ? 'wide' : 'content'}>
+    <div class:list={[hasMedia ? 'grid items-center gap-12 lg:grid-cols-2' : 'mx-auto max-w-3xl', align === 'center' && !hasMedia ? 'text-center' : 'text-left']}>
+      <div class="fade-up">
+        {eyebrow && <Eyebrow class="mb-5">{eyebrow}</Eyebrow>}
+        <h1 class:list={[size === 'display' ? 'text-display' : 'text-h1', 'font-semibold']}>{headline}</h1>
+        {subheadline && <p class:list={['mt-6 text-lead', tone === 'inverse' ? 'text-inverse-fg/80' : 'text-fg-muted']}>{subheadline}</p>}
+        <div class:list={['mt-9', align === 'center' && !hasMedia ? 'flex flex-col items-center' : '']}><slot /></div>
+        {Astro.slots.has('proof') && <div class="mt-5 text-sm text-fg-muted"><slot name="proof" /></div>}
+      </div>
+      {hasMedia && <div class="fade-up [animation-delay:120ms]"><slot name="media" /></div>}
+    </div>
+  </Container>
+</header>

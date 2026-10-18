@@ -1,0 +1,16 @@
+---
+/** Mobile-first sticky bar that appears after the visitor scrolls past the hero. */
+import Button from '../ui/Button.astro';
+interface Props { href: string; label: string; note?: string; showAfter?: number }
+const { href, label, note, showAfter = 600 } = Astro.props;
+---
+<div class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-border bg-surface/95 p-3 backdrop-blur transition-transform duration-300 ease-out-expo data-[show]:translate-y-0" data-sticky data-after={showAfter}>
+  <div class="mx-auto flex max-w-content items-center justify-between gap-4 px-2">
+    {note && <p class="hidden text-sm text-fg-muted sm:block">{note}</p>}
+    <Button href={href} size="md" class="w-full sm:w-auto">{label}</Button>
+  </div>
+</div>
+<script>
+  const el = document.querySelector<HTMLElement>('[data-sticky]');
+  if (el) { const after = Number(el.dataset.after); const f = () => el.toggleAttribute('data-show', window.scrollY > after); addEventListener('scroll', f, { passive: true }); f(); }
+</script>

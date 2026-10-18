@@ -1,0 +1,56 @@
+---
+/**
+ * Lead capture. Works without JS (plain POST + redirect); with JS it posts via fetch and redirects.
+ * Posts to /api/lead which emails the lead magnet (Resend) and redirects to `redirect`.
+ */
+import Button from '../ui/Button.astro';
+import Input from '../ui/Input.astro';
+interface Props {
+  client: string;
+  funnel: string;
+  redirect: string;
+  buttonLabel?: string;
+  askName?: boolean;
+  magnet?: string;
+  consent?: string;
+  inline?: boolean;
+  class?: string;
+}
+const { client, funnel, redirect, buttonLabel = 'Send me the guide', askName = false, magnet, consent = 'No spam. Unsubscribe anytime.', inline = false, class: cls = '' } = Astro.props;
+---
+<form method="post" action="/api/lead" class:list={['w-full max-w-md', cls]} data-optin>
+  <input type="hidden" name="client" value={client} />
+  <input type="hidden" name="funnel" value={funnel} />
+  <input type="hidden" name="redirect" value={redirect} />
+  {magnet && <input type="hidden" name="magnet" value={magnet} />}
+  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+  <div class:list={[inline ? 'flex flex-col gap-3 sm:flex-row sm:items-end' : 'flex flex-col gap-4']}>
+    {askName && <Input label="First name" name="name" autocomplete="given-name" required class="flex-1" />}
+    <Input label="Email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" class="flex-1" />
+    <Button type="submit" size="lg" full={!inline}>{buttonLabel}</Button>
+  </div>
+  <p class="mt-3 text-xs text-fg-muted">{consent}</p>
+  <p class="mt-3 hidden text-sm text-danger" data-error>Something went wrong. Please try again.</p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-optin]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
+      const err = form.querySelector<HTMLElement>('[data-error]');
+      btn && (btn.disabled = true);
+      err?.classList.add('hidden');
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'failed');
+        window.funnel?.track('lead_captured', { magnet: (form.elements.namedItem('magnet') as HTMLInputElement | null)?.value });
+        location.assign(data.redirect);
+      } catch {
+        err?.classList.remove('hidden');
+        btn && (btn.disabled = false);
+      }
+    });
+  });
+</script>

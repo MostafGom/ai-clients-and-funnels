@@ -1,0 +1,32 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import VideoPlayer from '../../../components/funnel/VideoPlayer.astro';
+import Benefits from '../../../components/funnel/Benefits.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+---
+<Layout client="demo" funnel="vsl-call" step="vsl" title="How solo consultants build a referral-proof pipeline" description="Watch the 12-minute breakdown, then apply for a strategy call.">
+  <Container class="pt-12 sm:pt-16 text-center">
+    <Eyebrow>For consultants billing $5k+/mo</Eyebrow>
+    <h1 class="mx-auto mt-4 max-w-4xl text-h1 font-semibold">The 12-minute breakdown of how we take consultants from “where’s my next client?” to a 90-day booked pipeline.</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-lead text-fg-muted">No ads. No cold DMs. Watch, then apply if it fits.</p>
+    <VideoPlayer provider="youtube" src="dQw4w9WgXcQ" revealAfter={8} class="mx-auto mt-10 max-w-4xl" />
+    <div class="reveal mt-8 flex flex-col items-center" data-reveal>
+      <Button href="/demo/vsl-call/apply" size="xl">Apply for a strategy call</Button>
+      <p class="mt-3 text-sm text-fg-muted">Short application · We reply within 24h</p>
+    </div>
+  </Container>
+  <Section tone="muted" class="mt-16"><Benefits headline="What we cover in the video" items={[
+    { title: 'The pipeline math', body: 'Why 3 conversations a day beats one launch a quarter.' },
+    { title: 'The channel decision', body: 'How to choose one acquisition channel and ignore the rest for 90 days.' },
+    { title: 'The weekly rhythm', body: 'The exact Monday-to-Friday plan our clients run.' },
+  ]} /></Section>
+  <Section><Testimonials headline="Clients who applied" items={[
+    { quote: 'From 1 call a month to 2 a week. Same offer, new rhythm.', name: 'Priya N.', role: 'Ops consultant', result: '8x more calls' },
+    { quote: 'I stopped guessing. Every week has a plan and a scoreboard.', name: 'Marcus T.', role: 'Fractional CFO', result: '$18k months' },
+    { quote: 'Replaced the retainers I lost and then some.', name: 'Elena R.', role: 'Brand strategist', result: '+$7k MRR' },
+  ]} /></Section>
+</Layout>

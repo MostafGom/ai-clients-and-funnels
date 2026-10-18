@@ -1,0 +1,31 @@
+---
+/** Token-driven button. Renders <a> when href is given, otherwise <button>. */
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'accent' | 'inverse';
+  size?: 'md' | 'lg' | 'xl';
+  full?: boolean;
+  name?: string;
+  value?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+const { href, type = 'button', variant = 'primary', size = 'lg', full = false, class: cls = '', ...rest } = Astro.props;
+const base =
+  'inline-flex items-center justify-center gap-2 font-semibold rounded-pill transition-[transform,background-color,box-shadow] duration-200 ease-out-expo active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none select-none';
+const variants = {
+  primary: 'bg-primary text-primary-fg hover:bg-primary-hover shadow-cta',
+  accent: 'bg-accent text-accent-fg hover:brightness-95 shadow-card',
+  secondary: 'bg-surface text-fg border border-border-strong hover:bg-surface-2',
+  ghost: 'text-fg hover:bg-surface-2',
+  inverse: 'bg-inverse-fg text-inverse hover:opacity-90',
+};
+const sizes = { md: 'text-sm px-5 py-2.5', lg: 'text-base px-7 py-3.5', xl: 'text-lg px-9 py-4.5' };
+const classes = [base, variants[variant], sizes[size], full && 'w-full', cls];
+---
+{href ? (
+  <a href={href} class:list={classes} {...rest}><slot /></a>
+) : (
+  <button type={type} class:list={classes} {...rest}><slot /></button>
+)}

@@ -1,0 +1,15 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import ThankYou from '../../../components/funnel/ThankYou.astro';
+import Card from '../../../components/ui/Card.astro';
+---
+<Layout client="demo" funnel="calendar" step="confirmed" title="You’re booked" noindex>
+  <ThankYou eyebrow="Booked" headline="See you on the call." body="Your invite is in your inbox. Do these two things before we meet and we’ll get twice as far.">
+    <Card pad="lg" class="mx-auto max-w-lg text-left">
+      <ol class="list-decimal space-y-3 pl-5 text-fg">
+        <li>List your last 10 clients and how each found you.</li>
+        <li>Write down the one number you’d most like to change this quarter.</li>
+      </ol>
+    </Card>
+  </ThankYou>
+</Layout>

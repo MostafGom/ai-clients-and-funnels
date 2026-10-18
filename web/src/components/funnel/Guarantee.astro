@@ -1,0 +1,16 @@
+---
+import Container from '../ui/Container.astro';
+interface Props { days?: number; headline?: string; body: string }
+const { days = 30, headline, body } = Astro.props;
+---
+<Container size="prose">
+  <div class="flex flex-col items-center gap-6 rounded-xl border-2 border-accent bg-surface p-8 text-center sm:flex-row sm:text-left">
+    <div class="grid size-24 shrink-0 place-items-center rounded-pill bg-accent text-accent-fg">
+      <span class="font-display text-3xl font-semibold leading-none">{days}</span>
+    </div>
+    <div>
+      <h3 class="text-h3 font-semibold">{headline ?? `${days}-day money-back guarantee`}</h3>
+      <p class="mt-2 text-fg-muted">{body}</p>
+    </div>
+  </div>
+</Container>

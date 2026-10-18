@@ -1,0 +1,78 @@
+---
+/**
+ * Upsell / downsell page body. "Yes" posts to /api/upsell, charging the saved payment method
+ * from the Checkout session (?session_id=). "No thanks" is a plain link to the next step.
+ */
+import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import Container from '../ui/Container.astro';
+interface Props {
+  client: string;
+  funnel: string;
+  kind: 'upsell' | 'downsell';
+  priceKey: string;
+  eyebrow?: string;
+  headline: string;
+  subheadline?: string;
+  price: string;
+  compareAt?: string;
+  bullets: string[];
+  acceptLabel?: string;
+  declineLabel?: string;
+  acceptNext: string;
+  declineNext: string;
+}
+const { client, funnel, kind, priceKey, eyebrow, headline, subheadline, price, compareAt, bullets, acceptLabel = 'Yes, add this to my order', declineLabel, acceptNext, declineNext } = Astro.props;
+const decline = declineLabel ?? (kind === 'upsell' ? 'No thanks, I’ll pass on this one-time offer' : 'No thanks, take me to my order');
+---
+<Container size="prose" class="py-14 sm:py-20">
+  <div class="text-center">
+    <Badge tone={kind === 'upsell' ? 'accent' : 'primary'}>{eyebrow ?? (kind === 'upsell' ? 'Wait! Your order is not complete' : 'One last option')}</Badge>
+    <h1 class="mt-5 text-h1 font-semibold">{headline}</h1>
+    {subheadline && <p class="mt-4 text-lead text-fg-muted">{subheadline}</p>}
+  </div>
+  <Card pad="lg" class="mt-10" highlight>
+    <div class="flex items-baseline justify-center gap-3">
+      {compareAt && <span class="text-xl text-fg-subtle line-through">{compareAt}</span>}
+      <span class="font-display text-5xl font-semibold text-fg">{price}</span>
+    </div>
+    <ul class="mt-8 space-y-3">
+      {bullets.map((b) => (
+        <li class="flex gap-3 text-fg">
+          <svg class="mt-1 size-5 shrink-0 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+          <span>{b}</span>
+        </li>
+      ))}
+    </ul>
+    <form method="post" action="/api/upsell" class="mt-8" data-oneclick>
+      <input type="hidden" name="client" value={client} />
+      <input type="hidden" name="funnel" value={funnel} />
+      <input type="hidden" name="kind" value={kind} />
+      <input type="hidden" name="price" value={priceKey} />
+      <input type="hidden" name="next" value={acceptNext} />
+      <input type="hidden" name="decline" value={declineNext} />
+      <input type="hidden" name="session_id" value="" data-session />
+      <Button type="submit" size="xl" full variant={kind === 'upsell' ? 'accent' : 'primary'}>{acceptLabel}</Button>
+      <p class="mt-3 text-center text-xs text-fg-muted">One click. Charged to the card you just used.</p>
+      <p class="mt-3 hidden text-center text-sm text-danger" data-error>We couldn’t process that. Your original order is safe. <a class="underline" href={declineNext}>Continue</a>.</p>
+    </form>
+  </Card>
+  <p class="mt-8 text-center"><a href={declineNext} class="text-sm text-fg-muted underline-offset-4 hover:underline" data-decline>{decline}</a></p>
+</Container>
+
+<script>
+  const sid = new URLSearchParams(location.search).get('session_id') || '';
+  document.querySelectorAll<HTMLInputElement>('[data-session]').forEach((i) => (i.value = sid));
+  // Carry the session through decline links so the downsell can still one-click charge.
+  document.querySelectorAll<HTMLAnchorElement>('[data-decline]').forEach((a) => {
+    if (sid) { const u = new URL(a.href); u.searchParams.set('session_id', sid); a.href = u.toString(); }
+    a.addEventListener('click', () => window.funnel?.track('offer_declined'));
+  });
+  document.querySelectorAll<HTMLFormElement>('form[data-oneclick]').forEach((f) => {
+    f.querySelectorAll<HTMLInputElement>('input[name=next],input[name=decline]').forEach((i) => { if (sid) { const u = new URL(i.value, location.origin); u.searchParams.set('session_id', sid); i.value = u.pathname + u.search; } });
+    f.addEventListener('submit', () => window.funnel?.track('offer_accepted'));
+  });
+  const p = new URLSearchParams(location.search);
+  if (p.get('error')) document.querySelector('[data-error]')?.classList.remove('hidden');
+</script>

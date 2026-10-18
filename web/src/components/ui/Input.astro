@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+interface Props {
+  label: string;
+  name: string;
+  type?: HTMLAttributes<'input'>['type'];
+  required?: boolean;
+  placeholder?: string;
+  autocomplete?: string;
+  hint?: string;
+  class?: string;
+}
+const { label, name, type = 'text', required = false, placeholder, autocomplete, hint, class: cls = '' } = Astro.props;
+const id = `f-${name}`;
+---
+<label for={id} class:list={['block text-left', cls]}>
+  <span class="block text-sm font-medium text-fg mb-1.5">{label}{required && <span aria-hidden="true" class="text-danger"> *</span>}</span>
+  <input
+    id={id}
+    name={name}
+    type={type}
+    required={required}
+    placeholder={placeholder}
+    autocomplete={autocomplete}
+    class="w-full rounded-md border border-border-strong bg-surface px-4 py-3 text-base text-fg placeholder:text-fg-subtle focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft transition"
+  />
+  {hint && <span class="mt-1.5 block text-xs text-fg-muted">{hint}</span>}
+</label>

@@ -1,0 +1,69 @@
+---
+/**
+ * Every funnel page uses this layout. It:
+ *  - scopes the client's design tokens via <html data-client="...">
+ *  - loads the client's fonts
+ *  - writes SEO/OG tags, analytics, and a skip link
+ *  - deliberately has NO site navigation (funnels keep one path forward)
+ */
+import '../styles/base.css';
+import { getClient } from '../lib/clients';
+import { buildTitle } from '../lib/seo';
+import Analytics from '../components/funnel/Analytics.astro';
+import Footer from '../components/funnel/Footer.astro';
+
+interface Props {
+  client: string;
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  /** Funnel + step, sent to analytics as a page property. */
+  funnel?: string;
+  step?: string;
+  /** Hide the footer (e.g. on upsell pages where every pixel is the offer). */
+  bare?: boolean;
+}
+
+const { client: slug, title, description, image, noindex = false, funnel, step, bare = false } = Astro.props;
+const client = getClient(slug);
+const fullTitle = buildTitle(client, title);
+const desc = description ?? client.description;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
+const ogImage = image ? new URL(image, Astro.site ?? Astro.url).toString() : undefined;
+---
+
+<!doctype html>
+<html lang="en" data-client={client.slug}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={client.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <link rel="icon" href={`/${client.slug}/favicon.svg`} type="image/svg+xml" />
+    {client.fonts.stylesheet && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href={client.fonts.stylesheet} />
+      </>
+    )}
+    <Analytics client={client.slug} funnel={funnel} step={step} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 bg-surface px-4 py-2 rounded-md shadow-pop">Skip to content</a>
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    {!bare && <Footer client={client.slug} />}
+  </body>
+</html>

@@ -1,0 +1,12 @@
+---
+import Container from '../ui/Container.astro';
+import Badge from '../ui/Badge.astro';
+interface Props { eyebrow?: string; headline: string; body: string }
+const { eyebrow = 'You’re in', headline, body } = Astro.props;
+---
+<Container size="prose" class="py-16 sm:py-24 text-center">
+  <Badge tone="success">{eyebrow}</Badge>
+  <h1 class="mt-5 text-h1 font-semibold">{headline}</h1>
+  <p class="mt-5 text-lead text-fg-muted">{body}</p>
+  <div class="mt-10"><slot /></div>
+</Container>

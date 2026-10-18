@@ -1,0 +1,53 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Hero from '../../../components/funnel/Hero.astro';
+import Button from '../../../components/ui/Button.astro';
+import Section from '../../../components/ui/Section.astro';
+import Container from '../../../components/ui/Container.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import Benefits from '../../../components/funnel/Benefits.astro';
+import Steps from '../../../components/funnel/Steps.astro';
+import PriceCard from '../../../components/funnel/PriceCard.astro';
+import Guarantee from '../../../components/funnel/Guarantee.astro';
+import Testimonials from '../../../components/funnel/Testimonials.astro';
+import FAQ from '../../../components/funnel/FAQ.astro';
+import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+---
+<Layout client="demo" funnel="checkout" step="sales" title="The 90-Day Pipeline System" description="The complete system solo consultants use to book 3 to 5 qualified calls a week. Course, scripts, tracker, accountability.">
+  <Hero eyebrow="The 90-Day Pipeline System" headline="Never wonder where your next client is coming from again." subheadline="A 90-day system, not a course you watch once. Weekly rhythm, 31 scripts, a tracker, and accountability until it sticks.">
+    <Button href="#pricing" size="xl">Get the system · $497</Button>
+    <Fragment slot="proof">4,200+ consultants · 4.9/5 from 612 reviews · 30-day guarantee</Fragment>
+  </Hero>
+  <Section tone="muted"><Benefits eyebrow="The problem" headline="Feast-or-famine is a rhythm problem, not a talent problem" items={[
+    { title: 'You sell when you’re empty', body: 'Outreach only happens when a project ends, so the pipeline is always three months behind.' },
+    { title: 'Referrals are not a strategy', body: 'They’re great. They’re also random. You can’t plan a quarter on random.' },
+    { title: 'Every “system” is a 40-hour course', body: 'You need a weekly plan that fits around client work, not another thing to finish.' },
+  ]} /></Section>
+  <Section><Steps eyebrow="The system" headline="Three hours a week, ninety days, one booked pipeline" items={[
+    { title: 'Week 1–2: Pick the channel', body: 'The decision framework and the ten-client audit. You choose one channel to own.' },
+    { title: 'Week 3–8: Run the rhythm', body: 'The Monday-to-Friday plan, the 31 scripts, and the tracker. Three hours a week.' },
+    { title: 'Week 9–12: Compound', body: 'Turn calls into referrals on purpose, and set the quarter’s targets from real numbers.' },
+  ]} /></Section>
+  <Section tone="muted"><Testimonials headline="What students report" items={[
+    { quote: 'Week 6: first fully booked week of my career.', name: 'Priya N.', role: 'Ops consultant', result: 'Booked out' },
+    { quote: 'The scripts alone paid for it in the first follow-up I sent.', name: 'Marcus T.', role: 'Fractional CFO', result: 'ROI in 1 week' },
+    { quote: 'Finally a system, not a motivational speech.', name: 'Elena R.', role: 'Brand strategist', result: '+$7k MRR' },
+  ]} /></Section>
+  <Section id="pricing">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center"><Eyebrow class="mb-4">Pricing</Eyebrow><h2 class="text-h2 font-semibold">One payment. Lifetime access.</h2></div>
+      <div class="mx-auto mt-12 grid max-w-4xl gap-6 lg:grid-cols-2">
+        <PriceCard name="Self-paced" price="$497" compareAt="$997" badge="Most popular" highlight features={['6-module course (3h 40m)', '31 outreach + follow-up scripts', 'Pipeline tracker (Notion + Sheets)', '12 weekly email check-ins', 'Lifetime updates']}><Button href="/demo/checkout/checkout" full size="xl">Get instant access</Button></PriceCard>
+        <PriceCard name="With coaching" price="$1,494" features={['Everything in Self-paced', '6 × 45-min private calls', 'Slack access, 48h response', 'Script reviews before you send']}><Button href="/demo/checkout/checkout?plan=coaching" full variant="secondary" size="xl">Apply for coaching</Button></PriceCard>
+      </div>
+    </Container>
+  </Section>
+  <Section tone="muted"><Guarantee days={30} body="Run the first two modules. If you don’t have a weekly rhythm you believe in, email us for a full refund. No forms, no calls." /></Section>
+  <Section><FAQ items={[
+    { q: 'How much time does it take each week?', a: 'About 3 hours, split across five short blocks. Designed around a full client load.' },
+    { q: 'Does it work for my niche?', a: 'If you sell expertise to businesses and your clients talk to each other, yes. Over 40 niches so far.' },
+    { q: 'When do I get access?', a: 'Immediately after payment. Login details arrive by email within a minute.' },
+    { q: 'Is there a payment plan?', a: 'Yes. Choose 3 × $179 at checkout.' },
+  ]} /></Section>
+  <StickyCTA href="/demo/checkout/checkout" label="Get the system · $497" note="30-day money-back guarantee" />
+</Layout>

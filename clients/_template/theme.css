@@ -1,0 +1,22 @@
+/* Client: <slug> — <Client Name>. Source of truth: clients/<slug>/brand.md.
+   Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/<slug>.css */
+:root[data-client='<slug>'] {
+  --color-bg: oklch(98.5% 0.004 90);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-2: oklch(96% 0.006 90);
+  --color-inverse: oklch(18% 0.02 270);
+  --color-inverse-fg: oklch(97% 0.005 90);
+  --color-fg: oklch(20% 0.02 270);
+  --color-fg-muted: oklch(45% 0.02 270);
+  --color-fg-subtle: oklch(62% 0.015 270);
+  --color-border: oklch(90% 0.008 90);
+  --color-border-strong: oklch(62% 0.012 90);
+  --color-primary: oklch(52% 0.2 262);
+  --color-primary-hover: oklch(46% 0.2 262);
+  --color-primary-fg: oklch(99% 0 0);
+  --color-primary-soft: oklch(94% 0.04 262);
+  --color-accent: oklch(78% 0.17 75);
+  --color-accent-fg: oklch(22% 0.05 75);
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}

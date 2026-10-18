@@ -1,0 +1,20 @@
+---
+import { getClient } from '../../lib/clients';
+import Container from '../ui/Container.astro';
+interface Props { client: string }
+const client = getClient(Astro.props.client);
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-border py-10 text-sm text-fg-muted">
+  <Container>
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} {client.legalName}. All rights reserved.</p>
+      <p class="flex gap-5">
+        <a class="hover:text-fg" href={`/${client.slug}/privacy`}>Privacy</a>
+        <a class="hover:text-fg" href={`/${client.slug}/terms`}>Terms</a>
+        <a class="hover:text-fg" href={`mailto:${client.supportEmail}`}>Contact</a>
+      </p>
+    </div>
+    <slot />
+  </Container>
+</footer>

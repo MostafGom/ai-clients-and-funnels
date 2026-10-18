@@ -1,0 +1,12 @@
+---
+interface Props { tone?: 'surface' | 'muted' | 'inverse' | 'outline'; pad?: 'sm' | 'md' | 'lg'; class?: string; highlight?: boolean }
+const { tone = 'surface', pad = 'md', class: cls = '', highlight = false } = Astro.props;
+const tones = {
+  surface: 'bg-surface text-fg shadow-card border border-border',
+  muted: 'bg-surface-2 text-fg',
+  inverse: 'bg-inverse text-inverse-fg',
+  outline: 'border border-border-strong text-fg',
+};
+const pads = { sm: 'p-5', md: 'p-7 sm:p-8', lg: 'p-8 sm:p-12' };
+---
+<div class:list={['rounded-lg', tones[tone], pads[pad], highlight && 'ring-2 ring-primary shadow-pop', cls]}><slot /></div>

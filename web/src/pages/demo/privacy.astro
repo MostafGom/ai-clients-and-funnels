@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/FunnelLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import { getClient } from '../../lib/clients';
+const client = getClient('demo');
+---
+<Layout client="demo" title="Privacy policy" noindex>
+  <Container size="prose" class="py-16 prose-headings:font-display">
+    <h1 class="text-h1 font-semibold">Privacy policy</h1>
+    <p class="mt-6 text-fg-muted">Placeholder. Replace with {client.legalName}'s reviewed Privacy policy before launch.</p>
+  </Container>
+</Layout>

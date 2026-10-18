@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/FunnelLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import { getClient } from '../../lib/clients';
+const client = getClient('demo');
+---
+<Layout client="demo" title="Terms of service" noindex>
+  <Container size="prose" class="py-16 prose-headings:font-display">
+    <h1 class="text-h1 font-semibold">Terms of service</h1>
+    <p class="mt-6 text-fg-muted">Placeholder. Replace with {client.legalName}'s reviewed Terms of service before launch.</p>
+  </Container>
+</Layout>
