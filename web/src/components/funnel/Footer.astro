@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 <footer class="border-t border-border py-10 text-sm text-fg-muted">
   <Container>
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <p>&copy; {year} {client.legalName}. All rights reserved.</p>
+      <p>&copy; {year} {client.legalName.replace(/\.$/, '')}. All rights reserved.</p>
       <p class="flex gap-5">
         <a class="hover:text-fg" href={`/${client.slug}/privacy`}>Privacy</a>
         <a class="hover:text-fg" href={`/${client.slug}/terms`}>Terms</a>

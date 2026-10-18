@@ -5,22 +5,22 @@
  */
 interface Props { heading?: string; class?: string; compact?: boolean }
 const { heading = 'How many sessions a week do you actually need?', class: cls = '', compact = false } = Astro.props;
-const field = 'w-full rounded-md border border-border-strong bg-surface px-4 py-3 text-base text-fg focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft';
+const field = 'w-full rounded-md border border-border-strong bg-bg px-4 py-3 text-base font-semibold text-fg focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary-soft';
 ---
-<div class:list={['planner rounded-lg bg-surface p-6 text-fg shadow-pop sm:p-8', cls]} data-planner>
-  <h3 class:list={['font-display font-semibold', compact ? 'text-h3' : 'text-h2']}>{heading}</h3>
-  <div class="mt-5 grid gap-4 sm:grid-cols-3">
-    <label class="block"><span class="mb-1.5 block text-sm font-semibold">Days you can train</span>
+<div class:list={['planner relative rounded-lg border-t-4 border-primary bg-surface p-6 text-fg shadow-pop sm:p-8', cls]} data-planner>
+  <h3 class:list={['font-display font-extrabold uppercase', compact ? 'text-h3' : 'text-h2']}>{heading}</h3>
+  <div class:list={['mt-5 grid gap-4', compact ? 'grid-cols-[5.5rem_minmax(0,1fr)] sm:grid-cols-[5.5rem_minmax(0,1.3fr)_minmax(0,1fr)]' : 'sm:grid-cols-3']}>
+    <label class="block"><span class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-fg-muted">{compact ? 'Days' : 'Days you can train'}</span>
       <select name="days" class={field}><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 or more</option></select></label>
-    <label class="block"><span class="mb-1.5 block text-sm font-semibold">Equipment</span>
+    <label class="block"><span class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-fg-muted">Equipment</span>
       <select name="kit" class={field}><option value="gym">Full gym</option><option value="rack" selected>Home rack + barbell</option><option value="db">Dumbbells only</option><option value="hotel">Hotel gym</option></select></label>
-    <label class="block"><span class="mb-1.5 block text-sm font-semibold">Goal</span>
+    <label class:list={['block', compact && 'col-span-2 sm:col-span-1']}><span class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-fg-muted">Goal</span>
       <select name="goal" class={field}><option value="strong" selected>Stronger</option><option value="lean">Leaner</option><option value="pain">Train around a niggle</option></select></label>
   </div>
-  <div class="mt-6 rounded-md bg-inverse p-5 text-inverse-fg" aria-live="polite">
-    <p class="text-sm text-accent-2">Your week</p>
-    <p class="font-display text-4xl font-semibold" data-out-head>3 sessions · 45 minutes each</p>
-    <p class="mt-2 text-sm text-inverse-fg/85" data-out-body>Squat, bench, row on day one. Deadlift, press, pull-up on day two. Repeat day one. Two days of recovery between heavy days. That is the whole week.</p>
+  <div class="mt-6 rounded-md bg-primary p-5 text-primary-fg" aria-live="polite">
+    <p class="text-xs font-semibold uppercase tracking-[0.14em]">Your week</p>
+    <p class="font-display text-4xl font-extrabold uppercase leading-none sm:text-5xl" data-out-head>3 sessions · 45 minutes each</p>
+    <p class="mt-3 text-sm font-medium" data-out-body>Squat, bench, row on day one. Deadlift, press, pull-up on day two. Repeat day one. Two days of recovery between heavy days. That is the whole week.</p>
   </div>
   <div class="mt-5"><slot /></div>
 </div>

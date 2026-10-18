@@ -9,20 +9,20 @@ const programUrl = 'https://app.forgefitness.example.com'; // [CLIENT] member-ar
   <Container size="wide" class="py-12 sm:py-16">
     <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
       <div>
-        <p class="text-base font-semibold text-success">You’re in</p>
-        <h1 class="mt-2 text-h1 font-semibold">Welcome to Forge 12.<br /><span class="italic">Session one is 45 minutes.</span></h1>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-success">You’re in</p>
+        <h1 class="mt-3 text-h1 font-extrabold">Welcome to Forge 12. <span class="text-primary">Session one is 45 minutes.</span></h1>
         <p class="mt-5 text-lead text-fg-muted">You watched the training, you bought the program. Your receipt and login are on their way. Here’s the next ten minutes.</p>
         <ol class="mt-8 space-y-4 text-lg">
-          {['Set your password.', 'Pick your equipment track.', 'Watch the six lifts. Fourteen minutes.', 'Plan your week on the right and put session one in your calendar.'].map((t, i) => <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse font-display text-lg text-accent">{i + 1}</span>{t}</li>)}
+          {['Set your password.', 'Pick your equipment track.', 'Watch the six lifts. Fourteen minutes.', 'Plan your week on the right and put session one in your calendar.'].map((t, i) => <li class="flex gap-3"><span class="grid size-9 shrink-0 place-items-center rounded-sm bg-primary font-display text-xl font-extrabold text-primary-fg">{i + 1}</span>{t}</li>)}
         </ol>
         <Button href={programUrl} size="xl" class="mt-9" data-cta="open-session-1">Open session one</Button>
-        <h2 class="mt-12 text-h3 font-semibold">What arrives when</h2>
-        <dl class="mt-4 grid gap-3 text-fg sm:grid-cols-[auto_1fr] sm:gap-x-6">
-          <dt class="font-semibold">Now</dt><dd>Your login.</dd>
-          <dt class="font-semibold">Tomorrow</dt><dd>Session-one review: what should be sore and what shouldn’t.</dd>
-          <dt class="font-semibold">Day 3</dt><dd>The progression rule, explained once.</dd>
-          <dt class="font-semibold">Week 2</dt><dd>Your first check-in. Send the log.</dd>
-          <dt class="font-semibold">Week 7</dt><dd>The deload, before you need it.</dd>
+        <h2 class="mt-12 text-h3 font-extrabold">What arrives when</h2>
+        <dl class="mt-4 grid gap-3 border-t border-border pt-4 text-fg sm:grid-cols-[auto_1fr] sm:gap-x-6">
+          <dt class="font-display text-xl font-bold uppercase text-primary">Now</dt><dd>Your login.</dd>
+          <dt class="font-display text-xl font-bold uppercase text-primary">Tomorrow</dt><dd>Session-one review: what should be sore and what shouldn’t.</dd>
+          <dt class="font-display text-xl font-bold uppercase text-primary">Day 3</dt><dd>The progression rule, explained once.</dd>
+          <dt class="font-display text-xl font-bold uppercase text-primary">Week 2</dt><dd>Your first check-in. Send the log.</dd>
+          <dt class="font-display text-xl font-bold uppercase text-primary">Week 7</dt><dd>The deload, before you need it.</dd>
         </dl>
       </div>
       <SessionPlanner heading="Your week" compact>

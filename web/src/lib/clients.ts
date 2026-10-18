@@ -53,15 +53,15 @@ export const clients: Client[] = [
     slug: 'forge',
     name: 'Forge Fitness Online',
     legalName: 'Forge Fitness Online Ltd.',
-    tagline: 'Strength, unhurried. Three sessions a week for men who run things.',
+    tagline: 'Stronger at 45 than you were at 30. Three sessions a week, six lifts, 12 weeks.',
     description:
       'Forge Fitness Online is the 12-week strength program for men 35–50: three 45-minute sessions a week, six lifts, progression that respects your calendar and your joints.',
     supportEmail: 'daniel@forgefitness.example.com',
     fonts: {
-      display: 'Cormorant Garamond',
-      body: 'Manrope',
+      display: 'Barlow Condensed',
+      body: 'Inter Tight',
       stylesheet:
-        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter+Tight:wght@400;500;600;700&display=swap',
     },
     calendar: { provider: 'cal', url: 'https://cal.com/forge-fitness/strength-audit' },
     leadMagnet: { title: 'The 3-Session Week', downloadUrl: '/forge/assets/three-session-week.pdf' },

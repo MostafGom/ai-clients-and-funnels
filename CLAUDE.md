@@ -73,6 +73,9 @@ which charges the saved card → `/downsell` → `/thanks`.
 | `/design <slug> [init\|tokens\|components\|review]` | brand brief → tokens → gallery → review |
 | `/new-funnel <slug> <type>` | copy blueprint, write copy brief, generate pages |
 | `/funnel-review <slug> <funnel>` | Playwright pass: brand, CRO, a11y, performance |
+| `/art-direction <slug> [moodboard\|plan\|check <funnel>]` | category energy, mood board, section-pattern library, anti-template checklist |
+| `/conversion-copy <slug> <funnel> [write\|sharpen]` | direct-response copy craft on top of `funnels/playbooks/` |
+| `/photos <slug> "<brief>"` | Pexels search → contact sheet → download + credits (needs `PEXELS_API_KEY` in `web/.dev.vars`) |
 | `/deploy` | build + `wrangler deploy` |
 
 Plugin skills worth reaching for: `frontend-design` (visual quality), `design:design-critique`,
@@ -92,5 +95,7 @@ pnpm deploy              # build + wrangler deploy  (pnpm cf:login first)
 pnpm pdf                 # render /lumen/reset/ to public/lumen/assets/bedtime-reset.pdf (re-run after editing the guide)
 pnpm images              # render share images (/lumen/og/<funnel>) + ebook cover to public/lumen/{og,assets}
 node ../design/contrast.mjs src/styles/clients/<slug>.css
+node scripts/photos.mjs search "<query>" | get <slug> <name> <id> "<used as>"   # Pexels
+node tests/review.mjs <slug> <funnel>   # harness: h1, overflow, labels, focus, CTA crowding
 ```
 Local secrets: copy `web/.dev.vars.example` → `web/.dev.vars`. Production: `pnpm wrangler secret put <NAME>`.

@@ -1,0 +1,17 @@
+---
+/** The offer's core constraints as giant numerals. items: [{ n: '3', unit: 'sessions', line: '…' }] */
+interface Item { n: string; unit: string; line: string }
+interface Props { items: Item[]; class?: string }
+const { items, class: cls = '' } = Astro.props;
+---
+<dl class:list={['grid grid-cols-2 border-t border-l border-border lg:grid-cols-4', cls]}>
+  {items.map((it, i) => (
+    <div class="group relative border-r border-b border-border p-5 sm:p-8">
+      <dt class="flex items-baseline gap-2 font-display font-extrabold uppercase leading-[0.8]">
+        <span class:list={['text-[clamp(5rem,3rem+9vw,11rem)] tabular-nums', i === 0 ? 'text-primary' : 'text-fg']}>{it.n}</span>
+        <span class="text-xl text-fg-muted sm:text-3xl">{it.unit}</span>
+      </dt>
+      <dd class="mt-4 max-w-[26ch] text-sm text-fg-muted sm:text-base">{it.line}</dd>
+    </div>
+  ))}
+</dl>

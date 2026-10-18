@@ -43,7 +43,9 @@ for (const page of pages) {
         autoplayIframes: q('iframe[src*="autoplay=1"], iframe[src*="autoPlay=true"]').length,
         imgsNoSize: q('img').filter((i) => !i.getAttribute('width') && !i.getAttribute('height') && !i.className.includes('absolute')).length,
         preconnect: !!document.querySelector('link[rel=preconnect][href*="fonts.gstatic"]') || !document.querySelector('link[href*="fonts.googleapis"]'),
-        ctas: q('main a, main button').filter((el) => /(^|\s)bg-(primary|accent)(\s|$)/.test(el.className) && el.offsetParent !== null).map((el) => el.textContent.trim().replace(/\s+/g, ' ')),
+        ctas: q('main a, main button').filter((el) => /(^|\s)bg-(primary|accent)(\s|$)/.test(el.className) && el.offsetParent !== null && !el.closest('[data-sticky]')).map((el) => el.textContent.trim().replace(/\s+/g, ' ')),
+        // "One primary CTA per screen": pairs of primary CTAs closer than one viewport height (sticky bar excluded).
+        ctaCrowding: (() => { const ys = q('main a, main button').filter((el) => /(^|\s)bg-(primary|accent)(\s|$)/.test(el.className) && el.offsetParent !== null && !el.closest('[data-sticky], form')).map((el) => el.getBoundingClientRect().top + scrollY).sort((a, b) => a - b); return ys.filter((y, i) => i && y - ys[i - 1] < innerHeight * 0.8).length; })(),
         headline: document.querySelector('main h1')?.textContent.trim().replace(/\s+/g, ' '),
         meta: document.querySelector('meta[name=description]')?.content?.length ?? 0,
         noindex: !!document.querySelector('meta[name=robots][content*=noindex]'),
@@ -82,7 +84,7 @@ for (const f of findings) {
   if (f.rawColors) issues.push(`${f.rawColors} inline raw colors`);
   if (f.console.length) issues.push(`console: ${f.console.join(' | ').slice(0, 200)}`);
   if (f.focusIssues.length) issues.push(`no visible focus: ${f.focusIssues.join(', ')}`);
-  if (f.ctas.length > 3) issues.push(`${f.ctas.length} primary/accent CTAs`);
+  if (f.ctaCrowding) issues.push(`${f.ctaCrowding} primary CTA(s) within one screen of another`);
   if (!f.noindex && f.meta < 50) issues.push(`meta description ${f.meta} chars`);
   console.log(`\n${f.path} [${f.vp}] ${issues.length ? '✗' : '✓'}`);
   console.log(`  h1: ${f.headline}`);

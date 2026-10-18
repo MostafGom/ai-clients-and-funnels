@@ -1,0 +1,26 @@
+---
+/**
+ * Photo hero. Desktop: the photo covers the section and an iron scrim carries the copy side.
+ * Mobile: the photo sits on top (46svh) and the copy overlaps its faded bottom edge.
+ * Slots: default (copy: kicker, h1, sub, CTA), `aside` (optional right column, e.g. a planner), `strip` (proof strip pinned to the bottom edge).
+ */
+interface Props { src: string; alt?: string; focus?: string; side?: 'left' | 'right'; class?: string; minH?: string }
+const { src, alt = '', focus = '50% 30%', side = 'left', class: cls = '', minH = 'min-h-[88svh]' } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+<section class:list={['relative isolate flex flex-col overflow-hidden bg-bg text-fg', minH, cls]}>
+  <div class="relative -z-20 h-[46svh] min-h-[300px] lg:absolute lg:inset-0 lg:h-auto">
+    <img src={src} alt={alt} class="size-full object-cover" style={`object-position:${focus}`} fetchpriority="high" decoding="async" width="1600" height="2400" />
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-bg)_30%,transparent)_0%,transparent_30%,var(--color-bg)_100%)] lg:hidden" aria-hidden="true"></div>
+  </div>
+  <div class:list={['absolute inset-0 -z-10 hidden lg:block', side === 'left'
+    ? 'bg-[linear-gradient(90deg,var(--color-bg)_0%,color-mix(in_oklab,var(--color-bg)_88%,transparent)_38%,color-mix(in_oklab,var(--color-bg)_20%,transparent)_75%,transparent_100%)]'
+    : 'bg-[linear-gradient(270deg,var(--color-bg)_0%,color-mix(in_oklab,var(--color-bg)_88%,transparent)_38%,color-mix(in_oklab,var(--color-bg)_20%,transparent)_75%,transparent_100%)]']} aria-hidden="true"></div>
+  <div class="mx-auto -mt-[16svh] flex w-full max-w-wide flex-1 items-center px-5 pb-12 sm:px-8 lg:mt-0 lg:pt-24">
+    <div class:list={['grid w-full items-center gap-10', hasAside ? 'lg:grid-cols-[1.05fr_minmax(0,540px)]' : '', side === 'right' && !hasAside && 'justify-items-end']}>
+      <div class:list={['max-w-[44rem]', side === 'right' && 'lg:order-2']}><slot /></div>
+      {hasAside && <div><slot name="aside" /></div>}
+    </div>
+  </div>
+  {Astro.slots.has('strip') && <div class="relative border-t border-border/80 bg-bg/80 backdrop-blur-sm"><div class="mx-auto max-w-wide px-5 py-4 sm:px-8"><slot name="strip" /></div></div>}
+</section>

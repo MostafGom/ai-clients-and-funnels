@@ -9,7 +9,7 @@ I'm Daniel Reyes. I was a physiotherapist before I was a strength coach, and I'v
 Stay to the end. The last part is a guarantee I don't think anyone else in this space will make.
 
 ## [0:40] The room
-> art: monogram
+> art: numbers
 For the first years of my career, men came to my clinic with backs that hurt and a story that was always the same.
 They'd started a program. A good one, on paper. Six days, two hours, a split for every muscle.
 Week one went well. Week two went well. Week three, the back. Or the shoulder. Or the week itself, with the calls and the kids.
@@ -19,7 +19,7 @@ Three sessions. A handful of lifts. The weight on the bar went up a little at a 
 That difference is the whole program I'm going to show you.
 
 ## [2:00] The lie
-> art: monogram
+> art: numbers
 Here's what you've been told. Results come from how much you do. More days, more sets, more sweat.
 That's true for a twenty-four-year-old with nothing else on. It is false for you, and it has been failing you for a decade.
 The failure feels like a character flaw. It isn't. It's arithmetic. A six-day plan on a three-day life collapses in week three, every time.
@@ -59,7 +59,7 @@ Sold separately that's four hundred and fifty-one dollars. A trainer three times
 Forge 12 is a hundred and ninety-seven dollars. Once. Every track, every future cycle.
 
 ## [9:30] The guarantee
-> art: monogram
+> art: numbers
 Here's the part I said nobody else makes.
 Run weeks one to four as written and log your lifts. If all six haven't gone up by the end of week four, send me the log within forty-five days and I refund you in full. No call, no form.
 The bar either went up or it didn't. I'm comfortable with that bet because I've watched it go up for fifteen years.

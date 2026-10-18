@@ -5,6 +5,8 @@ RESEND_API_KEY=re_xxx
 RESEND_FROM="Demo <hello@demo.example.com>"
 PUBLIC_POSTHOG_KEY=
 PUBLIC_SITE_URL=http://localhost:4321
+# Photo sourcing for `node scripts/photos.mjs` (free key: https://www.pexels.com/api/)
+PEXELS_API_KEY=
 # Per-client Stripe prices: STRIPE_PRICE_<CLIENT>_<KEY>  (client slug uppercased, dashes -> underscores)
 STRIPE_PRICE_LUMEN_MAIN=price_xxx
 STRIPE_PRICE_LUMEN_BUMP=price_xxx

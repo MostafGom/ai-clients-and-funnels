@@ -29,3 +29,8 @@ Kicker: You watched the training. Session one is tonight. Testimonial swapped: "
 As the checkout funnel; thanks first line: "You watched the training, you bought the program. Session one is 45 minutes."
 ## Emails
 Shared with the checkout funnel.
+
+## Iron & Chalk pass (Oct 2026)
+- Same VSL headline, set as "The least training that makes a 45-year-old STRONGER." Results ticker under the stage.
+- Revealed order: number wall ("Everything from the training, programmed.") → three ledgers ("Twelve weeks later") → offer block (stack, price, guarantee) → FAQ → photo close ("Your first session is tonight.").
+- VSL art key `monogram` renamed `numbers` (renders 3×45).

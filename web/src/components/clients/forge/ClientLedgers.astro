@@ -1,0 +1,18 @@
+---
+/** Three clients, week 1 → week 12, as ledger cards. `rows` limits the rows per card; `clients` overrides the default three. */
+import LedgerCard from './art/LedgerCard.astro';
+import Avatar from './art/scenes/Avatar.astro';
+import { CLIENTS } from './data';
+type Client = (typeof CLIENTS)[number];
+interface Props { rows?: number; clients?: Client[]; class?: string }
+const { rows = 4, clients = CLIENTS, class: cls = '' } = Astro.props;
+---
+<div class:list={['grid gap-5 lg:grid-cols-3', cls]}>
+  {clients.map((c, i) => (
+    <article class:list={['flex flex-col rounded-lg bg-surface p-6 shadow-card sm:p-7', i === 0 && 'border-t-4 border-primary']}>
+      <div class="flex items-center gap-4"><Avatar who={c.who} size={56} /><div><p class="font-display text-3xl font-extrabold uppercase leading-none">{c.who}</p><p class="mt-1 text-sm text-fg-muted">{c.meta}</p></div></div>
+      <LedgerCard class="mt-5" rows={c.rows.slice(0, rows)} />
+      <blockquote class="mt-auto pt-6 text-lg font-medium">“{c.q}”</blockquote>
+    </article>
+  ))}
+</div>

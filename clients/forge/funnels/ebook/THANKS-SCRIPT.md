@@ -1,7 +1,7 @@
 # Thanks-page note — about 30 seconds (ScriptedVSL, no reveal)
 
 ## [0:00] Session one
-> art: monogram
+> art: plates
 Daniel here. The guide is on its way. One thing for session one.
 Start lighter than you think. Page six has the weights. They'll feel easy.
 Week one's job is a clean pattern, not a number. The rule adds the weight from week two.

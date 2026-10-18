@@ -1,267 +1,181 @@
 ---
-/* Forge · long-form sales page. Copy: clients/forge/funnels/checkout/COPY.md · Design: clients/forge/DESIGN-PLAN.md */
+/* Forge · long-form sales page. Copy: clients/forge/funnels/checkout/COPY.md · Section map: clients/forge/DESIGN-PLAN.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
-import OnyxBand from '../../../components/clients/forge/OnyxBand.astro';
-import StackTable from '../../../components/clients/forge/StackTable.astro';
+import IronBand from '../../../components/clients/forge/IronBand.astro';
+import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import NumberWall from '../../../components/clients/forge/NumberWall.astro';
+import ResultsTicker from '../../../components/clients/forge/ResultsTicker.astro';
+import CoachStory from '../../../components/clients/forge/CoachStory.astro';
+import ClientLedgers from '../../../components/clients/forge/ClientLedgers.astro';
+import OfferBlock from '../../../components/clients/forge/OfferBlock.astro';
 import FaqList from '../../../components/clients/forge/FaqList.astro';
-import Rule from '../../../components/clients/forge/art/Rule.astro';
-import Plates from '../../../components/clients/forge/art/Plates.astro';
 import LiftLedger from '../../../components/clients/forge/art/LiftLedger.astro';
-import LedgerCard from '../../../components/clients/forge/art/LedgerCard.astro';
+import PlateLoader from '../../../components/clients/forge/art/PlateLoader.astro';
 import WeekRibbon from '../../../components/clients/forge/art/WeekRibbon.astro';
-import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
-import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
 import { PHOTOS } from '../../../components/clients/forge/photos';
+import { CTA, GUARANTEE_SHORT, MARK, MECHANISM, PHASES, RESULTS_12 } from '../../../components/clients/forge/data';
 
-const CTA = 'Start Forge 12 · $197';
 const checkout = '/forge/checkout/checkout';
-const stack = [
-  { name: 'Forge 12: the 12-week program, three equipment tracks (gym, home rack, dumbbells or hotel)', why: 'The outcome. Three sessions a week, programmed for twelve weeks', value: '$147' },
-  { name: 'The six lifts, filmed', why: 'Form cues for stiff hips and desk shoulders', value: '$47' },
-  { name: 'The progression rule and the logbook', why: 'Removes every decision except showing up', value: '$27' },
-  { name: 'The 8-minute warm-up and the week-7 deload', why: 'Fewer setbacks, so the twelve weeks finish', value: '$27' },
-  { name: 'Weekly check-in for 12 weeks + private Q&A thread with Daniel', why: 'A coach who asks for your log', value: '$120' },
-  { name: 'The “train around” table: backs, shoulders, knees', why: 'For the old injury', value: '$37', bonus: true },
-  { name: 'The Hotel Gym Card', why: 'The same session on a different page', value: '$19', bonus: true },
-  { name: 'The Plate Rule', why: 'Eating for strength without a diet, on one page', value: '$27', bonus: true },
-];
-const phases = [
-  { title: 'Foundation', weeks: [1, 4] as [number, number], body: 'Learn the six lifts with the filmed cues, find your starting weights, run the rule. Most men add 10 to 20 kg to their squat here.' },
-  { title: 'Build', weeks: [5, 8] as [number, number], body: 'Loads climb. Week 7 is a programmed deload so the body consolidates instead of breaking. Where other programs lose people, this one lightens.' },
-  { title: 'Consolidate', weeks: [9, 12] as [number, number], body: 'Heavier singles once a week, the assistance work that protects joints, and a week-12 test so you have numbers, not feelings.' },
+const label = 'text-xs font-semibold uppercase tracking-[0.18em]';
+const myths = [
+  { name: 'The six-day split', truth: 'Built for a man who recovers by morning. On your calendar it collapses by week three, and so does your confidence.' },
+  { name: 'The high-intensity app', truth: 'Twenty minutes of jumping on a cranky knee. It burns, it sweats, it makes nothing stronger.' },
+  { name: '“Just walk more”', truth: 'Good advice, and not a strength program. Walking won’t fix the back that complains at the suitcase.' },
+  { name: 'The trainer you couldn’t schedule', truth: 'The work was right. The appointment wasn’t. A program should fit around a 7 a.m. call.' },
 ];
 const faq = [
   { q: 'How long does each session take?', a: 'Forty-five minutes including the warm-up. Two main lifts, one assistance lift. If you have 35, the program tells you what to cut.' },
   { q: 'I have an old back, shoulder or knee.', a: 'The “train around” table swaps the lift that bothers you for one that trains the same pattern without the pain, and the warm-up is built around desk shoulders and stiff hips. If a doctor has told you not to lift, follow the doctor.' },
   { q: 'I only have a home rack, or I travel.', a: 'Three equipment tracks: full gym, home rack and barbell, dumbbells or hotel gym. The Hotel Gym Card is the same session on a different page.' },
-  { q: 'I always quit at week three.', a: 'Week three is where volume-based programs collapse. Forge 12 adds load only when a set is clean and deloads in week seven, so the program gets lighter exactly when other programs get heavier. The weekly check-in asks for your log, which is harder to ignore than an app.' },
-  { q: 'Do I have to diet?', a: 'No. The Plate Rule is one page: protein at each meal, a plate that’s half vegetables, and the one change that matters for strength. Leaner comes from the sessions and the rule, not from counting.' },
+  { q: 'I always quit at week three.', a: 'Week three is where volume-based programs collapse. Forge 12 adds load only when a set is clean and deloads in week seven, so it gets lighter exactly when other programs get heavier. The weekly check-in asks for your log, which is harder to ignore than an app.' },
+  { q: 'Do I have to diet?', a: 'No. The Plate Rule is one page: protein at each meal, a plate that’s half vegetables, and the one change that matters for strength.' },
   { q: '$197 is more than an app.', a: 'It’s less than three sessions with a trainer, and it includes twelve weeks of check-ins and a guarantee that the bar goes up. If it doesn’t, it’s free.' },
   { q: 'When do I get access?', a: 'Immediately. The first session can be tonight; it’s 45 minutes.' },
   { q: 'Is Daniel qualified?', a: 'Daniel is a strength coach and former physiotherapist. Nothing in the program replaces medical advice. If you’re under a doctor’s care, follow their guidance.' },
 ];
-const mark = [{ name: 'Squat', before: 60, after: 110 }, { name: 'Deadlift', before: 70, after: 130 }, { name: 'Bench', before: 50, after: 80 }, { name: 'Row', before: 45, after: 70 }, { name: 'Press', before: 30, after: 50 }, { name: 'Pull-ups', before: 0, after: 5, unit: 'reps' }];
 ---
 <Layout client="forge" funnel="checkout" step="sales" title="Forge 12: stronger at 45 than you were at 30, three sessions a week" description="The 12-week strength program for men 35 to 50. Six lifts, three 45-minute sessions a week, a progression rule that removes every decision. Week-Four Guarantee.">
 
-  <!-- 1. Hero -->
-  <OnyxBand pad="lg" rule="bottom">
-    <Container size="wide">
-      <p class="text-base font-semibold text-accent-2">For men 35 to 50 who run things, and have three 45-minute slots a week.</p>
-      <h1 class="mt-6 max-w-[24ch] text-display font-semibold">Stronger at 45<br class="hidden sm:block" /> than you were at 30.<br /><span class="italic text-accent">Three sessions a week.</span></h1>
-      <div class="mt-12 grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,520px)]">
-        <div>
-          <p class="max-w-[60ch] text-lead text-inverse-fg/85">The Forge Protocol is six fundamental lifts, three full-body sessions, and a progression rule that removes every decision except showing up. Twelve weeks. Built for men who are not 25 and do not pretend to be.</p>
-          <div class="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Button href={checkout} size="xl" data-cta="hero">{CTA}</Button>
-            <p class="max-w-[36ch] text-sm text-inverse-fg/70">Instant access. The Week-Four Guarantee: if all six lifts haven’t gone up by week four, full refund.</p>
-          </div>
-        </div>
-        <div class="rounded-lg bg-inverse-2 p-6 ring-1 ring-accent/30 sm:p-8">
-          <p class="font-display text-2xl">Mark T., 47, CFO. <span class="italic text-accent">Week 1 to week 12.</span></p>
-          <LiftLedger class="mt-5" lifts={mark} caption="Working weights, kilograms." />
-        </div>
-      </div>
-    </Container>
-  </OnyxBand>
+  <!-- 1. Hero: photo + proof in the first viewport -->
+  <PhotoHero src={PHOTOS.rack} alt="A man squatting a loaded barbell in a dark gym" focus="50% 38%" minH="min-h-0 lg:min-h-[92svh]">
+    <p class:list={[label, 'text-primary']}>Forge 12 · for men 35–50</p>
+    <h1 class="mt-5 font-display text-[clamp(3.25rem,1.4rem+6.4vw,7.25rem)] leading-[0.86] font-extrabold uppercase"><span class="block">Stronger at 45</span> <span class="block">than you were</span> <span class="block text-primary">at 30.</span></h1>
+    <p class="mt-7 max-w-[52ch] text-lead text-fg/85">Three 45-minute sessions a week. Six lifts. One rule that adds weight when the last set was clean. Twelve weeks, built for men who aren’t 25 and don’t pretend to be.</p>
+    <div class="mt-8 flex flex-col items-start gap-3">
+      <Button href={checkout} size="xl" data-cta="hero">{CTA}</Button>
+      <p class="text-sm text-fg-muted">If all six lifts haven’t gone up by week four, full refund.</p>
+    </div>
+    <div slot="aside" class="rounded-lg border-t-4 border-primary bg-surface/95 p-6 shadow-pop backdrop-blur sm:p-8">
+      <p class="font-display text-3xl font-extrabold uppercase leading-none">Mark T., 47, CFO</p>
+      <p class="mt-1 text-sm text-fg-muted">Week 1 → week 12 · working weights</p>
+      <LiftLedger class="mt-6" lifts={MARK} />
+    </div>
+    <ul slot="strip" class="flex flex-wrap gap-x-8 gap-y-2 text-sm text-fg-muted">
+      <li><strong class="font-display text-xl font-bold text-fg">1,900+</strong> men coached since 2011</li>
+      <li><strong class="font-display text-xl font-bold text-fg">4.8/5</strong> from 640 reviews</li>
+      <li>Coached by a <strong class="text-fg">former physiotherapist</strong></li>
+    </ul>
+  </PhotoHero>
+
+  <ResultsTicker items={RESULTS_12} />
 
   <!-- 2. The scene -->
-  <section class="bg-bg py-16 sm:py-24">
-    <Container size="wide">
-      <div class="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
-        <img src={PHOTOS.desk} alt="A man at his desk in the evening, tired" width="1600" height="1067" class="aspect-[4/3] w-full rounded-lg object-cover shadow-pop" loading="lazy" />
-        <div class="max-w-[58ch]">
-          <p class="font-display text-h2 font-semibold">It’s 6:40 p.m.</p>
-          <div class="mt-6 space-y-5 text-lg">
-            <p>The gym bag has been in the boot since Monday. It’s Thursday. You meant to go at lunch; a call ran over. You meant to go after work; the kids. You’ll go tomorrow, which is what you said last Thursday.</p>
-            <p>You used to train. You remember being strong. Now your back talks to you when you pick up a suitcase, you fade at three, and the belt is a notch past where it should be.</p>
-            <p>It isn’t that you don’t know what to do. It’s that every plan you’ve opened assumes you have ninety minutes a day, a twenty-four-year-old’s recovery, and nothing else to run.</p>
-            <p class="font-semibold">Here’s the question worth answering: what’s the least training that makes a 45-year-old measurably stronger, and how do you make it survive a real week?</p>
-          </div>
+  <IronBand pad="lg">
+    <Container size="wide" class="grid items-center gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]">
+      <div class="relative">
+        <img src={PHOTOS.desk} alt="A man at his desk in the evening, tired" width="1600" height="1067" class="aspect-[4/3] w-full rounded-lg object-cover grayscale-[35%]" loading="lazy" />
+        <p class="absolute -bottom-6 left-5 font-display text-[clamp(4rem,2rem+8vw,9rem)] font-extrabold leading-none text-primary tabular-nums sm:left-8" aria-hidden="true">6:40<span class="text-fg">pm</span></p>
+      </div>
+      <div class="max-w-[56ch] pt-6 lg:pt-0">
+        <h2 class="font-display text-h2 font-extrabold uppercase">It’s 6:40 p.m. The gym bag has been in the boot since Monday.</h2>
+        <div class="mt-6 space-y-5 text-lg text-fg/85">
+          <p>It’s Thursday. You meant to go at lunch; a call ran over. You meant to go after work; the kids. You’ll go tomorrow, which is what you said last Thursday.</p>
+          <p>You used to train. Now your back talks to you when you pick up a suitcase, you fade at three, and the belt is a notch past where it should be.</p>
+          <p class="font-semibold text-fg">It isn’t that you don’t know what to do. Every plan you’ve opened assumes ninety minutes a day, a 24-year-old’s recovery, and nothing else to run.</p>
         </div>
       </div>
     </Container>
-  </section>
+  </IronBand>
 
-  <Container><Rule label="the lever" /></Container>
-
-  <!-- 3. The real problem -->
-  <section class="bg-bg py-16 sm:py-24">
+  <!-- 3. Myth wall -->
+  <IronBand tone="chalk" pad="lg">
     <Container size="wide">
-      <div class="grid items-start gap-12 lg:grid-cols-[1fr_1fr]">
-        <div class="max-w-[58ch]">
-          <h2 class="text-h1 font-semibold">Volume isn’t the lever.<br /><span class="italic">Progression is.</span></h2>
-          <div class="mt-7 space-y-5 text-lg">
-            <p>Most programs are built around how much. Six days, two hours, a split for every muscle. That works for a man with nothing else on and a body that recovers overnight. For you, it fails in week three, and the failure feels like a character flaw. It isn’t. It’s arithmetic.</p>
-            <p>Strength comes from three things, in this order: a small set of lifts done well; a rule that adds weight only when the last set was clean; and enough recovery that the next session is better than the last. Three sessions a week give you all three. Six give you fatigue and a reason to quit.</p>
-            <p class="font-semibold">The Forge Protocol is the least training that moves the bar. Six lifts. Three sessions of 45 minutes. One rule. Twelve weeks.</p>
-          </div>
-        </div>
-        <div class="rounded-lg bg-inverse p-8 text-inverse-fg sm:p-10">
-          <Plates class="h-auto w-full max-w-[420px]" />
-          <dl class="mt-6 divide-y divide-inverse-fg/10">
-            {[['Progression', 'Add 2.5 kg when the last set is clean. Repeat when it isn’t.'], ['Recovery', '48 hours between heavy days. The next session is better than the last.'], ['Consistency', 'Three sessions that fit a real week, so the twelve weeks actually happen.']].map(([k, v], i) => (
-              <div class="grid grid-cols-[auto_1fr] gap-5 py-4"><dt class="font-display text-3xl text-accent">{i + 1}</dt><dd><p class="font-display text-2xl">{k}</p><p class="mt-1 text-inverse-fg/80">{v}</p></dd></div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <!-- 4. Why what you tried didn't work -->
-  <section class="bg-surface-2 py-16 sm:py-24">
-    <Container size="prose">
-      <h2 class="text-h2 font-semibold">The programs weren’t wrong. They weren’t for you.</h2>
-      <ul class="mt-8 space-y-6 text-lg">
-        <li><strong>The six-day split.</strong> Built for a man who can train every day and recover by morning. On your calendar it collapses by week three, and so does your confidence.</li>
-        <li><strong>The high-intensity app.</strong> Twenty minutes of jumping on a cranky knee. It burns, it sweats, it makes nothing stronger.</li>
-        <li><strong>“Just walk more.”</strong> Good advice, and not a strength program. Walking won’t fix the back that complains at the suitcase.</li>
-        <li><strong>The trainer you couldn’t schedule.</strong> The work was right. The appointment wasn’t. A program should fit around a 7 a.m. call, not the other way round.</li>
+      <h2 class="max-w-[20ch] font-display text-h1 font-extrabold uppercase">The programs weren’t wrong. They weren’t for you.</h2>
+      <ul class="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        {myths.map((m) => (
+          <li class="border-t-4 border-inverse-fg pt-5">
+            <p class="font-display text-3xl font-extrabold uppercase leading-none line-through decoration-primary decoration-4">{m.name}</p>
+            <p class="mt-3 max-w-[46ch] text-lg opacity-80">{m.truth}</p>
+          </li>
+        ))}
       </ul>
     </Container>
-  </section>
+  </IronBand>
 
-  <!-- 5. Daniel -->
-  <section class="bg-bg py-16 sm:py-24">
-    <Container>
-      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Daniel" caption="Daniel Reyes, strength coach, former physiotherapist" size={240} src={PHOTOS.daniel} />
-        <div class="max-w-[62ch]">
-          <h2 class="text-h2 font-semibold">I’m Daniel. I was a physio before I was a coach, which is why the program starts with your back.</h2>
-          <div class="mt-6 space-y-4 text-lg">
-            <p>I’m a strength coach and a former physiotherapist. I’ve coached men for fifteen years, and since 2011 most of them have been 35 to 50: founders, surgeons, engineers, lawyers. Men with a lot to carry and not much time.</p>
-            <p>Everything in Forge 12 comes from that room. The warm-up exists because of desk shoulders. The “train around” table exists because of old backs. The three-session structure exists because the men who kept training were the ones whose plan fit a real week.</p>
-            <p>Nineteen hundred of them so far. The bar goes up for nearly all of them by week four, which is why I guarantee it.</p>
-          </div>
-        </div>
+  <!-- 4. Mechanism as numbers -->
+  <IronBand pad="lg">
+    <Container size="wide">
+      <div class="grid items-end gap-8 lg:grid-cols-2">
+        <h2 class="font-display text-h1 font-extrabold uppercase">Volume isn’t the lever. <span class="text-primary">Progression is.</span></h2>
+        <p class="max-w-[54ch] text-lead text-fg-muted">Six days fails in week three, and the failure feels like a character flaw. It’s arithmetic. The Forge Protocol is the least training that moves the bar.</p>
       </div>
+      <NumberWall class="mt-12" items={MECHANISM} />
     </Container>
-  </section>
+  </IronBand>
 
-  <Container><Rule label="the method" /></Container>
-
-  <!-- 6. The method -->
-  <section class="bg-bg py-16 sm:py-24">
-    <Container>
-      <div class="max-w-[62ch]">
-        <h2 class="text-h1 font-semibold">Twelve weeks, three phases, <span class="italic">one rule.</span></h2>
-        <p class="mt-5 text-lead text-fg-muted">Every session is the same shape: eight-minute warm-up, two main lifts, one assistance lift, done in 45 minutes. The rule: when the last set is clean, add weight next time. When it isn’t, repeat. That’s the entire decision.</p>
+  <!-- 5. The rule (signature moment) -->
+  <IronBand tone="graphite" pad="lg" edge>
+    <Container size="wide" class="grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+      <div>
+        <p class:list={[label, 'text-fg-muted']}>The rule</p>
+        <h2 class="mt-4 font-display text-h1 font-extrabold uppercase">Add when clean.<br /><span class="text-primary">Repeat when not.</span></h2>
+        <p class="mt-6 max-w-[46ch] text-lead text-fg-muted">When the last set is clean, add 2.5 kg next time. When it isn’t, repeat. That’s the entire decision, every session, for twelve weeks.</p>
       </div>
-      <WeekRibbon phases={phases} class="mt-12" />
+      <PlateLoader to={130} weeks={12} caption="Mark T., 47: deadlift 70 kg in week 1, 130 kg in week 12." />
     </Container>
-  </section>
+  </IronBand>
+
+  <!-- 6. Twelve-week track -->
+  <IronBand pad="lg">
+    <Container size="wide">
+      <h2 class="max-w-[20ch] font-display text-h1 font-extrabold uppercase">Twelve weeks. Three phases. One rule.</h2>
+      <p class="mt-5 max-w-[60ch] text-lead text-fg-muted">Every session is the same shape: eight-minute warm-up, two main lifts, one assistance lift, done in 45 minutes.</p>
+      <WeekRibbon phases={PHASES} class="mt-12" />
+    </Container>
+  </IronBand>
 
   <!-- 7. Proof -->
-  <OnyxBand rule="both">
+  <IronBand tone="graphite" pad="lg">
     <Container size="wide">
-      <h2 class="max-w-[22ch] text-h1 font-semibold">Three men, twelve weeks, <span class="italic text-accent">three different problems.</span></h2>
-      <div class="mt-12 grid gap-8 lg:grid-cols-3">
-        {[
-          { who: 'Mark T.', meta: '47 · CFO · an old back', rows: [['Squat', '60 kg', '110 kg'], ['Deadlift', '70 kg', '130 kg'], ['Bench', '50 kg', '80 kg'], ['Waist', '98 cm', '92 cm']], q: 'I expected to be managed around my back. Instead it stopped hurting in week five.' },
-          { who: 'James O.', meta: '41 · founder · hotel gyms three weeks a month', rows: [['Deadlift', '80 kg', '140 kg'], ['Press', '35 kg', '55 kg'], ['Squat', '70 kg', '115 kg'], ['Sessions', '—', '34 of 36']], q: 'The Hotel Gym Card is the reason I didn’t quit. Same session, different room.' },
-          { who: 'Ravi S.', meta: '52 · surgeon · first time under a bar', rows: [['Pull-ups', '0', '6'], ['Squat', '40 kg', '90 kg'], ['Bench', '35 kg', '62.5 kg'], ['Resting HR', '72', '61']], q: 'Three sessions. That was the whole negotiation. I kept all of them.' },
-        ].map((c) => (
-          <article class="rounded-lg bg-inverse-2 p-6 ring-1 ring-accent/25 sm:p-7">
-            <div class="flex items-center gap-4"><Avatar who={c.who} size={56} /><div><p class="font-display text-2xl">{c.who}</p><p class="text-sm text-accent-2">{c.meta}</p></div></div>
-            <LedgerCard class="mt-5" rows={c.rows.map(([name, before, after]) => ({ name, before, after }))} />
-            <blockquote class="mt-5 border-l-2 border-accent pl-4 text-inverse-fg/90">“{c.q}”</blockquote>
-          </article>
-        ))}
-      </div>
+      <h2 class="max-w-[22ch] font-display text-h1 font-extrabold uppercase">Three men. Twelve weeks. <span class="text-primary">Three different problems.</span></h2>
+      <ClientLedgers class="mt-12" />
     </Container>
-  </OnyxBand>
+  </IronBand>
 
-  <!-- 8. The stack -->
-  <section class="bg-bg py-16 sm:py-24">
-    <Container>
-      <h2 class="max-w-[22ch] text-h1 font-semibold">Everything in Forge 12.</h2>
-      <StackTable class="mt-10" items={stack} total="$451" price="$197" compareAt="$297" note="Values are the price of each item sold separately." />
-      <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-        <Button href={checkout} size="xl" data-cta="stack">{CTA}</Button>
-        <p class="text-sm text-fg-muted">Instant access. Three equipment tracks. Week-Four Guarantee.</p>
-      </div>
-    </Container>
-  </section>
+  <!-- 8. Daniel -->
+  <CoachStory heading="I was a physio before I was a coach. That’s why the program starts with your back.">
+    <p>Since 2011 most of the men I coach have been 35 to 50: founders, surgeons, engineers, lawyers. A lot to carry and not much time.</p>
+    <p>The warm-up exists because of desk shoulders. The “train around” table exists because of old backs. The three-session structure exists because the men who kept training were the ones whose plan fit a real week.</p>
+    <p class="font-semibold text-fg">The bar goes up for nearly all of them by week four. That’s why I guarantee it.</p>
+  </CoachStory>
 
   <!-- 9. For / not for -->
-  <section class="bg-surface-2 py-16 sm:py-20">
-    <Container>
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="rounded-lg bg-surface p-7 shadow-card sm:p-9">
-          <h2 class="text-h3 font-semibold text-success">This is for you if</h2>
-          <ul class="mt-4 space-y-2 text-lg"><li>you’re 35 to 50,</li><li>you can give three 45-minute sessions a week,</li><li>you have a barbell or a pair of dumbbells,</li><li>you want numbers that go up rather than a photo.</li></ul>
-        </div>
-        <div class="rounded-lg border border-border-strong p-7 sm:p-9">
-          <h2 class="text-h3 font-semibold text-fg-muted">This isn’t for you if</h2>
-          <ul class="mt-4 space-y-2 text-lg text-fg-muted"><li>a doctor has told you not to lift,</li><li>you want a six-day bodybuilding split,</li><li>you’re looking for a program that doesn’t ask you to show up three times.</li></ul>
-        </div>
+  <IronBand tone="graphite" pad="md">
+    <Container size="wide" class="grid gap-5 md:grid-cols-2">
+      <div class="rounded-lg bg-bg p-7 sm:p-10">
+        <h2 class="font-display text-h3 font-extrabold uppercase text-success">This is for you if</h2>
+        <ul class="mt-5 space-y-3 text-lg">{['You’re 35 to 50.', 'You can give three 45-minute sessions a week.', 'You have a barbell or a pair of dumbbells.', 'You want numbers that go up, not a photo.'].map((t) => <li class="flex gap-3"><span class="mt-2.5 size-2 shrink-0 bg-success" aria-hidden="true"></span>{t}</li>)}</ul>
+      </div>
+      <div class="rounded-lg border border-border-strong p-7 sm:p-10">
+        <h2 class="font-display text-h3 font-extrabold uppercase text-fg-muted">This isn’t for you if</h2>
+        <ul class="mt-5 space-y-3 text-lg text-fg-muted">{['A doctor has told you not to lift.', 'You want a six-day bodybuilding split.', 'You want a program that doesn’t ask you to show up three times.'].map((t) => <li class="flex gap-3"><span class="mt-2.5 size-2 shrink-0 bg-fg-subtle" aria-hidden="true"></span>{t}</li>)}</ul>
       </div>
     </Container>
-  </section>
+  </IronBand>
 
-  <!-- 10. Price -->
-  <section id="pricing" class="bg-bg py-16 sm:py-24">
-    <Container>
-      <div class="max-w-[62ch]">
-        <h2 class="text-h1 font-semibold">One payment. Every equipment track. <span class="italic">Every future cycle.</span></h2>
-        <p class="mt-5 text-lg text-fg-muted">A trainer at $80 a session, three times a week, is $960 a month. Twelve more weeks of guessing cost nothing and change nothing. Forge 12 is $197, once, with every equipment track and every 12-week cycle you run after this one.</p>
-      </div>
-      <div class="mt-10 grid gap-6 lg:grid-cols-2">
-        <div class="rounded-lg bg-inverse p-8 text-inverse-fg shadow-pop ring-1 ring-accent sm:p-10">
-          <p class="font-display text-3xl">Forge 12</p>
-          <p class="mt-3 flex items-baseline gap-3"><span class="text-xl text-accent-2 line-through">$297</span><span class="font-display text-7xl font-semibold">$197</span></p>
-          <p class="mt-3 text-inverse-fg/80">Everything in the stack. Three equipment tracks, the filmed lifts, twelve weeks of check-ins, the bonuses. Every future cycle.</p>
-          <Button href={checkout} size="xl" full class="mt-7" data-cta="price-a">{CTA}</Button>
-        </div>
-        <div class="rounded-lg border border-border-strong bg-surface p-8 sm:p-10">
-          <p class="font-display text-3xl">Forge 12 with coaching</p>
-          <p class="mt-3 font-display text-7xl font-semibold">$1,500</p>
-          <p class="mt-3 text-fg-muted">Everything, plus twelve weeks of 1:1 with Daniel: filmed form reviews every week, your loads adjusted to your week, direct messages.</p>
-          <Button href="/forge/calendar/book" size="xl" full variant="secondary" class="mt-7" data-cta="price-b">Apply for coaching</Button>
-        </div>
-      </div>
-      <p class="mt-6 text-sm text-fg-muted">Secure checkout with Stripe. Apple Pay and Google Pay. Login within a minute.</p>
-    </Container>
-  </section>
+  <!-- 10. Offer: stack, price, guarantee -->
+  <OfferBlock href={checkout} coaching sub="A trainer three times a week is $960 a month. Twelve more weeks of guessing cost nothing and change nothing. Forge 12 is $197, once." />
 
-  <!-- 11. Guarantee -->
-  <section class="bg-surface-2 py-16 sm:py-20">
-    <Container size="prose">
-      <div class="rounded-lg border border-accent bg-surface p-8 sm:p-12">
-        <p class="font-display text-2xl italic text-accent">The Week-Four Guarantee</p>
-        <p class="mt-4 text-lg">Run weeks one to four as written and log your lifts. If all six lifts haven’t gone up by the end of week four, send the log to <a class="font-semibold underline underline-offset-4" href="mailto:daniel@forgefitness.example.com">daniel@forgefitness.example.com</a> within 45 days and we refund every cent. No call, no form. The bar either went up or it didn’t.</p>
-      </div>
+  <!-- 11. FAQ -->
+  <IronBand pad="lg">
+    <Container size="wide" class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <h2 class="font-display text-h2 font-extrabold uppercase">Before you decide</h2>
+      <FaqList items={faq} />
     </Container>
-  </section>
+  </IronBand>
 
-  <!-- 12. FAQ -->
-  <section class="bg-bg py-16 sm:py-24">
-    <Container>
-      <h2 class="text-h2 font-semibold">Before you decide</h2>
-      <FaqList items={faq} class="mt-8" />
-    </Container>
-  </section>
-
-  <!-- 13. Close -->
-  <OnyxBand rule="top" pad="lg">
-    <Container size="wide">
-      <div class="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
-        <img src={PHOTOS.bar} alt="Chalked hands on a loaded barbell" width="1600" height="1067" class="aspect-[4/3] w-full rounded-lg object-cover" loading="lazy" />
-        <div>
-          <h2 class="text-display font-semibold">Your first session<br /><span class="italic text-accent">is tonight.</span></h2>
-          <p class="mt-6 max-w-[48ch] text-lead text-inverse-fg/85">Forty-five minutes. Six lifts you already know the names of. A rule that tells you what to do next. Twelve weeks from now you’ll have numbers, and they’ll be bigger than they were at 30.</p>
-          <div class="mt-9 flex flex-col items-start gap-3">
-            <Button href={checkout} size="xl" data-cta="close">{CTA}</Button>
-            <p class="text-sm text-inverse-fg/70">Week-Four Guarantee · instant access · three equipment tracks</p>
-          </div>
-        </div>
-      </div>
-    </Container>
-  </OnyxBand>
+  <!-- 12. Close -->
+  <PhotoHero src={PHOTOS.bar} alt="A man benching a loaded barbell in a dark gym" focus="50% 55%" side="right" minH="min-h-[80svh]">
+    <h2 class="font-display text-display font-extrabold uppercase">Your first<br />session<br /><span class="text-primary">is tonight.</span></h2>
+    <p class="mt-6 max-w-[46ch] text-lead text-fg/85">Forty-five minutes. Six lifts you already know the names of. A rule that tells you what to do next. Twelve weeks from now you’ll have numbers, and they’ll be bigger than they were at 30.</p>
+    <div class="mt-8 flex flex-col items-start gap-3">
+      <Button href={checkout} size="xl" data-cta="close">{CTA}</Button>
+      <p class="text-sm text-fg-muted">{GUARANTEE_SHORT}</p>
+    </div>
+  </PhotoHero>
 
   <StickyCTA href={checkout} label={CTA} note="Week-Four Guarantee" showAfter={900} />
   <script>

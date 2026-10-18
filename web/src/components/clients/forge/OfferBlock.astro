@@ -1,0 +1,38 @@
+---
+/** Stack → price → guarantee as one chalk unit. `coaching` adds the $1,500 1:1 option beside the price. */
+import Button from '../../ui/Button.astro';
+import StackTable from './StackTable.astro';
+import { STACK, CTA } from './data';
+interface Props { href: string; coaching?: boolean; heading?: string; sub?: string; id?: string }
+const { href, coaching = false, heading = 'Everything in Forge 12.', sub, id = 'pricing' } = Astro.props;
+---
+<section id={id} class="bg-inverse py-16 text-inverse-fg sm:py-24">
+  <div class="mx-auto w-full max-w-content px-5 sm:px-8">
+    <h2 class="max-w-[18ch] font-display text-h1 font-extrabold uppercase">{heading}</h2>
+    {sub && <p class="mt-5 max-w-[60ch] text-lead opacity-80">{sub}</p>}
+    <StackTable class="mt-10 text-fg" items={STACK} total="$451" price="$197" compareAt="$297" note="Values are the price of each item sold separately." />
+    <div class:list={['mt-8 grid gap-5', coaching && 'lg:grid-cols-[3fr_2fr]']}>
+      <div class="grid gap-6 rounded-lg bg-bg p-7 text-fg sm:grid-cols-[1fr_auto] sm:items-center sm:p-10">
+        <div>
+          <p class="font-display text-4xl font-extrabold uppercase leading-none">Forge 12 <span class="text-fg-muted line-through decoration-2">$297</span> <span class="text-primary">$197</span></p>
+          <p class="mt-3 max-w-[48ch] text-fg-muted">One payment. Every equipment track, the filmed lifts, twelve weeks of check-ins, the bonuses, and every future cycle.</p>
+          <Button href={href} size="xl" class="mt-6" data-cta="price">{CTA}</Button>
+          <p class="mt-3 text-sm text-fg-muted">Secure checkout with Stripe · Apple Pay and Google Pay · access within a minute</p>
+        </div>
+        <div class="grid size-36 shrink-0 place-items-center rounded-full border-4 border-dashed border-accent text-center font-display font-extrabold uppercase leading-none text-accent sm:size-44" aria-hidden="true"><span class="text-lg">Week-four<br /><span class="text-5xl">100%</span><br />guarantee</span></div>
+      </div>
+      {coaching && (
+        <div class="rounded-lg border-2 border-inverse-fg/20 p-7 sm:p-10">
+          <p class="font-display text-3xl font-extrabold uppercase leading-none">With 1:1 coaching</p>
+          <p class="mt-2 font-display text-6xl font-extrabold">$1,500</p>
+          <p class="mt-3 opacity-80">Everything, plus twelve weeks with Daniel: filmed form reviews every week, loads adjusted to your week, direct messages.</p>
+          <Button href="/forge/calendar/book" size="lg" variant="secondary" class="mt-6" data-cta="coaching">Apply for coaching</Button>
+        </div>
+      )}
+    </div>
+    <div class="mt-8 border-l-4 border-primary pl-6">
+      <p class="font-display text-2xl font-extrabold uppercase">The Week-Four Guarantee</p>
+      <p class="mt-2 max-w-[68ch] text-lg opacity-85">Run weeks one to four as written and log your lifts. If all six lifts haven’t gone up by the end of week four, send the log to <a class="font-semibold underline underline-offset-4" href="mailto:daniel@forgefitness.example.com">daniel@forgefitness.example.com</a> within 45 days and we refund every cent. No call, no form. The bar either went up or it didn’t.</p>
+    </div>
+  </div>
+</section>

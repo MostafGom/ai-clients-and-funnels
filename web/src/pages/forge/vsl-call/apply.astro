@@ -10,12 +10,12 @@ const buts = [['back', 'Old back'], ['joint', 'Shoulder or knee'], ['travel', 'T
 ---
 <Layout client="forge" funnel="vsl-call" step="apply" title="Apply for a Strength Audit" noindex>
   <Container size="prose" class="py-12 sm:py-20">
-    <p class="text-base font-semibold text-primary">Five questions · two minutes · Daniel reads every one</p>
-    <h1 class="mt-2 text-h1 font-semibold">Tell Daniel about your week</h1>
-    <div class="mt-6 h-1 w-full overflow-hidden bg-surface-2"><div class="h-full w-1/3 bg-accent transition-[width] duration-300" data-progress></div></div>
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Five questions · two minutes · Daniel reads every one</p>
+    <h1 class="mt-2 text-h1 font-extrabold">Tell Daniel about your week</h1>
+    <div class="mt-6 h-1 w-full overflow-hidden bg-surface-2"><div class="h-full w-1/3 bg-primary transition-[width] duration-300" data-progress></div></div>
     <p class="mt-2 text-sm text-fg-muted"><span data-step-label>Step 1 of 3 · Your situation</span></p>
 
-    <form method="post" action="/api/lead" class="mt-8 rounded-lg bg-surface p-7 shadow-pop ring-1 ring-accent/40 sm:p-9" data-apply novalidate>
+    <form method="post" action="/api/lead" class="mt-8 rounded-lg bg-surface p-7 border-t-4 border-primary shadow-pop sm:p-9" data-apply novalidate>
       <input type="hidden" name="client" value="forge" /><input type="hidden" name="funnel" value="vsl-call" /><input type="hidden" name="redirect" value="/forge/vsl-call/book" />
       <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 

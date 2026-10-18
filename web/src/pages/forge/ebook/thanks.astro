@@ -4,34 +4,33 @@ import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
 import ScriptedVSL from '../../../components/funnel/ScriptedVSL.astro';
 import { loadVslScript } from '../../../lib/vsl-script';
-import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+import Plates from '../../../components/clients/forge/art/Plates.astro';
+import { PHOTOS } from '../../../components/clients/forge/photos';
 import { getClient } from '../../../lib/clients';
 const client = getClient('forge');
 const note = loadVslScript('clients/forge/funnels/ebook/THANKS-SCRIPT.md');
 ---
 <Layout client="forge" funnel="ebook" step="thanks" title="The 3-Session Week is in your inbox" noindex>
-  <Container size="wide" class="py-12 sm:py-16">
+  <Container size="wide" class="py-12 sm:py-20">
     <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
       <div>
-        <p class="text-base font-semibold text-success">Sent</p>
-        <h1 class="mt-2 text-h1 font-semibold">The 3-Session Week is in your inbox.<br /><span class="italic">Give it a minute.</span></h1>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-success">Sent</p>
+        <h1 class="mt-3 font-display text-h1 font-extrabold uppercase">The 3-Session Week is in your inbox. <span class="text-primary">Give it a minute.</span></h1>
         <p class="mt-5 text-lead text-fg-muted">Here’s the direct download. And while it downloads, thirty seconds from Daniel on the one thing to get right in session one.</p>
         <Button href={client.leadMagnet!.downloadUrl} size="lg" variant="secondary" class="mt-7" data-download>Download the guide (PDF)</Button>
-        <div class="mt-12 rounded-lg bg-inverse p-7 text-inverse-fg shadow-pop ring-1 ring-accent/40 sm:p-9">
-          <div class="flex items-start gap-4">
-            <Monogram size={48} class="shrink-0 text-inverse-fg" />
-            <div>
-              <p class="font-display text-2xl">An old injury, a travel-heavy month, or never been under a bar?</p>
-              <p class="mt-2 text-inverse-fg/80">Tell Daniel your week on a free 20-minute Strength Audit and leave with a plan written for you.</p>
-              <Button href="/forge/calendar/book" size="lg" class="mt-5" data-cta="call">Book a free Strength Audit</Button>
-            </div>
-          </div>
-        </div>
       </div>
-      <div>
-        <ScriptedVSL script={note} title="Play Daniel’s 30-second note" class="!rounded-lg ring-1 ring-accent/30">
-          <Fragment slot="art:monogram"><Monogram size={150} class="text-inverse-fg" /></Fragment>
-        </ScriptedVSL>
+      <ScriptedVSL script={note} title="Play Daniel’s 30-second note">
+        <Fragment slot="art:plates"><Plates count={5} class="w-full max-w-[260px] text-inverse-fg" /></Fragment>
+      </ScriptedVSL>
+    </div>
+
+    <div class="relative mt-16 grid overflow-hidden rounded-lg bg-surface shadow-card md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+      <img src={PHOTOS.daniel} alt="Daniel Reyes" width="1400" height="2100" loading="lazy" class="h-64 w-full object-cover object-[50%_22%] md:h-full" />
+      <div class="border-t-4 border-primary p-7 sm:p-10 md:border-t-0 md:border-l-4">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-fg-muted">Free · 20 minutes · with Daniel</p>
+        <p class="mt-3 font-display text-h2 font-extrabold uppercase">Old injury? Travel-heavy month? Never been under a bar?</p>
+        <p class="mt-4 max-w-[52ch] text-lg text-fg/85">Tell Daniel your week on a free Strength Audit and leave with a plan written for you.</p>
+        <Button href="/forge/calendar/book" size="lg" class="mt-7" data-cta="call">Book a free Strength Audit</Button>
       </div>
     </div>
   </Container>

@@ -1,17 +1,17 @@
 ---
-/** Twelve weeks as serif numerals with phase labels. Numbering belongs here. */
+/** Twelve weeks as a track: numbered blocks coloured by phase with phase labels. Numbering belongs here. */
 interface Props { phases: { title: string; weeks: [number, number]; body: string }[]; class?: string }
 const { phases, class: cls = '' } = Astro.props;
 ---
 <div class:list={[cls]}>
-  <ol class="grid grid-cols-6 gap-2 sm:grid-cols-12" aria-hidden="true">
-    {Array.from({ length: 12 }, (_, i) => <li class="border-t border-accent pt-2 font-display text-2xl text-accent">{i + 1}</li>)}
+  <ol class="grid grid-cols-6 gap-1 sm:grid-cols-12" aria-hidden="true">
+    {Array.from({ length: 12 }, (_, i) => { const ph = phases.findIndex((p) => i + 1 >= p.weeks[0] && i + 1 <= p.weeks[1]); return <li class:list={['flex h-20 items-end p-2 font-display text-3xl font-extrabold sm:h-28 sm:text-4xl', ['bg-surface-2 text-fg', 'bg-accent-2 text-accent-2-fg', 'bg-primary text-primary-fg'][ph] ?? 'bg-surface-2']} style={`opacity:${0.55 + (i % 4) * 0.15}`}>{i + 1}</li>; })}
   </ol>
   <ol class="mt-6 grid gap-6 sm:grid-cols-3">
     {phases.map((p) => (
       <li>
-        <p class="text-xs font-semibold tracking-wide text-fg-muted">Weeks {p.weeks[0]}–{p.weeks[1]}</p>
-        <p class="mt-1 font-display text-2xl font-semibold">{p.title}</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-fg-muted">Weeks {p.weeks[0]}–{p.weeks[1]}</p>
+        <p class="mt-1 font-display text-3xl font-extrabold uppercase">{p.title}</p>
         <p class="mt-2 text-fg-muted">{p.body}</p>
       </li>
     ))}

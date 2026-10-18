@@ -1,0 +1,11 @@
+---
+/** Forge section wrapper. iron = page, graphite = raised band, chalk = reading paper (iron text). `edge` draws a plate-edge rule on top. */
+interface Props { id?: string; tone?: 'iron' | 'graphite' | 'chalk'; pad?: 'none' | 'sm' | 'md' | 'lg'; edge?: boolean; class?: string; [key: string]: unknown }
+const { id, tone = 'iron', pad = 'md', edge = false, class: cls = '', ...rest } = Astro.props;
+const tones = { iron: 'bg-bg text-fg', graphite: 'bg-surface text-fg', chalk: 'bg-inverse text-inverse-fg' };
+const pads = { none: '', sm: 'py-12 sm:py-16', md: 'py-16 sm:py-24', lg: 'py-20 sm:py-32' };
+---
+<section id={id} class:list={['relative', tones[tone], pads[pad], cls]} {...rest}>
+  {edge && <div class="absolute inset-x-0 top-0 h-1.5 bg-[repeating-linear-gradient(90deg,var(--color-primary)_0_48px,transparent_48px_56px)]" aria-hidden="true"></div>}
+  <slot />
+</section>

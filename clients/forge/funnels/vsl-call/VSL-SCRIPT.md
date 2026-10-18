@@ -2,7 +2,7 @@
 One paragraph = one slide. Calm, specific. Player ~4 min; recorded ~7–8 min.
 
 ## [0:00] For the man who thinks he's the exception
-> art: monogram
+> art: numbers
 If you've read a strength program and thought "that's fine for someone else," this is for you.
 An old back. Three weeks a month in hotels. Fifty, and never been under a bar. Or you've started four programs and stopped every one at week three.
 I'm Daniel Reyes, strength coach, former physiotherapist. For fifteen years men have come to me with one of those four sentences.
@@ -15,7 +15,7 @@ That part doesn't change for your case. What changes is how you get there.
 So "different" isn't a reason to wait. It's a note in the margin of the same program. Four examples.
 
 ## [1:30] The old back
-> art: monogram
+> art: numbers
 The trap is avoiding the hinge entirely, so the back never gets stronger, so it keeps hurting.
 The adjustment: trap-bar or Romanian deadlift instead of from the floor, a box under the squat, and loads that start embarrassingly light. Progress by the rule.
 Mark, forty-seven, had an L5 that complained at suitcases. Week five it stopped complaining. Week twelve he deadlifted a hundred and thirty kilos.
@@ -27,7 +27,7 @@ The adjustment: the same session written for dumbbells and a cable stack. Goblet
 James, forty-one, did thirty-four of thirty-six sessions, most of them in hotels.
 
 ## [3:20] Fifty, and never been under a bar
-> art: monogram
+> art: numbers
 The trap is loading a pattern you haven't learned yet, usually with a video and a guess.
 The adjustment: four weeks on three lifts, starting weights set by someone who's watched you move, and form checked before the number matters.
 Ravi, fifty-two, a surgeon, went from zero pull-ups to six and a forty-kilo squat to ninety. He learned the lifts first.
@@ -47,7 +47,7 @@ You leave with an audit card. Written down. For your case.
 And one honest sentence about whether Forge 12 on your own, Forge 12 with coaching, or neither, fits. If the free guide is enough, I'll say so.
 
 ## [6:00] Who this is for
-> art: monogram
+> art: numbers
 This is for men thirty-five to fifty whose week comes with a "but."
 It isn't for anyone a doctor has told not to lift, or for a man who wants a six-day bodybuilding split.
 Below this video is a short application. Five questions. I read every one before the call.

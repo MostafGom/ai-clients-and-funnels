@@ -1,13 +1,13 @@
 ---
-/** A client's numbers as a quiet table: lift / before / after, plus a line for the non-lift metric. */
+/** A client's numbers as a table: lift / before / after, plus a line for the non-lift metric. */
 interface Row { name: string; before: string; after: string }
 interface Props { rows: Row[]; footer?: string; class?: string }
 const { rows, footer, class: cls = '' } = Astro.props;
 ---
 <table class:list={['w-full text-left text-sm', cls]}>
-  <thead><tr class="border-b border-accent/60 text-xs text-accent-2"><th class="py-2 font-semibold">Lift</th><th class="py-2 text-right font-semibold">Week 1</th><th class="py-2 text-right font-semibold">Week 12</th></tr></thead>
-  <tbody class="divide-y divide-inverse-fg/10">
-    {rows.map((r) => <tr><td class="py-2.5">{r.name}</td><td class="py-2.5 text-right font-display text-lg tabular-nums opacity-70">{r.before}</td><td class="py-2.5 text-right font-display text-lg tabular-nums text-success">{r.after}</td></tr>)}
+  <thead><tr class="border-b-2 border-primary text-xs uppercase tracking-[0.14em] text-fg-muted"><th class="py-2 font-semibold">Lift</th><th class="py-2 text-right font-semibold">Week 1</th><th class="py-2 text-right font-semibold">Week 12</th></tr></thead>
+  <tbody class="divide-y divide-border">
+    {rows.map((r) => <tr><td class="py-2.5 font-semibold">{r.name}</td><td class="py-2.5 text-right font-display text-xl font-bold tabular-nums text-fg-muted">{r.before}</td><td class="py-2.5 text-right font-display text-xl font-bold tabular-nums text-primary">{r.after}</td></tr>)}
   </tbody>
   {footer && <tfoot><tr><td colspan="3" class="pt-3 text-xs opacity-70">{footer}</td></tr></tfoot>}
 </table>

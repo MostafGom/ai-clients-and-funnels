@@ -2,44 +2,67 @@
 
 CTA: **Send me the 3-Session Week** (both forms) → thanks **Book a free Strength Audit**.
 
-## Opt-in `/forge/ebook` (Onyx hero)
-Kicker: Free guide for men 35 to 50 with three slots a week.
-Headline options
-1. How many sessions a week do you actually need? ← chosen
-2. Three sessions. Six lifts. The first four weeks, written out.
-3. The least training that makes you stronger, on one page.
-4. Stop guessing at the rack.
-5. Strength, unhurried.
-Hand-wrapped: "How many sessions a week / do you actually need?"
-Sub: Pick the days you have, the equipment you've got, and what you want. That's your week. Then get the free 3-Session Week: the six lifts, the first four weeks programmed, the warm-up, and the "train around" table for backs, shoulders and knees.
-Planner note: Three full-body sessions beat six you won't do. The guide is the week written out, with the weights to start at.
-Form (inside the planner): email · "Send me the 3-Session Week" · consent: One guide, five short emails from Daniel, unsubscribe in one click.
+## Opt-in `/forge/ebook` (Iron & Chalk, Oct 2026 sharpen)
+Big idea: three full-body sessions, programmed, add more kilos to the bar for a 45-year-old than six sessions he won't keep.
 
-### Inside the week (Bone, four spreads)
-Heading: Twelve pages. Four weeks. Then the bar is heavier.
-1. **The three-session template.** Day one, day two, day one again. Two days of recovery between heavy days.
-2. **The six lifts, with cues.** Squat, bench, row, deadlift, press, pull-up. What good looks like at 45, not 25.
-3. **Weeks one to four, programmed.** Sets, reps, where to start, and the rule for adding weight.
-4. **The "train around" table.** Back, shoulder, knee. The lift that hurts, swapped for one that doesn't.
-Plus: the eight-minute warm-up, the hotel-gym version, and what to do in week five.
+**Hero (Tool hero over photo: squat at the rack)**
+Kicker: Free guide · for men 35–50
+Headline options (scored: specificity / belief / voice)
+1. Three sessions. Six lifts. Four weeks, written out. (5/4/5) ← chosen
+2. How many sessions a week do you actually need? (3/4/4) (previous)
+3. The 45-minute week that puts kilos back on the bar. (4/4/4)
+4. Stronger in four weeks, on three sessions. (4/3/4)
+5. Stop guessing at the rack. (2/3/5)
+6. Your old squat is four weeks away. (4/3/4)
+7. You don't need six days. You need three good ones. (3/5/5)
+8. The week a physio gives every man over 35. (4/4/4)
+Hand-wrapped: "THREE SESSIONS. / SIX LIFTS. / FOUR WEEKS, / WRITTEN OUT."
+Sub: Tell the planner the days and the kit you've got. It builds your week. The free 3-Session Week guide then gives you the six lifts, the weights to start at, and the "train around" table for backs, shoulders and knees.
+Proof strip: 1,900+ men coached since 2011 [CLIENT] · 4.8/5 from 640 reviews [CLIENT] · Written by a former physiotherapist
+Planner heading: Build your week
+Form (inside the planner): email · CTA **Send me the 3-Session Week** · friction line: Free PDF in your inbox in a minute. Five short emails from Daniel. Unsubscribe in one click.
 
-### Daniel (Bone, short)
+**Results ticker (first four weeks on the guide)** [CLIENT, all]
+Luca, 39 · squat 60 → 80 kg · Sam, 44 · bench 50 → 62.5 kg · Tom, 48 · deadlift 80 → 110 kg · Ravi, 41 · press 30 → 40 kg · Ben, 46 · row 50 → 65 kg
+
+**Number wall (what's in the guide)**
+3 sessions: Day A, day B, day A again. Two rest days between heavy days.
+6 lifts: Squat, bench, row, deadlift, press, pull-up, with the cues that matter at 45.
+4 weeks: Sets, reps and the starting weight for every session, written out.
+8 min: The warm-up. It replaces the 20 minutes of stretching you skip.
+
+**The rule (PlateLoader, 12 weeks, 20 → 140 kg)**
+Heading: Add when clean. Repeat when not.
+Body: That's the whole progression. Every session the bar sounds the same and gets a little heavier. Twelve weeks of it is the gap between where you start and where you used to be.
+Caption: Tom H., 48: deadlift from the empty bar in week 1 to 140 kg in week 12. [CLIENT]
+
+**Inside the guide (chalk band, split with the cover)**
+Heading: Twelve pages. Built to print.
+1. The three-session template (page 4). Day A, day B, day A again.
+2. The six lifts with cues (page 5). What good looks like at 45, not 25.
+3. Weeks one to four, programmed (page 6). Sets, reps, where to start, the rule for adding weight.
+4. The "train around" table (page 9). Back, shoulder, knee. The lift that hurts, swapped for one that doesn't.
+Plus: the hotel-gym version, your log, and what to do in week five.
+
+**Coach (portrait bleeding off the edge)**
 Heading: Written by a physio who got tired of treating the same back.
-Body: I'm Daniel Reyes, a strength coach and former physiotherapist [CLIENT]. Fifteen years, 1,900 men [CLIENT], most of them 35 to 50 with a job and a family and about three hours a week. The 3-Session Week is the first thing I give every one of them.
+Credentials as numbers: 15 years coaching [CLIENT] · 1,900+ men [CLIENT] · former physiotherapist [CLIENT]
+Body: I'm Daniel Reyes. Most of the men I coach are 35 to 50, with a job, a family and about three hours a week. The 3-Session Week is the first thing every one of them gets from me.
 
-### Testimonials (about the free guide)
-- "Printed it, did week one in the garage. Squat went up twice in four sessions." — Luca M., 39 [CLIENT]
+**Proof wall (about the free guide)**
+- (large) "Printed it, did week one in the garage. Squat went up twice in four sessions." — Luca M., 39 [CLIENT]
 - "The train-around table is the first thing that took my shoulder seriously." — Sam D., 44 [CLIENT]
 - "Three sessions. Forty-five minutes. I've kept every one for a month." — Tom H., 48 [CLIENT]
 
-### FAQ (three)
-1. **Is this for beginners or people who used to lift?** Both. The cues assume you're learning or relearning at 35 plus; starting weights are deliberately light and the rule catches you up.
+**FAQ**
+1. **Beginner, or I used to lift?** Both. Starting weights are deliberately light and the rule catches you up fast.
 2. **I have an old back.** The train-around table swaps the lift that bothers you for one that trains the same pattern. If a doctor has told you not to lift, follow the doctor.
-3. **What happens after I enter my email?** The guide lands in about a minute. Then five short emails from Daniel over a week, one idea each. Unsubscribe in one click.
+3. **Home rack, dumbbells, hotel gym?** All three are covered. The planner above shows your version.
+4. **What happens after I enter my email?** The guide lands in about a minute. Then five short emails from Daniel over a week, one idea each.
 
-### Close (Onyx, second form)
-Heading: Session one is forty-five minutes.
-Body: Free PDF. Twelve pages. The week, the lifts, the weights to start at.
+**Close (photo: bench under the bar)**
+Heading: Session one is 45 minutes. / It can be tonight.
+Body: Free PDF. Twelve pages. The week, the lifts, and the weights to start at.
 
 ## Thanks `/forge/ebook/thanks`
 Kicker: Sent · H1: The 3-Session Week is in your inbox. Give it a minute.

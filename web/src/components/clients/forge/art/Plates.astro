@@ -1,11 +1,14 @@
 ---
-/** Thin-line barbell plates as a decorative mark. Deterministic sizes. */
+/** A loaded barbell sleeve as a solid mark: collar, then plates heaviest first. First plate in signal, the rest currentColor. */
 interface Props { count?: number; class?: string; height?: number }
 const { count = 5, class: cls = '', height } = Astro.props;
-const sizes = [1, 0.8, 0.62, 0.48, 0.36, 0.28];
+const sizes = [1, 1, 0.82, 0.62, 0.46, 0.34];
+const widths = [16, 14, 12, 10, 9, 8];
+let x = 34;
+const plates = Array.from({ length: count }, (_, i) => { const h = 108 * (sizes[i] ?? 0.3), w = widths[i] ?? 8; const p = { x, w, h }; x += w + 3; return p; });
 ---
-<svg viewBox="0 0 260 120" height={height} class={cls} aria-hidden="true" fill="none" stroke="var(--color-accent)" stroke-width="1.25">
-  <line x1="0" y1="60" x2="260" y2="60" />
-  {Array.from({ length: count }, (_, i) => { const r = 56 * (sizes[i] ?? 0.3); const x = 40 + i * 28; return <g><ellipse cx={x} cy="60" rx={r * 0.18} ry={r} /><ellipse cx={x} cy="60" rx={r * 0.18 * 0.5} ry={r * 0.5} opacity=".6" /></g>; })}
-  <rect x="2" y="54" width="14" height="12" rx="2" fill="var(--color-inverse-2)" />
+<svg viewBox="0 0 260 120" height={height} class={cls} aria-hidden="true">
+  <rect x="0" y="55" width="260" height="10" rx="2" fill="currentColor" opacity=".45" />
+  <rect x="20" y="44" width="10" height="32" rx="2" fill="currentColor" />
+  {plates.map((p, i) => <rect x={p.x} y={60 - p.h / 2} width={p.w} height={p.h} rx="3" fill={i === 0 ? 'var(--color-primary)' : 'currentColor'} />)}
 </svg>

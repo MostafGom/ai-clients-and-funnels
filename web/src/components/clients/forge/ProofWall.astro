@@ -1,0 +1,20 @@
+---
+/** Mixed-size testimonials: the first is set huge on signal orange, the rest are small graphite cards. */
+import Avatar from './art/scenes/Avatar.astro';
+interface Item { q: string; who: string; note?: string }
+interface Props { items: Item[]; class?: string }
+const { items, class: cls = '' } = Astro.props;
+const [lead, ...rest] = items;
+---
+<div class:list={['grid gap-5 lg:grid-cols-[1.4fr_1fr]', cls]}>
+  <figure class="flex flex-col justify-between rounded-lg bg-primary p-7 text-primary-fg sm:p-10 lg:row-span-2">
+    <blockquote class="font-display text-[clamp(2rem,1.4rem+2.4vw,3.5rem)] font-extrabold uppercase leading-[0.95]">“{lead.q}”</blockquote>
+    <figcaption class="mt-8 flex items-center gap-3 font-semibold"><Avatar who={lead.who} size={52} />{lead.who}{lead.note && ` · ${lead.note}`}</figcaption>
+  </figure>
+  {rest.map((t) => (
+    <figure class="rounded-lg bg-surface p-7 shadow-card">
+      <blockquote class="text-xl font-medium">“{t.q}”</blockquote>
+      <figcaption class="mt-5 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={44} />{t.who}</figcaption>
+    </figure>
+  ))}
+</div>

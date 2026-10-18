@@ -1,0 +1,34 @@
+---
+/**
+ * Forge VSL stage: iron section with a dim lifting photo behind, kicker + h1 (slot "headline"), sub, the ScriptedVSL
+ * (chalk board) with the three Forge art keys (plates · numbers · ledger), a meta line and the CTA revealed at `revealAt`.
+ */
+import Container from '../../ui/Container.astro';
+import Button from '../../ui/Button.astro';
+import ScriptedVSL from '../../funnel/ScriptedVSL.astro';
+import Plates from './art/Plates.astro';
+import LiftLedger from './art/LiftLedger.astro';
+import { fmtTime, type VslScript } from '../../../lib/vsl-script';
+import { PHOTOS } from './photos';
+interface Lift { name: string; before: number; after: number; unit?: string }
+interface Props { script: VslScript; kicker: string; sub: string; meta: string; cta: string; href: string; lifts: Lift[]; photo?: string }
+const { script, kicker, sub, meta, cta, href, lifts, photo = PHOTOS.bar } = Astro.props;
+---
+<section class="relative isolate overflow-hidden bg-bg text-fg">
+  <img src={photo} alt="" width="1600" height="2400" class="absolute inset-0 -z-20 size-full object-cover object-[50%_40%] opacity-30" fetchpriority="high" />
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-bg)_70%,transparent)_0%,var(--color-bg)_70%)]" aria-hidden="true"></div>
+  <Container size="content" class="pt-12 pb-14 sm:pt-16">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{kicker}</p>
+    <h1 class="mt-5 font-display text-[clamp(3rem,1.6rem+5vw,6.5rem)] leading-[0.88] font-extrabold"><slot name="headline" /></h1>
+    <p class="mt-6 max-w-[60ch] text-lead text-fg/85">{sub}</p>
+    <div class="mt-10">
+      <ScriptedVSL script={script} title="Play the video" class="!rounded-lg">
+        <Fragment slot="art:plates"><Plates class="h-auto w-full text-inverse-fg" /></Fragment>
+        <Fragment slot="art:numbers"><p class="text-center font-display font-extrabold uppercase leading-[0.85] text-inverse-fg"><span class="block text-[7rem]">3<span class="text-[0.5em]">×</span>45</span><span class="block text-2xl tracking-wide">sessions · minutes</span></p></Fragment>
+        <Fragment slot="art:ledger"><div class="w-full max-w-[280px] text-inverse-fg"><LiftLedger lifts={lifts} compact /></div></Fragment>
+      </ScriptedVSL>
+    </div>
+    <p class="mt-4 text-sm text-fg-muted">Reads itself, no sound needed. {fmtTime(script.totalSeconds)}. {meta}</p>
+    <p class="reveal mt-6" data-reveal><Button href={href} size="xl" data-cta="under-video">{cta}</Button></p>
+  </Container>
+</section>

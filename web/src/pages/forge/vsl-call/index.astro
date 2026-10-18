@@ -1,83 +1,84 @@
 ---
-/* Forge · VSL → call. Script: clients/forge/funnels/vsl-call/VSL-SCRIPT.md · Copy: COPY.md */
+/* Forge · VSL → call. Script: clients/forge/funnels/vsl-call/VSL-SCRIPT.md · Copy: COPY.md · Section map: DESIGN-PLAN.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
-import ScriptedVSL from '../../../components/funnel/ScriptedVSL.astro';
-import { loadVslScript, fmtTime } from '../../../lib/vsl-script';
-import OnyxBand from '../../../components/clients/forge/OnyxBand.astro';
-import Plates from '../../../components/clients/forge/art/Plates.astro';
-import Monogram from '../../../components/clients/forge/art/Monogram.astro';
-import LiftLedger from '../../../components/clients/forge/art/LiftLedger.astro';
-import LedgerCard from '../../../components/clients/forge/art/LedgerCard.astro';
-import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
+import { loadVslScript } from '../../../lib/vsl-script';
+import IronBand from '../../../components/clients/forge/IronBand.astro';
+import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import VslStage from '../../../components/clients/forge/VslStage.astro';
+import ClientLedgers from '../../../components/clients/forge/ClientLedgers.astro';
+import { PHOTOS } from '../../../components/clients/forge/photos';
+import { CLIENTS } from '../../../components/clients/forge/data';
 const script = loadVslScript('clients/forge/funnels/vsl-call/VSL-SCRIPT.md');
 const CTA = 'Apply for a Strength Audit';
 const apply = '/forge/vsl-call/apply';
+const cases = [
+  { tag: 'The old back', trap: 'Avoiding the hinge entirely, so the back never gets stronger, so it keeps hurting.', swap: 'Trap-bar or Romanian deadlift, a box under the squat, loads that start embarrassingly light.' },
+  { tag: 'Hotel gyms', trap: 'A program that needs a particular gym. Three weeks a month it isn’t there.', swap: 'The same session for dumbbells and a cable stack. The rule doesn’t care which room you’re in.' },
+  { tag: 'First time at 50', trap: 'Loading a pattern you haven’t learned yet, with a video and a guess.', swap: 'Four weeks on three lifts, starting weights set by someone who’s watched you move.' },
+  { tag: 'Quits at week three', trap: 'A program that gets heavier exactly when your week gets harder.', swap: 'Load only when the last set was clean, a lighter week 7, and someone who asks for your log.' },
+];
+const caseRows: Record<string, string[][]> = {
+  'Mark T.': [['Deadlift (trap bar)', '70 kg', '130 kg'], ['Squat (box)', '60 kg', '110 kg'], ['Back pain', 'weekly', 'none since wk 5']],
+  'James O.': [['Deadlift', '80 kg', '140 kg'], ['Sessions', '—', '34 of 36'], ['Hotels', '—', '9 cities']],
+  'Ravi S.': [['Pull-ups', '0', '6'], ['Squat', '40 kg', '90 kg'], ['Resting HR', '72', '61']],
+};
+const quotes: Record<string, string> = { 'Mark T.': 'I expected to be managed around my back. Instead it got strong.', 'James O.': 'Same session, different room.', 'Ravi S.': 'He set my weights. I stopped guessing.' };
+const clients = CLIENTS.map((c) => ({ ...c, q: quotes[c.who], rows: caseRows[c.who].map(([name, before, after]) => ({ name, before, after })) }));
 ---
 <Layout client="forge" funnel="vsl-call" step="vsl" title="Your case isn’t the exception. It’s an adjustment." description="An old back, hotel gyms, a first time under a bar at 50, or quitting at week three: four cases, the swap for each, and how to get a strength plan written for yours. Free.">
 
-  <OnyxBand pad="sm" rule="none" class="overflow-hidden">
-    <Container size="content" class="pb-6">
-      <p class="text-base font-semibold text-accent-2">For the man with a “but”</p>
-      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm font-semibold text-inverse-fg/80">{['Old back', 'Hotel gyms', 'First time at 50', 'Quits at week three'].map((t) => <li class="flex items-center gap-2"><span class="h-px w-5 bg-accent"></span>{t}</li>)}</ul>
-      <h1 class="mt-5 max-w-[22ch] text-display font-semibold">Your case isn’t<br class="hidden sm:block" /> the exception.<br /><span class="italic text-accent">It’s an adjustment.</span></h1>
-      <p class="mt-6 max-w-[60ch] text-lead text-inverse-fg/85">Four cases, the trap in each, the swap for each, and how to get a plan written for yours. Free.</p>
-      <div class="mt-10">
-        <ScriptedVSL script={script} title="Play the video" class="!rounded-lg ring-1 ring-accent/30">
-          <Fragment slot="art:plates"><div class="w-full text-inverse-fg"><Plates class="h-auto w-full" /></div></Fragment>
-          <Fragment slot="art:monogram"><Monogram size={160} class="text-inverse-fg" /></Fragment>
-          <Fragment slot="art:ledger"><div class="w-full max-w-[280px] text-inverse-fg"><LiftLedger lifts={[{ name: 'Deadlift', before: 70, after: 130 }, { name: 'Squat', before: 60, after: 110 }, { name: 'Pull-ups', before: 0, after: 6, unit: 'reps' }]} compact /></div></Fragment>
-        </ScriptedVSL>
-      </div>
-      <p class="mt-4 text-sm text-inverse-fg/70">Reads itself, no sound needed. {fmtTime(script.totalSeconds)}. Then a five-question application.</p>
-      <p class="reveal mt-6" data-reveal><Button href={apply} size="xl" data-cta="under-video">{CTA}</Button></p>
-    </Container>
-  </OnyxBand>
+  <VslStage script={script} kicker="For the man with a “but”" sub="Four cases, the trap in each, the swap for each, and how to get a plan written for yours. Free." meta="Then a five-question application." cta={CTA} href={apply} photo={PHOTOS.rack} lifts={[{ name: 'Deadlift', before: 70, after: 130 }, { name: 'Squat', before: 60, after: 110 }, { name: 'Pull-ups', before: 0, after: 6, unit: 'reps' }]}>
+    <Fragment slot="headline">Your case isn’t the exception. <span class="text-primary">It’s an adjustment.</span></Fragment>
+  </VslStage>
 
   <div class="reveal" data-reveal>
-    <section class="bg-bg py-16 sm:py-24">
-      <Container>
-        <div class="grid gap-8 md:grid-cols-2">
-          <div class="rounded-lg bg-surface p-7 shadow-card sm:p-9">
-            <h2 class="text-h3 font-semibold text-success">This audit is for you if</h2>
-            <ul class="mt-4 space-y-2 text-lg"><li>you’re 35 to 50 and your week comes with a “but,”</li><li>you want a plan written for your case, not a template,</li><li>you can give three 45-minute sessions a week,</li><li>you’ll write down your last two weeks before we talk.</li></ul>
-          </div>
-          <div class="rounded-lg border border-border-strong p-7 sm:p-9">
-            <h2 class="text-h3 font-semibold text-fg-muted">It isn’t for you if</h2>
-            <ul class="mt-4 space-y-2 text-lg text-fg-muted"><li>a doctor has told you not to lift,</li><li>you want a six-day bodybuilding split,</li><li>you want someone to make you show up.</li></ul>
-          </div>
-        </div>
-        <div class="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <Button href={apply} size="xl" data-cta="fit">{CTA}</Button>
-          <p class="text-sm text-fg-muted">Five questions, two minutes. Daniel reads every one.</p>
-        </div>
-      </Container>
-    </section>
-
-    <OnyxBand rule="both">
+    <IronBand tone="chalk" pad="lg">
       <Container size="wide">
-        <h2 class="text-h2 font-semibold">Three “exceptions,” twelve weeks later</h2>
-        <div class="mt-10 grid gap-8 lg:grid-cols-3">
-          {[
-            { who: 'Mark T.', meta: '47 · the old back', rows: [['Deadlift (trap bar)', '70 kg', '130 kg'], ['Squat (box)', '60 kg', '110 kg'], ['Back pain', 'weekly', 'none since week 5']], q: 'I expected to be managed around my back. Instead it got strong.' },
-            { who: 'James O.', meta: '41 · hotel gyms', rows: [['Deadlift', '80 kg', '140 kg'], ['Sessions', '—', '34 of 36'], ['Hotels', '—', '9 cities']], q: 'Same session, different room.' },
-            { who: 'Ravi S.', meta: '52 · first time under a bar', rows: [['Pull-ups', '0', '6'], ['Squat', '40 kg', '90 kg'], ['Resting HR', '72', '61']], q: 'He set my weights. I stopped guessing.' },
-          ].map((c) => (
-            <article class="rounded-lg bg-inverse-2 p-6 ring-1 ring-accent/25 sm:p-7">
-              <div class="flex items-center gap-4"><Avatar who={c.who} size={52} /><div><p class="font-display text-2xl">{c.who}</p><p class="text-sm text-accent-2">{c.meta}</p></div></div>
-              <LedgerCard class="mt-5" rows={c.rows.map(([name, before, after]) => ({ name, before, after }))} />
-              <blockquote class="mt-5 border-l-2 border-accent pl-4 text-inverse-fg/90">“{c.q}”</blockquote>
-            </article>
+        <h2 class="max-w-[18ch] font-display text-h1 font-extrabold uppercase">Four “buts.” Four swaps.</h2>
+        <div class="mt-12 border-t-4 border-inverse-fg">
+          <div class="hidden grid-cols-[1fr_1.4fr_1.4fr] gap-8 border-b border-inverse-fg/20 py-3 text-xs font-semibold uppercase tracking-[0.18em] opacity-70 md:grid" aria-hidden="true"><span>Your case</span><span>The trap</span><span>The swap</span></div>
+          {cases.map((c) => (
+            <div class="grid gap-3 border-b border-inverse-fg/20 py-6 md:grid-cols-[1fr_1.4fr_1.4fr] md:gap-8">
+              <h3 class="font-display text-3xl font-extrabold leading-none">{c.tag}</h3>
+              <p class="text-lg opacity-75"><span class="font-semibold md:sr-only">The trap: </span>{c.trap}</p>
+              <p class="text-lg font-medium"><span class="font-semibold md:sr-only">The swap: </span>{c.swap}</p>
+            </div>
           ))}
         </div>
-        <div class="mt-12 flex flex-col items-center gap-3 text-center">
-          <Button href={apply} size="xl" data-cta="close">{CTA}</Button>
-          <p class="text-sm text-inverse-fg/70">Free · 20 minutes · you leave with an audit card for your case</p>
+      </Container>
+    </IronBand>
+
+    <IronBand pad="lg">
+      <Container size="wide" class="grid gap-5 md:grid-cols-2">
+        <div class="rounded-lg border-t-4 border-success bg-surface p-7 sm:p-10">
+          <h2 class="font-display text-h3 font-extrabold uppercase text-success">This audit is for you if</h2>
+          <ul class="mt-5 space-y-3 text-lg">{['You’re 35 to 50 and your week comes with a “but.”', 'You want a plan written for your case, not a template.', 'You can give three 45-minute sessions a week.', 'You’ll write down your last two weeks before we talk.'].map((t) => <li class="flex gap-3"><span class="mt-2.5 size-2 shrink-0 bg-success" aria-hidden="true"></span>{t}</li>)}</ul>
+        </div>
+        <div class="rounded-lg border border-border-strong p-7 sm:p-10">
+          <h2 class="font-display text-h3 font-extrabold uppercase text-fg-muted">It isn’t for you if</h2>
+          <ul class="mt-5 space-y-3 text-lg text-fg-muted">{['A doctor has told you not to lift.', 'You want a six-day bodybuilding split.', 'You want someone to make you show up.'].map((t) => <li class="flex gap-3"><span class="mt-2.5 size-2 shrink-0 bg-fg-subtle" aria-hidden="true"></span>{t}</li>)}</ul>
         </div>
       </Container>
-    </OnyxBand>
+    </IronBand>
+
+    <IronBand tone="graphite" pad="lg" edge>
+      <Container size="wide">
+        <h2 class="max-w-[22ch] font-display text-h1 font-extrabold uppercase">Three “exceptions,” <span class="text-primary">twelve weeks later.</span></h2>
+        <ClientLedgers class="mt-12" clients={clients} rows={3} />
+      </Container>
+    </IronBand>
+
+    <PhotoHero src={PHOTOS.daniel} alt="Daniel Reyes, strength coach" focus="50% 25%" side="right" minH="min-h-[80svh]">
+      <h2 class="font-display text-display font-extrabold uppercase">Twenty minutes.<br /><span class="text-primary">A plan for yours.</span></h2>
+      <p class="mt-6 max-w-[46ch] text-lead text-fg/85">Tell Daniel your case, your equipment and the hours you actually have. He writes your three sessions, your swaps and your starting weights while you talk.</p>
+      <div class="mt-8 flex flex-col items-start gap-3">
+        <Button href={apply} size="xl" data-cta="close">{CTA}</Button>
+        <p class="text-sm text-fg-muted">Free · five questions, two minutes · Daniel reads every one</p>
+      </div>
+    </PhotoHero>
     <StickyCTA href={apply} label={CTA} note="Free 20-minute audit" showAfter={700} />
   </div>
   <script>document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));</script>

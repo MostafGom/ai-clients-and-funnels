@@ -10,21 +10,32 @@ import Badge from '../../components/ui/Badge.astro';
 import Eyebrow from '../../components/ui/Eyebrow.astro';
 import PriceCard from '../../components/funnel/PriceCard.astro';
 import Countdown from '../../components/funnel/Countdown.astro';
+import NumberWall from '../../components/clients/forge/NumberWall.astro';
+import ResultsTicker from '../../components/clients/forge/ResultsTicker.astro';
+import ClientLedgers from '../../components/clients/forge/ClientLedgers.astro';
+import StackTable from '../../components/clients/forge/StackTable.astro';
+import ProofWall from '../../components/clients/forge/ProofWall.astro';
+import PlateLoader from '../../components/clients/forge/art/PlateLoader.astro';
+import LiftLedger from '../../components/clients/forge/art/LiftLedger.astro';
+import SessionPlanner from '../../components/clients/forge/art/SessionPlanner.astro';
+import WeekRibbon from '../../components/clients/forge/art/WeekRibbon.astro';
+import Plates from '../../components/clients/forge/art/Plates.astro';
+import { MARK, MECHANISM, PHASES, RESULTS_12, STACK } from '../../components/clients/forge/data';
 const client = 'forge';
-const colors = ['bg', 'surface', 'surface-2', 'inverse', 'fg', 'fg-muted', 'fg-subtle', 'border', 'border-strong', 'primary', 'primary-hover', 'primary-soft', 'accent', 'success', 'warning', 'danger'];
+const colors = ['bg', 'surface', 'surface-2', 'inverse', 'inverse-2', 'inverse-fg', 'fg', 'fg-muted', 'fg-subtle', 'border', 'border-strong', 'primary', 'primary-hover', 'primary-soft', 'accent', 'accent-2', 'success', 'warning', 'danger'];
 ---
 <Layout client={client} title="Design system" noindex>
   <Section pad="sm">
     <Container>
       <Eyebrow>Design system</Eyebrow>
-      <h1 class="mt-3 text-h1 font-semibold">Tokens & components</h1>
+      <h1 class="mt-3 text-h1 font-extrabold">Tokens & components</h1>
       <p class="mt-3 max-w-prose text-fg-muted">Everything a funnel page for this client is built from. Source: <code class="font-mono text-sm">web/src/styles/clients/{client}.css</code> and <code class="font-mono text-sm">clients/{client}/brand.md</code>.</p>
     </Container>
   </Section>
 
   <Section pad="sm" tone="muted">
     <Container>
-      <h2 class="text-h2 font-semibold">Color</h2>
+      <h2 class="text-h2 font-extrabold">Color</h2>
       <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
         {colors.map((c) => (
           <div>
@@ -38,12 +49,12 @@ const colors = ['bg', 'surface', 'surface-2', 'inverse', 'fg', 'fg-muted', 'fg-s
 
   <Section pad="sm">
     <Container>
-      <h2 class="text-h2 font-semibold">Type</h2>
+      <h2 class="text-h2 font-extrabold">Type</h2>
       <div class="mt-6 space-y-5">
-        <p class="text-display font-display font-semibold">Display — sells the big idea</p>
-        <p class="text-h1 font-display font-semibold">H1 — the page promise</p>
-        <p class="text-h2 font-display font-semibold">H2 — section headline</p>
-        <p class="text-h3 font-display font-semibold">H3 — card or step title</p>
+        <p class="text-display font-display font-extrabold">Display — sells the big idea</p>
+        <p class="text-h1 font-display font-extrabold">H1 — the page promise</p>
+        <p class="text-h2 font-display font-extrabold">H2 — section headline</p>
+        <p class="text-h3 font-display font-extrabold">H3 — card or step title</p>
         <p class="text-lead text-fg-muted">Lead — the subheadline that earns the scroll.</p>
         <p class="max-w-prose">Body — Set in the body family. Comfortable line length, generous leading, high contrast against the page.</p>
         <p class="text-sm text-fg-muted">Small / muted — captions, consent text, footnotes.</p>
@@ -53,7 +64,7 @@ const colors = ['bg', 'surface', 'surface-2', 'inverse', 'fg', 'fg-muted', 'fg-s
 
   <Section pad="sm" tone="muted">
     <Container>
-      <h2 class="text-h2 font-semibold">Buttons & badges</h2>
+      <h2 class="text-h2 font-extrabold">Buttons & badges</h2>
       <div class="mt-6 flex flex-wrap items-center gap-4">
         <Button>Primary</Button><Button variant="accent">Accent</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Ghost</Button>
         <Button size="md">Medium</Button><Button size="xl">Extra large</Button>
@@ -65,16 +76,44 @@ const colors = ['bg', 'surface', 'surface-2', 'inverse', 'fg', 'fg-muted', 'fg-s
 
   <Section pad="sm">
     <Container>
-      <h2 class="text-h2 font-semibold">Forms & cards</h2>
+      <h2 class="text-h2 font-extrabold">Forms & cards</h2>
       <div class="mt-6 grid gap-6 lg:grid-cols-3">
         <Card><form class="space-y-4"><Input label="First name" name="name" /><Input label="Email" name="email" type="email" required placeholder="you@company.com" hint="We never share your email." /><Button type="button" full>Submit</Button></form></Card>
-        <Card tone="muted"><h3 class="text-h3 font-semibold">Muted card</h3><p class="mt-2 text-fg-muted">Used for secondary information blocks.</p></Card>
-        <Card tone="inverse"><h3 class="text-h3 font-semibold">Inverse card</h3><p class="mt-2 opacity-80">High-contrast moment for a key claim.</p></Card>
+        <Card tone="muted"><h3 class="text-h3 font-extrabold">Muted card</h3><p class="mt-2 text-fg-muted">Used for secondary information blocks.</p></Card>
+        <Card tone="inverse"><h3 class="text-h3 font-extrabold">Inverse card</h3><p class="mt-2 opacity-80">High-contrast moment for a key claim.</p></Card>
       </div>
       <div class="mt-6 grid gap-6 lg:grid-cols-2">
         <PriceCard name="Starter" price="$97" features={['Everything in the guide', 'Templates', 'Email support']}><Button full>Get Starter</Button></PriceCard>
         <PriceCard name="Pro" price="$297" compareAt="$497" badge="Most popular" highlight features={['Everything in Starter', 'Live workshop', '90-day accountability']}><Button full variant="accent">Get Pro</Button></PriceCard>
       </div>
+    </Container>
+  </Section>
+  <Section pad="sm" tone="muted">
+    <Container size="wide">
+      <h2 class="text-h2 font-extrabold">Forge components</h2>
+      <p class="mt-2 text-fg-muted">Iron &amp; Chalk art system. Section maps per funnel: clients/forge/DESIGN-PLAN.md.</p>
+      <h3 class="mt-10 text-h3 font-extrabold">PlateLoader · the signature moment</h3>
+      <PlateLoader class="mt-4 max-w-3xl" to={140} caption="Scroll it into view; static and fully loaded under reduced motion." />
+      <h3 class="mt-12 text-h3 font-extrabold">Plates mark</h3>
+      <Plates class="mt-4 h-auto w-64 text-fg" />
+      <h3 class="mt-12 text-h3 font-extrabold">NumberWall</h3>
+      <NumberWall class="mt-4" items={MECHANISM} />
+      <h3 class="mt-12 text-h3 font-extrabold">ResultsTicker</h3>
+    </Container>
+  </Section>
+  <ResultsTicker items={RESULTS_12} />
+  <Section pad="sm" tone="muted">
+    <Container size="wide">
+      <h3 class="text-h3 font-extrabold">LiftLedger · SessionPlanner</h3>
+      <div class="mt-4 grid gap-6 lg:grid-cols-2"><div class="rounded-lg bg-surface p-6"><LiftLedger lifts={MARK} /></div><SessionPlanner heading="Build your week" compact /></div>
+      <h3 class="mt-12 text-h3 font-extrabold">WeekRibbon</h3>
+      <WeekRibbon class="mt-4" phases={PHASES} />
+      <h3 class="mt-12 text-h3 font-extrabold">ClientLedgers</h3>
+      <ClientLedgers class="mt-4" rows={3} />
+      <h3 class="mt-12 text-h3 font-extrabold">ProofWall</h3>
+      <ProofWall class="mt-4" items={[{ q: 'Squat went up twice in four sessions.', who: 'Luca M., 39' }, { q: 'The first thing that took my shoulder seriously.', who: 'Sam D., 44' }, { q: 'I’ve kept every one for a month.', who: 'Tom H., 48' }]} />
+      <h3 class="mt-12 text-h3 font-extrabold">StackTable</h3>
+      <StackTable class="mt-4" items={STACK.slice(0, 4)} total="$248" price="$197" compareAt="$297" />
     </Container>
   </Section>
 </Layout>

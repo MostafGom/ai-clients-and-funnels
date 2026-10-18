@@ -1,98 +1,120 @@
 ---
-/* Forge · ebook opt-in. Copy: clients/forge/funnels/ebook/COPY.md */
+/* Forge · ebook opt-in. Copy: clients/forge/funnels/ebook/COPY.md · Section map: clients/forge/DESIGN-PLAN.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import OptInForm from '../../../components/funnel/OptInForm.astro';
-import OnyxBand from '../../../components/clients/forge/OnyxBand.astro';
+import IronBand from '../../../components/clients/forge/IronBand.astro';
+import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import NumberWall from '../../../components/clients/forge/NumberWall.astro';
+import ResultsTicker from '../../../components/clients/forge/ResultsTicker.astro';
 import FaqList from '../../../components/clients/forge/FaqList.astro';
-import Rule from '../../../components/clients/forge/art/Rule.astro';
 import SessionPlanner from '../../../components/clients/forge/art/SessionPlanner.astro';
-import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
-import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
+import PlateLoader from '../../../components/clients/forge/art/PlateLoader.astro';
+import CoachStory from '../../../components/clients/forge/CoachStory.astro';
+import ProofWall from '../../../components/clients/forge/ProofWall.astro';
 import { PHOTOS } from '../../../components/clients/forge/photos';
-const spreads = [
-  { n: 'Page 4', title: 'The three-session template', body: 'Day one, day two, day one again. Two days of recovery between heavy days.' },
-  { n: 'Page 5', title: 'The six lifts, with cues', body: 'Squat, bench, row, deadlift, press, pull-up. What good looks like at 45, not 25.' },
-  { n: 'Page 6', title: 'Weeks one to four, programmed', body: 'Sets, reps, where to start, and the rule for adding weight.' },
-  { n: 'Page 9', title: 'The “train around” table', body: 'Back, shoulder, knee. The lift that hurts, swapped for one that doesn’t.' },
+const label = 'text-xs font-semibold uppercase tracking-[0.18em]';
+const pages = [
+  { n: '04', title: 'The three-session template', body: 'Day A, day B, day A again. Two rest days between heavy days.' },
+  { n: '05', title: 'The six lifts, with cues', body: 'What good looks like at 45, not 25.' },
+  { n: '06', title: 'Weeks one to four, programmed', body: 'Sets, reps, where to start, and the rule for adding weight.' },
+  { n: '09', title: 'The “train around” table', body: 'Back, shoulder, knee. The lift that hurts, swapped for one that doesn’t.' },
 ];
+const consent = 'Free PDF in your inbox in a minute. Five short emails from Daniel. Unsubscribe in one click.';
 ---
-<Layout client="forge" funnel="ebook" step="optin" title="How many sessions a week do you actually need? Free: The 3-Session Week" description="Pick the days, the equipment and the goal; get your week. Then download The 3-Session Week: six lifts, the first four weeks programmed, the warm-up, and the train-around table. Free, for men 35 to 50.">
+<Layout client="forge" funnel="ebook" step="optin" title="Three sessions. Six lifts. Four weeks, written out. Free: The 3-Session Week" description="Tell the planner your days and kit; it builds your week. Then get The 3-Session Week free: six lifts, the weights to start at, four weeks programmed, and the train-around table. For men 35 to 50.">
 
-  <OnyxBand pad="lg" rule="bottom" class="overflow-hidden">
+  <PhotoHero src={PHOTOS.rack} alt="A man squatting a loaded barbell in a dark gym" focus="50% 38%" minH="min-h-0 lg:min-h-[92svh]">
+    <p class:list={[label, 'text-primary']}>Free guide · for men 35–50</p>
+    <h1 class="mt-5 font-display text-[clamp(3.25rem,1.4rem+6.4vw,7.25rem)] leading-[0.86] font-extrabold uppercase"><span class="block">Three sessions.</span> <span class="block">Six lifts.</span> <span class="block text-primary">Four weeks,</span> <span class="block">written out.</span></h1>
+    <p class="mt-7 max-w-[52ch] text-lead text-fg/85">Tell the planner the days and the kit you’ve got. It builds your week. The free <strong class="text-fg">3-Session Week</strong> guide then gives you the six lifts, the weights to start at, and the “train around” table for backs, shoulders and knees.</p>
+    <SessionPlanner slot="aside" heading="Build your week" compact>
+      <OptInForm client="forge" funnel="ebook" redirect="/forge/ebook/thanks" magnet="three-session-week" buttonLabel="Send me the 3-Session Week" consent={consent} class="max-w-none" />
+    </SessionPlanner>
+    <ul slot="strip" class="flex flex-wrap gap-x-8 gap-y-2 text-sm text-fg-muted">
+      <li><strong class="font-display text-xl font-bold text-fg">1,900+</strong> men coached since 2011</li>
+      <li><strong class="font-display text-xl font-bold text-fg">4.8/5</strong> from 640 reviews</li>
+      <li>Written by a <strong class="text-fg">former physiotherapist</strong></li>
+    </ul>
+  </PhotoHero>
+
+  <ResultsTicker label="First four weeks on the guide" items={[
+    { who: 'Luca, 39', lift: 'Squat', from: '60', to: '80 kg' },
+    { who: 'Sam, 44', lift: 'Bench', from: '50', to: '62.5 kg' },
+    { who: 'Tom, 48', lift: 'Deadlift', from: '80', to: '110 kg' },
+    { who: 'Ravi, 41', lift: 'Press', from: '30', to: '40 kg' },
+    { who: 'Ben, 46', lift: 'Row', from: '50', to: '65 kg' },
+  ]} />
+
+  <IronBand pad="lg">
     <Container size="wide">
-      <div class="grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,600px)]">
-        <div>
-          <p class="text-base font-semibold text-accent-2">Free guide for men 35 to 50 with three slots a week.</p>
-          <h1 class="mt-6 text-display font-semibold">How many sessions a week<br class="hidden lg:block" /> do you <span class="italic text-accent">actually</span> need?</h1>
-          <p class="mt-7 max-w-[58ch] text-lead text-inverse-fg/85">Pick the days you have, the equipment you’ve got, and what you want. That’s your week. Then get the free <strong class="text-inverse-fg">3-Session Week</strong>: the six lifts, the first four weeks programmed, the warm-up, and the “train around” table for backs, shoulders and knees.</p>
-          <div class="mt-10 hidden lg:block"><Rule label="three, not six" /></div>
-        </div>
-        <SessionPlanner heading="Your week">
-          <p class="text-sm text-fg-muted">Three full-body sessions beat six you won’t do. The guide is the week written out, with the weights to start at.</p>
-          <OptInForm client="forge" funnel="ebook" redirect="/forge/ebook/thanks" magnet="three-session-week" buttonLabel="Send me the 3-Session Week" consent="One guide, five short emails from Daniel, unsubscribe in one click." class="mt-5 max-w-none" />
-        </SessionPlanner>
-      </div>
-    </Container>
-  </OnyxBand>
-
-  <section class="bg-bg py-16 sm:py-24">
-    <Container>
-      <h2 class="max-w-[22ch] text-h1 font-semibold">Twelve pages. Four weeks. <span class="italic">Then the bar is heavier.</span></h2>
-      <div class="mt-10 grid gap-5 md:grid-cols-2">
-        {spreads.map((s) => (
-          <div class="flex gap-5 rounded-lg bg-surface p-6 shadow-card">
-            <div class="flex h-24 w-[68px] shrink-0 flex-col justify-between rounded-sm bg-inverse p-2 text-[9px] font-semibold text-accent-2"><span>{s.n}</span><span class="h-px w-8 bg-accent"></span></div>
-            <div><p class="font-display text-2xl">{s.title}</p><p class="mt-1 text-fg-muted">{s.body}</p></div>
-          </div>
-        ))}
-      </div>
-      <p class="mt-6 text-fg-muted">Plus: the eight-minute warm-up, the hotel-gym version, your log, and what to do in week five.</p>
-      <div class="mt-10 grid items-center gap-8 md:grid-cols-[auto_1fr]">
-        <img src="/forge/assets/three-session-week-cover.png" alt="Cover of The 3-Session Week" width="260" height="368" class="w-[220px] rotate-[-2deg] rounded-sm shadow-pop md:w-[260px]" loading="lazy" />
-        <p class="max-w-[48ch] text-lg text-fg-muted">Twelve pages, A4, built to print. Pages 4 and 6 go in the bag. The rest you read once, then run.</p>
-      </div>
-    </Container>
-  </section>
-
-  <section class="bg-surface-2 py-16 sm:py-20">
-    <Container>
-      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Daniel" caption="Daniel Reyes, strength coach, former physiotherapist" size={200} src={PHOTOS.daniel} />
-        <div class="max-w-[62ch]">
-          <h2 class="text-h2 font-semibold">Written by a physio who got tired of treating the same back.</h2>
-          <p class="mt-5 text-lg">I’m Daniel Reyes, a strength coach and former physiotherapist. Fifteen years, 1,900 men, most of them 35 to 50 with a job and a family and about three hours a week. The 3-Session Week is the first thing I give every one of them.</p>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <section class="bg-bg py-16 sm:py-20">
-    <Container>
-      <div class="grid gap-6 md:grid-cols-3">
-        {[
-          { q: 'Printed it, did week one in the garage. Squat went up twice in four sessions.', who: 'Luca M., 39' },
-          { q: 'The train-around table is the first thing that took my shoulder seriously.', who: 'Sam D., 44' },
-          { q: 'Three sessions. Forty-five minutes. I’ve kept every one for a month.', who: 'Tom H., 48' },
-        ].map((t) => <figure class="rounded-lg border-l-2 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} />{t.who}</figcaption></figure>)}
-      </div>
-      <FaqList class="mt-14" items={[
-        { q: 'Is this for beginners or men who used to lift?', a: 'Both. The cues assume you’re learning or relearning at 35 plus; starting weights are deliberately light and the rule catches you up.' },
-        { q: 'I have an old back.', a: 'The train-around table swaps the lift that bothers you for one that trains the same pattern. If a doctor has told you not to lift, follow the doctor.' },
-        { q: 'What happens after I enter my email?', a: 'The guide lands in about a minute. Then five short emails from Daniel over a week, one idea each. Unsubscribe in one click.' },
+      <h2 class="max-w-[16ch] font-display text-h1 font-extrabold uppercase">What’s in the week</h2>
+      <NumberWall class="mt-10" items={[
+        { n: '3', unit: 'sessions', line: 'Day A, day B, day A again. Two rest days between heavy days.' },
+        { n: '6', unit: 'lifts', line: 'Squat, bench, row, deadlift, press, pull-up, with the cues that matter at 45.' },
+        { n: '4', unit: 'weeks', line: 'Sets, reps and the starting weight for every session, written out.' },
+        { n: '8', unit: 'min', line: 'The warm-up. It replaces the 20 minutes of stretching you skip.' },
       ]} />
     </Container>
-  </section>
+  </IronBand>
 
-  <OnyxBand rule="top" pad="lg">
-    <Container size="prose" class="text-center">
-      <h2 class="text-display font-semibold">Session one is <span class="italic text-accent">forty-five minutes.</span></h2>
-      <p class="mt-5 text-lead text-inverse-fg/85">Free PDF. Twelve pages. The week, the lifts, the weights to start at.</p>
-      <div class="mt-8 flex justify-center [&_span]:text-inverse-fg [&_p]:text-inverse-fg/70">
-        <OptInForm client="forge" funnel="ebook" redirect="/forge/ebook/thanks" magnet="three-session-week" buttonLabel="Send me the 3-Session Week" consent="One guide, five short emails, unsubscribe in one click." inline />
+  <IronBand tone="graphite" pad="lg" edge>
+    <Container size="wide" class="grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+      <div>
+        <p class:list={[label, 'text-fg-muted']}>The rule</p>
+        <h2 class="mt-4 font-display text-h1 font-extrabold uppercase">Add when clean.<br /><span class="text-primary">Repeat when not.</span></h2>
+        <p class="mt-6 max-w-[46ch] text-lead text-fg-muted">That’s the whole progression. Every session the bar moves the same way and gets a little heavier. Twelve weeks of it is the gap between where you start and where you used to be.</p>
+      </div>
+      <PlateLoader to={140} weeks={12} caption="Tom H., 48: deadlift from the empty bar in week 1 to 140 kg in week 12." />
+    </Container>
+  </IronBand>
+
+  <IronBand tone="chalk" pad="lg">
+    <Container size="wide" class="grid items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)]">
+      <img src="/forge/assets/three-session-week-cover.png" alt="Cover of The 3-Session Week guide" width="520" height="736" loading="lazy" class="mx-auto w-[min(72vw,340px)] -rotate-3 rounded-sm shadow-pop lg:w-full lg:max-w-[400px]" />
+      <div>
+        <h2 class="font-display text-h1 font-extrabold uppercase">Twelve pages.<br />Built to print.</h2>
+        <ol class="mt-8 divide-y divide-inverse-fg/15 border-y border-inverse-fg/15">
+          {pages.map((p) => (
+            <li class="grid grid-cols-[4.5rem_1fr] items-baseline gap-4 py-5">
+              <span class="font-display text-5xl font-extrabold leading-none tabular-nums">{p.n}</span>
+              <span><span class="block font-display text-2xl font-bold uppercase">{p.title}</span><span class="mt-1 block opacity-75">{p.body}</span></span>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-5 opacity-75">Plus: the hotel-gym version, your log, and what to do in week five.</p>
       </div>
     </Container>
-  </OnyxBand>
+  </IronBand>
+
+  <CoachStory heading="Written by a physio who got tired of treating the same back.">
+    <p>I’m Daniel Reyes. Most of the men I coach are 35 to 50, with a job, a family and about three hours a week. The 3-Session Week is the first thing every one of them gets from me.</p>
+  </CoachStory>
+
+  <IronBand pad="lg">
+    <Container size="wide">
+      <ProofWall items={[
+        { q: 'Printed it, did week one in the garage. Squat went up twice in four sessions.', who: 'Luca M., 39', note: 'home rack' },
+        { q: 'The train-around table is the first thing that took my shoulder seriously.', who: 'Sam D., 44' },
+        { q: 'Three sessions. Forty-five minutes. I’ve kept every one for a month.', who: 'Tom H., 48' },
+      ]} />
+      <div class="mt-20 grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <h2 class="font-display text-h2 font-extrabold uppercase">Before you ask</h2>
+        <FaqList items={[
+          { q: 'Beginner, or I used to lift?', a: 'Both. Starting weights are deliberately light and the rule catches you up fast.' },
+          { q: 'I have an old back.', a: 'The train-around table swaps the lift that bothers you for one that trains the same pattern. If a doctor has told you not to lift, follow the doctor.' },
+          { q: 'Home rack, dumbbells, hotel gym?', a: 'All three are covered. The planner at the top shows your version.' },
+          { q: 'What happens after I enter my email?', a: 'The guide lands in about a minute. Then five short emails from Daniel over a week, one idea each.' },
+        ]} />
+      </div>
+    </Container>
+  </IronBand>
+
+  <PhotoHero src={PHOTOS.bar} alt="A man benching a loaded barbell in a dark gym" focus="50% 55%" side="right" minH="min-h-[80svh]">
+    <h2 class="font-display text-display font-extrabold uppercase">Session one<br />is 45 minutes.<br /><span class="text-primary">It can be tonight.</span></h2>
+    <p class="mt-6 text-lead text-fg/85">Free PDF. Twelve pages. The week, the lifts, and the weights to start at.</p>
+    <div class="mt-8"><OptInForm client="forge" funnel="ebook" redirect="/forge/ebook/thanks" magnet="three-session-week" buttonLabel="Send me the 3-Session Week" consent={consent} inline class="max-w-xl" /></div>
+  </PhotoHero>
 
   <script>
     // Carry the planner's answers into the lead so the delivery email can speak to the kit.

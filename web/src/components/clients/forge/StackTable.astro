@@ -6,20 +6,21 @@ const { items, total, price, compareAt, note, class: cls = '' } = Astro.props;
 ---
 <div class:list={['overflow-hidden rounded-lg border border-border bg-surface shadow-card', cls]}>
   <table class="w-full text-left">
-    <thead class="sr-only"><tr><th>What you get</th><th>Why it's there</th><th>Value</th></tr></thead>
+    <thead class="sr-only"><tr><th>What you get</th><th class="hidden sm:table-cell">Why it's there</th><th>Value</th></tr></thead>
     <tbody class="divide-y divide-border">
       {items.map((it) => (
-        <tr class:list={[it.bonus && 'bg-accent/10']}>
-          <td class="px-5 py-4 sm:px-7"><p class="font-semibold text-fg">{it.bonus && <span class="mr-2 font-display italic text-accent">Bonus</span>}{it.name}</p><p class="mt-1 text-sm text-fg-muted sm:hidden">{it.why}</p></td>
+        <tr>
+          <td class="px-5 py-4 sm:px-7"><p class="font-semibold text-fg">{it.bonus && <span class="mr-2 rounded-sm bg-accent px-1.5 py-0.5 text-xs font-bold uppercase tracking-wide text-accent-fg">Bonus</span>}{it.name}</p><p class="mt-1 text-sm text-fg-muted sm:hidden">{it.why}</p></td>
           <td class="hidden px-5 py-4 text-fg-muted sm:table-cell">{it.why}</td>
-          <td class="whitespace-nowrap px-5 py-4 text-right font-display text-xl text-fg sm:px-7">{it.value}</td>
+          <td class="whitespace-nowrap px-5 py-4 text-right font-display text-2xl font-bold text-fg sm:px-7">{it.value}</td>
         </tr>
       ))}
     </tbody>
     <tfoot>
-      <tr class="bg-inverse text-inverse-fg">
-        <td colspan="2" class="px-5 py-5 sm:px-7"><p class="text-sm text-accent-2">Total value</p><p class="font-display text-3xl font-semibold">{total}</p></td>
-        <td class="px-5 py-5 text-right sm:px-7"><p class="text-sm text-accent-2">Your price today</p><p class="font-display text-4xl font-semibold leading-none">{compareAt && <span class="mr-2 text-xl opacity-60 line-through">{compareAt}</span>}{price}</p></td>
+      <tr class="bg-primary text-primary-fg">
+        <td class="px-5 py-5 sm:hidden"><p class="text-xs font-semibold uppercase tracking-[0.14em]">Total value</p><p class="font-display text-3xl font-bold line-through decoration-2">{total}</p></td>
+        <td colspan="2" class="hidden px-5 py-5 sm:table-cell sm:px-7"><p class="text-xs font-semibold uppercase tracking-[0.14em]">Total value</p><p class="font-display text-3xl font-bold line-through decoration-2">{total}</p></td>
+        <td class="px-5 py-5 text-right sm:px-7"><p class="text-xs font-semibold uppercase tracking-[0.14em]">Your price today</p><p class="font-display text-5xl font-extrabold leading-none sm:text-6xl">{compareAt && <span class="mr-2 text-xl opacity-60 line-through">{compareAt}</span>}{price}</p></td>
       </tr>
     </tfoot>
   </table>

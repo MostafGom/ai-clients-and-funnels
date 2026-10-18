@@ -1,103 +1,95 @@
 ---
-/* Forge · calendar landing. Copy: clients/forge/funnels/calendar/COPY.md */
+/* Forge · calendar landing. Copy: clients/forge/funnels/calendar/COPY.md · Section map: clients/forge/DESIGN-PLAN.md */
 import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
-import OnyxBand from '../../../components/clients/forge/OnyxBand.astro';
+import IronBand from '../../../components/clients/forge/IronBand.astro';
+import PhotoHero from '../../../components/clients/forge/PhotoHero.astro';
+import CoachStory from '../../../components/clients/forge/CoachStory.astro';
+import ProofWall from '../../../components/clients/forge/ProofWall.astro';
 import FaqList from '../../../components/clients/forge/FaqList.astro';
-import Rule from '../../../components/clients/forge/art/Rule.astro';
-import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
-import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
 import { PHOTOS } from '../../../components/clients/forge/photos';
 const CTA = 'Book a Strength Audit';
 const book = '/forge/calendar/book';
+const label = 'text-xs font-semibold uppercase tracking-[0.18em]';
 const steps = [
-  { t: 'Where you are', m: '5 min', b: 'Training history, the last two weeks, injuries, equipment, the hours you actually have. We start from where you are, not where you were.' },
-  { t: 'Your plan', m: '10 min', b: 'Daniel sets your three sessions, the lifts, the swaps for anything that hurts, and the starting weights. Written down while you talk.' },
-  { t: 'The next step', m: '5 min', b: 'What to do on Monday, and one honest sentence about whether Forge 12 on your own, Forge 12 with coaching, or neither, fits.' },
+  { t: 'Where you are', m: 5, b: 'Training history, the last two weeks, injuries, equipment, the hours you actually have.' },
+  { t: 'Your plan', m: 10, b: 'Your three sessions, the lifts, the swaps for anything that hurts, the starting weights. Written down while you talk.' },
+  { t: 'The next step', m: 5, b: 'What to do on Monday, and one honest sentence about whether the program, coaching, or neither fits.' },
 ];
 const card = [['You', '46, desk job, old L5 niggle'], ['Equipment', 'home rack'], ['Sessions', 'Mon / Wed / Fri, 6 a.m.'], ['Start', 'squat 40 · bench 30 · trap bar 60'], ['Swap', 'bench → floor press (shoulder)'], ['Progress', '+2.5 kg when clean'], ['Review', 'week four']];
 ---
 <Layout client="forge" funnel="calendar" step="landing" title="Free 20-minute Strength Audit" description="Tell Daniel, a strength coach and former physiotherapist, your week and leave with a plan written for you: lifts, swaps for anything that hurts, starting weights. Free, 20 minutes.">
 
-  <OnyxBand pad="lg" rule="bottom" class="overflow-hidden">
-    <Container size="wide">
-      <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-        <div>
-          <p class="text-base font-semibold text-accent-2">Free Strength Audit · 20 minutes · men 35 to 50</p>
-          <h1 class="mt-6 text-display font-semibold">Twenty minutes.<br />One plan<br /><span class="italic text-accent">written for you.</span></h1>
-          <p class="mt-7 max-w-[60ch] text-lead text-inverse-fg/85">The 3-Session Week works for most men. If yours has a “but” (an old back or shoulder, three weeks a month in hotels, never been under a bar, or you’re past fifty and want your form checked before you load it), tell Daniel your week and leave with a plan written for you. Free. No pitch beyond one honest sentence.</p>
-          <div class="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Button href={book} size="xl" data-cta="hero">{CTA}</Button>
-            <p class="max-w-[34ch] text-sm text-inverse-fg/70">Daniel runs six audits a week. They’re usually booked four days out.</p>
-          </div>
-        </div>
-        <figure class="mx-auto w-full max-w-[440px]">
-          <div class="rounded-lg bg-surface p-7 text-fg shadow-pop ring-1 ring-accent">
-            <p class="font-display text-2xl">Your audit <span class="italic text-primary">· first four weeks</span></p>
-            <dl class="mt-5 divide-y divide-border text-sm">
-              {card.map(([k, v]) => <div class="flex justify-between gap-4 py-2.5"><dt class="text-fg-muted">{k}</dt><dd class="text-right font-semibold">{v}</dd></div>)}
-            </dl>
-            <p class="mt-4 text-xs text-fg-subtle">Written by Daniel during the audit</p>
-          </div>
-          <figcaption class="mt-5 text-center text-sm text-inverse-fg/70">The card you leave the audit with. Yours will have your numbers.</figcaption>
-        </figure>
+  <PhotoHero src={PHOTOS.bar} alt="A man benching a loaded barbell in a dark gym" focus="50% 50%" minH="min-h-0 lg:min-h-[92svh]">
+    <p class:list={[label, 'text-primary']}>Free Strength Audit · 20 minutes · men 35–50</p>
+    <h1 class="mt-5 font-display text-[clamp(3.25rem,1.4rem+6.4vw,7.25rem)] leading-[0.86] font-extrabold uppercase"><span class="block">Twenty minutes.</span> <span class="block">One plan,</span> <span class="block text-primary">written for you.</span></h1>
+    <p class="mt-7 max-w-[52ch] text-lead text-fg/85">An old back. Three weeks a month in hotels. Never been under a bar, or past fifty and want your form checked before you load it. Tell Daniel your week and leave with your plan. Free.</p>
+    <div class="mt-8 flex flex-col items-start gap-3">
+      <Button href={book} size="xl" data-cta="hero">{CTA}</Button>
+      <p class="text-sm text-fg-muted">Daniel runs six audits a week. They’re usually booked four days out.</p>
+    </div>
+    <figure slot="aside" class="mx-auto w-full max-w-[460px]">
+      <div class="rotate-1 rounded-lg bg-inverse p-7 text-inverse-fg shadow-pop">
+        <p class="flex items-baseline justify-between gap-4 border-b-4 border-inverse-fg pb-3"><span class="font-display text-3xl font-extrabold uppercase leading-none">Your audit</span><span class="text-xs font-semibold uppercase tracking-[0.14em] opacity-70">First 4 weeks</span></p>
+        <dl class="mt-2 divide-y divide-inverse-fg/15 text-sm">
+          {card.map(([k, v]) => <div class="flex justify-between gap-4 py-2.5"><dt class="opacity-70">{k}</dt><dd class="text-right font-semibold">{v}</dd></div>)}
+        </dl>
+        <p class="mt-4 text-xs opacity-70">Written by Daniel during the audit</p>
       </div>
-    </Container>
-  </OnyxBand>
+      <figcaption class="mt-4 text-center text-sm text-fg-muted">The card you leave with. Yours will have your numbers.</figcaption>
+    </figure>
+  </PhotoHero>
 
-  <section class="bg-bg py-16 sm:py-24">
-    <Container>
-      <h2 class="text-h1 font-semibold">What happens in <span class="italic">twenty minutes</span></h2>
-      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+  <IronBand pad="lg">
+    <Container size="wide">
+      <h2 class="font-display text-h1 font-extrabold uppercase">What happens in <span class="text-primary">twenty minutes</span></h2>
+      <ol class="mt-12 grid gap-1 md:grid-cols-[5fr_10fr_5fr]">
         {steps.map((s, i) => (
-          <li class="rounded-lg bg-surface p-7 shadow-card">
-            <p class="flex items-baseline justify-between"><span class="font-display text-2xl">{i + 1}. {s.t}</span><span class="font-display text-xl italic text-accent">{s.m}</span></p>
-            <p class="mt-3 text-fg-muted">{s.b}</p>
+          <li class:list={['flex flex-col p-6 sm:p-8', ['bg-surface-2', 'bg-primary text-primary-fg', 'bg-surface'][i]]}>
+            <p class="font-display text-[clamp(3.5rem,2.5rem+3vw,6rem)] font-extrabold leading-none tabular-nums">{s.m}<span class="ml-1 text-2xl">min</span></p>
+            <h3 class="mt-6 font-display text-3xl font-extrabold">{s.t}</h3>
+            <p class:list={['mt-2 max-w-[44ch]', i === 1 ? '' : 'text-fg-muted']}>{s.b}</p>
           </li>
         ))}
       </ol>
     </Container>
-  </section>
+  </IronBand>
 
-  <Container><Rule label="after the audit" /></Container>
+  <CoachStory heading="He runs the audits himself.">
+    <p>Daniel Reyes is a strength coach and former physiotherapist. Since 2011 he has coached 1,900 men, most of them 35 to 50 with a job, a family and an old injury.</p>
+    <p class="font-semibold text-fg">You talk to him, not a sales rep.</p>
+  </CoachStory>
 
-  <section class="bg-bg py-16 sm:py-20">
-    <Container>
-      <div class="grid gap-6 md:grid-cols-3">
-        {[
-          { q: 'He found the shoulder problem in two minutes. Floor press instead of bench. First pain-free pressing in three years.', who: 'Luca M., 39' },
-          { q: 'I expected to be sold to. I got a four-week plan and a starting squat weight. We did it ourselves.', who: 'Sam D., 44' },
-          { q: 'Three weeks a month in hotels. He wrote the hotel version on the call. I’ve trained every week since.', who: 'Tom H., 48' },
-        ].map((t) => <figure class="rounded-lg border-l-2 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} />{t.who}</figcaption></figure>)}
-      </div>
-      <div class="mt-14 grid items-center gap-8 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Daniel" size={150} src={PHOTOS.daniel} />
-        <p class="max-w-[60ch] text-lg">Daniel Reyes, strength coach and former physiotherapist, 1,900 men since 2011. He runs the audits himself.</p>
-      </div>
+  <IronBand tone="graphite" pad="lg" edge>
+    <Container size="wide">
+      <h2 class="font-display text-h2 font-extrabold uppercase">After the audit</h2>
+      <ProofWall class="mt-10" items={[
+        { q: 'He found the shoulder problem in two minutes. Floor press instead of bench. First pain-free pressing in three years.', who: 'Luca M., 39' },
+        { q: 'I expected to be sold to. I got a four-week plan and a starting squat weight.', who: 'Sam D., 44' },
+        { q: 'Three weeks a month in hotels. He wrote the hotel version on the call. I’ve trained every week since.', who: 'Tom H., 48' },
+      ]} />
     </Container>
-  </section>
+  </IronBand>
 
-  <section class="bg-surface-2 py-16 sm:py-24">
-    <Container>
-      <h2 class="text-h2 font-semibold">Before you book</h2>
-      <FaqList class="mt-6" items={[
+  <IronBand pad="lg">
+    <Container size="wide" class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <h2 class="font-display text-h2 font-extrabold uppercase">Before you book</h2>
+      <FaqList items={[
         { q: 'Is this a sales call?', a: 'It’s a plan call. If coaching fits your case, Daniel will say so in one sentence and tell you what it costs. If the free guide or the $197 program is enough, he’ll say that instead. Most audits end with “start Monday at these weights.”' },
         { q: 'I have an injury.', a: 'That’s the main reason to book. Bring what the physio or doctor said. If a doctor has told you not to lift, follow the doctor; the audit will work around it or tell you to wait.' },
         { q: 'I’ve never lifted.', a: 'Then the audit sets your starting weights so you don’t guess, and tells you which three lifts to learn first.' },
         { q: 'What if work moves?', a: 'Phone or video, 6 a.m. and lunchtime slots, and you can reschedule from the invite in one tap.' },
       ]} />
     </Container>
-  </section>
+  </IronBand>
 
-  <OnyxBand rule="top" pad="lg">
-    <Container size="prose" class="text-center">
-      <h2 class="text-display font-semibold">Monday’s session is<br /><span class="italic text-accent">coming either way.</span></h2>
-      <p class="mt-5 text-lead text-inverse-fg/85">Make it the one with a plan. Twenty minutes, free, this week.</p>
-      <div class="mt-8"><Button href={book} size="xl" data-cta="close">{CTA}</Button></div>
-    </Container>
-  </OnyxBand>
+  <PhotoHero src={PHOTOS.rack} alt="A man squatting a loaded barbell in a dark gym" focus="50% 38%" side="right" minH="min-h-[80svh]">
+    <h2 class="font-display text-display font-extrabold uppercase">Monday’s session<br />is coming<br /><span class="text-primary">either way.</span></h2>
+    <p class="mt-6 max-w-[46ch] text-lead text-fg/85">Make it the one with a plan. Twenty minutes, free, this week.</p>
+    <div class="mt-8"><Button href={book} size="xl" data-cta="close">{CTA}</Button></div>
+  </PhotoHero>
   <StickyCTA href={book} label={CTA} note="Free 20-minute Strength Audit" showAfter={700} />
   <script>document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));</script>
 </Layout>

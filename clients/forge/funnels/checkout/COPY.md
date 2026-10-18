@@ -143,3 +143,10 @@ Body: By now you've done one or two sessions. Sore muscles are expected and fade
 ### Onboarding 3 (+6d)
 Subject: Week two. The rule does the work now. · Preview: Add when clean. Repeat when not.
 Body: From here the program is a rule, not a plan: when the last set is clean, add 2.5 kg next time. When it isn't, repeat the weight. That's the entire decision for the next ten weeks. Your first check-in lands Friday; send your log. Men who send logs finish. — Daniel
+
+## Iron & Chalk pass (Oct 2026)
+- Hero headline now the big idea: "Stronger at 45 / than you were / at 30." (was the same promise in serif with "Three sessions a week" as the third line). Sub: Three 45-minute sessions a week. Six lifts. One rule that adds weight when the last set was clean. Twelve weeks, built for men who aren't 25 and don't pretend to be.
+- Proof moved into the hero: Mark T.'s six-lift ledger beside the headline, proof strip (1,900+ men [CLIENT] · 4.8/5 from 640 reviews [CLIENT] · former physiotherapist) and a results ticker directly under it.
+- Order: hero → ticker → 6:40 p.m. scene → myth wall ("The programs weren't wrong. They weren't for you.") → number wall (3 sessions · 45 min · 6 lifts · 12 weeks) → the rule with PlateLoader (Mark, deadlift 70 → 130 kg [CLIENT]) → 12-week track → three ledgers → Daniel → for/not for → offer (stack, price, guarantee as one unit) → FAQ → photo close.
+- Scene heading tightened: "It's 6:40 p.m. The gym bag has been in the boot since Monday." Mechanism heading: "Volume isn't the lever. Progression is."
+- Daniel heading: "I was a physio before I was a coach. That's why the program starts with your back."

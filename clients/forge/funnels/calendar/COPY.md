@@ -64,3 +64,8 @@ Body: See you in an hour. Have your training notes and your equipment list nearb
 ### Cancelled
 Subject: No problem. Rebook when the week allows. · Preview: The calendar is here when you're ready.
 Body: Your audit is cancelled, no questions asked. When you're ready, the calendar is below. And if you'd rather start on your own, the 3-Session Week is still the right first step. — Daniel
+
+## Iron & Chalk pass (Oct 2026)
+- Hero: "Twenty minutes. / One plan, / written for you." over the bench photo, audit card beside it. Sub shortened to the four "buts" and the promise.
+- "What happens in twenty minutes": a timeline with segments sized 5 · 10 · 5 minutes.
+- Daniel block: "He runs the audits himself." + "You talk to him, not a sales rep." Proof as a mixed-size wall ("After the audit").

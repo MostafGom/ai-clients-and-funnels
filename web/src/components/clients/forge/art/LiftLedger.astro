@@ -1,6 +1,6 @@
 ---
 /**
- * Six lifts, week 1 vs week 12. Horizontal bars, serif numerals, fills once on view: the page's one motion moment.
+ * Six lifts, week 1 vs week 12. Horizontal bars, display numerals, fills once on view: the page's one motion moment.
  * Values in kg (or any unit). `lifts`: [{ name, before, after }]
  */
 interface Lift { name: string; before: number; after: number; unit?: string }
@@ -12,18 +12,18 @@ const max = Math.max(...lifts.map((l) => l.after)) * 1.05;
   <dl class:list={['space-y-3', compact ? 'text-xs' : 'text-sm']}>
     {lifts.map((l) => (
       <div class="grid grid-cols-[minmax(80px,1fr)_3fr_auto] items-center gap-3">
-        <dt class="font-semibold">{l.name}</dt>
+        <dt class="font-display text-lg font-bold uppercase">{l.name}</dt>
         <dd class="relative h-[14px]">
-          <span class="bar absolute inset-y-0 left-0 rounded-sm bg-accent-2/70" style={`--w:${(l.before / max) * 100}%`}></span>
-          <span class="bar after absolute inset-y-[3px] left-0 rounded-sm bg-success" style={`--w:${(l.after / max) * 100}%`}></span>
+          <span class="bar absolute inset-y-0 left-0 rounded-sm bg-accent-2/40" style={`--w:${(l.before / max) * 100}%`}></span>
+          <span class="bar after absolute inset-y-[3px] left-0 rounded-sm bg-primary" style={`--w:${(l.after / max) * 100}%`}></span>
         </dd>
-        <dd class="whitespace-nowrap text-right font-display text-xl tabular-nums"><span class="opacity-60">{l.before}</span> <span class="mx-1 text-accent">→</span> {l.after} <span class="text-xs font-body opacity-60">{l.unit ?? unit}</span></dd>
+        <dd class="whitespace-nowrap text-right font-display text-2xl font-bold tabular-nums"><span class="opacity-60">{l.before}</span> <span class="mx-1 text-primary">→</span> {l.after} <span class="text-xs font-body opacity-60">{l.unit ?? unit}</span></dd>
       </div>
     ))}
   </dl>
   <figcaption class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs opacity-80">
-    <span class="inline-flex items-center gap-2"><i class="inline-block h-2 w-4 bg-accent-2/70"></i>week 1</span>
-    <span class="inline-flex items-center gap-2"><i class="inline-block h-2 w-4 bg-success"></i>week 12</span>
+    <span class="inline-flex items-center gap-2"><i class="inline-block h-2 w-4 bg-accent-2/40"></i>week 1</span>
+    <span class="inline-flex items-center gap-2"><i class="inline-block h-2 w-4 bg-primary"></i>week 12</span>
     {caption && <span class="basis-full">{caption}</span>}
   </figcaption>
 </figure>

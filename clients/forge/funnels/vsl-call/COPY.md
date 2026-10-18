@@ -26,3 +26,8 @@ Kicker: Booked · H1: Done. Daniel has your application. · Body: Invite's in yo
 ## Emails
 Application received (0h): Subject "Got it. Daniel's reading your application." · Body: Thanks, {name}. Your application is with Daniel. If you haven't picked a time yet, the calendar is below. Before the audit, write your last two weeks of training, one line each. — Daniel. CTA: Pick a time.
 Internal to Daniel: subject "Strength Audit application: {name}, {age}, {buts}", body = all answers.
+
+## Iron & Chalk pass (Oct 2026)
+- Revealed sections now open with a trap → swap table: "Four 'buts.' Four swaps." (old back · hotel gyms · first time at 50 · quits at week three, lines from VSL-SCRIPT.md).
+- Close moved onto Daniel's photo: "Twenty minutes. A plan for yours." Body: Tell Daniel your case, your equipment and the hours you actually have. He writes your three sessions, your swaps and your starting weights while you talk.
+- VSL art key `monogram` renamed `numbers`.

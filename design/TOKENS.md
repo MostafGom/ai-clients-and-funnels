@@ -25,7 +25,9 @@ Components never use anything else. If a design needs a new token, add it here f
 | `--color-focus` | focus outline | on bg ≥ 3 |
 
 ## Type
-`--font-display`, `--font-body`, `--font-mono` (families). Scale is fixed in base.css
+`--font-display`, `--font-body`, `--font-mono`, `--font-cta` (button face; defaults to body) (families).
+`--cta-case` (`none` | `uppercase`), `--cta-tracking` and `--cta-scale` (font-size multiplier, default 1) style button text.
+`--display-case` (`none` | `uppercase`) sets text-transform on h1–h4, so shared components follow the client's headline style. Scale is fixed in base.css
 (`text-display`, `text-h1`, `text-h2`, `text-h3`, `text-lead`) and may be overridden per client if the display face needs it.
 
 ## Shape & elevation
