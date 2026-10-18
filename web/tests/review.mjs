@@ -43,7 +43,7 @@ for (const page of pages) {
         autoplayIframes: q('iframe[src*="autoplay=1"], iframe[src*="autoPlay=true"]').length,
         imgsNoSize: q('img').filter((i) => !i.getAttribute('width') && !i.getAttribute('height') && !i.className.includes('absolute')).length,
         preconnect: !!document.querySelector('link[rel=preconnect][href*="fonts.gstatic"]') || !document.querySelector('link[href*="fonts.googleapis"]'),
-        ctas: q('main a, main button').filter((el) => /bg-primary|bg-accent/.test(el.className) && el.offsetParent !== null).map((el) => el.textContent.trim().replace(/\s+/g, ' ')),
+        ctas: q('main a, main button').filter((el) => /(^|\s)bg-(primary|accent)(\s|$)/.test(el.className) && el.offsetParent !== null).map((el) => el.textContent.trim().replace(/\s+/g, ' ')),
         headline: document.querySelector('main h1')?.textContent.trim().replace(/\s+/g, ' '),
         meta: document.querySelector('meta[name=description]')?.content?.length ?? 0,
         noindex: !!document.querySelector('meta[name=robots][content*=noindex]'),

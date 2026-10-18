@@ -1,0 +1,21 @@
+// node tests/vsl-check.mjs <path> [base] — exercises the ScriptedVSL player and the reveal gating.
+import { chromium } from '@playwright/test';
+const [path, base = 'http://localhost:4321'] = process.argv.slice(2);
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+const offerOpacity = () => p.evaluate(() => getComputedStyle(document.querySelector('div.reveal[data-reveal]')).opacity);
+await p.goto(base + path, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(500);
+console.log('fresh: offer opacity', await offerOpacity(), '| start overlay', await p.locator('[data-start]').count());
+await p.click('[data-start]'); await p.waitForTimeout(400);
+const s1 = await p.locator('[data-slide]').textContent();
+await p.waitForTimeout(9000);
+const s2 = await p.locator('[data-slide]').textContent();
+console.log('advances:', s1 !== s2, '|', s1?.slice(0, 40), '→', s2?.slice(0, 40));
+await p.click('[data-toggle]'); const t = await p.locator('[data-toggle]').textContent(); console.log('pause label:', t);
+await p.click('[data-go="5"]'); await p.waitForTimeout(700);
+console.log('after chapter 6: offer opacity', await offerOpacity(), '| chapter:', await p.locator('[data-chapter]').textContent());
+await p.goto(base + path, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(500);
+console.log('return visit: offer opacity', await offerOpacity());
+await p.evaluate(() => localStorage.clear());
+await p.goto(base + path, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(500);
+console.log('cleared: offer opacity', await offerOpacity());
+await b.close();

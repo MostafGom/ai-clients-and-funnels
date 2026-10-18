@@ -1,7 +1,15 @@
 ---
 import Layout from '../../../layouts/FunnelLayout.astro';
 import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 ---
-<Layout client="lumen" funnel="vsl-checkout" step="upsell" title="One-time offer" noindex bare>
-  <OneClickOffer client="lumen" funnel="vsl-checkout" kind="upsell" priceKey="upsell" eyebrow="Wait, one more thing" headline="Want Maya in your pocket for the 7 nights?" subheadline="14 days of 1:1 coaching: text her at 2 a.m., two video calls, and a plan tweaked for your baby. Only offered here." price="$397" compareAt="$900" bullets={['14 days of text support with Maya (yes, at 2 a.m.)', '2 private video calls: night 1 setup, night 4 check-in', 'Your plan adjusted for reflux, twins, daycare or travel', 'Priority seat in the live Q&A']} acceptLabel="Yes, add 14 days with Maya" acceptNext="/lumen/vsl-checkout/thanks" declineNext="/lumen/vsl-checkout/downsell" />
+<Layout client="lumen" funnel="vsl-checkout" step="upsell" title="One thing before you go" noindex bare>
+  <OneClickOffer client="lumen" funnel="vsl-checkout" kind="upsell" priceKey="upsell" eyebrow="Your order is confirmed. One thing before you go." headline="Want Maya in your pocket for the seven nights?" price="$397" compareAt="$900" bullets={['Text Maya any time for 14 days. 48-hour max reply, usually much faster.', 'Night 1 setup call (30 minutes).', 'Night 4 check-in call (30 minutes).', 'Your plan adjusted for reflux, twins, daycare or travel.', 'Priority seat at the weekly live Q&A.']} acceptLabel="Yes, add 14 days with Maya" declineLabel="No thanks, I’ll run the seven nights on my own" acceptNext="/lumen/vsl-checkout/thanks" declineNext="/lumen/vsl-checkout/downsell">
+    <Fragment slot="why">
+      <p>You just bought the plan. The families who get the fastest results are the ones who send Maya a message on night three instead of googling. This is the only place we offer 14 days of 1:1 at this price, because it’s only useful right now.</p>
+    </Fragment>
+    <Fragment slot="objection">
+      <p><strong>If your baby is “different”</strong> (reflux, twins, a sibling in the room, a trip in week two), this is where the plan gets bent around her instead of the other way round. $397 today instead of $900<ClaimFlag /> for the same two weeks booked separately.</p>
+    </Fragment>
+  </OneClickOffer>
 </Layout>
