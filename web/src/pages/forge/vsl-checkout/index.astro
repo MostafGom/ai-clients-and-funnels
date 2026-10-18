@@ -1,0 +1,126 @@
+---
+/* Forge · VSL → checkout. Script: clients/forge/funnels/vsl-checkout/VSL-SCRIPT.md · Copy: COPY.md */
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Button from '../../../components/ui/Button.astro';
+import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+import ScriptedVSL from '../../../components/funnel/ScriptedVSL.astro';
+import { loadVslScript, fmtTime } from '../../../lib/vsl-script';
+import OnyxBand from '../../../components/clients/forge/OnyxBand.astro';
+import StackTable from '../../../components/clients/forge/StackTable.astro';
+import FaqList from '../../../components/clients/forge/FaqList.astro';
+import Plates from '../../../components/clients/forge/art/Plates.astro';
+import Monogram from '../../../components/clients/forge/art/Monogram.astro';
+import LiftLedger from '../../../components/clients/forge/art/LiftLedger.astro';
+import LedgerCard from '../../../components/clients/forge/art/LedgerCard.astro';
+import Avatar from '../../../components/clients/forge/art/scenes/Avatar.astro';
+
+const script = loadVslScript('clients/forge/funnels/vsl-checkout/VSL-SCRIPT.md');
+const minutes = Math.ceil(script.totalSeconds / 60);
+const CTA = 'Start Forge 12 · $197';
+const checkout = '/forge/vsl-checkout/checkout';
+const stack = [
+  { name: 'Forge 12: the 12-week program, three equipment tracks', why: 'Three sessions a week, programmed for twelve weeks', value: '$147' },
+  { name: 'The six lifts, filmed', why: 'Form cues for stiff hips and desk shoulders', value: '$47' },
+  { name: 'The progression rule and the logbook', why: 'Removes every decision except showing up', value: '$27' },
+  { name: 'The 8-minute warm-up and the week-7 deload', why: 'Fewer setbacks, so the twelve weeks finish', value: '$27' },
+  { name: 'Weekly check-in for 12 weeks + private Q&A thread with Daniel', why: 'A coach who asks for your log', value: '$120' },
+  { name: 'The “train around” table: backs, shoulders, knees', why: 'For the old injury', value: '$37', bonus: true },
+  { name: 'The Hotel Gym Card', why: 'The same session on a different page', value: '$19', bonus: true },
+  { name: 'The Plate Rule', why: 'Eating for strength without a diet, on one page', value: '$27', bonus: true },
+];
+const faq = [
+  { q: 'How long does each session take?', a: 'Forty-five minutes including the warm-up. If you have 35, the program tells you what to cut.' },
+  { q: 'I have an old back, shoulder or knee.', a: 'The “train around” table swaps the lift that bothers you for one that trains the same pattern. If a doctor has told you not to lift, follow the doctor.' },
+  { q: 'I only have a home rack, or I travel.', a: 'Three equipment tracks and the Hotel Gym Card: the same session on a different page.' },
+  { q: 'I always quit at week three.', a: 'Forge 12 adds load only when a set is clean and deloads in week seven, so it gets lighter exactly when other programs get heavier. And the weekly check-in asks for your log.' },
+  { q: 'Do I have to diet?', a: 'No. The Plate Rule is one page. Leaner comes from the sessions and the rule, not from counting.' },
+  { q: 'When do I get access?', a: 'Immediately. Session one can be tonight; it’s 45 minutes.' },
+];
+const mark = [{ name: 'Squat', before: 60, after: 110 }, { name: 'Deadlift', before: 70, after: 130 }, { name: 'Bench', before: 50, after: 80 }, { name: 'Press', before: 30, after: 50 }];
+---
+<Layout client="forge" funnel="vsl-checkout" step="vsl" title={`The least training that makes a 45-year-old stronger (${minutes}-minute training)`} description={`Free ${minutes}-minute training from a strength coach and former physiotherapist: why volume isn't the lever after forty, the three that are, and the 12-week program built around them.`}>
+
+  <OnyxBand pad="sm" rule="none">
+    <Container size="content" class="pb-6">
+      <p class="text-base font-semibold text-accent-2">Free {minutes}-minute training for men 35 to 50</p>
+      <h1 class="mt-5 max-w-[22ch] text-display font-semibold">The least training<br class="hidden sm:block" /> that makes a 45-year-old<br class="hidden sm:block" /> <span class="italic text-accent">stronger.</span></h1>
+      <p class="mt-6 max-w-[60ch] text-lead text-inverse-fg/85">Six lifts, one rule, three sessions a week. A former physiotherapist on what actually moves the bar after forty, and why the programs you quit were built for someone else.</p>
+      <div class="mt-10">
+        <ScriptedVSL script={script} title="Play the training" class="!rounded-lg ring-1 ring-accent/30">
+          <Fragment slot="art:plates"><div class="text-inverse-fg"><Plates class="w-full" height={120} /></div></Fragment>
+          <Fragment slot="art:monogram"><Monogram size={160} class="text-inverse-fg" /></Fragment>
+          <Fragment slot="art:ledger"><div class="w-full max-w-[280px] text-inverse-fg"><LiftLedger lifts={mark} compact /></div></Fragment>
+        </ScriptedVSL>
+      </div>
+      <p class="mt-4 text-sm text-inverse-fg/70">Reads itself, no sound needed. {fmtTime(script.totalSeconds)}. Taught by a strength coach and former physiotherapist.</p>
+      <p class="reveal mt-6" data-reveal><Button href={checkout} size="xl" data-cta="under-video">{CTA}</Button></p>
+    </Container>
+  </OnyxBand>
+
+  <div class="reveal" data-reveal>
+    <section class="bg-bg py-16 sm:py-24">
+      <Container>
+        <div class="max-w-[62ch]">
+          <h2 class="text-h1 font-semibold">Forge 12. Twelve weeks. <span class="italic">Three equipment tracks.</span></h2>
+          <p class="mt-5 text-lead text-fg-muted">Everything from the training, programmed. Forty-five minutes a session, three sessions a week.</p>
+        </div>
+        <StackTable class="mt-10" items={stack} total="$451" price="$197" compareAt="$297" note="Values are the price of each item sold separately." />
+        <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <Button href={checkout} size="xl" data-cta="stack">{CTA}</Button>
+          <p class="text-sm text-fg-muted">Instant access. Three equipment tracks. Week-Four Guarantee.</p>
+        </div>
+      </Container>
+    </section>
+
+    <OnyxBand rule="both">
+      <Container size="wide">
+        <h2 class="text-h2 font-semibold">Twelve weeks later</h2>
+        <div class="mt-10 grid gap-8 lg:grid-cols-3">
+          {[
+            { who: 'Mark T.', meta: '47 · CFO · an old back', rows: [['Squat', '60 kg', '110 kg'], ['Deadlift', '70 kg', '130 kg'], ['Waist', '98 cm', '92 cm']], q: 'The back stopped hurting in week five.' },
+            { who: 'James O.', meta: '41 · founder · hotel gyms', rows: [['Deadlift', '80 kg', '140 kg'], ['Press', '35 kg', '55 kg'], ['Sessions', '—', '34 of 36']], q: 'Same session, different room.' },
+            { who: 'Ravi S.', meta: '52 · surgeon · first time under a bar', rows: [['Pull-ups', '0', '6'], ['Squat', '40 kg', '90 kg'], ['Resting HR', '72', '61']], q: 'Three sessions. I kept all of them.' },
+          ].map((c) => (
+            <article class="rounded-lg bg-inverse-2 p-6 ring-1 ring-accent/25 sm:p-7">
+              <div class="flex items-center gap-4"><Avatar who={c.who} size={52} /><div><p class="font-display text-2xl">{c.who}</p><p class="text-sm text-accent-2">{c.meta}</p></div></div>
+              <LedgerCard class="mt-5" rows={c.rows.map(([name, before, after]) => ({ name, before, after }))} />
+              <blockquote class="mt-5 border-l-2 border-accent pl-4 text-inverse-fg/90">“{c.q}”</blockquote>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </OnyxBand>
+
+    <section class="bg-bg py-16 sm:py-20">
+      <Container size="prose">
+        <div class="rounded-lg border border-accent bg-surface p-8 sm:p-12">
+          <p class="font-display text-2xl italic text-accent">The Week-Four Guarantee</p>
+          <p class="mt-4 text-lg">Run weeks one to four as written and log your lifts. If all six lifts haven’t gone up by the end of week four, send the log to <a class="font-semibold underline underline-offset-4" href="mailto:daniel@forgefitness.example.com">daniel@forgefitness.example.com</a> within 45 days and we refund every cent. No call, no form.</p>
+        </div>
+      </Container>
+    </section>
+
+    <section class="bg-surface-2 py-16 sm:py-24">
+      <Container>
+        <h2 class="text-h2 font-semibold">Before you decide</h2>
+        <FaqList items={faq} class="mt-6" />
+      </Container>
+    </section>
+
+    <OnyxBand rule="top" pad="lg">
+      <Container size="prose" class="text-center">
+        <h2 class="text-display font-semibold">Your first session<br /><span class="italic text-accent">is tonight.</span></h2>
+        <p class="mx-auto mt-6 max-w-[48ch] text-lead text-inverse-fg/85">Forty-five minutes. Six lifts you already know the names of. A rule that tells you what to do next.</p>
+        <div class="mt-9 flex flex-col items-center gap-3">
+          <Button href={checkout} size="xl" data-cta="close">{CTA}</Button>
+          <p class="text-sm text-inverse-fg/70">Week-Four Guarantee · instant access · three equipment tracks</p>
+        </div>
+      </Container>
+    </OnyxBand>
+    <StickyCTA href={checkout} label={CTA} note="Week-Four Guarantee" showAfter={700} />
+  </div>
+  <script>
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
+</Layout>

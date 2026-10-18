@@ -1,0 +1,43 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Button from '../../../components/ui/Button.astro';
+import SessionPlanner from '../../../components/clients/forge/art/SessionPlanner.astro';
+const programUrl = 'https://app.forgefitness.example.com'; // [CLIENT] member-area login
+---
+<Layout client="forge" funnel="vsl-checkout" step="thanks" title="Welcome to Forge 12" noindex>
+  <Container size="wide" class="py-12 sm:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="text-base font-semibold text-success">You’re in</p>
+        <h1 class="mt-2 text-h1 font-semibold">Welcome to Forge 12.<br /><span class="italic">Session one is 45 minutes.</span></h1>
+        <p class="mt-5 text-lead text-fg-muted">You watched the training, you bought the program. Your receipt and login are on their way. Here’s the next ten minutes.</p>
+        <ol class="mt-8 space-y-4 text-lg">
+          {['Set your password.', 'Pick your equipment track.', 'Watch the six lifts. Fourteen minutes.', 'Plan your week on the right and put session one in your calendar.'].map((t, i) => <li class="flex gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-pill bg-inverse font-display text-lg text-accent">{i + 1}</span>{t}</li>)}
+        </ol>
+        <Button href={programUrl} size="xl" class="mt-9" data-cta="open-session-1">Open session one</Button>
+        <h2 class="mt-12 text-h3 font-semibold">What arrives when</h2>
+        <dl class="mt-4 grid gap-3 text-fg sm:grid-cols-[auto_1fr] sm:gap-x-6">
+          <dt class="font-semibold">Now</dt><dd>Your login.</dd>
+          <dt class="font-semibold">Tomorrow</dt><dd>Session-one review: what should be sore and what shouldn’t.</dd>
+          <dt class="font-semibold">Day 3</dt><dd>The progression rule, explained once.</dd>
+          <dt class="font-semibold">Week 2</dt><dd>Your first check-in. Send the log.</dd>
+          <dt class="font-semibold">Week 7</dt><dd>The deload, before you need it.</dd>
+        </dl>
+      </div>
+      <SessionPlanner heading="Your week" compact>
+        <Button type="button" variant="secondary" size="md" data-ics>Add session one to my calendar</Button>
+      </SessionPlanner>
+    </div>
+  </Container>
+  <script>
+    document.querySelector('[data-ics]')?.addEventListener('click', () => {
+      const d = new Date(); d.setDate(d.getDate() + 1); d.setHours(6, 0, 0, 0);
+      const p = (n: number) => String(n).padStart(2, '0');
+      const stamp = (x: Date) => `${x.getFullYear()}${p(x.getMonth() + 1)}${p(x.getDate())}T${p(x.getHours())}${p(x.getMinutes())}00`;
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Forge Fitness//EN', 'BEGIN:VEVENT', `DTSTART:${stamp(d)}`, `DTEND:${stamp(new Date(d.getTime() + 45 * 60000))}`, 'SUMMARY:Forge 12 · Session one', 'DESCRIPTION:Warm-up, squat, bench, row. Start lighter than you think.', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+      const a = document.createElement('a'); a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics); a.download = 'forge-session-one.ics'; a.click();
+      window.funnel?.track('session_added_to_calendar');
+    });
+  </script>
+</Layout>
