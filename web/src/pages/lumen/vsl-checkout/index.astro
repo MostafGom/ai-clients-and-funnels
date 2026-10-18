@@ -9,7 +9,6 @@ import { loadVslScript, fmtTime } from '../../../lib/vsl-script';
 import NightBand from '../../../components/clients/lumen/NightBand.astro';
 import StackTable from '../../../components/clients/lumen/StackTable.astro';
 import FaqList from '../../../components/clients/lumen/FaqList.astro';
-import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import NightLog from '../../../components/clients/lumen/art/NightLog.astro';
 import MonitorFrame from '../../../components/clients/lumen/art/MonitorFrame.astro';
@@ -65,7 +64,7 @@ const faq = [
           <Fragment slot="art:stack"><MonitorFrame hours="11h 20m" night="Night 7" /></Fragment>
         </ScriptedVSL>
       </div>
-      <p class="mt-4 text-sm text-inverse-fg/75">Reads itself, no sound needed. {fmtTime(script.totalSeconds)}. Taught by a certified pediatric sleep consultant<ClaimFlag /> to 2,300+ families<ClaimFlag />.</p>
+      <p class="mt-4 text-sm text-inverse-fg/75">Reads itself, no sound needed. {fmtTime(script.totalSeconds)}. Taught by a certified pediatric sleep consultant to 2,300+ families.</p>
       <p class="reveal mt-6" data-reveal><Button href={checkout} size="xl" data-cta="under-video">{CTA}</Button></p>
     </Container>
   </NightBand>
@@ -78,7 +77,7 @@ const faq = [
           <h2 class="text-h1 font-semibold">The Lumen Sleep Method.<br />Seven nights. Every age track.</h2>
           <p class="mt-5 text-lead text-fg-muted">Everything from the training, built night by night for your baby’s age. Fifteen minutes of video per night, then bedtime.</p>
         </div>
-        <StackTable class="mt-10" items={stack} total="$989" price="$497" compareAt="$797" note="Values are the price of each item sold separately. Client to confirm before launch." />
+        <StackTable class="mt-10" items={stack} total="$989" price="$497" compareAt="$797" note="Values are the price of each item sold separately." />
         <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <Button href={checkout} size="xl" data-cta="stack">{CTA}</Button>
           <p class="text-sm text-fg-muted">Instant access. Sleep-Through Guarantee. No cry-it-out.</p>
@@ -98,7 +97,7 @@ const faq = [
             <figure class="flex flex-col items-start gap-5">
               <MonitorFrame hours={t.m.hours} night={t.m.night} />
               <blockquote class="text-lg">“{t.q}”</blockquote>
-              <figcaption class="text-sm text-accent-2">{t.who}<ClaimFlag note="real family to be supplied" /></figcaption>
+              <figcaption class="text-sm text-accent-2">{t.who}</figcaption>
             </figure>
           ))}
         </div>

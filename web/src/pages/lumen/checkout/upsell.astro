@@ -1,7 +1,6 @@
 ---
 import Layout from '../../../layouts/FunnelLayout.astro';
 import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
-import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 ---
 <Layout client="lumen" funnel="checkout" step="upsell" title="One thing before you go" noindex bare>
   <OneClickOffer client="lumen" funnel="checkout" kind="upsell" priceKey="upsell" eyebrow="Your order is confirmed. One thing before you go." headline="Want Maya in your pocket for the seven nights?" price="$397" compareAt="$900" bullets={['Text Maya any time for 14 days. 48-hour max reply, usually much faster.', 'Night 1 setup call (30 minutes).', 'Night 4 check-in call (30 minutes).', 'Your plan adjusted for reflux, twins, daycare or travel.', 'Priority seat at the weekly live Q&A.']} acceptLabel="Yes, add 14 days with Maya" declineLabel="No thanks, I’ll run the seven nights on my own" acceptNext="/lumen/checkout/thanks" declineNext="/lumen/checkout/downsell">
@@ -9,7 +8,7 @@ import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
       <p>You just bought the plan. The families who get the fastest results are the ones who send Maya a message on night three instead of googling. This is the only place we offer 14 days of 1:1 at this price, because it’s only useful right now.</p>
     </Fragment>
     <Fragment slot="objection">
-      <p><strong>If your baby is “different”</strong> (reflux, twins, a sibling in the room, a trip in week two), this is where the plan gets bent around her instead of the other way round. $397 today instead of $900<ClaimFlag /> for the same two weeks booked separately.</p>
+      <p><strong>If your baby is “different”</strong> (reflux, twins, a sibling in the room, a trip in week two), this is where the plan gets bent around her instead of the other way round. $397 today instead of $900 for the same two weeks booked separately.</p>
     </Fragment>
   </OneClickOffer>
 </Layout>

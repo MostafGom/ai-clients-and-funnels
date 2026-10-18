@@ -3,7 +3,7 @@
 import '../../../styles/base.css';
 import StarField from '../../../components/clients/lumen/art/StarField.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
-import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
+import { PHOTOS } from '../../../components/clients/lumen/photos';
 export function getStaticPaths() {
   return [
     { params: { funnel: 'checkout' }, props: { kicker: 'The Lumen Sleep Method', title: '11 hours a night in seven nights, without crying it out.', foot: 'Sleep-Through Guarantee · ages 4 months to 3 years' } },
@@ -26,7 +26,7 @@ const { kicker, title, foot } = Astro.props;
     <div class="relative overflow-hidden bg-inverse text-inverse-fg" style="width:1200px;height:630px">
       <StarField count={80} seed={13} />
       <div class="absolute right-16 top-14"><Moon size={150} phase={0.78} /></div>
-      <div class="absolute bottom-0 right-24"><Maya size={330} /></div>
+      <img src={PHOTOS.maya} alt="" class="absolute bottom-12 right-20 size-[320px] rounded-pill object-cover object-top ring-8 ring-accent-2/40" />
       <div class="absolute left-20 top-20 max-w-[700px]">
         <p class="text-2xl font-bold text-accent-2">{kicker}</p>
         <h1 class="mt-5 font-display text-[64px] font-semibold leading-[1.02] text-balance">{title}</h1>

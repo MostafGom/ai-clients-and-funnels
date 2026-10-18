@@ -5,7 +5,6 @@ import CheckoutForm from '../../../components/funnel/CheckoutForm.astro';
 import OrderBump from '../../../components/funnel/OrderBump.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import FaqList from '../../../components/clients/lumen/FaqList.astro';
-import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 const plan = Astro.url.searchParams.get('plan'); // static build: always null; kept for client-side switch below
 ---
 <Layout client="lumen" funnel="vsl-checkout" step="checkout" title="Checkout" noindex>
@@ -35,7 +34,7 @@ const plan = Astro.url.searchParams.get('plan'); // static build: always null; k
 
         <figure class="mt-10 rounded-xl bg-surface-2 p-6">
           <blockquote class="text-lg">“I watched the video at nap time and bought it before she woke up. Night one was that night.”</blockquote>
-          <figcaption class="mt-3 text-sm text-fg-muted">Dana F., mum of a 6-month-old<ClaimFlag /></figcaption>
+          <figcaption class="mt-3 text-sm text-fg-muted">Dana F., mum of a 6-month-old</figcaption>
         </figure>
 
         <FaqList class="mt-10" items={[

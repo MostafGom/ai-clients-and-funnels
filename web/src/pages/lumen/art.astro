@@ -2,9 +2,7 @@
 /** Internal gallery of the Lumen illustration system (noindex). */
 import Layout from '../../layouts/FunnelLayout.astro';
 import Container from '../../components/ui/Container.astro';
-import Maya from '../../components/clients/lumen/art/scenes/Maya.astro';
-import Hallway from '../../components/clients/lumen/art/scenes/Hallway.astro';
-import Sofa from '../../components/clients/lumen/art/scenes/Sofa.astro';
+import { PHOTOS } from '../../components/clients/lumen/photos';
 import Avatar from '../../components/clients/lumen/art/scenes/Avatar.astro';
 import ButIcon from '../../components/clients/lumen/art/scenes/ButIcon.astro';
 import MonitorFrame from '../../components/clients/lumen/art/MonitorFrame.astro';
@@ -14,13 +12,13 @@ const families = ['Jess M.', 'Ines R.', 'Kwame & Lila', 'Hannah L.', 'Tom & Grac
 <Layout client="lumen" title="Illustrations" noindex>
   <Container class="py-12">
     <h1 class="text-h1 font-semibold">Lumen illustration system</h1>
-    <h2 class="mt-10 text-h3 font-semibold">Portrait + scenes</h2>
-    <div class="mt-4 grid items-start gap-6 md:grid-cols-[auto_1fr_1fr]">
-      <Maya size={240} />
-      <Hallway class="w-full" />
-      <Sofa class="w-full" />
+    <h2 class="mt-10 text-h3 font-semibold">Persona photos (public/lumen/photos, see CREDITS.md)</h2>
+    <div class="mt-4 grid items-start gap-6 md:grid-cols-[240px_1fr_1fr]">
+      <img src={PHOTOS.maya} alt="Maya" class="size-[240px] rounded-pill object-cover object-top" />
+      <img src={PHOTOS.night} alt="2:14 a.m." class="aspect-[4/3] w-full rounded-xl object-cover" />
+      <img src={PHOTOS.sofa} alt="8 p.m." class="aspect-[4/3] w-full rounded-xl object-cover" />
     </div>
-    <h2 class="mt-10 text-h3 font-semibold">Avatars</h2>
+    <h2 class="mt-10 text-h3 font-semibold">Family photos</h2>
     <div class="mt-4 flex flex-wrap gap-4">{families.map((f) => <figure class="text-center"><Avatar who={f} size={88} twins={f.startsWith('Ines')} /><figcaption class="mt-1 text-xs">{f}</figcaption></figure>)}</div>
     <h2 class="mt-10 text-h3 font-semibold">Icons</h2>
     <div class="mt-4 flex gap-6 text-primary">{(['twins', 'reflux', 'daycare', 'sibling', 'travel'] as const).map((k) => <ButIcon kind={k} size={56} />)}</div>

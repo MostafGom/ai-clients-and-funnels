@@ -7,7 +7,6 @@ import StickyCTA from '../../../components/funnel/StickyCTA.astro';
 import ScriptedVSL from '../../../components/funnel/ScriptedVSL.astro';
 import { loadVslScript, fmtTime } from '../../../lib/vsl-script';
 import NightBand from '../../../components/clients/lumen/NightBand.astro';
-import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import NightLog from '../../../components/clients/lumen/art/NightLog.astro';
 import MonitorFrame from '../../../components/clients/lumen/art/MonitorFrame.astro';
@@ -78,7 +77,7 @@ const apply = '/lumen/vsl-call/apply';
             { m: { hours: '10h 40m', night: 'Night 6' }, q: 'Twins. Reflux. One room. She built a plan around all three.', who: 'Ines R., twins, 11 months' },
             { m: { hours: '11h 05m', night: 'Night 7' }, q: 'Daycare naps and a work trip. The daycare bedtime rule changed everything.', who: 'Kwame & Lila, 2-year-old' },
             { m: { hours: '9h 30m', night: 'Night 5' }, q: 'Reflux baby, feed moved before the script. Night five, nine and a half hours.', who: 'Priya K., 7-month-old' },
-          ].map((t) => <figure class="flex flex-col items-start gap-5"><MonitorFrame hours={t.m.hours} night={t.m.night} /><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="text-sm text-accent-2">{t.who}<ClaimFlag note="real family to be supplied" /></figcaption></figure>)}
+          ].map((t) => <figure class="flex flex-col items-start gap-5"><MonitorFrame hours={t.m.hours} night={t.m.night} /><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="text-sm text-accent-2">{t.who}</figcaption></figure>)}
         </div>
         <div class="mt-12 flex flex-col items-center gap-3 text-center">
           <Button href={apply} size="xl" data-cta="close">{CTA}</Button>

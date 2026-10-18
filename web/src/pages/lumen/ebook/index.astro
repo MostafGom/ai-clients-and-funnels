@@ -5,11 +5,10 @@ import Container from '../../../components/ui/Container.astro';
 import OptInForm from '../../../components/funnel/OptInForm.astro';
 import NightBand from '../../../components/clients/lumen/NightBand.astro';
 import FaqList from '../../../components/clients/lumen/FaqList.astro';
-import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
-import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
+import { PHOTOS } from '../../../components/clients/lumen/photos';
 import Avatar from '../../../components/clients/lumen/art/scenes/Avatar.astro';
 const spreads = [
   { n: 'Page 3', title: 'The wake-window chart, by age', body: '4 months to 3 years, printable, for the fridge. The one number that decides tonight.' },
@@ -26,7 +25,7 @@ const spreads = [
         <div>
           <p class="text-base font-bold text-accent-2">Free guide for parents of 4-month to 3-year-olds. No cry-it-out.</p>
           <h1 class="mt-5 text-display font-semibold">What time should your baby<br class="hidden lg:block" /> go to bed tonight?</h1>
-          <p class="mt-7 max-w-[58ch] text-lead text-inverse-fg/85">Pick her age and when her last nap ended. That’s tonight’s bedtime. Then get the free <strong class="text-inverse-fg">7-Night Bedtime Reset</strong>: the chart, the 10-minute script, and the night-by-night plan 2,300+ families<ClaimFlag /> used to end the 2 a.m. party.</p>
+          <p class="mt-7 max-w-[58ch] text-lead text-inverse-fg/85">Pick her age and when her last nap ended. That’s tonight’s bedtime. Then get the free <strong class="text-inverse-fg">7-Night Bedtime Reset</strong>: the chart, the 10-minute script, and the night-by-night plan 2,300+ families used to end the 2 a.m. party.</p>
           <div class="mt-8 hidden lg:block"><Moon size={140} phase={0.8} /></div>
         </div>
         <div class="text-fg">
@@ -61,10 +60,10 @@ const spreads = [
   <section class="bg-surface-2 py-16 sm:py-20">
     <Container>
       <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant (illustration until her photo is supplied)" size={200}><Maya /></PortraitSlot>
+        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant" size={200} src={PHOTOS.maya} />
         <div class="max-w-[62ch]">
           <h2 class="text-h2 font-semibold">Written by someone who did the hallway shuffle for eleven months.</h2>
-          <p class="mt-5 text-lg">I’m Maya Lindqvist, a certified pediatric sleep consultant<ClaimFlag />. Before that I was a mum with an 11-month-old who woke seven times a night and a spreadsheet that didn’t help. What fixed it was timing. Since 2019 I’ve helped 2,300+ families<ClaimFlag /> fix theirs, and the Reset is the first thing I give every one of them.</p>
+          <p class="mt-5 text-lg">I’m Maya Lindqvist, a certified pediatric sleep consultant. Before that I was a mum with an 11-month-old who woke seven times a night and a spreadsheet that didn’t help. What fixed it was timing. Since 2019 I’ve helped 2,300+ families fix theirs, and the Reset is the first thing I give every one of them.</p>
         </div>
       </div>
     </Container>
@@ -77,7 +76,7 @@ const spreads = [
           { q: 'Printed the chart, moved bedtime 50 minutes earlier, she slept six hours. Night one.', who: 'Hannah L., 8-month-old' },
           { q: 'The script is genius. Same ten minutes, and by night three he knew what was coming.', who: 'Tom & Grace, 19-month-old' },
           { q: 'I read it at 3 a.m. and cried, because it finally made sense.', who: 'Sofia B., 7-month-old' },
-        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} twins={/twins/i.test(t.who)} />{t.who}<ClaimFlag /></figcaption></figure>)}
+        ].map((t) => <figure class="rounded-xl border-l-4 border-accent bg-surface p-6 shadow-card"><blockquote class="text-lg">“{t.q}”</blockquote><figcaption class="mt-4 flex items-center gap-3 text-sm text-fg-muted"><Avatar who={t.who} size={40} twins={/twins/i.test(t.who)} />{t.who}</figcaption></figure>)}
       </div>
       <FaqList class="mt-14" items={[
         { q: 'Is there any crying it out?', a: 'No. The Reset is timing and a script. The 2 a.m. page tells you what to do when she wakes, and “leave her to cry” is never the answer.' },

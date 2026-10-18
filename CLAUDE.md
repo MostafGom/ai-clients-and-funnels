@@ -21,7 +21,7 @@ web/                       Astro 7 · Tailwind v4 · @astrojs/cloudflare · Stri
   src/components/funnel/   Hero VideoPlayer OptInForm CalendarEmbed CheckoutForm OrderBump OneClickOffer
                            PriceCard Benefits Steps Testimonials FAQ Guarantee Countdown StickyCTA CTASection ThankYou Footer Analytics
   src/pages/<slug>/<funnel>/…      funnel pages (prerendered)
-  src/components/clients/<slug>/art/   illustration system (tokens-only SVG); art/scenes/ = persona scenes, portrait, avatars, icons
+  src/components/clients/<slug>/art/   illustration system (tokens-only SVG); art/scenes/ = photo Avatar + ButIcon
   src/pages/<slug>/art.astro             internal gallery of that client's illustrations (noindex)
   src/pages/<slug>/og/[funnel].astro     share-image pages → public/<slug>/og/*.png via `pnpm images`
   src/pages/<slug>/index.astro           client hub: lists every funnel and its pages (noindex)
@@ -39,7 +39,8 @@ web/                       Astro 7 · Tailwind v4 · @astrojs/cloudflare · Stri
   a raw Tailwind color simply won't compile. Add a token to `design/TOKENS.md` + `base.css` if one is missing.
 - **Client theme** = `web/src/styles/clients/<slug>.css` overriding contract variables under
   `:root[data-client='<slug>']`, imported in `base.css`. Fonts are declared in the registry and loaded by the layout.
-- **Imagery**: no stock photos, no AI faces. Persona scenes and portraits are hand-drawn SVG in the client's tokens; `PortraitSlot` shows the illustration until the client's real photo is supplied via `src`.
+- **Imagery**: persona photos live in `web/public/<slug>/photos/` with a `CREDITS.md` (Pexels licence for the demo; swap in the client's real photos under the same file names). `web/src/components/clients/<slug>/photos.ts` maps people named in copy to files. Decorative art (moon, stars, logs, dividers) stays SVG.
+- **Demo banner**: `FunnelLayout` renders one sticky top bar stating the site is a demo. No per-claim flags on pages; unverified numbers are tagged `[CLIENT]` in COPY.md only.
 - **No navigation on funnel pages.** One path forward. Legal links live in the footer only.
 - **Every page has exactly one `<h1>`**, works at 390px without horizontal scroll, and passes the contrast script.
 - **Astro routing**: files/folders starting with `_` are NOT routes (that's why the gallery is `design-system.astro`).

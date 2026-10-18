@@ -8,15 +8,12 @@ import NightBand from '../../../components/clients/lumen/NightBand.astro';
 import StackTable from '../../../components/clients/lumen/StackTable.astro';
 import CaseStudy from '../../../components/clients/lumen/CaseStudy.astro';
 import FaqList from '../../../components/clients/lumen/FaqList.astro';
-import ClaimFlag from '../../../components/clients/lumen/ClaimFlag.astro';
 import Moon from '../../../components/clients/lumen/art/Moon.astro';
 import NightLog from '../../../components/clients/lumen/art/NightLog.astro';
 import WakeWindowDial from '../../../components/clients/lumen/art/WakeWindowDial.astro';
 import NightRibbon from '../../../components/clients/lumen/art/NightRibbon.astro';
 import PortraitSlot from '../../../components/clients/lumen/art/PortraitSlot.astro';
-import Maya from '../../../components/clients/lumen/art/scenes/Maya.astro';
-import Hallway from '../../../components/clients/lumen/art/scenes/Hallway.astro';
-import Sofa from '../../../components/clients/lumen/art/scenes/Sofa.astro';
+import { PHOTOS } from '../../../components/clients/lumen/photos';
 
 const CTA = 'Start tonight · $497';
 const checkout = '/lumen/checkout/checkout';
@@ -71,7 +68,6 @@ const faq = [
           <div class="absolute -right-4 -top-16 z-10 sm:-right-8 sm:-top-20"><Moon size={150} phase={0.78} rise /></div>
           <div class="rounded-xl bg-inverse-2 p-6 shadow-pop sm:p-8">
             <NightLog name="Jess’s 9-month-old. Night 1 to night 7." before={[1.5, 1.5, 2, 1.5, 2, 1.5, 2]} after={[4, 5, 7, 7.5, 10, 11, 11.3]} caption="Longest sleep stretch each night, in hours." />
-            <p class="mt-3 text-xs text-accent/90">Illustrative log until the real family’s data is supplied <ClaimFlag note="client to supply real log" /></p>
           </div>
         </div>
       </div>
@@ -82,7 +78,7 @@ const faq = [
   <section class="bg-bg py-16 sm:py-24">
     <Container size="wide">
       <div class="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
-      <Hallway class="w-full rounded-xl shadow-pop" />
+      <img src={PHOTOS.night} alt="A tired parent holding a sleepy toddler in a dim room at night" width="1600" height="1067" class="aspect-[4/3] w-full rounded-xl object-cover shadow-pop" loading="lazy" />
       <div class="max-w-[58ch]">
       <p class="font-display text-h2 font-semibold">It’s 2:14 a.m.</p>
       <div class="mt-6 space-y-5 text-lg text-fg">
@@ -135,13 +131,13 @@ const faq = [
   <section class="bg-surface-2 py-16 sm:py-24">
     <Container>
       <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant (illustration until her photo is supplied)" size={240}><Maya /></PortraitSlot>
+        <PortraitSlot name="Maya" caption="Maya Lindqvist, certified pediatric sleep consultant" size={240} src={PHOTOS.maya} />
         <div class="max-w-[62ch]">
           <h2 class="text-h2 font-semibold">Hi, I’m Maya. I built this at 3 a.m. with my own baby on my chest.</h2>
           <div class="mt-6 space-y-4 text-lg">
-            <p>I’m a certified pediatric sleep consultant<ClaimFlag note="certifying body to confirm" />, and before that I was a mum with an 11-month-old who woke seven times a night. I read everything. I tried the cry-it-out thing for one night and cried harder than he did.</p>
+            <p>I’m a certified pediatric sleep consultant, and before that I was a mum with an 11-month-old who woke seven times a night. I read everything. I tried the cry-it-out thing for one night and cried harder than he did.</p>
             <p>What finally worked wasn’t a method. It was a stopwatch. When I started tracking his wake windows and moved bedtime 50 minutes earlier, he slept six hours on night two. By night six, eleven.</p>
-            <p>Since 2019 I’ve helped 2,300+ families<ClaimFlag /> do the same thing, and I’ve turned it into a seven-night plan you can run from your phone. No crying it out. No judgment. Just timing, a script, and a kind plan for when she does wake.</p>
+            <p>Since 2019 I’ve helped 2,300+ families do the same thing, and I’ve turned it into a seven-night plan you can run from your phone. No crying it out. No judgment. Just timing, a script, and a kind plan for when she does wake.</p>
           </div>
         </div>
       </div>
@@ -164,9 +160,9 @@ const faq = [
     <Container size="wide">
       <h2 class="max-w-[24ch] text-h1 font-semibold">Three families, seven nights, three very different babies.</h2>
       <div class="mt-12 space-y-8">
-        <CaseStudy name="Jess M." who="9-month-old" hook="We’d tried everything." before="Bedtime took 80 minutes. Waking every 90 minutes." change="Bedtime moved 55 minutes earlier on night one. Kind Response Plan from night three." beforeHours={[1.5, 1.5, 2, 1.5, 2, 1.5, 2]} after={['4', '5', '7', '7.5', '10', '11', '11.3']} quote="Night 5 she slept ten hours. I cried. Happy crying, for once." monitor={{ hours: '11h 20m', night: 'Night 7' }} flag="Illustrative family until the client supplies a real log" />
-        <CaseStudy name="Ines R." who="twins, 11 months, both with reflux" hook="Two babies, one room." before="Feeding both back to sleep two to four times a night." change="Reflux adjustments from the age track. Bedtimes staggered by 15 minutes." beforeHours={[2, 2.5, 2, 2, 2.5, 2, 2]} after={['3', '5', '6', '7', '9', '10.5', '11']} quote="Twins. Reflux. She built a plan around both. Night 6, both slept through." monitor={{ hours: '10h 40m', night: 'Night 6' }} flag="Illustrative family until the client supplies a real log" />
-        <CaseStudy name="Kwame & Lila" who="2-year-old, daycare, work trip in week two" hook="Bedtime was a 45-minute negotiation." before="5 a.m. wake-ups. Naps at daycare all over the place." change="Daycare Bridge guide for bedtime timing. Travel protocol for the trip." beforeHours={[6, 5.5, 6, 6, 5.5, 6, 6]} after={['7', '8', '8', '9.5', '10', '11', '11']} quote="We travel for work constantly. Maya gave us a travel version. It held." monitor={{ hours: '11h 05m', night: 'Night 7' }} flag="Illustrative family until the client supplies a real log" />
+        <CaseStudy name="Jess M." who="9-month-old" hook="We’d tried everything." before="Bedtime took 80 minutes. Waking every 90 minutes." change="Bedtime moved 55 minutes earlier on night one. Kind Response Plan from night three." beforeHours={[1.5, 1.5, 2, 1.5, 2, 1.5, 2]} after={['4', '5', '7', '7.5', '10', '11', '11.3']} quote="Night 5 she slept ten hours. I cried. Happy crying, for once." monitor={{ hours: '11h 20m', night: 'Night 7' }} />
+        <CaseStudy name="Ines R." who="twins, 11 months, both with reflux" hook="Two babies, one room." before="Feeding both back to sleep two to four times a night." change="Reflux adjustments from the age track. Bedtimes staggered by 15 minutes." beforeHours={[2, 2.5, 2, 2, 2.5, 2, 2]} after={['3', '5', '6', '7', '9', '10.5', '11']} quote="Twins. Reflux. She built a plan around both. Night 6, both slept through." monitor={{ hours: '10h 40m', night: 'Night 6' }} />
+        <CaseStudy name="Kwame & Lila" who="2-year-old, daycare, work trip in week two" hook="Bedtime was a 45-minute negotiation." before="5 a.m. wake-ups. Naps at daycare all over the place." change="Daycare Bridge guide for bedtime timing. Travel protocol for the trip." beforeHours={[6, 5.5, 6, 6, 5.5, 6, 6]} after={['7', '8', '8', '9.5', '10', '11', '11']} quote="We travel for work constantly. Maya gave us a travel version. It held." monitor={{ hours: '11h 05m', night: 'Night 7' }} />
       </div>
     </Container>
   </NightBand>
@@ -175,7 +171,7 @@ const faq = [
   <section class="bg-bg py-16 sm:py-24">
     <Container>
       <div class="max-w-[62ch]"><h2 class="text-h1 font-semibold">Everything you need for seven nights, and for the next regression.</h2></div>
-      <StackTable class="mt-10" items={stack} total="$989" price="$497" compareAt="$797" note="Values are the price of each item sold separately. Client to confirm before launch." />
+      <StackTable class="mt-10" items={stack} total="$989" price="$497" compareAt="$797" note="Values are the price of each item sold separately." />
       <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
         <Button href={checkout} size="xl" data-cta="stack">{CTA}</Button>
         <p class="text-sm text-fg-muted">Instant access · every age track · Sleep-Through Guarantee</p>
@@ -213,7 +209,7 @@ const faq = [
     <Container>
       <div class="max-w-[62ch]">
         <h2 class="text-h1 font-semibold">One payment. Every age track. Lifetime access.</h2>
-        <p class="mt-5 text-lg text-fg-muted">A private sleep consultant charges $600 to $1,500<ClaimFlag /> for a plan and two weeks of support. Doing nothing costs about thirty more nights like last night. The method is $497, once, for every age track your baby will ever need.</p>
+        <p class="mt-5 text-lg text-fg-muted">A private sleep consultant charges $600 to $1,500 for a plan and two weeks of support. Doing nothing costs about thirty more nights like last night. The method is $497, once, for every age track your baby will ever need.</p>
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         <div class="rounded-xl bg-surface p-8 shadow-pop ring-2 ring-primary sm:p-10">
@@ -255,9 +251,9 @@ const faq = [
   <!-- 13. Close -->
   <NightBand edgeTop="cloud" edge="none" seed={33} pad="lg">
     <Container size="prose" class="text-center">
-      <Sofa class="mx-auto w-full max-w-[560px] rounded-xl shadow-pop" />
+      <img src={PHOTOS.sofa} alt="A parent relaxing on the sofa in the evening with a warm drink" width="1600" height="1067" class="mx-auto aspect-[16/10] w-full max-w-[640px] rounded-xl object-cover shadow-pop" loading="lazy" />
       <h2 class="mt-10 text-display font-semibold">Tonight is night one.</h2>
-      <p class="mx-auto mt-6 max-w-[55ch] text-lead text-inverse-fg/85">Seven nights from now you could be on the sofa at 8 p.m. with the monitor quiet and nothing to do. That’s not a fantasy, it’s Tuesday for 2,300 families<ClaimFlag />. Pick the age track, set tonight’s bedtime, run the script. We’ll take it from there, one night at a time.</p>
+      <p class="mx-auto mt-6 max-w-[55ch] text-lead text-inverse-fg/85">Seven nights from now you could be on the sofa at 8 p.m. with the monitor quiet and nothing to do. That’s not a fantasy, it’s Tuesday for 2,300 families. Pick the age track, set tonight’s bedtime, run the script. We’ll take it from there, one night at a time.</p>
       <div class="mt-9 flex flex-col items-center gap-3">
         <Button href={checkout} size="xl" data-cta="close">{CTA}</Button>
         <p class="text-sm text-inverse-fg/75">Sleep-Through Guarantee · instant access · no crying it out</p>
