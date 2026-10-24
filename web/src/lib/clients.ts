@@ -87,6 +87,7 @@ export const clients: Client[] = [
     calendar: { provider: 'cal', url: 'https://cal.com/first-shares/intro' },
     leadMagnet: { title: 'The First $1,000 Plan', downloadUrl: '/firstshares/assets/first-1000-plan.pdf' },
     funnels: ['ebook', 'checkout'],
+    ogImages: true,
     disclaimer:
       'First Shares provides financial education only. Nothing on this site is investment, tax or legal advice, or a recommendation to buy or sell any security. First Shares is not a registered investment adviser or broker-dealer, does not manage money and receives no commissions. Investing involves risk, including the possible loss of principal. Past performance does not guarantee future results. Charts and figures are illustrative, not forecasts. Student stories describe actions taken; individual circumstances and results vary. Consider speaking with a licensed financial professional about your situation.',
   },

@@ -1,0 +1,43 @@
+---
+/* Social share images, 1200×630, one per funnel. Rendered to public/firstshares/og/<funnel>.png by `pnpm images`. */
+import '../../../styles/base.css';
+import { PHOTOS } from '../../../components/clients/firstshares/photos';
+import { getClient } from '../../../lib/clients';
+const client = getClient('firstshares');
+export function getStaticPaths() {
+  return [
+    { params: { funnel: 'checkout' }, props: { kicker: 'The six-week course for late starters', title: 'You’re not behind. <mark>You’re starting.</mark>', foot: '3 accounts · 3 funds · 1 automatic transfer', photo: PHOTOS.kitchenLaptop, focus: '72% 40%' } },
+    { params: { funnel: 'ebook' }, props: { kicker: 'Free guide · The First $1,000 Plan', title: 'Where should your first $1,000 go? <mark>Here’s the order.</mark>', foot: 'Free · 8 pages · the order', photo: PHOTOS.coupleLaptop, focus: '60% 40%' } },
+    { params: { funnel: 'default' }, props: { kicker: 'Investing for late starters, 30–45', title: 'You’re not behind. <mark>You’re starting.</mark>', foot: 'Education, not advice · we never sell funds', photo: PHOTOS.saturday, focus: '35% 40%' } },
+  ];
+}
+const { kicker, title, foot, photo, focus } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-client="firstshares">
+  <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>og</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={client.fonts.stylesheet} />
+    <style is:global>
+      html,body{margin:0;background:var(--color-bg)}
+      h1 mark{color:inherit;background:var(--color-accent);border-radius:.12em .3em .14em .28em;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+    </style></head>
+  <body>
+    <div class="relative overflow-hidden bg-bg text-fg" style="width:1200px;height:630px">
+      <img src={photo} alt="" class="absolute inset-y-0 right-0 h-full w-[520px] object-cover" style={`object-position:${focus}`} />
+      <div class="absolute inset-y-0 right-[340px] w-[180px] bg-[linear-gradient(90deg,var(--color-bg),transparent)]"></div>
+      <svg viewBox="0 0 680 120" class="absolute bottom-0 left-0 w-[760px] text-primary" aria-hidden="true"><path d="M0 116 C 260 112, 470 86, 680 8" fill="none" stroke="currentColor" stroke-opacity=".14" stroke-width="10" stroke-linecap="round" /></svg>
+      <div class="absolute left-16 top-16 w-[600px]">
+        <p class="text-xl font-semibold text-primary">{kicker}</p>
+        <h1 class="mt-5 font-display text-[76px] leading-[0.95] font-extrabold tracking-[-0.035em]" set:html={title} />
+      </div>
+      <div class="absolute bottom-14 left-16 flex items-center gap-5">
+        <span class="flex items-center gap-3 rounded-md bg-primary px-4 py-2 font-display text-2xl font-extrabold text-primary-fg">
+          <svg viewBox="0 0 32 32" class="size-7" aria-hidden="true"><path d="M6 24 C 13 23, 18 19, 26 8" fill="none" stroke="var(--color-accent)" stroke-width="3.6" stroke-linecap="round" /><circle cx="26" cy="8" r="3" fill="var(--color-accent)" /></svg>
+          First Shares
+        </span>
+        <span class="text-xl font-semibold text-fg-muted">{foot}</span>
+      </div>
+    </div>
+  </body>
+</html>
