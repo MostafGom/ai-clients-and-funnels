@@ -1,7 +1,7 @@
 # Design plan — First Shares · "Green Line"
 
 ## Category
-Energy: **the moment a good maths teacher draws the compounding curve on the whiteboard and the room goes "oh."** The setting is a kitchen table on a Saturday morning, not a marble lobby or a trader's desk.
+Energy: **the moment a straight-talking Wall Street insider draws the compounding curve on the whiteboard and the room goes "oh."** The setting is a kitchen table on a Saturday morning, not a marble lobby or a trader's desk.
 References (moodboard Oct 2026, screenshots at 1440/390):
 - **Wise**: loud green, heavy condensed display, a live number widget in the hero. Confident, plain English.
 - **Acorns**: money green, an automated "potential" chart, a friendly character.
@@ -16,7 +16,7 @@ What everyone does that we break:
 3. **The serif drift.** Public and Robinhood went editorial serif, which is the quiet-luxury trap. We stay grotesk, warm and loud.
 
 ## Subject
-A six-week, self-paced course that gets a capable, embarrassed 30–45-year-old's savings out of a 0.5% account and into a simple, automated portfolio (three accounts, three funds, one automatic transfer), taught by a former maths teacher who started at 38. The page has to make "I'm too late and I'll lose it" feel solved, then let them buy without feeling sold to.
+A six-week, self-paced course that gets a capable, embarrassed 30–45-year-old's savings out of a 0.5% account and into a simple, automated portfolio (three accounts, three funds, one automatic transfer), taught by Richard Hale, a former Wall Street analyst (19 years) who left to teach it plainly. The page has to make "I'm too late and I'll lose it" feel solved, then let them buy without feeling sold to.
 Big idea: **You're not behind. You're starting. Three accounts, three funds, one automatic transfer.**
 
 ## Colour (named)
@@ -44,7 +44,7 @@ Real people aged 30–45, diverse, at home in daylight, laptop or phone in hand,
 | `couple-laptop` | ebook hero / problem | landscape | couple 30s–40s on a sofa looking at a laptop together, calm, daylight |
 | `phone-sofa` | scene / problem | landscape | woman ~35 on a sofa looking at a phone, slightly unsure, evening lamp |
 | `notebook-hands` | mechanism band | landscape | hands writing numbers in a notebook next to a laptop, overhead |
-| `maya` | founder | portrait | woman ~45, friendly, teacherly, at a desk or whiteboard (stand-in for the real founder photo) |
+| `coach`, `coach-office` | founder | portrait + landscape | man ~55 in a suit, library office, confident and warm: authority (stand-in for the real founder photo) |
 | `saturday` | close | landscape | person relaxed at a table with coffee, laptop closed, the "done" feeling |
 | `proof-*` | ledger faces | square | 5–6 portraits of everyday 30–45 professionals (nurse, engineer, teacher…) |
 
@@ -63,7 +63,7 @@ Real people aged 30–45, diverse, at home in daylight, laptop or phone in hand,
 1. Split hero: `couple-laptop` photo with headline + form; cover of *The First $1,000 Plan* overlapping the photo edge.
 2. Number wall (what's inside: 5 accounts compared · 3 fund types · 1 rule).
 3. Graph-paper band: CompoundCurve (signature).
-4. Coach story: Maya's portrait bleeds off the edge, "started at 38" as a number.
+4. Coach story: Richard’s portrait bleeds off the edge, "19 years on Wall Street" as a number.
 5. Proof: ProcessLedger, 3 rows.
 6. FAQ (free? spam? advice?).
 7. Photo close (`saturday`) with the second form.
@@ -78,7 +78,7 @@ Real people aged 30–45, diverse, at home in daylight, laptop or phone in hand,
 5. Graph-paper band: CompoundCurve, then CostOfWaiting.
 6. Six-week timeline track (week 1 accounts → week 6 leave it alone).
 7. Proof on field: ProcessLedger with photos.
-8. Coach story: Maya, with the no-pitch promise ("we never sell funds or take commissions").
+8. Coach story: Richard, with the no-pitch promise ("we never sell funds or take commissions").
 9. Who it's for / not for: honest; "not for traders, not for get-rich-quick".
 10. Stack table + price + 30-day guarantee in one unit (paper card on field).
 11. FAQ, built from the persona's objections.
@@ -86,11 +86,17 @@ Real people aged 30–45, diverse, at home in daylight, laptop or phone in hand,
 
 **checkout `/checkout` · `/upsell` · `/downsell` · `/thanks`**: paper, two columns on desktop, a photo strip in the header, the order summary on a mint card, and the bump on sunrise. Upsell and downsell are one screen each: what it is, who it's for, one CTA, one decline link.
 
+## Funnel conventions (Oct 2026 review: "looks like a website, no urgency, hero not a funnel hero")
+- Funnel hero: callout pill, centered headline + sub, the CTA above the fold, then one offer card (coach photo + promise checklist + stats). No side-by-side "website" heroes.
+- Opt-in is a squeeze: cover + form card in the first screen, bonus line, proof row.
+- Honest urgency: the monthly cohort. Enrollment closes on the last day of the month (11:59 p.m. ET); a countdown bar under the demo banner and day/hour tiles on the offer. It never resets per visitor. The cohort bonus is the live kickoff call + the 401(k) Menu Decoder.
+- The CTA repeats after every two sections (CtaBlock: button, friction line, deadline line), plus the sticky bar and a P.S. in the close.
+
 ## Motion
 CompoundCurve draws on scroll; that's the signature, one per page. Highlighter swipes are static (no second motion moment). Buttons lift 1px on hover and press on click. Everything respects `prefers-reduced-motion`.
 
 ## What we removed
-Phone and dashboard mockups · projected "your potential" balances · candlestick and ticker art · serif display · bone/brass private-bank luxury · suits, skylines, piggy banks, gold coins · glowing up-arrows · dark trader UI · identical three-icon feature rows · countdown timers.
+Phone and dashboard mockups · projected "your potential" balances · candlestick and ticker art · serif display · bone/brass private-bank luxury · suits, skylines, piggy banks, gold coins · glowing up-arrows · dark trader UI · identical three-icon feature rows · evergreen (per-visitor) countdown timers; the only timer is the real monthly cohort deadline.
 
 ## Compliance in design
 - A footer disclaimer on every page: education, not investment advice; investing involves risk, including loss of principal; past performance doesn't guarantee future results.

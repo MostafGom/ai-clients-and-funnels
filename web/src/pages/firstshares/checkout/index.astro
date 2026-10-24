@@ -4,12 +4,14 @@ import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import Button from '../../../components/ui/Button.astro';
 import StickyCTA from '../../../components/funnel/StickyCTA.astro';
-import PhotoHero from '../../../components/clients/firstshares/PhotoHero.astro';
+import FunnelHero from '../../../components/clients/firstshares/FunnelHero.astro';
+import Deadline from '../../../components/clients/firstshares/Deadline.astro';
+import CtaBlock from '../../../components/clients/firstshares/CtaBlock.astro';
 import GraphPaper from '../../../components/clients/firstshares/GraphPaper.astro';
 import MarginNote from '../../../components/clients/firstshares/MarginNote.astro';
 import SixWeeks from '../../../components/clients/firstshares/SixWeeks.astro';
 import ProcessLedger from '../../../components/clients/firstshares/ProcessLedger.astro';
-import MayaStory from '../../../components/clients/firstshares/MayaStory.astro';
+import CoachStory from '../../../components/clients/firstshares/CoachStory.astro';
 import OfferStack from '../../../components/clients/firstshares/OfferStack.astro';
 import FaqList from '../../../components/clients/firstshares/FaqList.astro';
 import PhotoClose from '../../../components/clients/firstshares/PhotoClose.astro';
@@ -35,24 +37,29 @@ const faq = [
   { q: 'Which brokerages does it cover?', a: 'The walkthroughs cover Fidelity, Schwab and Vanguard, and the principles work anywhere. We’re not paid by any of them.' },
   { q: 'Is it only for retirement?', a: 'Mostly long-term money. Week 1 helps you separate long-term money from money you need sooner.' },
   { q: 'What if I have a partner?', a: 'Do it together. The Partner Conversation script is a bonus for exactly that.' },
+  { q: 'What’s the monthly cohort?', a: 'The course is self-paced and yours for life. Each month’s new students also start together with a live kickoff call with Richard on the 1st. Enrollment for a cohort closes on the last day of the month at 11:59 p.m. ET; enroll after that and you join the next one.' },
 ];
+const promises = ['Your 401(k) match claimed, so no more free money left on the table', 'A Roth IRA opened and funded, screen by screen', 'Three low-cost index fund types chosen with the four-number check', 'One automatic transfer, then a written plan for the bad year'];
 ---
-<Layout client="firstshares" funnel="checkout" step="sales" title="You’re not behind. You’re starting. First Shares, the six-week setup" description="The six-week course for late starters, 30–45: three accounts, three funds, one automatic transfer. Maya shows you every screen, then you leave it alone. Education, not advice. 30-day guarantee.">
+<Layout client="firstshares" funnel="checkout" step="sales" title="You’re not behind. You’re starting. First Shares, the six-week setup" description="The six-week course for late starters, 30–45: three accounts, three funds, one automatic transfer. A former Wall Street analyst shows you every screen, then you leave it alone. Education, not advice. 30-day guarantee.">
 
-  <PhotoHero src={PHOTOS.kitchenLaptop} alt="A woman at her kitchen counter working on a laptop in the morning" focus="72% 40%">
-    <p class="text-sm font-semibold text-primary">The six-week course for late starters, 30–45</p>
-    <h1 class="mt-4 font-display text-[clamp(3.25rem,1.5rem+6.4vw,7.5rem)] leading-[0.92] font-extrabold tracking-[-0.04em]">You’re not behind. <Highlight>You’re starting.</Highlight></h1>
-    <p class="mt-6 max-w-[48ch] text-lead text-fg-muted">Your savings, finally invested: <strong class="text-fg">three accounts, three funds, one automatic transfer.</strong> Maya shows you every screen. Then you leave it alone.</p>
-    <div class="mt-8 flex flex-col items-start gap-3">
-      <Button href={checkout} size="xl" class="w-full whitespace-nowrap px-6 sm:w-auto sm:px-9" data-cta="hero">{CTA}</Button>
-      <p class="text-sm text-fg-muted">{FRICTION}</p>
-    </div>
-    <ul slot="strip" class="flex flex-wrap items-center gap-x-10 gap-y-2 text-sm text-fg-muted">
-      <li><strong class="font-display text-xl font-bold text-fg tabular-nums">1,240</strong> accounts opened by students</li>
-      <li>“Three Saturdays. That’s all it took.” <strong class="text-fg">Denise R., 41, ICU nurse</strong></li>
-      <li><strong class="font-display text-xl font-bold text-fg">0</strong> funds sold, 0 commissions</li>
-    </ul>
-  </PhotoHero>
+  <Deadline variant="bar" />
+  <FunnelHero callout="For 30–45-year-olds with savings sitting in cash">
+    <h1 class="mx-auto max-w-[14ch] font-display text-[clamp(3rem,1.4rem+6.2vw,7rem)] leading-[0.92] font-extrabold tracking-[-0.04em]">You’re not behind. <Highlight>You’re starting.</Highlight></h1>
+    <p class="mx-auto mt-6 max-w-[50ch] text-lead text-fg-muted">A former Wall Street analyst shows you, screen by screen, how to set up <strong class="text-fg">three accounts, three funds and one automatic transfer</strong> in six weeks. Then you leave it alone.</p>
+    <CtaBlock slot="cta" href={checkout} label={CTA} placement="hero" />
+    <Fragment slot="card">
+      <p class="text-sm font-semibold text-primary">In six weeks you’ll have</p>
+      <ul class="mt-5 space-y-4 text-lg">
+        {promises.map((t) => <li class="flex gap-3"><span class="mt-1 grid size-6 shrink-0 place-items-center rounded-pill bg-primary text-primary-fg" aria-hidden="true"><svg viewBox="0 0 16 16" class="size-3.5"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg></span>{t}</li>)}
+      </ul>
+      <div class="mt-8 grid grid-cols-3 gap-3 border-t border-border pt-6 text-center">
+        <p><span class="block font-display text-3xl font-extrabold tabular-nums">1,240</span><span class="text-xs text-fg-muted">accounts opened by students</span></p>
+        <p><span class="block font-display text-3xl font-extrabold">0</span><span class="text-xs text-fg-muted">funds sold or commissions</span></p>
+        <p><span class="block font-display text-3xl font-extrabold">30</span><span class="text-xs text-fg-muted">day guarantee</span></p>
+      </div>
+    </Fragment>
+  </FunnelHero>
 
   <section class="bg-inverse text-inverse-fg">
     <div class="mx-auto grid max-w-wide lg:grid-cols-2">
@@ -79,6 +86,7 @@ const faq = [
           </div>
         ))}
       </dl>
+      <CtaBlock class="mt-14" href={checkout} label={CTA} placement="myths" />
     </Container>
   </section>
 
@@ -108,6 +116,7 @@ const faq = [
         <p class="mt-6 border-l-4 border-accent pl-4 text-sm text-fg-muted">Markets go down as well as up, sometimes for years. That’s what week 5 is for.</p>
       </div>
     </Container>
+    <CtaBlock class="mt-14 px-5" href={checkout} label={CTA} placement="curve" />
   </GraphPaper>
 
   <section class="bg-bg py-16 sm:py-24">
@@ -125,11 +134,12 @@ const faq = [
     </Container>
   </section>
 
-  <MayaStory heading="I started at 38. Here’s what I’d do again, and what I wouldn’t.">
-    <p>I taught high-school maths for 14 years. I could explain compound interest to a room of sixteen-year-olds and still had <strong>$31,000 sitting in savings for six years</strong>, because nobody had handed me the order.</p>
-    <p>When I finally started, I made the three classic mistakes: I waited for a “better time,” I bought a fund because it was in the news, and I sold in a dip. First Shares is the six weeks I wish I’d had: the order, the screens, and a plan for the bad year written before it arrives.</p>
+  <CoachStory heading="I spent 19 years on Wall Street. Here’s what it never tells you.">
+    <p>I’m Richard Hale. For 19 years I was an equity analyst and then a fund-product manager at two of the big Wall Street firms. My job was to understand what we sold, and what we sold was mostly complicated, expensive products for people who needed three cheap funds and an automatic transfer.</p>
+    <p>The people I worried about were the ones who never came in at all: nurses, teachers, engineers with $40,000 in a savings account and no one they trusted to ask. In 2016 I left to teach them. <strong>The order beats the picks. Fees compound too. And the most expensive move is waiting for a better time.</strong></p>
     <p><strong>I don’t sell funds, I don’t take commissions and I don’t manage your money.</strong> No brokerage pays me when you open an account. I teach, and you decide.</p>
-  </MayaStory>
+  </CoachStory>
+  <section class="bg-bg pb-16 sm:pb-24"><CtaBlock href={checkout} label={CTA} placement="coach" /></section>
 
   <section class="bg-surface-2 py-16 sm:py-24">
     <Container size="wide" class="grid gap-6 md:grid-cols-2">
@@ -147,6 +157,8 @@ const faq = [
   <section id="offer" class="bg-inverse py-16 text-inverse-fg sm:py-24">
     <Container size="wide">
       <h2 class="text-center text-h1 font-display font-extrabold">Everything in First Shares.</h2>
+      <Deadline class="mt-8" tone="inverse" />
+      <p class="mx-auto mt-6 max-w-2xl rounded-lg border-2 border-dashed border-accent px-5 py-4 text-center"><strong class="text-accent">This month’s cohort bonus:</strong> enroll before the cohort closes and you start with the <strong>live kickoff call with Richard</strong> on the 1st, plus the <strong>401(k) Menu Decoder</strong>. Enroll after and you join next month’s group.</p>
       <OfferStack class="mt-10" items={STACK} total="$559" price="$297">
         <Button href={checkout} size="xl" full data-cta="offer">{CTA}</Button>
         <p class="mt-3 text-center text-sm text-fg-muted">{FRICTION}</p>
@@ -161,13 +173,11 @@ const faq = [
   <PhotoClose src={PHOTOS.saturday} alt="A woman with coffee and a laptop in a bright kitchen" focus="35% 40%">
     <h2 class="font-display text-[clamp(2.75rem,1.5rem+4.2vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.035em]">Six weeks from now, it’s done. <span class="text-accent">And you leave it alone.</span></h2>
     <p class="mt-6 text-lead opacity-90">Three accounts, three funds, one transfer, a plan for the bad year. $297 once, with the 30-day guarantee.</p>
-    <div class="mt-8 flex flex-col items-start gap-3">
-      <Button href={checkout} size="xl" variant="accent" class="w-full whitespace-nowrap px-6 sm:w-auto sm:px-9" data-cta="close">{CTA}</Button>
-      <p class="text-sm opacity-80">{FRICTION}</p>
-    </div>
+    <CtaBlock class="mt-8 items-start text-left" href={checkout} label={CTA} placement="close" tone="inverse" />
+    <p class="mt-8 max-w-[52ch] text-sm opacity-85"><strong>P.S.</strong> The worst version of this is another year of “I’ll start when things calm down.” I watched that cost people for 19 years. This month’s cohort closes on the last day of the month. Richard</p>
   </PhotoClose>
 
-  <StickyCTA href={checkout} label={CTA} note="30-day “first account” guarantee" showAfter={900} />
+  <StickyCTA href={checkout} label={CTA} note="This month’s cohort closes on the last day of the month" showAfter={900} />
   <script>
     document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
   </script>

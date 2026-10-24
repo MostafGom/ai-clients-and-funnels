@@ -15,14 +15,14 @@ Your savings set up properly in six weeks (three accounts, three fund types, one
 5. *Speed*: "Open your first account this Saturday. Leave it alone by week six." (4/3/4)
 6. *Objection flip*: "Started late? You get to skip the decade of mistakes." (3/3/4)
 7. *Number*: "$40,000 sitting in savings. Six weeks to put it to work, in order." (4/3/3)
-8. *Story*: "I opened my first investment account at 38. This is the setup I wish I'd had." (4/4/5)
+8. *Story*: "I spent 19 years on Wall Street. Here's what it never tells you." (4/4/5)
 
 **Chosen (1 + 2 as the sub)**, hand-wrapped:
 > You're not behind.
 > **You're starting.**
 
 **Kicker:** The six-week course for late starters, 30–45
-**Sub:** Your savings, finally invested: three accounts, three funds, one automatic transfer. Maya shows you every screen. Then you leave it alone.
+**Sub:** Your savings, finally invested: three accounts, three funds, one automatic transfer. Richard shows you every screen. Then you leave it alone.
 **Proof strip:** **1,240** accounts opened by students `[CLIENT]` · "Three Saturdays. That's all it took." **Denise R., 41, ICU nurse** · **0** funds sold, 0 commissions
 
 ## 2 · Scene (photo: phone-sofa)
@@ -67,10 +67,10 @@ Cards (from data): 401(k) up to the match · Roth IRA · Brokerage. Transfer bar
 Six ProcessLedger cards: Denise, Marcus, Mei (from data) + Karen L. (45, pharmacist, "had a 401(k) in cash for 9 years"), David P. (36, project manager, "paid off the card first, then started"), Andre M. (39, PE teacher, "403(b) and a Roth, both on autopilot") `[CLIENT]`.
 **Note:** Stories describe actions, not account balances. Everyone's situation is different, and results vary.
 
-## 8 · Maya
-**H2:** I started at 38. Here's what I'd do again, and what I wouldn't.
-I taught high-school maths for 14 years `[CLIENT]`. I could explain compound interest to a room of sixteen-year-olds and still had $31,000 sitting in savings for six years, because nobody had handed me the order.
-When I finally started, I made the three classic mistakes: I waited for a "better time," I bought a fund because it was in the news, and I sold in a dip. First Shares is the six weeks I wish I'd had: the order, the screens, and a plan for the bad year written before it arrives.
+## 8 · Coach (Richard Hale)
+**H2:** I spent 19 years on Wall Street. Here's what it never tells you.
+I'm Richard Hale. For 19 years I was an equity analyst and then a fund-product manager at two of the big Wall Street firms `[CLIENT]`. My job was to understand what we sold, and what we sold was mostly complicated, expensive products for people who needed three cheap funds and an automatic transfer.
+The people I worried about were the ones who never came in at all: nurses, teachers, engineers with $40,000 in a savings account and no one they trusted to ask. In 2016 I left to teach them. The order beats the picks. Fees compound too. And the most expensive move is waiting for a better time.
 **I don't sell funds, I don't take commissions and I don't manage your money.** No brokerage pays me when you open an account. I teach, and you decide.
 
 ## 9 · Who it's for / not for
@@ -115,8 +115,8 @@ CTA + friction line.
 ## /upsell — First Shares Live (420 words)
 **Eyebrow:** Your order is confirmed. One thing before you go.
 **H1:** Get your questions answered live, every two weeks, for three months.
-**Why:** You're about to open accounts you've never opened, in a menu you've never seen. Most students get stuck on one specific screen: a 401(k) fund list with 31 options, a rollover form, a "settlement fund." In First Shares Live you bring that screen to a group call with Maya every two weeks for three months, and leave with it done. Six calls, recorded, with the chat for questions between them.
-**Bullets:** 6 live group calls with Maya, every two weeks · bring your screen, share it, and get it walked through (education, not personal advice) · every call recorded and indexed · a members-only thread between calls with a 48-hour answer · a 3-month nudge: "is your transfer still running?"
+**Why:** You're about to open accounts you've never opened, in a menu you've never seen. Most students get stuck on one specific screen: a 401(k) fund list with 31 options, a rollover form, a "settlement fund." In First Shares Live you bring that screen to a group call with Richard every two weeks for three months, and leave with it done. Six calls, recorded, with the chat for questions between them.
+**Bullets:** 6 live group calls with Richard, every two weeks · bring your screen, share it, and get it walked through (education, not personal advice) · every call recorded and indexed · a members-only thread between calls with a 48-hour answer · a 3-month nudge: "is your transfer still running?"
 **Price:** ~~$390~~ **$197** · only on this page `[CLIENT]`
 **Objection:** *If you're not sure you'll need it,* that's normal. It's insurance against the one screen that stops you. If you never get stuck, the calls are where you hear the questions other people asked, and that's usually the one you didn't know to ask.
 **Accept:** Yes, add First Shares Live · $197 · **Decline:** No thanks, I'll work through it on my own
@@ -136,7 +136,7 @@ CTA + friction line.
 **What arrives when:** Now: your login · Tomorrow: the money map, explained · Day 3: what to have ready for Saturday · Week 2: the walkthroughs unlock · Week 5: the bad-year plan, before you need it.
 
 ## Emails
-Footer: "You started or completed an order with First Shares. Education only, not investment advice. Reply to reach Maya."
+Footer: "You started or completed an order with First Shares. Education only, not investment advice. Reply to reach Richard."
 
 **Abandoned (checkout.session.expired)**
 - **0h.** Subject A: "Your seat is still open" · B: "Did a kid need you?" · Preview: "Two minutes to finish, whenever you're ready." Body: no pressure; the order is open; reply with the question the page didn't answer. CTA: Finish my order.
@@ -146,3 +146,10 @@ Footer: "You started or completed an order with First Shares. Education only, no
 - **0h.** Subject A: "Lesson 1 is 12 minutes" · B: "You're in. Here's Saturday." · Body: password, Money Map, lesson 1; reply with your emergency-fund number.
 - **+72h.** Subject A: "The money map, done?" · B: "The one number to write down" · Body: emergency fund first, then high-interest debt, then invest; there's no right amount, there's a steady one.
 - **+144h.** Subject A: "Week 2: the 40 minutes" · B: "Accounts open this weekend" · Body: the walkthroughs are unlocked; do the 401(k) match first; reply "done" when it is.
+
+## Oct 2026 funnel pass (review: "looks like a website, no urgency, hero not a funnel hero, coach should be an authoritative man")
+- **Hero:** callout pill "For 30–45-year-olds with savings sitting in cash" · centered H1 · sub: "A former Wall Street analyst shows you, screen by screen, how to set up three accounts, three funds and one automatic transfer in six weeks. Then you leave it alone." · CTA above the fold · offer card: Richard's photo + "In six weeks you'll have" (match claimed · Roth opened and funded · three index fund types chosen · one transfer + a bad-year plan) + stats (1,240 accounts `[CLIENT]` · 0 commissions · 30-day guarantee).
+- **Urgency (real):** monthly cohort. Enrollment closes on the last day of the month, 11:59 p.m. ET `[CLIENT]`; the cohort starts with a live kickoff call with Richard on the 1st. Cohort bonus: the kickoff call + the 401(k) Menu Decoder. Countdown bar at the top; day/hour tiles on the offer; sticky note "This month's cohort closes on the last day of the month."
+- **CTA cadence:** CtaBlock after the myths, after the chart, after the coach, at the offer and in the close: "Enroll this month for the live kickoff call + bonus."
+- **FAQ add:** "What's the monthly cohort?"
+- **P.S.:** "The worst version of this is another year of 'I'll start when things calm down.' I watched that cost people for 19 years. This month's cohort closes on the last day of the month. Richard"

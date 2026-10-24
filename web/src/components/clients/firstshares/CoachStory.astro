@@ -1,5 +1,5 @@
 ---
-/** Coach story: Maya's portrait bleeding off the left edge, the late-start number set large, the no-pitch promise. */
+/** Coach story: Richard's portrait bleeding off the left edge, his Wall Street years set large, the no-pitch promise. */
 import { PHOTOS } from './photos';
 interface Props { heading: string; class?: string }
 const { heading, class: cls = '' } = Astro.props;
@@ -7,10 +7,10 @@ const { heading, class: cls = '' } = Astro.props;
 <section class:list={['relative overflow-hidden bg-bg py-16 sm:py-24', cls]}>
   <div class="mx-auto grid max-w-wide items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
     <div class="relative -mx-5 sm:-mx-8 lg:mr-0 lg:-ml-[max(2rem,calc((100vw-84rem)/2+2rem))]">
-      <img src={PHOTOS.maya} alt="Maya Okafor, founder of First Shares, at a maths blackboard" width="1200" height="1800" loading="lazy" class="h-[62svh] max-h-[640px] w-full object-cover object-[50%_25%] lg:rounded-r-xl" />
+      <img src={PHOTOS.coach} alt="Richard Hale, founder of First Shares, in his office" width="1200" height="1800" loading="lazy" class="h-[62svh] max-h-[640px] w-full object-cover object-[50%_15%] lg:rounded-r-xl" />
       <p class="absolute right-5 -bottom-6 rounded-lg bg-accent px-5 py-3 font-display text-accent-fg shadow-pop sm:right-8 lg:-right-8">
-        <span class="block text-sm font-semibold">First account at</span>
-        <span class="text-6xl leading-none font-extrabold tracking-[-0.04em]">38</span>
+        <span class="block text-sm font-semibold">Years on Wall Street</span>
+        <span class="text-6xl leading-none font-extrabold tracking-[-0.04em]">19</span>
       </p>
     </div>
     <div class="pt-6 lg:pt-0">

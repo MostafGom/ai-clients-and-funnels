@@ -5,8 +5,8 @@ export const PHOTOS = {
   couplePlanning: '/firstshares/photos/couple-planning.jpg', // couple at the table with laptop and paperwork, focused (landscape)
   phoneSofa: '/firstshares/photos/phone-sofa.jpg',           // woman on a couch looking at her phone in a dim room, unsure (landscape)
   notebookHands: '/firstshares/photos/notebook-hands.jpg',   // writing numbers in a notebook next to a laptop (landscape)
-  maya: '/firstshares/photos/maya.jpg',                      // founder stand-in: teacher at a maths blackboard (portrait)
-  mayaBoard: '/firstshares/photos/maya-board.jpg',           // founder stand-in: same teacher, landscape, board behind
+  coach: '/firstshares/photos/coach.jpg',                    // founder stand-in: Richard Hale, blue suit, library office (portrait)
+  coachOffice: '/firstshares/photos/coach-office.jpg',       // founder stand-in: same, arms crossed by the bookshelf (landscape)
   saturday: '/firstshares/photos/saturday.jpg',              // woman in yellow with coffee and laptop, bright kitchen: the "done" feeling (landscape)
 } as const;
 const PEOPLE: Record<string, string> = {

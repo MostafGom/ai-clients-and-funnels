@@ -3,7 +3,7 @@
 Education only, not investment advice. Rules and limits change every year: check the current numbers on irs.gov and with your plan.
 
 ## p1 · Cover
-The First $1,000 Plan · The order: 3 accounts, 3 fund types, 1 rule · For late starters · by Maya Okafor, First Shares
+The First $1,000 Plan · The order: 3 accounts, 3 fund types, 1 rule · For late starters · by Richard Hale, First Shares
 
 ## p2 · The cost of waiting
 The same $500 a month, started at 35 vs at 45, at an illustrative 7% average yearly return, compounded monthly, with no fees or taxes:

@@ -4,7 +4,7 @@
 |---|---|---|---|
 | main | First Shares: the 6-week portfolio setup course (self-paced) | $297 | `STRIPE_PRICE_FIRSTSHARES_MAIN` |
 | bump | Portfolio Kit: setup spreadsheet, contribution planner, account checklists | $47 | `STRIPE_PRICE_FIRSTSHARES_BUMP` |
-| upsell | First Shares Live: 3 months of bi-weekly group Q&A calls with Maya | $197 | `STRIPE_PRICE_FIRSTSHARES_UPSELL` |
+| upsell | First Shares Live: 3 months of bi-weekly group Q&A calls with Richard | $197 | `STRIPE_PRICE_FIRSTSHARES_UPSELL` |
 | downsell | Q&A Replay Library: every past group call, indexed by question | $67 | `STRIPE_PRICE_FIRSTSHARES_DOWNSELL` |
 
 **Lead magnet**: *The First $1,000 Plan*, a short PDF: the accounts to open first, the 3 fund types a simple portfolio needs, and the one rule (automate before you optimise). Ebook funnel.

@@ -1,13 +1,13 @@
 /** First Shares · checkout funnel emails. Copy: clients/firstshares/funnels/checkout/COPY.md → "Emails". Education only. */
 import { emailShell } from '../../lib/resend';
 const BRAND = 'First Shares';
-const FOOT = 'You started or completed an order with First Shares. Education only, not investment advice. Reply to reach Maya.';
-const sign = '<p>— Maya</p>';
+const FOOT = 'You started or completed an order with First Shares. Education only, not investment advice. Reply to reach Richard.';
+const sign = '<p>— Richard</p>';
 const site = (path: string, origin: string) => new URL(path, origin).toString();
 
 export function abandonedCheckout(origin: string) {
   return [
-    { delayHours: 0, subject: 'Your seat is still open', html: emailShell({ brand: BRAND, heading: 'Two minutes to finish, whenever you’re ready.', body: `<p>It’s Maya. You got as far as checkout and stopped, which usually means a kid needed you, or a question the page didn’t answer.</p><p>Your order is still open. If it was the question, reply and ask it. I read every message, and I’d rather you ask than guess.</p>${sign}`, cta: { label: 'Finish my order', href: site('/firstshares/checkout/checkout', origin) }, footer: FOOT }) },
+    { delayHours: 0, subject: 'Your seat is still open', html: emailShell({ brand: BRAND, heading: 'Two minutes to finish, whenever you’re ready.', body: `<p>It’s Richard. You got as far as checkout and stopped, which usually means a kid needed you, or a question the page didn’t answer.</p><p>Your order is still open. If it was the question, reply and ask it. I read every message, and I’d rather you ask than guess.</p>${sign}`, cta: { label: 'Finish my order', href: site('/firstshares/checkout/checkout', origin) }, footer: FOOT }) },
     { delayHours: 23, subject: 'The guarantee, in full', html: emailShell({ brand: BRAND, heading: 'What if I don’t open the account?', body: `<p>The question most people have before they buy is “what if I don’t follow through?” So here’s the guarantee, in full.</p><p>Work through weeks 1 and 2. If your first account isn’t open and funded within 30 days of buying, email me and I refund every cent. No forms, no call. The account is either open or it isn’t.</p><p>It’s education, not advice: I teach, you decide. If that settles it, the checkout is here.</p>${sign}`, cta: { label: 'Start the six-week setup · $297', href: site('/firstshares/checkout/checkout', origin) }, footer: FOOT }) },
   ];
 }

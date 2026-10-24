@@ -1,0 +1,27 @@
+---
+/**
+ * Funnel hero: pre-head callout, centered headline and sub, then one offer card (coach photo + promise checklist + CTA).
+ * Mobile: callout, headline, sub, CTA first; the card follows. Slots: default = headline + sub; `cta` = button block; `card` = right side of the card.
+ */
+import { PHOTOS } from './photos';
+interface Props { callout: string; class?: string }
+const { callout, class: cls = '' } = Astro.props;
+---
+<section class:list={['relative overflow-hidden bg-bg pt-8 pb-14 sm:pt-12 sm:pb-20', cls]}>
+  <div class="mx-auto max-w-5xl px-5 text-center sm:px-8">
+    <p class="mx-auto inline-flex items-center gap-2 rounded-pill border-2 border-fg bg-surface px-4 py-1.5 text-sm font-bold">
+      <span class="size-2 rounded-pill bg-primary" aria-hidden="true"></span>{callout}
+    </p>
+    <div class="mt-6"><slot /></div>
+    <div class="mt-8"><slot name="cta" /></div>
+  </div>
+  <div class="mx-auto mt-12 max-w-5xl px-5 sm:px-8">
+    <div class="grid overflow-hidden rounded-xl bg-surface shadow-pop md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+      <div class="relative">
+        <img src={PHOTOS.coach} alt="Richard Hale, First Shares founder, in his office" width="1400" height="2100" fetchpriority="high" class="h-72 w-full object-cover object-[50%_18%] md:h-full" />
+        <p class="absolute bottom-4 left-4 rounded-md bg-inverse px-4 py-2 text-sm text-inverse-fg shadow-pop"><span class="block font-display text-lg font-bold">Richard Hale</span>19 years on Wall Street · now teaches</p>
+      </div>
+      <div class="p-6 text-left sm:p-10"><slot name="card" /></div>
+    </div>
+  </div>
+</section>

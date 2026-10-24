@@ -1,0 +1,58 @@
+---
+/**
+ * Countdown to the end of the current month (11:59 p.m. ET), when this month's cohort closes. Never resets per visitor.
+ * variant="bar": thin strip under the demo banner. variant="block": day/hour/minute/second tiles for the offer.
+ */
+interface Props { variant?: 'bar' | 'block'; tone?: 'paper' | 'inverse'; class?: string }
+const { variant = 'block', tone = 'paper', class: cls = '' } = Astro.props;
+const units = [['d', 'days'], ['h', 'hours'], ['m', 'min'], ['s', 'sec']];
+---
+{variant === 'bar' ? (
+  <div class:list={['bg-inverse text-inverse-fg', cls]} data-deadline>
+    <p class="mx-auto flex max-w-wide flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2.5 text-center text-sm">
+      <span class="font-semibold"><span data-month>This month’s</span> cohort: enrollment closes</span>
+      <span class="font-display text-base font-extrabold tabular-nums text-accent" data-left>on the last day of the month</span>
+      <span class="hidden opacity-80 sm:inline">· kickoff call <span data-kickoff>on the 1st</span></span>
+    </p>
+  </div>
+) : (
+  <div class:list={['text-center', cls]} data-deadline role="timer" aria-live="off">
+    <p class:list={['text-sm font-semibold', tone === 'inverse' ? 'opacity-85' : 'text-fg-muted']}><span data-month>This month’s</span> cohort closes <span data-close>at the end of the month</span></p>
+    <div class="mt-3 flex justify-center gap-2 sm:gap-3">
+      {units.map(([k, label]) => (
+        <span class:list={['grid w-16 rounded-md py-2 sm:w-20', tone === 'inverse' ? 'bg-inverse-2' : 'bg-surface shadow-card']}>
+          <span class="font-display text-3xl font-extrabold tabular-nums sm:text-4xl" data-unit={k}>--</span>
+          <span class:list={['text-xs', tone === 'inverse' ? 'opacity-80' : 'text-fg-muted']}>{label}</span>
+        </span>
+      ))}
+    </div>
+  </div>
+)}
+<script>
+  // End of the current month, 23:59:59 New York time, as a real instant. Works across DST changes in either zone.
+  const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hourCycle: 'h23' });
+  const nyWall = (t: number) => { const p = fmt.formatToParts(new Date(t)); const g = (k: string) => Number(p.find((x) => x.type === k)!.value); return Date.UTC(g('year'), g('month') - 1, g('day'), g('hour'), g('minute'), g('second')); };
+  const today = new Date(nyWall(Date.now()));
+  const target = Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + 1, 0, 23, 59, 59);
+  let endMs = target - (nyWall(target) - target); endMs = target - (nyWall(endMs) - endMs);
+  const end = new Date(endMs);
+  const next = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + 1, 1, 12));
+  const month = next.toLocaleString('en-US', { timeZone: 'UTC', month: 'long' });
+  const closeDay = end.toLocaleString('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'short', day: 'numeric' });
+  const kick = next.toLocaleString('en-US', { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' });
+  document.querySelectorAll<HTMLElement>('[data-deadline]').forEach((el) => {
+    el.querySelectorAll('[data-month]').forEach((m) => (m.textContent = `The ${month}`));
+    el.querySelectorAll('[data-close]').forEach((m) => (m.textContent = `${closeDay}, 11:59 p.m. ET`));
+    el.querySelectorAll('[data-kickoff]').forEach((m) => (m.textContent = kick));
+    const left = el.querySelector('[data-left]');
+    const tiles = Object.fromEntries([...el.querySelectorAll<HTMLElement>('[data-unit]')].map((t) => [t.dataset.unit!, t]));
+    const tick = () => {
+      const s = Math.max(0, Math.floor((end.getTime() - Date.now()) / 1000));
+      const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+      const p = (n: number) => String(n).padStart(2, '0');
+      if (left) left.textContent = `in ${d}d ${p(h)}h ${p(m)}m ${p(sec)}s`;
+      if (tiles.d) { tiles.d.textContent = String(d); tiles.h.textContent = p(h); tiles.m.textContent = p(m); tiles.s.textContent = p(sec); }
+    };
+    tick(); setInterval(tick, 1000);
+  });
+</script>

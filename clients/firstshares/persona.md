@@ -28,7 +28,7 @@
 **Proof that moves them**:
 - **Process wins from peers**: people like them who *started*. "Opened my Roth at 41. Auto-investing $500 a month now. Took one Saturday." The proof is in accounts opened and contributions automated, never in returns.
 - **Plain maths**: the cost of waiting, fee drag, what $500/month does over 20 years at an *illustrative* rate. Every number is labelled illustrative, not a forecast.
-- **The founder's story**: Maya Okafor (she/her), a former high-school maths teacher who opened her first investment account at 38 with $31k in savings and a lot of shame. She made the usual mistakes (sat in cash for two years, bought a "hot" fund, panic-sold in a dip) and then built the simple setup she now teaches.
+- **The founder's story**: Richard Hale (he/him), 54, spent 19 years on Wall Street as an equity analyst and then a fund-product manager `[CLIENT]`. He watched the industry sell complicated, expensive products to people who needed three cheap funds and an automatic transfer, and left in 2016 to teach them. Authority without hype: an insider who explains how it really works, takes no commissions and sells no funds.
 - **A no-pitch promise**: First Shares never sells funds, never takes commissions and never manages money. Paired with a 30-day refund guarantee.
 
 ## Copy angles

@@ -4,7 +4,9 @@ import Layout from '../../../layouts/FunnelLayout.astro';
 import Container from '../../../components/ui/Container.astro';
 import OptInForm from '../../../components/funnel/OptInForm.astro';
 import GraphPaper from '../../../components/clients/firstshares/GraphPaper.astro';
-import MayaStory from '../../../components/clients/firstshares/MayaStory.astro';
+import CoachStory from '../../../components/clients/firstshares/CoachStory.astro';
+import Deadline from '../../../components/clients/firstshares/Deadline.astro';
+import Button from '../../../components/ui/Button.astro';
 import ProcessLedger from '../../../components/clients/firstshares/ProcessLedger.astro';
 import PhotoClose from '../../../components/clients/firstshares/PhotoClose.astro';
 import FaqList from '../../../components/clients/firstshares/FaqList.astro';
@@ -13,7 +15,7 @@ import Highlight from '../../../components/clients/firstshares/art/Highlight.ast
 import GuideCover from '../../../components/clients/firstshares/art/GuideCover.astro';
 import { PHOTOS } from '../../../components/clients/firstshares/photos';
 import { LEDGERS } from '../../../components/clients/firstshares/data';
-const form = { client: 'firstshares', funnel: 'ebook', redirect: '/firstshares/ebook/thanks', magnet: 'first-1000-plan', buttonLabel: 'Send me the First $1,000 Plan', consent: 'Free PDF in your inbox in a minute. Five short emails from Maya. Unsubscribe in one click.' };
+const form = { client: 'firstshares', funnel: 'ebook', redirect: '/firstshares/ebook/thanks', magnet: 'first-1000-plan', buttonLabel: 'Send me the First $1,000 Plan', consent: 'Free PDF in your inbox in a minute. Five short emails from Richard. Unsubscribe in one click.' };
 const inside = [
   { n: '5', unit: 'accounts', line: '401(k), Roth, traditional IRA, HSA, brokerage, compared on one page: which one first, and why.' },
   { n: '3', unit: 'fund types', line: 'The whole portfolio, plus the four numbers to check on any fund before you buy it.' },
@@ -32,34 +34,41 @@ const pages = [
 const faq = [
   { q: 'Isn’t this all free on YouTube?', a: 'Most of it, scattered across 30 hours that disagree with each other. The guide is one order on eight pages. Free too.' },
   { q: 'What if the market drops right after I start?', a: 'It will at some point; markets go down as well as up, and you can lose money. Page 7 is the plan for that. The short version: money you need in the next few years shouldn’t be invested at all, and the automatic transfer keeps buying either way.' },
-  { q: 'What’s the catch?', a: 'After the guide, Maya will tell you about the paid course. That’s it. First Shares never sells funds, never takes commissions, and isn’t paid by any brokerage you choose.' },
+  { q: 'What’s the catch?', a: 'After the guide, Richard will tell you about the paid course. That’s it. First Shares never sells funds, never takes commissions, and isn’t paid by any brokerage you choose.' },
   { q: 'Is this advice for my situation?', a: 'No. It’s education, the same for everyone. For personal advice, talk to a fee-only fiduciary adviser.' },
   { q: 'What happens after I enter my email?', a: 'The PDF lands in about a minute. Then five short emails over a week, one idea each. Unsubscribe in one click.' },
 ];
 ---
-<Layout client="firstshares" funnel="ebook" step="optin" title="Where should your first $1,000 go? Free: The First $1,000 Plan" description="Not the best fund: the order. Which account first, which three fund types, and the one rule that does the rest. A free 8-page guide for late starters from a former maths teacher who started at 38.">
+<Layout client="firstshares" funnel="ebook" step="optin" title="Where should your first $1,000 go? Free: The First $1,000 Plan" description="Not the best fund: the order. Which account first, which three fund types, and the one rule that does the rest. A free 8-page guide for late starters from a former Wall Street analyst.">
+  <Deadline variant="bar" />
 
-  <section class="relative overflow-hidden bg-bg">
-    <div class="mx-auto grid max-w-wide gap-8 px-5 pt-6 pb-14 sm:px-8 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-center lg:gap-14 lg:py-16">
-      <div class="relative lg:order-2">
-        <img src={PHOTOS.coupleLaptop} alt="A couple on a sofa looking at a laptop together" width="2000" height="1333" fetchpriority="high" decoding="async" class="h-[38svh] min-h-[240px] w-full rounded-xl object-cover object-[60%_40%] lg:h-[78svh] lg:max-h-[760px]" />
-        <div class="absolute -bottom-6 left-4 w-[30%] max-w-[190px] -rotate-6 lg:-bottom-8 lg:-left-10 lg:w-[42%] lg:max-w-[230px]"><GuideCover /></div>
+  <section class="relative overflow-hidden bg-bg pt-8 pb-14 sm:pt-12 sm:pb-20">
+    <div class="mx-auto max-w-5xl px-5 text-center sm:px-8">
+      <p class="mx-auto inline-flex items-center gap-2 rounded-pill border-2 border-fg bg-surface px-4 py-1.5 text-sm font-bold"><span class="size-2 rounded-pill bg-primary" aria-hidden="true"></span>Free guide · for late starters, 30–45</p>
+      <h1 class="mx-auto mt-6 max-w-[18ch] font-display text-[clamp(2.75rem,1.4rem+4.2vw,4.75rem)] leading-[0.94] font-extrabold tracking-[-0.04em]">Where should your first $1,000 go? <Highlight>Here’s the order.</Highlight></h1>
+      <p class="mx-auto mt-6 max-w-[52ch] text-lead text-fg-muted">Not the “best” fund. <strong class="text-fg">The order</strong>: which account first, which three fund types, and the one rule that does the rest. Eight pages from a former Wall Street analyst who now teaches it plainly.</p>
+    </div>
+    <div class="mx-auto mt-8 grid max-w-5xl items-center gap-10 px-5 sm:px-8 md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)]">
+      <div class="relative order-2 mx-auto w-[min(56vw,260px)] md:order-1 md:w-full md:max-w-[300px]">
+        <GuideCover class="-rotate-3" />
+        <p class="absolute -top-4 -right-4 grid size-20 rotate-12 place-items-center rounded-pill bg-accent text-center font-display text-sm leading-tight font-extrabold text-accent-fg shadow-pop">Free<br />PDF</p>
       </div>
-      <div class="lg:order-1">
-        <p class="text-sm font-semibold text-primary">Free guide · for late starters, 30–45</p>
-        <h1 class="mt-4 font-display text-[clamp(2.9rem,1.5rem+5.4vw,6.25rem)] leading-[0.95] font-extrabold tracking-[-0.035em]">Where should your first $1,000 go? <Highlight>Here’s the order.</Highlight></h1>
-        <p class="mt-6 max-w-[52ch] text-lead text-fg-muted">Not the “best” fund. <strong class="text-fg">The order</strong>: which account first, which three fund types, and the one rule that does the rest. Eight pages from a former maths teacher who started at 38. One order, instead of 30 hours of YouTube.</p>
-        <OptInForm {...form} class="mt-8 max-w-lg" />
+      <div class="order-1 rounded-xl bg-surface p-6 shadow-pop sm:p-8 md:order-2">
+        <p class="font-display text-2xl font-extrabold">Get the plan, free, in your inbox now</p>
+        <ul class="mt-4 space-y-2 text-fg-muted">
+          <li class="flex gap-2"><span class="font-bold text-primary" aria-hidden="true">✓</span>The order: match, Roth, brokerage</li>
+          <li class="flex gap-2"><span class="font-bold text-primary" aria-hidden="true">✓</span>5 accounts compared on one page</li>
+          <li class="flex gap-2"><span class="font-bold text-primary" aria-hidden="true">✓</span>The Saturday checklist: first account in about 40 minutes</li>
+        </ul>
+        <OptInForm {...form} class="mt-6 max-w-none" />
+        <p class="mt-4 rounded-md bg-primary-soft px-4 py-3 text-sm"><strong>This month only:</strong> readers who download before the month ends also get a seat on Richard’s free live Q&amp;A on the 1st.</p>
       </div>
     </div>
-    <div class="border-y border-border bg-surface">
-      <ul class="mx-auto flex max-w-wide flex-wrap gap-x-10 gap-y-2 px-5 py-4 text-sm text-fg-muted sm:px-8">
-        <li><strong class="font-display text-xl font-bold text-fg tabular-nums">11,400</strong> downloads</li>
-        <li>Written by a <strong class="text-fg">former maths teacher</strong></li>
-        <li>We <strong class="text-fg">never sell funds</strong> or take commissions</li>
-        <li class="lg:ml-auto">“It took three Saturdays.” <strong class="text-fg">Denise R., 41, ICU nurse</strong></li>
-      </ul>
-    </div>
+    <ul class="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-x-10 gap-y-2 px-5 text-sm text-fg-muted sm:px-8">
+      <li><strong class="font-display text-xl font-bold text-fg tabular-nums">11,400</strong> downloads</li>
+      <li>By a <strong class="text-fg">19-year Wall Street analyst</strong></li>
+      <li>“It took three Saturdays.” <strong class="text-fg">Denise R., 41, ICU nurse</strong></li>
+    </ul>
   </section>
 
   <section class="bg-bg py-16 sm:py-24">
@@ -88,6 +97,7 @@ const faq = [
       </div>
       <CompoundCurve class="rounded-xl bg-surface p-5 shadow-pop sm:p-8" />
     </Container>
+    <div class="mt-12 flex justify-center px-5"><Button href="#get-the-plan" size="xl" data-cta="curve">Send me the First $1,000 Plan</Button></div>
   </GraphPaper>
 
   <section class="bg-surface-2 py-16 sm:py-24">
@@ -107,10 +117,10 @@ const faq = [
     </Container>
   </section>
 
-  <MayaStory heading="Written by someone who started late, on purpose.">
-    <p>I’m Maya Okafor. I taught high-school maths for 14 years and opened my first investment account at 38, with <strong>$31,000 that had been sitting in savings for six years</strong>. Then I made every mistake in the book: I waited, I bought a “hot” fund, and I sold in a dip.</p>
-    <p>The First $1,000 Plan is the page I wish someone had handed me. <strong>I don’t sell funds, I don’t take commissions and I don’t manage anyone’s money.</strong> I teach the order, and then you leave it alone.</p>
-  </MayaStory>
+  <CoachStory heading="Written by someone who spent 19 years inside Wall Street.">
+    <p>I’m Richard Hale. For 19 years I was an equity analyst and fund-product manager on Wall Street. I watched the industry sell complicated, expensive products to people who needed three cheap funds and an automatic transfer.</p>
+    <p>The First $1,000 Plan is what I wish every late starter got before anyone tried to sell them something. <strong>I don’t sell funds, I don’t take commissions and I don’t manage anyone’s money.</strong> I teach the order, and then you leave it alone.</p>
+  </CoachStory>
 
   <section class="bg-surface-2 py-16 sm:py-24">
     <Container size="wide">
@@ -127,6 +137,6 @@ const faq = [
   <PhotoClose src={PHOTOS.saturday} alt="A woman with coffee and a laptop in a bright kitchen" focus="35% 40%">
     <h2 class="font-display text-display font-extrabold">Your first account. <span class="text-accent">This Saturday.</span></h2>
     <p class="mt-6 text-lead opacity-90">Free PDF, eight pages: the order, the accounts, the three fund types and the checklist.</p>
-    <div class="mt-8 rounded-xl bg-surface p-5 text-fg sm:p-6"><OptInForm {...form} inline class="max-w-none" /></div>
+    <div id="get-the-plan" class="mt-8 scroll-mt-24 rounded-xl bg-surface p-5 text-fg sm:p-6"><OptInForm {...form} inline class="max-w-none" /></div>
   </PhotoClose>
 </Layout>

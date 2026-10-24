@@ -31,13 +31,13 @@ Why it converts: the guide gets the first account open. The course is the full s
 | "What if I lose it?" | Number wall (rule card); FAQ 2; guide p. 7 (the bad-year plan) | Plain maths, honest risk line |
 | "It's all free on YouTube." | Hero sub ("one order, not 30 hours"); FAQ 1 | Mei's ledger (froze for a year on YouTube) |
 | "No time." | Number wall ("40 minutes for the first account") | Denise's ledger |
-| "Is this hype / what's the catch?" | Maya block (the no-pitch promise); consent line; FAQ 3 | Founder story; "we never sell funds" |
+| "Is this hype / what's the catch?" | Richard block (the no-pitch promise); consent line; FAQ 3 | Founder story; "we never sell funds" |
 | "Spam." | Consent line: one PDF, five short emails, one-click unsubscribe | — |
 
 ## Proof plan
 | Proof | Status | Shown as |
 |---|---|---|
-| Maya's story (started at 38, $31k, the mistakes) | Persona; client must confirm | Coach story |
+| Richard’s story (19 years on Wall Street, what the industry sells vs what people need) | Persona; client must confirm | Coach story |
 | Reader actions (Denise, Marcus, Mei) | Demo; client must supply real ones | ProcessLedger (paper) |
 | Reader count, e.g. "11,400 downloads" | `[CLIENT]` | Hero proof strip |
 | Compounding maths | Computed, labelled illustrative | CompoundCurve |
@@ -48,7 +48,7 @@ Why it converts: the guide gets the first account open. The course is the full s
 2. **Number wall**: 5 · 3 · 1 · 40. Copy job: what's in the guide, as numbers, and kill the "no time" objection.
 3. **GraphPaper + CompoundCurve** (the signature). Copy job: make the cost of waiting felt, honestly, then turn "too late" into "this month."
 4. **Inside the guide**: the cover plus the page list. Copy job: make it tangible.
-5. **Coach story**: Maya. Copy job: "someone like me started late," and the no-pitch promise.
+5. **Coach story**: Richard. Copy job: "someone like me started late," and the no-pitch promise.
 6. **ProcessLedger** (paper). Copy job: three people who started, in actions.
 7. **FAQ**. Copy job: the free-vs-paid, risk, catch and spam objections.
 8. **Photo close** (`saturday`) with the second form. Copy job: "this Saturday."
@@ -60,7 +60,7 @@ Why it converts: the guide gets the first account open. The course is the full s
 `lead_captured` (from OptInForm), `curve_drawn` (signature), `guide_downloaded`, `cta_click` (placement).
 
 ## Emails (Resend, scheduled at opt-in)
-Delivery (0h) → 1 (+1d: the order) → 2 (+2d: Maya's two lost years) → 3 (+4d: the one rule, and Denise) → 4 (+6d: a bad year, and where the guide ends) → 5 (+8d: the course + the 30-day guarantee).
+Delivery (0h) → 1 (+1d: the order) → 2 (+2d: Richard’s two lost years) → 3 (+4d: the one rule, and Denise) → 4 (+6d: a bad year, and where the guide ends) → 5 (+8d: the course + the 30-day guarantee).
 
 ## Open client inputs
-Maya's real photo and story sign-off · real reader stories (actions, with consent) · the download count · compliance review of the guide and disclaimer by the client's counsel · the course price confirmed.
+Richard’s real photo and story sign-off · real reader stories (actions, with consent) · the download count · compliance review of the guide and disclaimer by the client's counsel · the course price confirmed.

@@ -2,7 +2,7 @@
 
 ## Traffic & stage
 - **Sources:**
-  - **Warm:** ebook leads from emails 5 and 6, and the course card on the ebook thanks page. They know Maya and the order.
+  - **Warm:** ebook leads from emails 5 and 6, and the course card on the ebook thanks page. They know Richard and the order.
   - **Cold retargeting:** visitors who saw the chart but didn't opt in.
   - **Podcast and YouTube** mentions with a direct link.
 - **Awareness:** solution-aware ("I need the accounts set up, in order") and partly product-aware. The page has to turn *"I could do this from the free guide"* into *"I want it done, with someone showing me each screen."* It also has to answer "what if I lose money" honestly.
@@ -35,7 +35,7 @@
 - **Anchor:** $559 stack value.
 - **Comparison:** an hourly fee-only planner at $200–400 per hour `[CLIENT: verify range]`. Note that a course isn't personal advice; this is a cost comparison, not like-for-like.
 - **Bump ($47):** the Portfolio Kit: setup spreadsheet, contribution planner, account checklists. Normally $77 `[CLIENT]`.
-- **Upsell ($197):** First Shares Live, 3 months of group Q&A calls every two weeks with Maya. Normally $390 `[CLIENT]`.
+- **Upsell ($197):** First Shares Live, 3 months of group Q&A calls every two weeks with Richard. Normally $390 `[CLIENT]`.
 - **Downsell ($67):** the Q&A Replay Library, every past call indexed by question. Normally $127 `[CLIENT]`.
 - **Guarantee:** 30 days. Work through it, and if your first account isn't open and funded, email for a full refund.
 
@@ -44,7 +44,7 @@
 |---|---|---|
 | "It's free on YouTube / I have the free guide." | Myth wall #4; Comparison; FAQ 1 | Marcus (robo dropout), Mei (YouTube freeze) |
 | "No time." | Six-week track ("about 90 minutes a week"); FAQ 3 | Denise's three Saturdays |
-| "Hype / what's the catch?" | Maya block (the no-pitch promise); Who it's NOT for; disclaimer | Founder story, 0 commissions |
+| "Hype / what's the catch?" | Richard block (the no-pitch promise); Who it's NOT for; disclaimer | Founder story, 0 commissions |
 | "What if I lose money?" | Mechanism; CostOfWaiting caveat; Week 5 (A bad year); FAQ 2 | Honest risk lines |
 | "Too late / too little money." | Myth wall #1 and #2; chart | Illustrative maths |
 | "Is this advice?" | FAQ 4; footer disclaimer | — |
@@ -54,7 +54,7 @@
 |---|---|---|
 | Student actions (Denise, Marcus, Mei + Karen, David, Andre) | Demo; client supplies real stories with consent | ProcessLedger on field + proof strip |
 | Accounts opened by students, e.g. "1,240" | `[CLIENT]` | Hero proof strip |
-| Maya's story | Persona; client confirms | MayaStory |
+| Richard’s story | Persona; client confirms | RichardStory |
 | Illustrative maths | Computed, labelled | CompoundCurve |
 
 ## Page map & copy jobs
@@ -66,7 +66,7 @@
 5. **GraphPaper**: CompoundCurve, then the cost-of-waiting turn, with the risk caveat.
 6. **Timeline track**: six weeks, about 90 minutes a week.
 7. **Proof on field**: ProcessLedger, six people's actions.
-8. **Maya**: someone like me, and the no-pitch promise.
+8. **Richard**: someone like me, and the no-pitch promise.
 9. **Who it's for / not for**: honest disqualification.
 10. **Offer**: stack table + price + guarantee in one unit.
 11. **FAQ**.
