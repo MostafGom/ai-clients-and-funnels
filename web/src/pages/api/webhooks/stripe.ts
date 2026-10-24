@@ -5,11 +5,13 @@ import { getClient } from '../../../lib/clients';
 import { sendEmail, sendSequence, emailShell } from '../../../lib/resend';
 import * as lumenCheckout from '../../../emails/lumen/checkout';
 import * as forgeCheckout from '../../../emails/forge/checkout';
+import * as firstsharesCheckout from '../../../emails/firstshares/checkout';
 
 /** Per-client email sequences keyed by slug. Add new clients here. */
 const SEQUENCES: Record<string, { onboarding: (origin: string) => any[]; abandoned: (origin: string) => any[] }> = {
   lumen: { onboarding: lumenCheckout.onboarding, abandoned: lumenCheckout.abandonedCheckout },
   forge: { onboarding: forgeCheckout.onboarding, abandoned: forgeCheckout.abandonedCheckout },
+  firstshares: { onboarding: firstsharesCheckout.onboarding, abandoned: firstsharesCheckout.abandonedCheckout },
 };
 
 export const prerender = false;

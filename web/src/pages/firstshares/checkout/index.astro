@@ -1,0 +1,174 @@
+---
+/* First Shares · checkout sales page. Copy: clients/firstshares/funnels/checkout/COPY.md · Section map: clients/firstshares/DESIGN-PLAN.md */
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Button from '../../../components/ui/Button.astro';
+import StickyCTA from '../../../components/funnel/StickyCTA.astro';
+import PhotoHero from '../../../components/clients/firstshares/PhotoHero.astro';
+import GraphPaper from '../../../components/clients/firstshares/GraphPaper.astro';
+import MarginNote from '../../../components/clients/firstshares/MarginNote.astro';
+import SixWeeks from '../../../components/clients/firstshares/SixWeeks.astro';
+import ProcessLedger from '../../../components/clients/firstshares/ProcessLedger.astro';
+import MayaStory from '../../../components/clients/firstshares/MayaStory.astro';
+import OfferStack from '../../../components/clients/firstshares/OfferStack.astro';
+import FaqList from '../../../components/clients/firstshares/FaqList.astro';
+import PhotoClose from '../../../components/clients/firstshares/PhotoClose.astro';
+import SetupStack from '../../../components/clients/firstshares/art/SetupStack.astro';
+import CompoundCurve from '../../../components/clients/firstshares/art/CompoundCurve.astro';
+import Highlight from '../../../components/clients/firstshares/art/Highlight.astro';
+import { PHOTOS } from '../../../components/clients/firstshares/photos';
+import { CTA, FRICTION, SETUP, WEEKS, STACK, LEDGERS, LEDGERS_MORE } from '../../../components/clients/firstshares/data';
+const checkout = '/firstshares/checkout/checkout';
+const myths = [
+  ['I’m too late.', 'At 40 you likely have 25+ years before you’d touch retirement money. Time is still the biggest thing on your side, and it’s the one that shrinks while you wait.'],
+  ['I need $10,000 first.', 'Most brokerages let you start with a few dollars. The habit matters more than the first amount.'],
+  ['I’ll have to watch the markets.', 'The setup is built to be left alone. You check it once a year, on purpose.'],
+  ['It’s all free on YouTube.', 'The information is. The order, the screens and someone to ask aren’t, and that’s why you’re still here.'],
+];
+const forYou = ['You’re 30–45 with savings sitting in cash', 'You have a 401(k) you’ve never really looked at', 'You want it set up once and left alone', 'You’d rather understand it than hand it off'];
+const notForYou = ['You want to trade, pick stocks or “beat the market”', 'You need the money in the next few years (keep it in savings)', 'You have high-interest card debt (pay that first; week 1 shows you how)', 'You want someone to manage your money or give personal advice (look for a fee-only fiduciary)'];
+const faq = [
+  { q: 'I have the free guide. Why pay?', a: 'The guide is the order. The course is doing it: every screen, the 401(k) menu decoded, the bad-year plan written with you, and the Q&A library when you get stuck. If the guide was enough, you’d already be done, and that’s fine too.' },
+  { q: 'What if the market drops right after I start?', a: 'It might. Markets go down as well as up, and you can lose money. We teach keeping money you need soon out of stocks, investing on a schedule instead of all at once if that helps you sleep, and a written plan for red years. None of it guarantees a result.' },
+  { q: 'How much time does it take?', a: 'About 90 minutes a week for six weeks. Most of it is one Saturday morning with a coffee.' },
+  { q: 'Is this financial advice?', a: 'No. It’s education, the same for every student. We never tell you what to buy. For advice on your situation, talk to a fee-only fiduciary adviser.' },
+  { q: 'Which brokerages does it cover?', a: 'The walkthroughs cover Fidelity, Schwab and Vanguard, and the principles work anywhere. We’re not paid by any of them.' },
+  { q: 'Is it only for retirement?', a: 'Mostly long-term money. Week 1 helps you separate long-term money from money you need sooner.' },
+  { q: 'What if I have a partner?', a: 'Do it together. The Partner Conversation script is a bonus for exactly that.' },
+];
+---
+<Layout client="firstshares" funnel="checkout" step="sales" title="You’re not behind. You’re starting. First Shares, the six-week setup" description="The six-week course for late starters, 30–45: three accounts, three funds, one automatic transfer. Maya shows you every screen, then you leave it alone. Education, not advice. 30-day guarantee.">
+
+  <PhotoHero src={PHOTOS.kitchenLaptop} alt="A woman at her kitchen counter working on a laptop in the morning" focus="72% 40%">
+    <p class="text-sm font-semibold text-primary">The six-week course for late starters, 30–45</p>
+    <h1 class="mt-4 font-display text-[clamp(3.25rem,1.5rem+6.4vw,7.5rem)] leading-[0.92] font-extrabold tracking-[-0.04em]">You’re not behind. <Highlight>You’re starting.</Highlight></h1>
+    <p class="mt-6 max-w-[48ch] text-lead text-fg-muted">Your savings, finally invested: <strong class="text-fg">three accounts, three funds, one automatic transfer.</strong> Maya shows you every screen. Then you leave it alone.</p>
+    <div class="mt-8 flex flex-col items-start gap-3">
+      <Button href={checkout} size="xl" class="w-full whitespace-nowrap px-6 sm:w-auto sm:px-9" data-cta="hero">{CTA}</Button>
+      <p class="text-sm text-fg-muted">{FRICTION}</p>
+    </div>
+    <ul slot="strip" class="flex flex-wrap items-center gap-x-10 gap-y-2 text-sm text-fg-muted">
+      <li><strong class="font-display text-xl font-bold text-fg tabular-nums">1,240</strong> accounts opened by students</li>
+      <li>“Three Saturdays. That’s all it took.” <strong class="text-fg">Denise R., 41, ICU nurse</strong></li>
+      <li><strong class="font-display text-xl font-bold text-fg">0</strong> funds sold, 0 commissions</li>
+    </ul>
+  </PhotoHero>
+
+  <section class="bg-inverse text-inverse-fg">
+    <div class="mx-auto grid max-w-wide lg:grid-cols-2">
+      <img src={PHOTOS.phoneSofa} alt="A woman on a couch in a dim room, looking at her phone" width="2000" height="1333" loading="lazy" class="h-72 w-full object-cover object-[45%_40%] sm:h-96 lg:h-full" />
+      <div class="px-5 py-14 sm:px-10 lg:py-24 lg:pl-16">
+        <h2 class="max-w-[16ch] text-h1 font-display font-extrabold">It’s 9:40 p.m. You open the app again.</h2>
+        <div class="mt-6 max-w-[54ch] space-y-4 text-lg opacity-90">
+          <p>You’ve been meaning to do this for years. The kids are down, there’s $40,000 in a savings account earning next to nothing, and you finally open the brokerage app you downloaded in March.</p>
+          <p>There are 4,000 funds. Something called an expense ratio. A Roth, a traditional, a “taxable.” A man on YouTube says index funds, another says real estate, a coworker says some stock you’ve never heard of.</p>
+          <p>You close the app. Again. It’s not that you can’t do it. You’re good at your job, and you run a household. It’s that nobody ever handed you <strong class="text-accent">the order.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container size="wide">
+      <h2 class="max-w-[18ch] text-h1 font-display font-extrabold">Four things keeping your money in savings.</h2>
+      <dl class="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        {myths.map(([m, t]) => (
+          <div>
+            <dt class="font-display text-h3 font-bold text-fg-muted line-through decoration-danger decoration-[3px]">“{m}”</dt>
+            <dd class="mt-3 max-w-[48ch] text-lg">{t}</dd>
+          </div>
+        ))}
+      </dl>
+    </Container>
+  </section>
+
+  <section class="bg-surface-2 py-16 sm:py-24">
+    <Container size="wide">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-end">
+        <div>
+          <h2 class="max-w-[20ch] text-h1 font-display font-extrabold">Three accounts. Three funds. One automatic transfer.</h2>
+          <p class="mt-5 max-w-[50ch] text-lead text-fg-muted">That’s the whole portfolio. Most of the work is doing it in the right order.</p>
+        </div>
+        <div class="space-y-3">
+          <MarginNote term="Employer match">Money your employer adds when you contribute. It’s part of your pay, and you only get it if you claim it.</MarginNote>
+          <MarginNote term="Index fund">One fund that holds a slice of a whole market, like thousands of companies at once, usually at a low cost.</MarginNote>
+        </div>
+      </div>
+      <SetupStack class="mt-14" accounts={SETUP.accounts} transfer={SETUP.transfer} />
+    </Container>
+  </section>
+
+  <GraphPaper pad="lg">
+    <Container size="wide" class="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-center">
+      <CompoundCurve class="rounded-xl bg-surface p-5 shadow-pop sm:p-8 lg:order-1" />
+      <div class="lg:order-2">
+        <h2 class="text-h1 font-display font-extrabold text-balance">The cost of waiting is a real number.</h2>
+        <p class="mt-6 text-lead text-fg-muted">The same $500 a month, started at 35 instead of 45. Same person, same funds, same habit. Ten years apart.</p>
+        <p class="mt-6 text-lead font-semibold">You can’t get the ten years back. You can stop the next one from going the same way.</p>
+        <p class="mt-6 border-l-4 border-accent pl-4 text-sm text-fg-muted">Markets go down as well as up, sometimes for years. That’s what week 5 is for.</p>
+      </div>
+    </Container>
+  </GraphPaper>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container size="wide">
+      <h2 class="text-h1 font-display font-extrabold">Six weeks. About 90 minutes a week.</h2>
+      <SixWeeks class="mt-12" weeks={WEEKS} />
+    </Container>
+  </section>
+
+  <section class="bg-inverse py-16 text-inverse-fg sm:py-24">
+    <Container size="wide">
+      <h2 class="max-w-[18ch] text-h1 font-display font-extrabold">They started. Here’s what they did.</h2>
+      <ProcessLedger class="mt-10" rows={[...LEDGERS, ...LEDGERS_MORE]} tone="inverse" />
+      <p class="mt-6 text-sm opacity-80">Stories describe actions, not account balances. Everyone’s situation is different, and results vary.</p>
+    </Container>
+  </section>
+
+  <MayaStory heading="I started at 38. Here’s what I’d do again, and what I wouldn’t.">
+    <p>I taught high-school maths for 14 years. I could explain compound interest to a room of sixteen-year-olds and still had <strong>$31,000 sitting in savings for six years</strong>, because nobody had handed me the order.</p>
+    <p>When I finally started, I made the three classic mistakes: I waited for a “better time,” I bought a fund because it was in the news, and I sold in a dip. First Shares is the six weeks I wish I’d had: the order, the screens, and a plan for the bad year written before it arrives.</p>
+    <p><strong>I don’t sell funds, I don’t take commissions and I don’t manage your money.</strong> No brokerage pays me when you open an account. I teach, and you decide.</p>
+  </MayaStory>
+
+  <section class="bg-surface-2 py-16 sm:py-24">
+    <Container size="wide" class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl bg-surface p-7 shadow-card sm:p-9">
+        <h2 class="text-h2 font-display font-extrabold">For you if</h2>
+        <ul class="mt-6 space-y-3 text-lg">{forYou.map((t) => <li class="flex gap-3"><span class="mt-1 grid size-6 shrink-0 place-items-center rounded-pill bg-primary text-primary-fg" aria-hidden="true"><svg viewBox="0 0 16 16" class="size-3.5"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg></span>{t}</li>)}</ul>
+      </div>
+      <div class="rounded-xl border-2 border-dashed border-border-strong p-7 sm:p-9">
+        <h2 class="text-h2 font-display font-extrabold">Not for you if</h2>
+        <ul class="mt-6 space-y-3 text-lg text-fg-muted">{notForYou.map((t) => <li class="flex gap-3"><span class="mt-1 grid size-6 shrink-0 place-items-center rounded-pill border-2 border-border-strong font-bold leading-none" aria-hidden="true">×</span>{t}</li>)}</ul>
+      </div>
+    </Container>
+  </section>
+
+  <section id="offer" class="bg-inverse py-16 text-inverse-fg sm:py-24">
+    <Container size="wide">
+      <h2 class="text-center text-h1 font-display font-extrabold">Everything in First Shares.</h2>
+      <OfferStack class="mt-10" items={STACK} total="$559" price="$297">
+        <Button href={checkout} size="xl" full data-cta="offer">{CTA}</Button>
+        <p class="mt-3 text-center text-sm text-fg-muted">{FRICTION}</p>
+      </OfferStack>
+    </Container>
+  </section>
+
+  <section class="bg-bg py-16 sm:py-24">
+    <Container size="wide"><FaqList items={faq} /></Container>
+  </section>
+
+  <PhotoClose src={PHOTOS.saturday} alt="A woman with coffee and a laptop in a bright kitchen" focus="35% 40%">
+    <h2 class="font-display text-[clamp(2.75rem,1.5rem+4.2vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.035em]">Six weeks from now, it’s done. <span class="text-accent">And you leave it alone.</span></h2>
+    <p class="mt-6 text-lead opacity-90">Three accounts, three funds, one transfer, a plan for the bad year. $297 once, with the 30-day guarantee.</p>
+    <div class="mt-8 flex flex-col items-start gap-3">
+      <Button href={checkout} size="xl" variant="accent" class="w-full whitespace-nowrap px-6 sm:w-auto sm:px-9" data-cta="close">{CTA}</Button>
+      <p class="text-sm opacity-80">{FRICTION}</p>
+    </div>
+  </PhotoClose>
+
+  <StickyCTA href={checkout} label={CTA} note="30-day “first account” guarantee" showAfter={900} />
+  <script>
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
+</Layout>

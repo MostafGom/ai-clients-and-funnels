@@ -1,0 +1,18 @@
+---
+/**
+ * Full-bleed photo hero. Desktop: the photo covers the section, a paper scrim carries the copy on the left.
+ * Mobile: the photo sits on top (42svh) and the copy follows on paper. Slot `strip`: proof strip pinned to the bottom.
+ */
+interface Props { src: string; alt?: string; focus?: string; class?: string }
+const { src, alt = '', focus = '70% 40%', class: cls = '' } = Astro.props;
+---
+<section class:list={['relative isolate flex flex-col overflow-hidden bg-bg text-fg lg:min-h-[88svh]', cls]}>
+  <div class="relative -z-20 h-[42svh] min-h-[260px] lg:absolute lg:inset-0 lg:h-auto">
+    <img src={src} alt={alt} width="2000" height="1333" fetchpriority="high" decoding="async" class="size-full object-cover" style={`object-position:${focus}`} />
+  </div>
+  <div class="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,var(--color-bg)_0%,color-mix(in_oklab,var(--color-bg)_92%,transparent)_36%,color-mix(in_oklab,var(--color-bg)_10%,transparent)_62%,transparent_100%)] lg:block" aria-hidden="true"></div>
+  <div class="mx-auto flex w-full max-w-wide flex-1 items-center px-5 pt-8 pb-12 sm:px-8 lg:py-20">
+    <div class="max-w-[40rem]"><slot /></div>
+  </div>
+  {Astro.slots.has('strip') && <div class="relative border-t border-border bg-surface/90 backdrop-blur-sm"><div class="mx-auto max-w-wide px-5 py-4 sm:px-8"><slot name="strip" /></div></div>}
+</section>

@@ -1,0 +1,19 @@
+---
+/** Timeline track: six week blocks on a ruled line. Scrolls sideways on mobile (snap), a 6-up row on desktop. */
+interface Week { n: number; title: string; body: string }
+interface Props { weeks: Week[]; class?: string }
+const { weeks, class: cls = '' } = Astro.props;
+---
+<div class:list={['-mx-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mx-0 lg:overflow-visible lg:px-0', cls]} tabindex="0" aria-label="The six weeks">
+  <ol class="relative grid min-w-[1080px] grid-cols-6 gap-4 snap-x snap-mandatory lg:min-w-0">
+    <span class="absolute top-[1.375rem] right-0 left-0 h-0.5 bg-border-strong" aria-hidden="true"></span>
+    {weeks.map((w, i) => (
+      <li class="relative snap-start">
+        <span class:list={['relative grid size-11 place-items-center rounded-pill border-2 font-display text-lg font-extrabold', i === weeks.length - 1 ? 'border-primary bg-primary text-primary-fg' : 'border-fg bg-bg text-fg']}>{w.n}</span>
+        <p class="mt-5 text-sm font-semibold text-fg-muted">Week {w.n}</p>
+        <h3 class="mt-1 font-display text-xl font-bold">{w.title}</h3>
+        <p class="mt-2 text-sm text-fg-muted">{w.body}</p>
+      </li>
+    ))}
+  </ol>
+</div>

@@ -1,0 +1,31 @@
+---
+/** Offer unit: stack table → total → price → guarantee, in one paper card. CTA goes in the default slot. */
+interface Item { name: string; why: string; value: string; bonus?: boolean }
+interface Props { items: Item[]; total: string; price: string; class?: string }
+const { items, total, price, class: cls = '' } = Astro.props;
+---
+<div class:list={['mx-auto max-w-3xl overflow-hidden rounded-xl bg-surface text-fg shadow-pop', cls]}>
+  <div class="p-6 sm:p-10">
+    <ul class="divide-y divide-border border-y border-border">
+      {items.map((it) => (
+        <li class="grid grid-cols-[1fr_auto] gap-4 py-4">
+          <span>
+            {it.bonus && <span class="mr-2 rounded-sm bg-accent px-1.5 py-0.5 text-xs font-bold text-accent-fg">Bonus</span>}
+            <span class="font-display text-lg font-bold">{it.name}</span>
+            <span class="block text-sm text-fg-muted">{it.why}</span>
+          </span>
+          <span class="font-semibold tabular-nums text-fg-muted">{it.value}</span>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-6 flex flex-wrap items-end justify-between gap-4">
+      <p class="text-fg-muted">Total value <span class="ml-2 tabular-nums line-through">{total}</span></p>
+      <p class="font-display leading-none"><span class="block text-sm font-semibold text-fg-muted">Today, one payment</span><span class="text-7xl font-extrabold tracking-[-0.04em] text-primary tabular-nums">{price}</span></p>
+    </div>
+    <div class="mt-8"><slot /></div>
+  </div>
+  <div class="flex gap-4 border-t-2 border-dashed border-border-strong bg-primary-soft p-6 sm:px-10">
+    <svg viewBox="0 0 40 40" class="size-10 shrink-0 text-primary" aria-hidden="true"><path d="M20 3 6 9v10c0 9 6 15 14 18 8-3 14-9 14-18V9L20 3Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="m13 20 5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <p class="text-sm"><strong class="block font-display text-lg">The 30-day “first account” guarantee</strong>Work through weeks 1–2. If your first account isn’t open and funded within 30 days, email us and we’ll refund every cent. No forms, no call.</p>
+  </div>
+</div>

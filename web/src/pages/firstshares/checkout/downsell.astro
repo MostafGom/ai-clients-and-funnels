@@ -1,0 +1,9 @@
+---
+import Layout from '../../../layouts/FunnelLayout.astro';
+import OneClickOffer from '../../../components/funnel/OneClickOffer.astro';
+---
+<Layout client="firstshares" funnel="checkout" step="downsell" title="The lighter version" noindex bare>
+  <OneClickOffer client="firstshares" funnel="checkout" kind="downsell" priceKey="downsell" eyebrow="Understood. The lighter version." headline="Every question students have asked, answered and indexed." price="$67" compareAt="$127" bullets={['300+ answered questions from past live calls.', 'Searchable by topic and account type.', 'New answers added after each call for a year.']} acceptLabel="Yes, add the Replay Library · $67" declineLabel="No thanks, take me to lesson 1" acceptNext="/firstshares/checkout/thanks" declineNext="/firstshares/checkout/thanks">
+    <Fragment slot="why"><p>No live calls. Every past First Shares Live call, cut into short answers and searchable by question: “My 401(k) doesn’t have a total market fund,” “Should I roll over my old 401(k)?”, “What’s a settlement fund?” $67 today instead of $127.</p></Fragment>
+  </OneClickOffer>
+</Layout>
