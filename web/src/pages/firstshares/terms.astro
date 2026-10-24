@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/FunnelLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import { getClient } from '../../lib/clients';
+const client = getClient('firstshares');
+---
+<Layout client="firstshares" title="Terms of service" noindex>
+  <Container size="prose" class="py-16 prose-headings:font-display">
+    <h1 class="text-h1 font-semibold">Terms of service</h1>
+    <p class="mt-6 text-fg-muted">Placeholder. Replace with {client.legalName}'s reviewed Terms of service before launch.</p>
+    <p class="mt-4 text-fg-muted">First Shares sells financial education. Courses, guides, calls and emails are general information for learning, not personalised investment, tax or legal advice. No adviser–client relationship is created by buying or using them. First Shares does not manage money, hold client funds, or receive commissions from any fund or brokerage.</p>
+  </Container>
+</Layout>

@@ -1,0 +1,61 @@
+---
+/* First Shares · ebook thanks. Copy: clients/firstshares/funnels/ebook/COPY.md → "/thanks" */
+import Layout from '../../../layouts/FunnelLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import Button from '../../../components/ui/Button.astro';
+import GuideCover from '../../../components/clients/firstshares/art/GuideCover.astro';
+import Highlight from '../../../components/clients/firstshares/art/Highlight.astro';
+import { PHOTOS } from '../../../components/clients/firstshares/photos';
+import { getClient } from '../../../lib/clients';
+const client = getClient('firstshares');
+const steps = [
+  ['Find your 401(k) login.', 'Look up whether there’s an employer match and what percent you’re putting in now.'],
+  ['Write down your savings number.', 'Then decide how much stays as an emergency fund. The guide suggests 3–6 months of expenses.'],
+  ['Put Saturday morning in your calendar.', '40 minutes. Page 8 goes with you.'],
+];
+---
+<Layout client="firstshares" funnel="ebook" step="thanks" title="The First $1,000 Plan is in your inbox" noindex>
+  <section class="bg-bg">
+    <Container size="wide" class="grid items-center gap-12 py-12 sm:py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)]">
+      <div>
+        <p class="text-sm font-semibold text-success">Sent</p>
+        <h1 class="mt-3 text-h1 font-display font-extrabold text-balance">The First $1,000 Plan is in your inbox. <Highlight>Give it a minute.</Highlight></h1>
+        <p class="mt-5 max-w-[54ch] text-lead text-fg-muted">Here’s the direct download. Then three things to do in the next 10 minutes. They’re the first three boxes on the Saturday checklist.</p>
+        <Button href={client.leadMagnet!.downloadUrl} size="lg" class="mt-7" data-download>Download the plan (PDF)</Button>
+      </div>
+      <GuideCover class="mx-auto w-[min(56vw,280px)] rotate-3" />
+    </Container>
+  </section>
+
+  <section class="bg-surface-2 py-14 sm:py-20">
+    <Container size="wide">
+      <h2 class="text-h2 font-display font-extrabold">The next 10 minutes</h2>
+      <ol class="mt-8 grid gap-5 lg:grid-cols-3">
+        {steps.map(([t, b], i) => (
+          <li class="flex gap-4 rounded-xl bg-surface p-6 shadow-card">
+            <span class="grid size-9 shrink-0 place-items-center rounded-md border-2 border-fg font-display font-extrabold" aria-hidden="true">{i + 1}</span>
+            <span><span class="block font-display text-xl font-bold">{t}</span><span class="mt-1 block text-fg-muted">{b}</span></span>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  </section>
+
+  <section class="bg-bg py-14 sm:py-20">
+    <Container size="wide">
+      <div class="grid overflow-hidden rounded-xl bg-inverse text-inverse-fg md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <img src={PHOTOS.mayaBoard} alt="Maya Okafor at a maths blackboard" width="2000" height="1333" loading="lazy" class="h-56 w-full object-cover object-[40%_30%] md:h-full" />
+        <div class="p-7 sm:p-10">
+          <p class="text-sm font-semibold opacity-80">Six weeks · self-paced · with Maya</p>
+          <p class="mt-3 text-h2 font-display font-extrabold">Want the whole setup walked through, screen by screen?</p>
+          <p class="mt-4 max-w-[52ch] text-lg opacity-90">First Shares, the course: the three accounts opened together, the funds chosen with you, the transfer automated and the bad-year plan written.</p>
+          <Button href="/firstshares/checkout" size="lg" variant="accent" class="mt-7" data-cta="course">See the six-week course</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+  <script>
+    document.querySelector('[data-download]')?.addEventListener('click', () => window.funnel?.track('guide_downloaded'));
+    document.querySelectorAll<HTMLElement>('[data-cta]').forEach((el) => el.addEventListener('click', () => window.funnel?.track('cta_click', { placement: el.dataset.cta })));
+  </script>
+</Layout>

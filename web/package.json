@@ -18,7 +18,7 @@
     "test:install": "playwright install chromium",
     "astro": "astro",
     "wrangler": "wrangler",
-    "pdf": "node scripts/render-pdf.mjs /lumen/reset/ public/lumen/assets/bedtime-reset.pdf && node scripts/render-pdf.mjs /forge/guide/ public/forge/assets/three-session-week.pdf",
+    "pdf": "node scripts/render-pdf.mjs /lumen/reset/ public/lumen/assets/bedtime-reset.pdf && node scripts/render-pdf.mjs /forge/guide/ public/forge/assets/three-session-week.pdf && node scripts/render-pdf.mjs /firstshares/guide/ public/firstshares/assets/first-1000-plan.pdf",
     "images": "node scripts/render-images.mjs"
   },
   "dependencies": {

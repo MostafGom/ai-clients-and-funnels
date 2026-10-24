@@ -15,6 +15,7 @@ const year = new Date().getFullYear();
         <a class="hover:text-fg" href={`mailto:${client.supportEmail}`}>Contact</a>
       </p>
     </div>
+    {client.disclaimer && <p class="mt-6 max-w-[100ch] text-xs leading-relaxed text-fg-muted">{client.disclaimer}</p>}
     <slot />
   </Container>
 </footer>

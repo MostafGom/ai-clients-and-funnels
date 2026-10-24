@@ -1,0 +1,22 @@
+---
+/** The First $1,000 Plan cover, drawn in tokens (no PNG): scales with its container, used on the opt-in, thanks and the printable guide. */
+interface Props { class?: string; print?: boolean }
+const { class: cls = '', print = false } = Astro.props;
+---
+<div class:list={['guide-cover relative flex aspect-[210/297] flex-col justify-between overflow-hidden bg-primary text-primary-fg', !print && 'rounded-md shadow-pop', cls]} role="img" aria-label="Cover of The First $1,000 Plan guide by Maya Okafor">
+  <svg viewBox="0 0 210 297" class="absolute inset-0 size-full" aria-hidden="true" preserveAspectRatio="none">
+    {[...Array(14)].map((_, i) => <line x1="0" y1={i * 22 + 10} x2="210" y2={i * 22 + 10} stroke="currentColor" stroke-opacity=".09" stroke-width=".6" />)}
+    <path d="M112 284 C 150 280, 178 266, 196 226" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="196" cy="226" r="6" fill="var(--color-accent)" />
+  </svg>
+  <p class="relative px-[8cqw] pt-[8cqw] text-[4.2cqw] font-semibold opacity-90">First Shares · free guide</p>
+  <div class="relative px-[8cqw] pb-[48cqw]">
+    <p class="font-display text-[15cqw] leading-[0.9] font-extrabold tracking-[-0.04em]">The First <span class="cover-hl text-accent-fg">$1,000</span> Plan</p>
+    <p class="mt-[4cqw] text-[4.6cqw] leading-snug font-medium opacity-90">The order: 3 accounts, 3 fund types, 1 rule.</p>
+  </div>
+  <p class="absolute bottom-[7cqw] left-[8cqw] text-[3.8cqw] font-semibold opacity-90">by Maya Okafor</p>
+</div>
+<style>
+  .guide-cover { container-type: inline-size; }
+  .cover-hl { background: var(--color-accent); border-radius: 0.12em 0.3em 0.14em 0.28em; padding: 0 0.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+</style>

@@ -1,0 +1,26 @@
+---
+/** Coach story: Maya's portrait bleeding off the left edge, the late-start number set large, the no-pitch promise. */
+import { PHOTOS } from './photos';
+interface Props { heading: string; class?: string }
+const { heading, class: cls = '' } = Astro.props;
+---
+<section class:list={['relative overflow-hidden bg-bg py-16 sm:py-24', cls]}>
+  <div class="mx-auto grid max-w-wide items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+    <div class="relative -mx-5 sm:-mx-8 lg:mr-0 lg:-ml-[max(2rem,calc((100vw-84rem)/2+2rem))]">
+      <img src={PHOTOS.maya} alt="Maya Okafor, founder of First Shares, at a maths blackboard" width="1200" height="1800" loading="lazy" class="h-[62svh] max-h-[640px] w-full object-cover object-[50%_25%] lg:rounded-r-xl" />
+      <p class="absolute right-5 -bottom-6 rounded-lg bg-accent px-5 py-3 font-display text-accent-fg shadow-pop sm:right-8 lg:-right-8">
+        <span class="block text-sm font-semibold">First account at</span>
+        <span class="text-6xl leading-none font-extrabold tracking-[-0.04em]">38</span>
+      </p>
+    </div>
+    <div class="pt-6 lg:pt-0">
+      <h2 class="max-w-[18ch] text-h1 font-display font-extrabold text-balance">{heading}</h2>
+      <div class="mt-6 max-w-[58ch] space-y-4 text-lg text-fg-muted [&_strong]:text-fg"><slot /></div>
+      <ul class="mt-8 grid max-w-xl grid-cols-3 gap-3 text-sm">
+        <li class="rounded-md border border-border bg-surface p-3"><span class="block font-display text-xl font-bold text-fg">0</span>funds sold</li>
+        <li class="rounded-md border border-border bg-surface p-3"><span class="block font-display text-xl font-bold text-fg">0</span>commissions</li>
+        <li class="rounded-md border border-border bg-surface p-3"><span class="block font-display text-xl font-bold text-fg">$0</span>managed for you</li>
+      </ul>
+    </div>
+  </div>
+</section>

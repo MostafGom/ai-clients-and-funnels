@@ -1,0 +1,16 @@
+---
+/** A sunrise highlighter swipe behind a key phrase. Wraps across lines; at most one per section. */
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<mark class:list={['hl bg-transparent text-inherit', cls]}><slot /></mark>
+<style>
+  .hl {
+    background-image: linear-gradient(176deg, transparent 18%, var(--color-accent) 18% 86%, transparent 86%);
+    border-radius: 0.35em 0.9em 0.45em 0.8em / 0.7em 0.35em 0.8em 0.4em;
+    padding: 0 0.14em;
+    margin: 0 -0.06em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+</style>

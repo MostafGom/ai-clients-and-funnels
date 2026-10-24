@@ -6,6 +6,6 @@
 **D. Design (frontend-design + art-direction checklist)**: category-fit type and a photo or signature visual in the first viewport; subject-specific art, not a kit; one bold moment per page; no template chrome (caps labels, "A · B · C", 01/02/03 on non-sequences, "→" in buttons, identical cards); motion only orchestrated or on interaction; line length ≤ 70ch; headlines wrapped on purpose.
 **E. Accessibility**: 1 h1; labels; visible focus; 4.5:1 text, 3:1 UI; no autoplay media without controls; timers never block; 44px targets.
 **F. Technical**: no console errors; no horizontal overflow; fonts preconnected; images sized; events fire (`vsl_play`, `lead_captured`, `checkout_started`, `offer_accepted/declined`).
-**G. Legal (brand-review)**: superlatives substantiated; testimonials attributed; guarantee terms stated; health claims hedged.
+**G. Legal (brand-review)**: superlatives substantiated; testimonials attributed; guarantee terms stated; health claims hedged; financial claims hedged (education-not-advice disclaimer in the footer, no projected returns presented as promises, every growth figure labelled illustrative with its assumption, testimonials describe actions taken rather than gains, no specific security recommendations).
 
 Output: a severity table (Critical / Moderate / Minor) with the fix applied, then three things that work.

@@ -1,0 +1,62 @@
+/* Client: firstshares — First Shares. Source of truth: clients/firstshares/DESIGN-PLAN.md + brand.md.
+   Green Line: Paper dominant · Ink type · Money green action · Field inverse bands · Sunrise highlighter · Mint tints · Slate
+   Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/firstshares.css */
+:root[data-client='firstshares'] {
+  --color-bg: #fbfaf5;            /* Paper */
+  --color-surface: #ffffff;
+  --color-surface-2: #f1efe6;     /* exercise-book band */
+  --color-inverse: #0b3d26;       /* Field: proof, offer, closes */
+  --color-inverse-2: #12503a;     /* raised panel on field */
+  --color-inverse-fg: #fbfaf5;
+
+  --color-fg: #13241b;            /* Ink */
+  --color-fg-muted: #4a5a51;
+  --color-fg-subtle: #7f8b84;
+
+  --color-border: #e3e1d6;
+  --color-border-strong: #8a948d;
+
+  --color-primary: #0f6b3f;       /* Money green: the one action, the "now" line */
+  --color-primary-hover: #0b5733;
+  --color-primary-fg: #ffffff;
+  --color-primary-soft: #ddf1e3;  /* Mint */
+  --color-accent: #ffd84d;        /* Sunrise: highlighter, bump, one-time offers */
+  --color-accent-fg: #13241b;
+  --color-accent-2: #6b7a72;      /* Slate: the "later" line, secondary marks */
+  --color-accent-2-fg: #ffffff;
+
+  --color-success: #0f6b3f;
+  --color-warning: #b45309;
+  --color-danger: #b42318;
+  --color-focus: #0f6b3f;
+
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-cta: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --cta-case: none;
+  --display-case: none;
+  --cta-tracking: -0.005em;
+  --cta-scale: 1.08;
+  --text-display: clamp(2.9rem, 1.6rem + 5.6vw, 7.25rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.035em;
+  --text-h1: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  --text-h1--line-height: 0.98;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  --text-h2--line-height: 1.02;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+  --text-h3--line-height: 1.15;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+  --shadow-card: 0 0 0 1px var(--color-border), 0 10px 24px -16px rgb(19 36 27 / 0.25);
+  --shadow-pop: 0 0 0 1px var(--color-border), 0 28px 56px -24px rgb(19 36 27 / 0.35);
+  --shadow-cta: 0 3px 0 0 #0a4a2b;
+}

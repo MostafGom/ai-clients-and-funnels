@@ -1,0 +1,28 @@
+---
+/** The mechanism visual: three account cards, fanned like a tidy hand (stacked on mobile), plus the one automatic transfer. */
+interface Account { n: string; name: string; what: string; fund: string }
+interface Props { accounts: Account[]; transfer: string; class?: string }
+const { accounts, transfer, class: cls = '' } = Astro.props;
+const tilt = ['lg:-rotate-3 lg:translate-y-4', 'lg:rotate-0', 'lg:rotate-3 lg:translate-y-4'];
+---
+<div class:list={['setup-stack', cls]}>
+  <ol class="grid gap-4 lg:grid-cols-3 lg:gap-0">
+    {accounts.map((a, i) => (
+      <li class:list={['relative rounded-xl bg-surface p-6 shadow-pop transition-transform duration-300 ease-out-expo hover:z-10 hover:rotate-0 hover:-translate-y-1 sm:p-8 lg:-mx-2', tilt[i % 3]]}>
+        <p class="flex items-center justify-between text-sm font-semibold text-fg-muted">
+          <span>Account {a.n}</span>
+          <span class="grid size-7 place-items-center rounded-pill bg-primary-soft text-primary" aria-hidden="true">
+            <svg viewBox="0 0 16 16" class="size-4"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </span>
+        </p>
+        <h3 class="mt-6 text-h3 font-display font-extrabold">{a.name}</h3>
+        <p class="mt-2 text-fg-muted">{a.what}</p>
+        <p class="mt-6 border-t border-dashed border-border-strong pt-4 text-sm"><span class="font-semibold">Holds:</span> {a.fund}</p>
+      </li>
+    ))}
+  </ol>
+  <div class="relative mt-6 flex items-center gap-4 rounded-pill bg-inverse px-6 py-4 text-inverse-fg lg:mt-12">
+    <svg viewBox="0 0 40 16" class="h-4 w-10 shrink-0 text-accent" aria-hidden="true"><path d="M2 8h32m-7-6 7 6-7 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    <p class="font-display text-lg font-bold sm:text-xl">{transfer}</p>
+  </div>
+</div>

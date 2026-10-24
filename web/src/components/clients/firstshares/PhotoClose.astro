@@ -1,0 +1,14 @@
+---
+/** Photo close: full-bleed photo, a field-green scrim carrying the final headline, CTA and the friction line. Stacked on mobile. */
+interface Props { src: string; alt?: string; focus?: string; class?: string }
+const { src, alt = '', focus = '50% 40%', class: cls = '' } = Astro.props;
+---
+<section class:list={['relative isolate overflow-hidden bg-inverse text-inverse-fg', cls]}>
+  <div class="relative h-[40svh] min-h-[260px] lg:absolute lg:inset-0 lg:h-auto">
+    <img src={src} alt={alt} width="2000" height="1333" loading="lazy" class="size-full object-cover" style={`object-position:${focus}`} />
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,var(--color-inverse)_100%)] lg:bg-[linear-gradient(90deg,var(--color-inverse)_0%,color-mix(in_oklab,var(--color-inverse)_86%,transparent)_42%,transparent_78%)]" aria-hidden="true"></div>
+  </div>
+  <div class="relative mx-auto max-w-wide px-5 pb-16 sm:px-8 lg:flex lg:min-h-[78svh] lg:items-center lg:py-24">
+    <div class="max-w-xl"><slot /></div>
+  </div>
+</section>

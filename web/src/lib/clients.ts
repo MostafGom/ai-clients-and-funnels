@@ -27,6 +27,8 @@ export interface Client {
   socials?: { label: string; href: string }[];
   /** True when public/<slug>/og/<funnel>.png + default.png exist (rendered by `pnpm images`). */
   ogImages?: boolean;
+  /** Regulated-category disclaimer printed in the footer of every page (e.g. finance: not advice, risk of loss). */
+  disclaimer?: string;
 }
 
 export const clients: Client[] = [
@@ -67,6 +69,26 @@ export const clients: Client[] = [
     leadMagnet: { title: 'The 3-Session Week', downloadUrl: '/forge/assets/three-session-week.pdf' },
     funnels: ['ebook', 'calendar', 'vsl-call', 'vsl-checkout', 'checkout'],
     ogImages: true,
+  },
+  {
+    slug: 'firstshares',
+    name: 'First Shares',
+    legalName: 'First Shares Education Ltd.',
+    tagline: 'Late to investing? You are not too late. Set up your portfolio in six weeks.',
+    description:
+      'First Shares teaches 30–45 year olds with cash sitting in savings how to set up a simple, long-term portfolio in six weeks. Education, not investment advice.',
+    supportEmail: 'hello@firstshares.example.com',
+    fonts: {
+      display: 'Bricolage Grotesque',
+      body: 'Inter',
+      stylesheet:
+        'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&display=swap',
+    },
+    calendar: { provider: 'cal', url: 'https://cal.com/first-shares/intro' },
+    leadMagnet: { title: 'The First $1,000 Plan', downloadUrl: '/firstshares/assets/first-1000-plan.pdf' },
+    funnels: ['ebook'],
+    disclaimer:
+      'First Shares provides financial education only. Nothing on this site is investment, tax or legal advice, or a recommendation to buy or sell any security. First Shares is not a registered investment adviser or broker-dealer, does not manage money and receives no commissions. Investing involves risk, including the possible loss of principal. Past performance does not guarantee future results. Charts and figures are illustrative, not forecasts. Student stories describe actions taken; individual circumstances and results vary. Consider speaking with a licensed financial professional about your situation.',
   },
 ];
 

@@ -1,0 +1,135 @@
+---
+/* The First $1,000 Plan — the lead magnet as a designed, printable page. Source: clients/firstshares/funnels/ebook/GUIDE.md. Render: pnpm pdf */
+import '../../../styles/base.css';
+import GuideCover from '../../../components/clients/firstshares/art/GuideCover.astro';
+import CompoundCurve from '../../../components/clients/firstshares/art/CompoundCurve.astro';
+import { getClient } from '../../../lib/clients';
+const client = getClient('firstshares');
+const order = [
+  ['401(k) up to the match', 'If your employer matches, contribute at least enough to get all of it. It’s part of your pay.'],
+  ['Roth IRA', 'Contributions go in after tax, and qualified withdrawals in retirement are tax-free. There are income limits and a yearly maximum.'],
+  ['Back to the 401(k)', 'Above the match, if you have room.'],
+  ['Brokerage account', 'For anything beyond that, or for goals before retirement.'],
+];
+const accounts = [
+  ['401(k) / 403(b)', 'Through your employer', 'Pre-tax or Roth', 'Limited fund menu'],
+  ['Roth IRA', 'Anyone under the income limit', 'Tax-free growth', 'Yearly contribution limit'],
+  ['Traditional IRA', 'If Roth isn’t available, or a deduction helps', 'Deductible (maybe)', 'Taxed on withdrawal'],
+  ['HSA', 'On a high-deductible health plan', 'Triple tax advantage', 'Health plan required'],
+  ['Brokerage', 'Everything else', 'Taxed yearly on gains and dividends', 'No tax shelter, full flexibility'],
+];
+const funds = [
+  ['Total US stock index fund', 'Thousands of US companies in one fund.'],
+  ['Total international stock index fund', 'The rest of the world.'],
+  ['Bond index fund', 'Steadier, with lower expected growth. You hold more of it as you near the money’s use.'],
+];
+const checks = ['Emergency fund amount decided', '401(k) login found, match % checked', 'Contribution set to at least the match', 'Roth IRA opened (or the reason why not written down)', 'Fund type chosen for each account', 'Automatic transfer set: day ____  amount $______', 'Next check-in date in the calendar (once a year)', 'This page on the fridge'];
+const folio = (n: number) => `The First $1,000 Plan · p. ${n}`;
+---
+<!doctype html>
+<html lang="en" data-client="firstshares">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="noindex, nofollow" />
+    <title>The First $1,000 Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={client.fonts.stylesheet} />
+    <style>
+      @page { size: A4; margin: 0; }
+      .page { width: 210mm; min-height: 297mm; padding: 18mm 18mm 22mm; box-sizing: border-box; page-break-after: always; position: relative; background: var(--color-bg); }
+      .page:last-child { page-break-after: auto; }
+      .page.cover { padding: 0; }
+      @media screen { body { background: var(--color-surface-2); } .page { margin: 16px auto; box-shadow: 0 10px 40px rgb(0 0 0 / 0.18); } }
+      @media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+      .folio { position: absolute; bottom: 10mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font-size: 10px; color: var(--color-fg-muted); }
+      table { border-collapse: collapse; width: 100%; font-size: 12.5px; } th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--color-border); vertical-align: top; } th { font-weight: 700; border-bottom: 2px solid var(--color-fg); }
+      h2 { font-family: var(--font-display); font-weight: 800; font-size: 42px; line-height: 0.98; letter-spacing: -0.03em; margin: 6px 0 0; }
+      .kicker { font-weight: 600; font-size: 12px; color: var(--color-primary); }
+      .lead { font-size: 15.5px; line-height: 1.55; }
+      .note { border-left: 4px solid var(--color-accent); background: var(--color-surface); padding: 10px 14px; font-size: 12.5px; }
+    </style>
+  </head>
+  <body class="text-[13.5px] leading-[1.55] text-fg">
+    <section class="page cover"><GuideCover print class="h-[297mm] w-[210mm]" /></section>
+
+    <section class="page">
+      <p class="kicker">Page 2</p>
+      <h2>The cost of waiting</h2>
+      <p class="lead mt-4 max-w-[60ch] text-fg-muted">The same $500 a month, started at 35 vs at 45. Time does more of the work than the amount.</p>
+      <CompoundCurve class="mt-8" still />
+      <div class="note mt-8"><strong>Before you invest anything:</strong> keep an emergency fund of 3–6 months of expenses in savings, and pay off high-interest debt (credit cards) first.</div>
+      <p class="folio"><span>{folio(2)}</span><span>Education only, not investment advice.</span></p>
+    </section>
+
+    <section class="page">
+      <p class="kicker">Page 3</p>
+      <h2>The order</h2>
+      <p class="lead mt-4 max-w-[60ch] text-fg-muted">People stall trying to pick the best fund. The order does more than the picks.</p>
+      <ol class="mt-8 space-y-4">
+        {order.map(([t, b], i) => (
+          <li class="flex gap-5 rounded-lg bg-surface p-5 shadow-card">
+            <span class="font-display text-5xl leading-none font-extrabold text-primary">{i + 1}</span>
+            <span><span class="block font-display text-2xl font-bold">{t}</span><span class="mt-1 block text-fg-muted">{b}</span></span>
+          </li>
+        ))}
+      </ol>
+      <div class="note mt-8"><strong>When to break the order:</strong> no match means start at step 2. High-interest debt comes before all of it. If you’re eligible for an HSA, read page 4. Limits and income rules change every year; check irs.gov.</div>
+      <p class="folio"><span>{folio(3)}</span><span>Education only, not investment advice.</span></p>
+    </section>
+
+    <section class="page">
+      <p class="kicker">Page 4</p>
+      <h2>Five accounts on one page</h2>
+      <table class="mt-8">
+        <thead><tr><th>Account</th><th>Who it’s for</th><th>Tax</th><th>The catch</th></tr></thead>
+        <tbody>{accounts.map((r) => <tr>{r.map((c, i) => <td class:list={[i === 0 && 'font-semibold']}>{c}</td>)}</tr>)}</tbody>
+      </table>
+      <p class="folio"><span>{folio(4)}</span><span>Education only, not investment advice.</span></p>
+    </section>
+
+    <section class="page">
+      <p class="kicker">Page 5</p>
+      <h2>The three fund types</h2>
+      <ul class="mt-8 space-y-4">{funds.map(([t, b]) => <li class="rounded-lg bg-surface p-5 shadow-card"><span class="block font-display text-2xl font-bold">{t}</span><span class="text-fg-muted">{b}</span></li>)}</ul>
+      <p class="mt-5 text-fg-muted">Or one <strong class="text-fg">target-date fund</strong> that holds all three and adjusts over time.</p>
+      <h3 class="mt-8 font-display text-2xl font-bold">Four numbers to check on any fund</h3>
+      <ol class="mt-3 list-decimal space-y-1 pl-5"><li><strong>Expense ratio</strong>: what it charges you a year. Lower is better; broad index funds are often under 0.10%.</li><li><strong>What it holds</strong>: read the one-line description.</li><li><strong>Number of holdings</strong>: more is broader.</li><li><strong>Fund size</strong>: very small funds can close.</li></ol>
+      <div class="note mt-8">This guide doesn’t recommend specific funds. The mix between them depends on your timeline and your comfort with risk.</div>
+      <p class="folio"><span>{folio(5)}</span><span>Education only, not investment advice.</span></p>
+    </section>
+
+    <section class="page">
+      <p class="kicker">Page 6</p>
+      <h2>The one rule:<br />automate before you optimise</h2>
+      <ol class="mt-8 space-y-3 text-[15px]">
+        <li><strong>Pick the day after payday.</strong> The money moves before you can spend it.</li>
+        <li><strong>Pick an amount you won’t stop in a bad month.</strong> Smaller and steady beats bigger and paused.</li>
+        <li><strong>Set it in two places:</strong> bank → account, then account → funds (most brokerages call it “automatic investing”).</li>
+        <li><strong>Raise it by 1% of pay each year,</strong> on the same date as your raise.</li>
+        <li><strong>Delete the app from your home screen.</strong> Check once a year.</li>
+      </ol>
+      <p class="folio"><span>{folio(6)}</span><span>Education only, not investment advice.</span></p>
+    </section>
+
+    <section class="page">
+      <p class="kicker">Page 7</p>
+      <h2>A bad year</h2>
+      <p class="lead mt-4 max-w-[60ch] text-fg-muted">Markets fall, sometimes 20–30% or more, and recoveries can take years. You can lose money. The plan:</p>
+      <ol class="mt-6 list-decimal space-y-2 pl-5 text-[15px]">
+        <li>Money you need within roughly 3–5 years shouldn’t be in stocks.</li>
+        <li>Keep the transfer running.</li>
+        <li>Don’t sell because it’s red.</li>
+        <li>Rebalance once a year, not every week.</li>
+      </ol>
+      <div class="note mt-8">None of this guarantees a result. It keeps you from the most common expensive mistake: selling low.</div>
+      <p class="folio"><span>{folio(7)}</span><span>Education only, not investment advice.</span></p>
+    </section>
+
+    <section class="page">
+      <p class="kicker">Page 8</p>
+      <h2>The Saturday checklist</h2>
+      <ul class="mt-8 space-y-3 text-[16px]">{checks.map((c) => <li class="flex items-center gap-4 border-b border-border pb-3"><span class="size-6 shrink-0 rounded-sm border-2 border-fg"></span>{c}</li>)}</ul>
+      <p class="mt-10 text-xs leading-relaxed text-fg-muted">{client.disclaimer}</p>
+      <p class="folio"><span>{folio(8)}</span><span>firstshares.example.com</span></p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+---
+/**
+ * The First Shares signature moment: two marker lines on graph paper — the same $500 a month started at 35 vs at 45 —
+ * drawn as the section scrolls in (and stays drawn), with the gap at 65 counting up. Illustrative maths with its assumption always visible.
+ * Fully drawn and static under reduced motion, without JS, or with `still` (print).
+ */
+import { futureValue, usd } from './compound';
+interface Props { monthly?: number; early?: number; late?: number; end?: number; rate?: number; still?: boolean; class?: string }
+const { monthly = 500, early = 35, late = 45, end = 65, rate = 0.07, still = false, class: cls = '' } = Astro.props;
+const W = 1000, H = 520, L = 70, R = 860, T = 30, B = 470;
+const max = futureValue(monthly, end - early, rate);
+const x = (age: number) => L + ((age - early) / (end - early)) * (R - L);
+const y = (v: number) => B - (v / max) * (B - T);
+const path = (start: number) => {
+  const pts: string[] = [];
+  for (let a = start; a <= end; a += 0.5) pts.push(`${x(a).toFixed(1)},${y(futureValue(monthly, a - start, rate)).toFixed(1)}`);
+  return 'M' + pts.join(' L');
+};
+const atEnd = { early: futureValue(monthly, end - early, rate), late: futureValue(monthly, end - late, rate) };
+const gap = atEnd.early - atEnd.late;
+const pct = `${Math.round(rate * 1000) / 10}%`;
+const ages = Array.from({ length: (end - early) / 5 + 1 }, (_, i) => early + i * 5);
+---
+<figure class:list={['compound-curve', cls]} data-curve data-gap={Math.round(gap)} data-still={still || undefined}>
+  <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+    <p class="font-display font-extrabold leading-none">
+      <span class="block font-body text-sm font-semibold text-fg-muted">The difference at {end}</span>
+      <span class="text-[clamp(3rem,2rem+5vw,6rem)] tracking-[-0.04em] text-primary tabular-nums" data-count>{usd(gap)}</span>
+    </p>
+    <ul class="space-y-1 text-sm font-semibold">
+      <li class="flex items-center gap-2"><span class="h-1 w-8 rounded-pill bg-primary"></span>Start at {early}: {usd(atEnd.early)}</li>
+      <li class="flex items-center gap-2"><span class="h-1 w-8 rounded-pill bg-accent-2"></span>Start at {late}: {usd(atEnd.late)}</li>
+    </ul>
+  </div>
+  <p class="sr-only">Illustrative: ${monthly} a month at {pct} a year. Starting at {early} grows to about {usd(atEnd.early)} by {end}; starting at {late} grows to about {usd(atEnd.late)}.</p>
+  <svg viewBox={`0 0 ${W} ${H}`} class="mt-4 w-full overflow-visible" aria-hidden="true">
+    {ages.map((a) => (
+      <g class:list={[(a - early) % 10 && 'minor']}>
+        <line x1={x(a)} y1={T} x2={x(a)} y2={B} stroke="var(--color-border)" stroke-width="1" />
+        <text x={x(a)} y={B + 34} text-anchor="middle" class="fill-fg-muted font-body text-[22px] font-semibold">{a}</text>
+      </g>
+    ))}
+    <line x1={L} y1={B} x2={R} y2={B} stroke="var(--color-border-strong)" stroke-width="2" />
+    <path d={path(late)} pathLength="1" class="line" fill="none" stroke="var(--color-accent-2)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d={path(early)} pathLength="1" class="line" fill="none" stroke="var(--color-primary)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+    <g class="tag">
+      <circle cx={x(end)} cy={y(atEnd.early)} r="12" fill="var(--color-primary)" />
+      <circle cx={x(end)} cy={y(atEnd.late)} r="10" fill="var(--color-accent-2)" />
+      <line x1={x(end) + 26} y1={y(atEnd.early)} x2={x(end) + 26} y2={y(atEnd.late)} stroke="var(--color-fg)" stroke-width="2" stroke-dasharray="4 6" />
+      <text x={x(end) + 40} y={(y(atEnd.early) + y(atEnd.late)) / 2 + 8} class="gap-label fill-fg font-display text-[26px] font-extrabold">the gap</text>
+    </g>
+  </svg>
+  <figcaption class="mt-2 text-sm text-fg-muted"><strong class="font-semibold text-fg">Illustrative, not a forecast.</strong> ${monthly} a month, {pct} average yearly return, compounded monthly, no fees or taxes. Markets go down as well as up; real returns will differ.</figcaption>
+</figure>
+<style>
+  @media (max-width: 640px) {
+    .compound-curve text { font-size: 46px; }
+    .compound-curve .minor text { display: none; }
+    .compound-curve .gap-label { display: none; }
+  }
+  [data-curve][data-live] .line { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); }
+  [data-curve][data-live] .tag { opacity: var(--done, 0); transition: opacity 0.4s; }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-curve]').forEach((el) => {
+    if (el.dataset.still !== undefined || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const out = el.querySelector('[data-count]')!;
+    const gap = Number(el.dataset.gap);
+    el.setAttribute('data-live', '');
+    let raf = 0, fired = false, best = 0;
+    const tick = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect(), vh = innerHeight;
+      const p = (best = Math.max(best, Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.6)))));
+      el.style.setProperty('--p', String(p));
+      el.style.setProperty('--done', p >= 1 ? '1' : '0');
+      out.textContent = '$' + Math.round(gap * p ** 2).toLocaleString('en-US');
+      if (p >= 1 && !fired && (fired = true)) window.funnel?.track('curve_drawn', {});
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    new IntersectionObserver(([e]) => { e.isIntersecting ? addEventListener('scroll', onScroll, { passive: true }) : removeEventListener('scroll', onScroll); onScroll(); }).observe(el);
+    tick();
+  });
+</script>

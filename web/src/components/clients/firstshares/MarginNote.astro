@@ -1,0 +1,8 @@
+---
+/** A teacher's aside that defines one piece of jargon. Sits in the margin on wide layouts, inline on mobile. */
+interface Props { term: string; class?: string }
+const { term, class: cls = '' } = Astro.props;
+---
+<aside class:list={['border-l-4 border-accent bg-surface py-3 pr-4 pl-4 text-sm shadow-card rounded-r-md', cls]}>
+  <p><dfn class="font-display font-bold not-italic">{term}:</dfn> <span class="text-fg-muted"><slot /></span></p>
+</aside>
