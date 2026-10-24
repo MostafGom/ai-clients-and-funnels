@@ -11,7 +11,7 @@
     "preview": "astro build && wrangler dev",
     "check": "astro check",
     "format": "prettier --write .",
-    "deploy": "astro build && wrangler deploy",
+    "deploy": "PUBLIC_SITE_URL=https://demofunnels.gogranddev.com astro build && wrangler deploy",
     "cf:login": "wrangler login",
     "cf:types": "wrangler types",
     "test": "playwright test",
