@@ -13,7 +13,7 @@ design/contrast.mjs        WCAG AA check:  node design/contrast.mjs web/src/styl
 funnels/blueprints/<type>/ page map + copy framework + component list per funnel type
 web/                       Astro 7 · Tailwind v4 · @astrojs/cloudflare · Stripe · Resend · PostHog
   src/styles/base.css      @theme defaults (the contract) — imports every clients/<slug>.css
-  src/styles/clients/      :root[data-client="<slug>"] { token overrides }  ← ONLY place a client's colors live
+  src/styles/clients/      [data-client="<slug>"] { token overrides }  ← ONLY place a client's colors live
   src/lib/clients.ts       client registry (name, fonts, calendar, lead magnet, funnels list)
   src/lib/funnels.ts       funnel types + page maps
   src/layouts/FunnelLayout.astro   every funnel page; sets data-client, fonts, SEO, analytics, no nav
@@ -38,7 +38,7 @@ web/                       Astro 7 · Tailwind v4 · @astrojs/cloudflare · Stri
   never `bg-blue-500`, never hex in a page. The default palette is disabled (`--color-*: initial`), so
   a raw Tailwind color simply won't compile. Add a token to `design/TOKENS.md` + `base.css` if one is missing.
 - **Client theme** = `web/src/styles/clients/<slug>.css` overriding contract variables under
-  `:root[data-client='<slug>']`, imported in `base.css`. Fonts are declared in the registry and loaded by the layout.
+  `[data-client='<slug>']` (any element can opt in; the home page themes one band per client), imported in `base.css`. Fonts are declared in the registry and loaded by the layout.
 - **Imagery**: persona photos live in `web/public/<slug>/photos/` with a `CREDITS.md` (Pexels licence for the demo; swap in the client's real photos under the same file names). `web/src/components/clients/<slug>/photos.ts` maps people named in copy to files. Decorative art (moon, stars, logs, dividers) stays SVG.
 - **Demo banner**: `FunnelLayout` renders one sticky top bar stating the site is a demo. No per-claim flags on pages; unverified numbers are tagged `[CLIENT]` in COPY.md only.
 - **No navigation on funnel pages.** One path forward. Legal links live in the footer only.

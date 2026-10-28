@@ -1,35 +1,271 @@
 ---
-/** Internal directory of every client and funnel. Not indexed, not linked from funnels. */
+/**
+ * Public studio showcase. Each client band opts into that client's theme with data-client,
+ * so the page shows every brand in its own colors and type, one after another.
+ * Everything is driven by the client + funnel registries: new clients appear automatically.
+ */
 import '../styles/base.css';
 import { clients } from '../lib/clients';
-import { FUNNELS, funnelPath } from '../lib/funnels';
+import { FUNNELS, funnelPath, type FunnelType } from '../lib/funnels';
+import { studio, clientCategory } from '../lib/studio';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+
+const title = `${studio.name} — conversion funnels, built one business at a time`;
+const description = studio.tagline;
+const canonical = Astro.site ? new URL('/', Astro.site).toString() : '/';
+const showcase = clients.filter((c) => c.ogImages);
+const ogImage = showcase[0] ? new URL(`/${showcase[0].slug}/og/default.png`, Astro.site ?? Astro.url).toString() : undefined;
+
+const funnelCount = clients.reduce((n, c) => n + c.funnels.length, 0);
+const pageCount = clients.reduce((n, c) => n + c.funnels.reduce((m, f) => m + FUNNELS[f].pages.length, 0), 0);
+const stats = [
+  { n: clients.length, label: clients.length === 1 ? 'brand built' : 'brands built' },
+  { n: funnelCount, label: 'live funnels' },
+  { n: pageCount, label: 'funnel pages' },
+  { n: Object.keys(FUNNELS).length, label: 'funnel types' },
+];
+const stepName = (p: string) => p || 'start';
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+// Fanned share images in the hero: back-left, middle-right, front-center.
+const fan = ['left-0 top-0 -rotate-6', 'right-0 top-[22%] rotate-3', 'left-[8%] bottom-0 -rotate-1'];
+
+const process = [
+  { title: 'Persona', body: 'A short interview becomes who we sell to: awareness level, pains, objections, the exact words they use.' },
+  { title: 'Art direction + design system', body: 'Category energy first. A mood board, a type pairing and a token theme that passes AA contrast before any page exists.' },
+  { title: 'Conversion copy', body: 'Big idea, proof-first ordering, offer stack, objection map and honest urgency, in the client’s voice.' },
+  { title: 'Pages', body: 'Every funnel page built from the client’s own components. One path forward, no navigation, fast at 390px.' },
+  { title: 'Browser review', body: 'Each page checked at mobile and desktop for brand fit, CRO, accessibility and performance before traffic.' },
+];
+const stack = [
+  { k: 'Pages', v: 'Astro, prerendered, served from Cloudflare’s edge' },
+  { k: 'Payments', v: 'Stripe Checkout, order bumps, one-click upsells on the saved card' },
+  { k: 'Leads', v: 'Resend delivers the lead magnet and adds the contact to the list' },
+  { k: 'Analytics', v: 'PostHog events at every step: opt-in, play, checkout, accept, decline' },
+  { k: 'Quality', v: 'Token-only themes, AA contrast checks, Playwright on every page' },
+];
+const fontLinks = [studio.fonts, ...clients.map((c) => c.fonts.stylesheet).filter(Boolean)] as string[];
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-client="studio">
   <head>
-    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Funnel studio — index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={studio.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {fontLinks.map((href) => <link rel="stylesheet" href={href} />)}
   </head>
-  <body class="p-8 sm:p-14">
-    <h1 class="text-h1 font-semibold">Funnel studio</h1>
-    <p class="mt-2 text-fg-muted">{clients.length} client{clients.length === 1 ? '' : 's'}. Internal page.</p>
-    <div class="mt-10 grid gap-8 md:grid-cols-2">
-      {clients.map((c) => (
-        <section class="rounded-lg border border-border bg-surface p-7 shadow-card">
-          <h2 class="text-h2 font-semibold">{c.name} <span class="text-fg-subtle text-base font-normal">/{c.slug}</span></h2>
-          <p class="mt-1 text-fg-muted">{c.tagline}</p>
-          <p class="mt-4 flex gap-4"><a class="text-primary underline underline-offset-4" href={`/${c.slug}`}>Client hub</a><a class="text-primary underline underline-offset-4" href={`/${c.slug}/design-system`}>Design system</a></p>
-          <ul class="mt-4 space-y-2">
-            {c.funnels.map((f) => (
-              <li class="flex flex-wrap items-baseline gap-x-3">
-                <a class="font-semibold hover:underline" href={funnelPath(c.slug, f)}>{FUNNELS[f].label}</a>
-                <span class="text-sm text-fg-subtle">{FUNNELS[f].pages.map((p) => p || 'start').join(' → ')}</span>
+  <body class="overflow-x-clip">
+    <a href="#work" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-surface focus:px-4 focus:py-2">Skip to the work</a>
+
+    <p class="bg-inverse px-5 py-2 text-center text-xs font-medium text-inverse-fg">
+      The client brands below are demo builds made to show the studio’s range. Names, people and results are illustrative.
+    </p>
+
+    <header>
+      <Container size="wide" class="flex items-center justify-between gap-4 py-5">
+        <a href="/" class="flex items-center gap-2.5 font-semibold">
+          <span aria-hidden="true" class="grid size-9 place-items-center rounded-md bg-fg font-display text-xl italic text-bg">af</span>
+          <span>{studio.name}</span>
+        </a>
+        <Button href={studio.contactHref} size="md" class="shrink-0">{studio.contactLabel}</Button>
+      </Container>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="pb-16 pt-8 sm:pb-24 sm:pt-14">
+        <Container size="wide" class="grid items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
+          <div>
+            <p class="font-mono text-sm uppercase tracking-widest text-fg-muted">Funnel studio</p>
+            <h1 class="mt-5 text-[clamp(3rem,1.5rem+6.4vw,7.5rem)] leading-[0.92] tracking-[-0.03em]">
+              Funnels that look made for <em class="text-primary">one</em> business.
+            </h1>
+            <p class="mt-7 max-w-xl text-lead text-fg-muted">
+              Because they are. Each client gets its own persona, brand system, copy and pages, from the opt-in to the one-click upsell. No templates, no kit look.
+            </p>
+            <div class="mt-9 flex flex-wrap items-center gap-3">
+              <Button href={studio.contactHref} size="xl">{studio.contactLabel}</Button>
+              <Button href="#work" variant="secondary" size="xl">See the work</Button>
+            </div>
+          </div>
+
+          {showcase.length > 0 && (
+            <div class="relative mx-auto aspect-[1200/900] w-full max-w-2xl" aria-hidden="true">
+              {showcase.slice(0, 3).map((c, i) => (
+                <img
+                  src={`/${c.slug}/og/default.png`}
+                  alt=""
+                  width="1200"
+                  height="630"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class:list={['absolute w-[78%] rounded-lg shadow-pop ring-1 ring-border transition-transform duration-500 ease-out-expo hover:z-10 hover:scale-[1.03]', fan[i % fan.length]]}
+                />
+              ))}
+            </div>
+          )}
+        </Container>
+      </section>
+
+      <!-- Proof strip -->
+      <section aria-label="Studio at a glance" class="border-y border-border bg-surface">
+        <Container size="wide">
+          <dl class="grid grid-cols-2 divide-border md:grid-cols-4 md:divide-x">
+            {stats.map((s) => (
+              <div class="flex flex-col-reverse py-7 md:px-8 md:first:pl-0">
+                <dt class="font-mono text-xs uppercase tracking-widest text-fg-muted">{s.label}</dt>
+                <dd class="font-display text-[clamp(3rem,2rem+3vw,4.5rem)] leading-none">{s.n}</dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </section>
+
+      <!-- Work: one band per client, rendered in that client's own theme -->
+      <div id="work" class="scroll-mt-4">
+        <Container size="wide" class="pb-10 pt-20 sm:pt-28">
+          <p class="font-mono text-sm uppercase tracking-widest text-fg-muted">Selected work</p>
+          <h2 class="mt-4 max-w-4xl text-[clamp(2.2rem,1.4rem+3vw,4rem)] leading-none tracking-[-0.02em]">
+            Same studio, <em>{clients.length} brands that share nothing</em> but the conversion craft.
+          </h2>
+        </Container>
+
+        {clients.map((c, ci) => (
+          <section data-client={c.slug} aria-labelledby={`work-${c.slug}`} class="bg-bg py-16 font-body text-fg sm:py-24">
+            <Container size="wide">
+              <div class:list={['grid items-center gap-10 lg:grid-cols-2 lg:gap-16', ci % 2 === 1 && 'lg:[&>*:first-child]:order-2']}>
+                <div>
+                  <p class="font-mono text-sm text-fg-muted">{pad(ci)} / {pad(clients.length - 1)}</p>
+                  {clientCategory[c.slug] && <p class="mt-4 font-bold text-primary">{clientCategory[c.slug]}</p>}
+                  <h2 id={`work-${c.slug}`} class="mt-2 text-h1">{c.name}</h2>
+                  <p class="mt-5 max-w-xl text-lead text-fg-muted">{c.tagline}</p>
+                  <div class="mt-8 flex flex-wrap items-center gap-3">
+                    <Button href={funnelPath(c.slug, c.funnels[0])} size="lg">See the {FUNNELS[c.funnels[0]].label.toLowerCase()} funnel</Button>
+                    <a href={`/${c.slug}/design-system`} class="px-3 py-2 font-semibold underline decoration-2 underline-offset-4 hover:text-primary">Design system</a>
+                  </div>
+                </div>
+                {c.ogImages && (
+                  <a href={funnelPath(c.slug, c.funnels[0])} class="group block overflow-hidden rounded-lg shadow-pop ring-1 ring-border" tabindex="-1" aria-hidden="true">
+                    <img src={`/${c.slug}/og/default.png`} alt="" width="1200" height="630" loading="lazy" class="w-full transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]" />
+                  </a>
+                )}
+              </div>
+
+              <ul class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-label={`${c.name} funnels`}>
+                {c.funnels.map((f: FunnelType) => (
+                  <li class="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-surface shadow-card transition-transform duration-300 ease-out-expo hover:-translate-y-1">
+                    {c.ogImages && <img src={`/${c.slug}/og/${f}.png`} alt="" width="1200" height="630" loading="lazy" class="aspect-[1200/630] w-full border-b border-border object-cover" />}
+                    <div class="flex flex-1 flex-col p-5">
+                      <h3 class="text-h3">
+                        <a href={funnelPath(c.slug, f)} class="after:absolute after:inset-0 group-hover:text-primary">{FUNNELS[f].label}</a>
+                      </h3>
+                      <p class="mt-1.5 text-sm text-fg-muted">{FUNNELS[f].goal}</p>
+                      <ol class="mt-auto flex flex-wrap items-center gap-x-1.5 gap-y-2 pt-5 font-mono text-xs" aria-label="Pages">
+                        {FUNNELS[f].pages.map((p, pi) => (
+                          <li class="flex items-center gap-1.5">
+                            {pi > 0 && <span aria-hidden="true" class="text-fg-subtle">→</span>}
+                            <span class="rounded-sm bg-surface-2 px-2 py-1 text-fg">{stepName(p)}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Container>
+          </section>
+        ))}
+      </div>
+
+      <!-- Funnel types -->
+      <section aria-labelledby="types" class="py-20 sm:py-28">
+        <Container size="wide" class="grid gap-12 lg:grid-cols-[1fr_2fr]">
+          <div class="lg:sticky lg:top-10 lg:self-start">
+            <p class="font-mono text-sm uppercase tracking-widest text-fg-muted">What we build</p>
+            <h2 id="types" class="mt-4 text-[clamp(2.2rem,1.4rem+3vw,4rem)] leading-none tracking-[-0.02em]">Five funnels, <em>one path forward</em> each.</h2>
+            <p class="mt-6 max-w-md text-fg-muted">No site navigation on a funnel page. Every step has a single job and a single button.</p>
+          </div>
+          <ol class="divide-y divide-border border-y border-border">
+            {Object.values(FUNNELS).map((f, i) => (
+              <li class="grid gap-x-6 gap-y-3 py-7 sm:grid-cols-[4rem_1fr]">
+                <span class="font-display text-4xl italic leading-none text-primary">{pad(i)}</span>
+                <div>
+                  <h3 class="font-body text-xl font-semibold">{f.label}</h3>
+                  <p class="mt-1 text-fg-muted">{f.goal}</p>
+                  <p class="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 font-mono text-xs">
+                    {f.pages.map((p, pi) => (
+                      <>
+                        {pi > 0 && <span aria-hidden="true" class="text-fg-subtle">→</span>}
+                        <span class:list={['rounded-sm px-2 py-1', pi === f.pages.length - 1 ? 'bg-accent text-accent-fg' : 'bg-surface-2']}>{stepName(p)}</span>
+                      </>
+                    ))}
+                  </p>
+                </div>
               </li>
             ))}
-          </ul>
-        </section>
-      ))}
-    </div>
+          </ol>
+        </Container>
+      </section>
+
+      <!-- Process -->
+      <section aria-labelledby="process" class="border-t border-border bg-surface py-20 sm:py-28">
+        <Container size="wide">
+          <p class="font-mono text-sm uppercase tracking-widest text-fg-muted">How a client gets built</p>
+          <h2 id="process" class="mt-4 max-w-3xl text-[clamp(2.2rem,1.4rem+3vw,4rem)] leading-none tracking-[-0.02em]">Strategy first. <em>Pixels last.</em></h2>
+          <ol class="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+            {process.map((s, i) => (
+              <li>
+                <span aria-hidden="true" class="block font-display text-[5.5rem] italic leading-[0.8] text-primary">{i + 1}</span>
+                <h3 class="mt-5 font-body text-lg font-semibold">{s.title}</h3>
+                <p class="mt-2 text-sm text-fg-muted">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <!-- Stack -->
+      <section aria-labelledby="stack" class="py-20 sm:py-24">
+        <Container size="wide" class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+          <h2 id="stack" class="text-[clamp(2.2rem,1.4rem+3vw,4rem)] leading-none tracking-[-0.02em]">Under <em>the hood</em></h2>
+          <dl class="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
+            {stack.map((s, i) => (
+              <div class:list={['bg-bg p-6', i === stack.length - 1 && stack.length % 2 === 1 && 'sm:col-span-2']}>
+                <dt class="font-mono text-xs uppercase tracking-widest text-primary">{s.k}</dt>
+                <dd class="mt-2">{s.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </section>
+
+      <!-- Close -->
+      <section aria-labelledby="close" class="bg-inverse py-24 text-inverse-fg sm:py-32">
+        <Container size="wide" class="text-center">
+          <h2 id="close" class="mx-auto max-w-4xl text-[clamp(2.6rem,1.4rem+4.6vw,6rem)] leading-[0.95] tracking-[-0.025em]">
+            Your business deserves a funnel that <em class="bg-accent px-2 text-accent-fg">looks like it</em>.
+          </h2>
+          <p class="mx-auto mt-7 max-w-xl text-lead opacity-85">Tell us what you sell and who buys it. We’ll come back with the funnel type, the big idea and a timeline.</p>
+          <div class="mt-10"><Button href={studio.contactHref} variant="inverse" size="xl">{studio.contactLabel}</Button></div>
+        </Container>
+      </section>
+    </main>
+
+    <footer class="py-10 text-sm text-fg-muted">
+      <Container size="wide" class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p>&copy; {new Date().getFullYear()} {studio.name}</p>
+        <p><a class="hover:text-fg" href={studio.contactHref}>Contact</a></p>
+      </Container>
+    </footer>
   </body>
 </html>

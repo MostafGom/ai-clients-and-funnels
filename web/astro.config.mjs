@@ -14,7 +14,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Internal pages never go in the sitemap.
-      filter: (page) => !page.includes('/design-system') && !/\/(upsell|downsell|thanks|confirmed)\/?$/.test(page) && page !== (process.env.PUBLIC_SITE_URL || 'https://funnels.example.com') + '/',
+      filter: (page) => !page.includes('/design-system') && !/\/(upsell|downsell|thanks|confirmed)\/?$/.test(page),
     }),
   ],
   vite: { plugins: [tailwindcss()] },
