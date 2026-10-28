@@ -21,7 +21,7 @@ const { kicker, title, foot } = Astro.props;
   <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>og</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700&display=swap" />
-    <style>html,body{margin:0;background:#2e2350}</style></head>
+    <style>html,body{margin:0;background:var(--color-inverse)}</style></head>
   <body>
     <div class="relative overflow-hidden bg-inverse text-inverse-fg" style="width:1200px;height:630px">
       <StarField count={80} seed={13} />

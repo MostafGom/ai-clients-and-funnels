@@ -41,7 +41,7 @@ const nights = [
       @page { size: A4; margin: 0; }
       .page { width: 210mm; min-height: 297mm; padding: 18mm 18mm 20mm; box-sizing: border-box; page-break-after: always; position: relative; }
       .page:last-child { page-break-after: auto; }
-      @media screen { body { background: #e9e2d6; } .page { margin: 16px auto; background: var(--color-bg); box-shadow: 0 10px 40px rgb(0 0 0 / 0.15); } .page.night { background: var(--color-inverse); } }
+      @media screen { body { background: var(--color-surface-2); } .page { margin: 16px auto; background: var(--color-bg); box-shadow: 0 10px 40px rgb(0 0 0 / 0.15); } .page.night { background: var(--color-inverse); } }
       @media print { .page { background: var(--color-bg); } .page.night { background: var(--color-inverse); -webkit-print-color-adjust: exact; print-color-adjust: exact; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
       .folio { position: absolute; bottom: 10mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font-size: 10px; color: var(--color-fg-subtle); }
       table { border-collapse: collapse; width: 100%; font-size: 13.5px; } th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--color-border); vertical-align: top; } th { font-weight: 800; color: var(--color-fg); }

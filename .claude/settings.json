@@ -1,4 +1,29 @@
 {
+  "env": {
+    "PLAYWRIGHT_MCP_BROWSER": "chromium",
+    "PLAYWRIGHT_MCP_HEADLESS": "true"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git branch*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.local)",
+      "Read(./.env.*.local)",
+      "Read(./.env.production)",
+      "Read(./.env.railway)",
+      "Read(./.dev.vars)",
+      "Read(./dev.vars)"
+    ],
+    "ask": [
+      "Bash(git push*)"
+    ]
+  },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "modern-web-guidance@claude-plugins-official": true,
@@ -14,6 +39,18 @@
     "marketing@anthropic-plugin-directory": true,
     "design@anthropic-plugin-directory": true,
     "brand-voice@anthropic-plugin-directory": true,
-    "searchfit-seo@anthropic-plugin-directory": true
+    "searchfit-seo@anthropic-plugin-directory": true,
+    "build@project-studio": true,
+    "brand@project-studio": true,
+    "copy@project-studio": true
+  },
+  "extraKnownMarketplaces": {
+    "project-studio": {
+      "source": {
+        "source": "git",
+        "url": "git@mostafgomgithub.com:MostafGom/ai-project-studio.git"
+      },
+      "autoUpdate": true
+    }
   }
 }

@@ -1,5 +1,21 @@
 # Brand brief — firstshares (First Shares)
 
+## Pipeline
+
+project-studio pipeline (`/brand:start firstshares`). States: todo · doing · done · approved · waived. Recorded
+2026-10-28 from this client's files and git history; demo client, so the user acts as owner.
+
+| Step | State | Date | By | Note |
+| --- | --- | --- | --- | --- |
+| brief | done | 2026-10-24 | user | this file + persona.md + offer.md |
+| moodboard | done | 2026-10-24 | claude | Category: references screenshotted at 1440/390 |
+| plan | done | 2026-10-24 | claude | DESIGN-PLAN.md; no recorded owner approval |
+| concept | todo | | | pre-studio: pages were built without an A/B concept round |
+| system | done | 2026-10-24 | claude | `web/src/styles/clients/firstshares.css`, `/firstshares/design-system`, contrast passes |
+| imagery | done | 2026-10-24 | claude | Pexels stand-ins in `web/public/firstshares/photos/` (CREDITS.md) |
+| pages | done | 2026-10-24 | claude | funnels: ebook, checkout |
+| review | todo | | | run `/funnel-review firstshares <funnel>` (uses `/brand:review` + the CRO rubric) |
+
 **Who**: First Shares, founded by Richard Hale (he/him), 54, a former Wall Street equity analyst and fund-product manager (19 years) who left in 2016 to teach plain investing to people the industry overlooks. Method: **The First Shares Setup**: three accounts, three funds, one automatic transfer, set up over six weeks and then left alone. Built for US salaried professionals aged 30–45 with cash sitting in savings. Education only: First Shares never sells funds, never takes commissions and never manages money.
 
 **Category energy**: the moment a straight-talking insider draws the compounding curve on the whiteboard and the whole room goes "oh." The setting is a kitchen table on a Saturday morning, with a laptop, a mug and the brokerage app finally open, while the numbers make sense for once. It is not a private bank's marble lobby, and it's not a trader's six-monitor desk.

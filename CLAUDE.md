@@ -64,18 +64,23 @@ Checkout flow: `CheckoutForm` → `/api/checkout` → Stripe Checkout (card save
 `setup_future_usage: off_session`) → `/upsell?session_id=` → `OneClickOffer` posts to `/api/upsell`
 which charges the saved card → `/downsell` → `/thanks`.
 
-## Commands (repo skills in `.claude/skills/`)
+## Commands (repo skills in `.claude/skills/` + project-studio)
+
+The design and copy method comes from project-studio (`.claude/studio.json`: funnel domain, semantic token
+contract, `brandDir: clients/{slug}`). Studio skills take the client slug first.
 
 | command | use |
 |---|---|
 | `/new-client <slug> "<Name>"` | scaffold `clients/<slug>/`, theme file, registry entry, pages folder, favicon |
-| `/persona <slug>` | interview → `clients/<slug>/persona.md` |
-| `/design <slug> [init\|tokens\|components\|review]` | brand brief → tokens → gallery → review |
+| `/persona <slug>` | interview → `clients/<slug>/persona.md` (or `/brand:brief <slug> persona`) |
+| `/brand:start <slug>` | where the client's design pipeline stands (Pipeline table in `brand.md`) and the next step |
+| `/brand:direction <slug> [moodboard\|plan\|concept\|check <path>]` | category energy, references, DESIGN-PLAN, A/B concept, anti-template checklist |
+| `/brand:system <slug>` | DESIGN-PLAN → `web/src/styles/clients/<slug>.css` tokens, gallery `/<slug>/design-system`, contrast |
+| `/brand:imagery <slug> stock` | Pexels shots → contact sheet → `web/public/<slug>/photos/` + CREDITS.md |
+| `/copy:conversion <slug> <funnel> [write\|sharpen]` | direct-response copy craft on top of `funnels/playbooks/` |
 | `/new-funnel <slug> <type>` | copy blueprint, write copy brief, generate pages |
 | `/funnel-review <slug> <funnel>` | Playwright pass: brand, CRO, a11y, performance |
-| `/art-direction <slug> [moodboard\|plan\|check <funnel>]` | category energy, mood board, section-pattern library, anti-template checklist |
-| `/conversion-copy <slug> <funnel> [write\|sharpen]` | direct-response copy craft on top of `funnels/playbooks/` |
-| `/photos <slug> "<brief>"` | Pexels search → contact sheet → download + credits (needs `PEXELS_API_KEY` in `web/.dev.vars`) |
+| `/brand:review <slug>` | lint, contrast, harness screenshots, checklists |
 | `/deploy` | build + `wrangler deploy` |
 
 Plugin skills worth reaching for: `frontend-design` (visual quality), `design:design-critique`,
@@ -94,7 +99,7 @@ pnpm test                # Playwright: every registered funnel page @ mobile + d
 pnpm deploy              # build + wrangler deploy  (pnpm cf:login first)
 pnpm pdf                 # render /lumen/reset/ to public/lumen/assets/bedtime-reset.pdf (re-run after editing the guide)
 pnpm images              # render share images (/lumen/og/<funnel>) + ebook cover to public/lumen/{og,assets}
-node ../design/contrast.mjs src/styles/clients/<slug>.css
+node ../design/contrast.mjs src/styles/clients/<slug>.css   # same pairs as the brand plugin's contrast.mjs --contract semantic
 node scripts/photos.mjs search "<query>" | get <slug> <name> <id> "<used as>"   # Pexels
 node tests/review.mjs <slug> <funnel>   # harness: h1, overflow, labels, focus, CTA crowding
 ```
