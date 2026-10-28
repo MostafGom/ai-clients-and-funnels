@@ -1,0 +1,36 @@
+/* Studio: the home page's own look (not a client). Editorial ink on paper, one electric action color,
+   so each client band below it reads as its own brand. Check: node design/contrast.mjs web/src/styles/studio.css */
+[data-client='studio'] {
+  --color-bg: #f3f0e8;            /* Proof paper */
+  --color-surface: #fbfaf6;
+  --color-surface-2: #e8e4d8;
+  --color-inverse: #121212;       /* Ink */
+  --color-inverse-2: #222222;
+  --color-inverse-fg: #f3f0e8;
+
+  --color-fg: #121212;
+  --color-fg-muted: #4b4943;
+  --color-fg-subtle: #7c786e;
+
+  --color-border: #d9d4c6;
+  --color-border-strong: #8a8578;
+
+  --color-primary: #2b36d9;       /* Electric ultramarine: the one action */
+  --color-primary-hover: #1f29b3;
+  --color-primary-fg: #ffffff;
+  --color-primary-soft: #dfe1fb;
+  --color-accent: #d6f24a;        /* Acid lime: highlighter */
+  --color-accent-fg: #121212;
+  --color-accent-2: #5b5850;
+  --color-accent-2-fg: #ffffff;
+
+  --color-success: #1d7a46;
+  --color-warning: #b45309;
+  --color-danger: #b42318;
+  --color-focus: #2b36d9;
+
+  --font-display: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-body: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-cta: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+}

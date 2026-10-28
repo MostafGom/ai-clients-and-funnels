@@ -1,7 +1,7 @@
 /* Client: firstshares — First Shares. Source of truth: clients/firstshares/DESIGN-PLAN.md + brand.md.
    Green Line: Paper dominant · Ink type · Money green action · Field inverse bands · Sunrise highlighter · Mint tints · Slate
    Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/firstshares.css */
-:root[data-client='firstshares'] {
+[data-client='firstshares'] {
   --color-bg: #fbfaf5;            /* Paper */
   --color-surface: #ffffff;
   --color-surface-2: #f1efe6;     /* exercise-book band */

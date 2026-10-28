@@ -1,7 +1,7 @@
 /* Client: lumen — Lumen Sleep. Source of truth: clients/lumen/DESIGN-PLAN.md + brand.md.
    Night Plum dominant · Moonmilk paper · Butter Moon · Coral Sunrise · Dusk Lilac · Sage Dawn
    Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/lumen.css */
-:root[data-client='lumen'] {
+[data-client='lumen'] {
   --color-bg: #fff7ec;            /* Moonmilk */
   --color-surface: #ffffff;
   --color-surface-2: #f8ead6;

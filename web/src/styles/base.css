@@ -88,6 +88,7 @@
 @import './clients/lumen.css';
 @import './clients/forge.css';
 @import './clients/firstshares.css';
+@import './studio.css';
 
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -97,6 +98,9 @@
     text-rendering: optimizeLegibility;
   }
   :root { --cta-case: none; --cta-tracking: 0; --cta-scale: 1; --display-case: none; }
+  /* Re-derive theme values that reference other tokens, so a nested [data-client] band (home page)
+     resolves them against its own colors/fonts instead of inheriting the root's computed value. */
+  [data-client] { --font-cta: var(--font-body); --shadow-cta: 0 10px 30px -10px var(--color-primary); }
   h1, h2, h3, h4 { @apply font-display text-balance; text-transform: var(--display-case); }
   p { @apply text-pretty; }
   :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: var(--radius-sm); }

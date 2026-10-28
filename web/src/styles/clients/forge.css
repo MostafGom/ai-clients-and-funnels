@@ -2,7 +2,7 @@
    Iron & Chalk: Iron dominant · Chalk type · Signal orange action · Plate yellow highlight · Steel
    The page is dark: bg = Iron, fg = Chalk. "inverse" is the chalk paper band (iron text on chalk).
    Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/forge.css */
-:root[data-client='forge'] {
+[data-client='forge'] {
   --color-bg: #0e0e0f;            /* Iron */
   --color-surface: #18181b;       /* Graphite: cards, inputs */
   --color-surface-2: #222226;     /* Gunmetal: raised, hover */

@@ -1,7 +1,7 @@
 # Token contract
 
 Every client theme (`web/src/styles/clients/<slug>.css`) may override **only** these variables,
-scoped as `:root[data-client='<slug>'] { … }`. Defaults live in `web/src/styles/base.css` (`@theme`).
+scoped as `[data-client='<slug>'] { … }` (matches `<html data-client>` on funnel pages and any element that opts in, e.g. the studio home page's per-client bands). Defaults live in `web/src/styles/base.css` (`@theme`).
 Components never use anything else. If a design needs a new token, add it here first, then to `base.css`.
 
 ## Color (oklch preferred; hex accepted)
