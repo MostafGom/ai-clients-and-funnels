@@ -1,5 +1,21 @@
 # Brand brief — lumen (Lumen Sleep)
 
+## Pipeline
+
+project-studio pipeline (`/brand:start lumen`). States: todo · doing · done · approved · waived. Recorded
+2026-10-28 from this client's files and git history; demo client, so the user acts as owner.
+
+| Step | State | Date | By | Note |
+| --- | --- | --- | --- | --- |
+| brief | done | 2026-10-18 | user | this file + persona.md + offer.md |
+| moodboard | todo |  |  | no Category section in the plan (pre-studio) |
+| plan | done | 2026-10-18 | claude | DESIGN-PLAN.md; no recorded owner approval |
+| concept | todo | | | pre-studio: pages were built without an A/B concept round |
+| system | done | 2026-10-18 | claude | `web/src/styles/clients/lumen.css`, `/lumen/design-system`, contrast passes |
+| imagery | done | 2026-10-18 | claude | Pexels stand-ins in `web/public/lumen/photos/` (CREDITS.md) |
+| pages | done | 2026-10-18 | claude | funnels: ebook, calendar, vsl-call, vsl-checkout, checkout |
+| review | todo | | | run `/funnel-review lumen <funnel>` (uses `/brand:review` + the CRO rubric) |
+
 **Who**: Lumen Sleep, founded by Maya Lindqvist, certified pediatric sleep consultant, 2,300+ families since 2019. Method: "Gentle Timing" (wake windows + a 7-night bedtime reset), explicitly no cry-it-out.
 
 **Personality**:

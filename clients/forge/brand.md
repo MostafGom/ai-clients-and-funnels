@@ -1,5 +1,21 @@
 # Brand brief — forge (Forge Fitness Online)
 
+## Pipeline
+
+project-studio pipeline (`/brand:start forge`). States: todo · doing · done · approved · waived. Recorded
+2026-10-28 from this client's files and git history; demo client, so the user acts as owner.
+
+| Step | State | Date | By | Note |
+| --- | --- | --- | --- | --- |
+| brief | done | 2026-10-18 | user | this file + persona.md + offer.md |
+| moodboard | done | 2026-10-19 | claude | Category: energy, references, expects/breaks in the plan |
+| plan | done | 2026-10-19 | claude | DESIGN-PLAN.md; no recorded owner approval |
+| concept | todo | | | pre-studio: pages were built without an A/B concept round |
+| system | done | 2026-10-19 | claude | `web/src/styles/clients/forge.css`, `/forge/design-system`, contrast passes |
+| imagery | done | 2026-10-19 | claude | Pexels stand-ins in `web/public/forge/photos/` (CREDITS.md) |
+| pages | done | 2026-10-19 | claude | funnels: ebook, calendar, vsl-call, vsl-checkout, checkout |
+| review | todo | | | run `/funnel-review forge <funnel>` (uses `/brand:review` + the CRO rubric) |
+
 **Who**: Forge Fitness Online, founded by Daniel Reyes, strength coach (15 years; former physiotherapist, 1,900+ clients since 2011). Method: **The Forge Protocol**: three 45-minute sessions a week, six fundamental lifts, autoregulated progression, 12-week cycles. Built for men 35–50.
 
 **Category energy**: a serious barbell gym at 6 a.m. Iron, chalk, the sound of a plate going on the bar. It's not a commercial gym full of mirrors, and it's not a wellness spa either. (Redesign Oct 2026: the first brief read as quiet luxury and gave the funnels no fitness energy.)

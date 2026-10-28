@@ -1,5 +1,8 @@
 # Token contract
 
+> This repo's copy of project-studio's **semantic** contract (brand plugin, `references/contracts/semantic.md`).
+> Keep them in step: a new token here is a studio change too (`/brand:retro`).
+
 Every client theme (`web/src/styles/clients/<slug>.css`) may override **only** these variables,
 scoped as `[data-client='<slug>'] { … }` (matches `<html data-client>` on funnel pages and any element that opts in, e.g. the studio home page's per-client bands). Defaults live in `web/src/styles/base.css` (`@theme`).
 Components never use anything else. If a design needs a new token, add it here first, then to `base.css`.

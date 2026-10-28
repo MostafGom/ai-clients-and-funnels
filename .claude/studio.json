@@ -1,0 +1,53 @@
+{
+  "studio": "1",
+  "domain": "funnel",
+  "contract": "semantic",
+  "stack": "astro-tailwind4",
+  "locales": [
+    {
+      "code": "en",
+      "dir": "ltr",
+      "default": true
+    }
+  ],
+  "brandDir": "clients/{slug}",
+  "files": {
+    "brief": "brand.md",
+    "plan": "DESIGN-PLAN.md",
+    "imagery": null,
+    "persona": "persona.md"
+  },
+  "tokens": "web/src/styles/clients/{slug}.css",
+  "tokensBase": "web/src/styles/base.css",
+  "gallery": "/{slug}/design-system",
+  "devUrl": "http://localhost:4321",
+  "pages": [
+    "/{slug}",
+    "/{slug}/design-system"
+  ],
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      1440,
+      900
+    ]
+  ],
+  "lint": {
+    "dirs": [
+      "web/src/pages",
+      "web/src/components",
+      "web/src/layouts"
+    ],
+    "rtl": false
+  },
+  "contrast": {
+    "pairs": []
+  },
+  "review": {
+    "cta": ".bg-primary, .bg-accent"
+  },
+  "keys": {}
+}
