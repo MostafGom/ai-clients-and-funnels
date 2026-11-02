@@ -41,6 +41,6 @@ Components never use anything else. If a design needs a new token, add it here f
 
 ## Checking
 ```
-node design/contrast.mjs web/src/styles/clients/<slug>.css
+node <brand plugin>/scripts/contrast.mjs --slug <slug>     # reads .claude/studio.json (semantic contract, base.css defaults)
 ```
-Prints every required pair with its ratio and PASS/FAIL. The `/design <slug> review` skill runs it.
+Prints every required pair with its ratio and PASS/FAIL. `/brand:system <slug>` and `/brand:review <slug>` run it.

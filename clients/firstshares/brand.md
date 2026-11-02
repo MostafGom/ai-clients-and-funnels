@@ -34,4 +34,4 @@ Urgency only where it's real: a bonus window or enrolment price with the reason 
 **Do**: a photo of a real person in every hero; giant numerals; highlighter marks on key phrases; plain-English definitions in the margin; alternate paper / green / photo sections; 8–14px radii (friendly, not bubbly).
 **Don't**: serif display, bone/brass "private bank" luxury, stock-market tickers and candlestick charts, suits and skylines, gold coins, piggy banks, glowing upward arrows, dark "trader" UI, gradients as decoration, identical card rows.
 
-**Tokens**: `web/src/styles/clients/firstshares.css` · verified with `node design/contrast.mjs`
+**Tokens**: `web/src/styles/clients/firstshares.css` · verified with the brand plugin's `contrast.mjs --slug firstshares` (`/brand:review firstshares`)

@@ -9,7 +9,6 @@ on any other project.
 ```
 clients/<slug>/            persona.md · brand.md · offer.md · funnels/<type>.md   (strategy + copy, source of truth)
 design/TOKENS.md           the token contract every client theme must satisfy
-design/contrast.mjs        WCAG AA check:  node design/contrast.mjs web/src/styles/clients/<slug>.css
 funnels/blueprints/<type>/ page map + copy framework + component list per funnel type
 web/                       Astro 7 · Tailwind v4 · @astrojs/cloudflare · Stripe · Resend · PostHog
   src/styles/base.css      @theme defaults (the contract) — imports every clients/<slug>.css
@@ -72,7 +71,7 @@ contract, `brandDir: clients/{slug}`). Studio skills take the client slug first.
 | command | use |
 |---|---|
 | `/new-client <slug> "<Name>"` | scaffold `clients/<slug>/`, theme file, registry entry, pages folder, favicon |
-| `/persona <slug>` | interview → `clients/<slug>/persona.md` (or `/brand:brief <slug> persona`) |
+| `/brand:brief <slug> [persona]` | owner interview → `brand.md`; `persona` mode → `clients/<slug>/persona.md` |
 | `/brand:start <slug>` | where the client's design pipeline stands (Pipeline table in `brand.md`) and the next step |
 | `/brand:direction <slug> [moodboard\|plan\|concept\|check <path>]` | category energy, references, DESIGN-PLAN, A/B concept, anti-template checklist |
 | `/brand:system <slug>` | DESIGN-PLAN → `web/src/styles/clients/<slug>.css` tokens, gallery `/<slug>/design-system`, contrast |
@@ -81,11 +80,21 @@ contract, `brandDir: clients/{slug}`). Studio skills take the client slug first.
 | `/new-funnel <slug> <type>` | copy blueprint, write copy brief, generate pages |
 | `/funnel-review <slug> <funnel>` | Playwright pass: brand, CRO, a11y, performance |
 | `/brand:review <slug>` | lint, contrast, harness screenshots, checklists |
+| `/brand:retro <slug>` | after a client ships: what the studio should learn (goes back to project-studio) |
+| `/build:feature` | build a feature or page in this repo's conventions |
+| `/verify` | project checks before calling work done: types, tests, build, smoke, contrast, harness |
+| `/build:pr` · `/build:doctor` | pre-merge checklist / studio plugin versions and studio.json health |
 | `/deploy` | build + `wrangler deploy` |
 
 Plugin skills worth reaching for: `frontend-design` (visual quality), `design:design-critique`,
-`design:accessibility-review`, `marketing:draft-content` / `marketing:email-sequence`,
-`brand-voice:*`, `searchfit-seo:on-page-seo`, `stripe:*`, `resend:*`, `cloudflare:wrangler`, `posthog`.
+`design:accessibility-review`, `marketing:email-sequence`, `searchfit-seo:on-page-seo`, `stripe:*`, `resend:*`,
+`cloudflare:wrangler`, `posthog`.
+
+Where plugins overlap, the studio wins: design system, art direction and brand review are `/brand:*` (not
+`design:design-system` or `marketing:brand-review`); page and funnel copy is `/copy:*` (`marketing:draft-content`
+only as a helper inside it); `brand-voice:*` only checks copy against the client's `brand.md` voice.
+Contrast checks use the brand plugin's `scripts/contrast.mjs --slug <slug>` (reads `.claude/studio.json`);
+`/brand:system` and `/brand:review` run it.
 
 ## Dev
 
@@ -99,7 +108,6 @@ pnpm test                # Playwright: every registered funnel page @ mobile + d
 pnpm deploy              # build + wrangler deploy  (pnpm cf:login first)
 pnpm pdf                 # render /lumen/reset/ to public/lumen/assets/bedtime-reset.pdf (re-run after editing the guide)
 pnpm images              # render share images (/lumen/og/<funnel>) + ebook cover to public/lumen/{og,assets}
-node ../design/contrast.mjs src/styles/clients/<slug>.css   # same pairs as the brand plugin's contrast.mjs --contract semantic
 node scripts/photos.mjs search "<query>" | get <slug> <name> <id> "<used as>"   # Pexels
 node tests/review.mjs <slug> <funnel>   # harness: h1, overflow, labels, focus, CTA crowding
 ```

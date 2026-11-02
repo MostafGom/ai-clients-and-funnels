@@ -1,5 +1,5 @@
 /* Studio: the home page's own look (not a client). Editorial ink on paper, one electric action color,
-   so each client band below it reads as its own brand. Check: node design/contrast.mjs web/src/styles/studio.css */
+   so each client band below it reads as its own brand. Check: brand plugin contrast.mjs --contract semantic --base web/src/styles/base.css --css web/src/styles/studio.css */
 [data-client='studio'] {
   --color-bg: #f3f0e8;            /* Proof paper */
   --color-surface: #fbfaf6;

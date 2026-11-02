@@ -1,7 +1,7 @@
 /* Client: forge — Forge Fitness Online. Source of truth: clients/forge/DESIGN-PLAN.md + brand.md.
    Iron & Chalk: Iron dominant · Chalk type · Signal orange action · Plate yellow highlight · Steel
    The page is dark: bg = Iron, fg = Chalk. "inverse" is the chalk paper band (iron text on chalk).
-   Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/forge.css */
+   Override ONLY tokens listed in design/TOKENS.md. Check: /brand:review forge (brand plugin contrast.mjs --slug forge) */
 [data-client='forge'] {
   --color-bg: #0e0e0f;            /* Iron */
   --color-surface: #18181b;       /* Graphite: cards, inputs */

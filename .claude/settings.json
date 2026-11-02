@@ -34,7 +34,6 @@
     "resend@claude-plugins-official": true,
     "cloudflare@claude-plugins-official": true,
     "posthog@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
     "marketing@anthropic-plugin-directory": true,
     "design@anthropic-plugin-directory": true,

@@ -9,7 +9,7 @@ argument-hint: "<slug> <ebook|calendar|vsl-call|vsl-checkout|checkout>"
 Arguments: `$ARGUMENTS` → `<slug> <type>`. Reference implementation: `clients/lumen/funnels/checkout/` + `web/src/pages/lumen/checkout/`.
 
 ## 0. Preconditions (stop and say what's missing otherwise)
-`clients/<slug>/persona.md`, `brand.md`, `offer.md`, `DESIGN-PLAN.md` filled; theme in `web/src/styles/clients/<slug>.css` passing `node design/contrast.mjs` (or the brand plugin's `contrast.mjs --slug <slug>`); the Pipeline table in `brand.md` (`/brand:start <slug>`) has plan and system passed; client-specific art in `web/src/components/clients/<slug>/`.
+`clients/<slug>/persona.md`, `brand.md`, `offer.md`, `DESIGN-PLAN.md` filled; theme in `web/src/styles/clients/<slug>.css` passing the brand plugin's `contrast.mjs --slug <slug>` (`/brand:system` and `/brand:review` run it); the Pipeline table in `brand.md` (`/brand:start <slug>`) has plan and system passed; client-specific art in `web/src/components/clients/<slug>/`.
 
 ## 1. PLAN.md → `clients/<slug>/funnels/<type>/PLAN.md`
 Read `funnels/playbooks/awareness-stages.md`, `offer-stack.md`, and the architecture playbook for the type (`sales-page-architecture.md` or `vsl-script.md`). Write: traffic & awareness stage, Big Idea, named mechanism, offer stack table with values and anchors, objection map → section, proof plan (exists / client must supply / how shown), page map with the copy job of every section, events, emails, open client inputs.

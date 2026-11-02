@@ -1,5 +1,5 @@
 /* Client: <slug> — <Client Name>. Source of truth: clients/<slug>/brand.md.
-   Override ONLY tokens listed in design/TOKENS.md. Check: node design/contrast.mjs web/src/styles/clients/<slug>.css */
+   Override ONLY tokens listed in design/TOKENS.md. Check: /brand:review <slug> (brand plugin contrast.mjs --slug <slug>) */
 [data-client='<slug>'] {
   --color-bg: oklch(98.5% 0.004 90);
   --color-surface: oklch(100% 0 0);

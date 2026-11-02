@@ -30,4 +30,4 @@ project-studio pipeline (`/brand:start lumen`). States: todo · doing · done ·
 **Do**: big friendly headlines, generous whitespace, one coral CTA per screen, yellow only for one-time offers and highlights, playful micro-copy under buttons.
 **Don't**: red urgency, countdowns on lead-gen pages, clinical blue, tiny text, multiple CTAs, scare copy about development.
 
-**Tokens**: `web/src/styles/clients/lumen.css` · verified with `node design/contrast.mjs`.
+**Tokens**: `web/src/styles/clients/lumen.css` · verified with the brand plugin's `contrast.mjs --slug lumen` (`/brand:review lumen`).

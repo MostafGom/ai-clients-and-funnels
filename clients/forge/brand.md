@@ -33,4 +33,4 @@ Urgency only where it's real: cohort start dates, the week-four guarantee window
 **Do**: a photo of lifting in every hero; giant numerals; hard edges (2–6px radii); dense proof (ledgers, kilos); alternate iron / chalk / photo sections; uppercase display.
 **Don't**: serif display, pastel, gradients-as-decoration, lightning bolts, neon glow, shirtless "ripped" stock, countdown timers, emoji, identical card rows.
 
-**Tokens**: `web/src/styles/clients/forge.css` · verified with `node design/contrast.mjs`.
+**Tokens**: `web/src/styles/clients/forge.css` · verified with the brand plugin's `contrast.mjs --slug forge` (`/brand:review forge`).
